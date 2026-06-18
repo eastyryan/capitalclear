@@ -181,7 +181,21 @@
     "registerHere": "Inscrivez-vous ici",
     "signupSuccess": "Compte créé. Bienvenue chez Capital Clear !",
     "invalidCredentials": "Courriel ou mot de passe invalide.",
-    "genericError": "Une erreur s'est produite. Veuillez réessayer."
+    "genericError": "Une erreur s'est produite. Veuillez réessayer.",
+    "emailInUse": "Ce courriel est déjà enregistré. Essayez de vous connecter.",
+    "loginSubtitle": "Bon retour. Connectez-vous pour gérer vos travaux.",
+    "registerSubtitle": "Rejoignez Capital Clear en moins d'une minute.",
+    "passwordHint": "Au moins 8 caractères.",
+    "phonePlaceholder": "(613) 555-0142",
+    "emailPlaceholder": "vous@exemple.com",
+    "fullNamePlaceholder": "Jeanne Tremblay",
+    "signingIn": "Connexion…",
+    "signingUp": "Création du compte…",
+    "langEnglish": "English",
+    "langFrench": "Français",
+    "invalidEmail": "Saisissez une adresse courriel valide.",
+    "passwordTooShort": "Le mot de passe doit comporter au moins 8 caractères.",
+    "fullNameRequired": "Veuillez saisir votre nom."
   },
   "Booking": {
     "title": "Réserver un service",

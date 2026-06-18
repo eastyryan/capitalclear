@@ -181,7 +181,21 @@
     "registerHere": "Sign up here",
     "signupSuccess": "Account created. Welcome to Capital Clear!",
     "invalidCredentials": "Invalid email or password.",
-    "genericError": "Something went wrong. Please try again."
+    "genericError": "Something went wrong. Please try again.",
+    "emailInUse": "That email is already registered. Try logging in instead.",
+    "loginSubtitle": "Welcome back. Log in to manage your jobs.",
+    "registerSubtitle": "Join Capital Clear in under a minute.",
+    "passwordHint": "At least 8 characters.",
+    "phonePlaceholder": "(613) 555-0142",
+    "emailPlaceholder": "you@example.com",
+    "fullNamePlaceholder": "Jane Tremblay",
+    "signingIn": "Logging in…",
+    "signingUp": "Creating account…",
+    "langEnglish": "English",
+    "langFrench": "Français",
+    "invalidEmail": "Enter a valid email address.",
+    "passwordTooShort": "Password must be at least 8 characters.",
+    "fullNameRequired": "Please enter your name."
   },
   "Booking": {
     "title": "Book a service",
