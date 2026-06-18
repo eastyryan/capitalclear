@@ -2,6 +2,9 @@ import type { ReactNode } from 'react';
 import { setRequestLocale } from 'next-intl/server';
 import { requireRole } from '@/lib/auth/guards';
 
+// Authed, per-request data — never statically prerender this subtree.
+export const dynamic = 'force-dynamic';
+
 // Route-group layout for admin-only pages (/admin — added in Wave 3). Route
 // groups in parens DON'T change the URL; this wraps those pages with a
 // server-side role guard.

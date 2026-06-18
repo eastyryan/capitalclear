@@ -41,10 +41,19 @@ export default async function proxy(request: NextRequest) {
   //    either way it carries the cookies/headers we must preserve.
   const response = handleI18n(request);
 
+  // If Supabase isn't configured (e.g. local demo with no backend), skip auth
+  // refresh and the protected-route gate entirely so the public site still
+  // renders instead of 500-ing on a blank-URL client.
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!supabaseUrl || !supabaseKey) {
+    return response;
+  }
+
   // 2. Refresh the Supabase session, writing rotated cookies onto `response`.
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    supabaseUrl,
+    supabaseKey,
     {
       cookies: {
         getAll() {

@@ -2,6 +2,9 @@ import type { ReactNode } from 'react';
 import { setRequestLocale } from 'next-intl/server';
 import { requireUser } from '@/lib/auth/guards';
 
+// Authed, per-request data — never statically prerender this subtree.
+export const dynamic = 'force-dynamic';
+
 // Route-group layout for pages that only require *any* authenticated user
 // regardless of role (e.g. /jobs/[id], where homeowner and pro both view the
 // same job). Route groups in parens DON'T change the URL. `requireUser`

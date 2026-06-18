@@ -11,10 +11,27 @@ import type { User } from '@supabase/supabase-js';
 type ProfileRow = Database['public']['Tables']['profiles']['Row'];
 
 /**
+ * Whether Supabase is configured. When it isn't (e.g. a local demo with no
+ * backend), the SSR client would throw "supabaseUrl is required"; guards treat
+ * that as "unauthenticated" and bounce to /login rather than 500-ing.
+ */
+function supabaseConfigured(): boolean {
+  return Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  );
+}
+
+/**
  * Require an authenticated user. Redirects to /login if there is none.
  * Returns the Supabase auth user.
  */
 export async function requireUser(): Promise<User> {
+  if (!supabaseConfigured()) {
+    const locale = await getLocale();
+    throw redirect({ href: '/login', locale });
+  }
+
   const supabase = await createClient();
   const {
     data: { user },
@@ -36,6 +53,10 @@ export async function requireUser(): Promise<User> {
  * profile exists.
  */
 export async function getProfile(): Promise<ProfileRow | null> {
+  if (!supabaseConfigured()) {
+    return null;
+  }
+
   const supabase = await createClient();
   const {
     data: { user },
