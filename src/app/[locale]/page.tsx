@@ -1,15 +1,44 @@
-import { useTranslations } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import { IntroLoader } from '@/components/landing/IntroLoader';
+import { SmoothScroll } from '@/components/landing/SmoothScroll';
+import { Hero } from '@/components/landing/Hero';
+import { TrustAndHow } from '@/components/landing/TrustAndHow';
+import { Services } from '@/components/landing/Services';
+import { Compare } from '@/components/landing/Compare';
+import { Stats } from '@/components/landing/Stats';
+import { FaqAndCta } from '@/components/landing/FaqAndCta';
+import { Footer } from '@/components/site/Footer';
 
-export default function HomePage() {
-  const t = useTranslations('HomePage');
+/**
+ * Cinematic scrollytelling landing page. The page itself is a Server Component
+ * (so it can `setRequestLocale` for static rendering); it composes Client
+ * section components that own their own motion. SmoothScroll mounts Lenis +
+ * GSAP ScrollTrigger once for the pinned/scrubbed sections. All motion is gated
+ * on prefers-reduced-motion inside each client component, so this page renders
+ * as plain, static, fully-readable sections when motion is reduced.
+ */
+export default async function LandingPage({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-4 p-8 text-center">
-      <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-        Ottawa · Kanata · Barrhaven · Orleans · Nepean
-      </span>
-      <h1 className="font-sans text-4xl font-normal tracking-tight">{t('title')}</h1>
-      <p className="max-w-xl text-balance text-muted-foreground">{t('tagline')}</p>
-    </main>
+    <>
+      <IntroLoader />
+      <SmoothScroll>
+        <main className="flex flex-1 flex-col">
+          <Hero />
+          <TrustAndHow />
+          <Services />
+          <Compare />
+          <Stats />
+          <FaqAndCta />
+        </main>
+      </SmoothScroll>
+      <Footer />
+    </>
   );
 }

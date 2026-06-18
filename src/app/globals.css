@@ -4,12 +4,32 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+  Capital Clear design system — warm-red cinematic dark theme.
+  The app is DARK-FIRST: `:root` carries the dark palette so shadcn/ui
+  components (which key off --background, --primary, --border, etc.) render
+  correctly without a `.dark` wrapper. A `.dark` block mirrors the same
+  values so explicit `dark`-scoped utilities also resolve.
+*/
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
+
+  /* Brand + status tokens exposed as Tailwind colors (bg-ember, text-ice…) */
+  --color-ember: var(--ember);
+  --color-ice: var(--ice);
+  --color-slate: var(--slate);
+  --color-band-light: var(--band-light);
+  --color-status-success: var(--status-success);
+  --color-status-warning: var(--status-warning);
+  --color-status-danger: var(--status-danger);
+  --color-status-info: var(--status-info);
+  --color-status-violet: var(--status-violet);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -49,72 +69,110 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* 8px corners */
+  --radius: 0.5rem;
+
+  /* Named brand palette (hex, per design contract) */
+  --background: #0a0708; /* warm near-black */
+  --foreground: #f2eeec; /* warm off-white */
+  --primary: #e23a2c; /* warm red */
+  --primary-foreground: #ffffff;
+  --primary-hover: #c12e22;
+  --ember: #ff7a2f;
+  --ice: #5bc8ff;
+  --slate: #1e2a44;
+  --band-light: #f6f3f1;
+
+  /* Job-status palette */
+  --status-success: #34b36a; /* cleared */
+  --status-warning: #f2b53c; /* in-progress */
+  --status-danger: #b3261e; /* cancelled */
+  --status-info: #2d6cf0; /* posted */
+  --status-violet: #7c5cff; /* awaiting */
+
+  /* shadcn semantic surfaces, derived from the warm-dark base */
+  --card: #120d0f;
+  --card-foreground: var(--foreground);
+  --popover: #16100f;
+  --popover-foreground: var(--foreground);
+  --secondary: #1c1517;
+  --secondary-foreground: var(--foreground);
+  --muted: #1c1517;
+  --muted-foreground: #a89f9c;
+  --accent: #241a1c;
+  --accent-foreground: var(--foreground);
+  --destructive: var(--status-danger);
+
+  /* Hairline borders — rgba(255,255,255,.07) */
+  --border: rgba(255, 255, 255, 0.07);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: rgba(226, 58, 44, 0.55);
+
+  --chart-1: var(--primary);
+  --chart-2: var(--ember);
+  --chart-3: var(--ice);
+  --chart-4: var(--status-success);
+  --chart-5: var(--status-violet);
+
+  /* Sidebar surfaces */
+  --sidebar: #0d0809;
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: #1c1517;
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-ring: var(--ring);
 }
 
+/* Mirror the dark palette so explicit `.dark`-scoped utilities still resolve. */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #0a0708;
+  --foreground: #f2eeec;
+  --primary: #e23a2c;
+  --primary-foreground: #ffffff;
+  --primary-hover: #c12e22;
+  --ember: #ff7a2f;
+  --ice: #5bc8ff;
+  --slate: #1e2a44;
+  --band-light: #f6f3f1;
+
+  --status-success: #34b36a;
+  --status-warning: #f2b53c;
+  --status-danger: #b3261e;
+  --status-info: #2d6cf0;
+  --status-violet: #7c5cff;
+
+  --card: #120d0f;
+  --card-foreground: #f2eeec;
+  --popover: #16100f;
+  --popover-foreground: #f2eeec;
+  --secondary: #1c1517;
+  --secondary-foreground: #f2eeec;
+  --muted: #1c1517;
+  --muted-foreground: #a89f9c;
+  --accent: #241a1c;
+  --accent-foreground: #f2eeec;
+  --destructive: #b3261e;
+
+  --border: rgba(255, 255, 255, 0.07);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: rgba(226, 58, 44, 0.55);
+
+  --chart-1: #e23a2c;
+  --chart-2: #ff7a2f;
+  --chart-3: #5bc8ff;
+  --chart-4: #34b36a;
+  --chart-5: #7c5cff;
+
+  --sidebar: #0d0809;
+  --sidebar-foreground: #f2eeec;
+  --sidebar-primary: #e23a2c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1c1517;
+  --sidebar-accent-foreground: #f2eeec;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-ring: rgba(226, 58, 44, 0.55);
 }
 
 @layer base {
@@ -126,5 +184,91 @@
   }
   html {
     @apply font-sans;
+    /* Force the dark color-scheme so native UI (scrollbars, form controls)
+       matches the dark-first theme. */
+    color-scheme: dark;
+  }
+
+  /* Big display headings: Geist Sans weight 400, tight tracking. */
+  h1,
+  .display {
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+}
+
+@layer utilities {
+  /* Geist Mono utility for eyebrows + tabular stat numerals. */
+  .font-mono {
+    font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+  }
+
+  /* Monospace eyebrow label: uppercase, spaced, muted. */
+  .eyebrow {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.72rem;
+    line-height: 1;
+    color: var(--muted-foreground);
+  }
+
+  /* Alternating cinematic dark band (default page surface). */
+  .band-dark {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  /* Light contrast band — warm off-white surface with dark ink. */
+  .band-light {
+    background-color: var(--band-light);
+    color: #1a1416;
+  }
+  .band-light .text-muted-foreground {
+    color: #6c605c;
+  }
+  .band-light .eyebrow {
+    color: #8a7d78;
+  }
+
+  /* Warm red -> ember gradient as a fill (buttons, accents). */
+  .bg-gradient-ember {
+    background-image: linear-gradient(100deg, var(--primary), var(--ember));
+  }
+  .bg-gradient-ember:hover {
+    background-image: linear-gradient(100deg, var(--primary-hover), var(--ember));
+  }
+
+  /* Warm red -> ember gradient as text. */
+  .text-gradient-ember {
+    background-image: linear-gradient(100deg, var(--primary), var(--ember));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Hairline divider helper. */
+  .hairline {
+    border-color: rgba(255, 255, 255, 0.07);
+  }
+
+  /* Tabular numerals for count-up stats. */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Respect reduced-motion globally: kill smooth scroll + animations. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
