@@ -379,5 +379,45 @@
     "emptyUsers": "Aucun utilisateur pour le moment.",
     "emptyReviews": "Aucun avis pour le moment.",
     "emptyPayments": "Aucun paiement pour le moment."
+  },
+  "Immersive": {
+    "badgeNew": "Nouveau",
+    "badge": "Maintenant partout à Ottawa — réservez en 60 secondes",
+    "headline": "Déneigé avant même votre réveil",
+    "subhead": "Déneigement, entretien de pelouse et entretien saisonnier à la demande dans la région de la capitale nationale. Réservé en quelques minutes, vérifié par photo, et payé seulement une fois le travail terminé.",
+    "ctaPrimary": "Réserver",
+    "ctaSecondary": "Comment ça marche",
+    "stat1Value": "7 h",
+    "stat1Label": "Garantie de déneigement",
+    "stat2Value": "240+",
+    "stat2Label": "Pros locaux vérifiés",
+    "trust": "La confiance de toute la région de la capitale",
+    "servicesKicker": "Services",
+    "servicesHeadA": "Chaque saison,",
+    "servicesHeadB": "maîtrisée.",
+    "snowTitle": "Déneigement",
+    "snowTags": [
+      "Entrées",
+      "Trottoirs",
+      "Salage",
+      "Avant 7 h"
+    ],
+    "snowBody": "Déneigement et salage de nuit pour entrées, allées et marches — déneigé et vérifié par photo avant votre départ matinal.",
+    "lawnTitle": "Tonte de pelouse",
+    "lawnTags": [
+      "Bordures nettes",
+      "À l’horaire",
+      "Bandes propres",
+      "Taillé"
+    ],
+    "lawnBody": "Des coupes nettes et régulières selon un horaire adapté à votre terrain, bordures incluses — une pelouse impeccable sans lever le petit doigt.",
+    "seasonalTitle": "Entretien saisonnier",
+    "seasonalTags": [
+      "Ménage de printemps",
+      "Ramassage de feuilles",
+      "Gouttières",
+      "Toute l’année"
+    ],
+    "seasonalBody": "Nettoyages de printemps, ramassage des feuilles à l’automne et tous les travaux qui gardent votre propriété impeccable en toute saison."
   }
 }

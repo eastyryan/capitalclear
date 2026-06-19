@@ -34,6 +34,9 @@ yarn-error.log*
 .env*
 !.env.example
 
+# throwaway design prototypes / scratch
+/design-explorations
+
 # vercel
 .vercel
 

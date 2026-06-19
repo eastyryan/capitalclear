@@ -379,5 +379,45 @@
     "emptyUsers": "No users yet.",
     "emptyReviews": "No reviews yet.",
     "emptyPayments": "No payments yet."
+  },
+  "Immersive": {
+    "badgeNew": "New",
+    "badge": "Now clearing all of Ottawa — book in 60 seconds",
+    "headline": "Cleared Before You Even Wake",
+    "subhead": "On-demand snow removal, lawn care, and seasonal maintenance across the National Capital Region. Booked in minutes, photo-verified, and paid only when the work is done.",
+    "ctaPrimary": "Book a Clear",
+    "ctaSecondary": "See how it works",
+    "stat1Value": "7AM",
+    "stat1Label": "Cleared-by guarantee",
+    "stat2Value": "240+",
+    "stat2Label": "Vetted local pros",
+    "trust": "Trusted across the National Capital Region",
+    "servicesKicker": "Services",
+    "servicesHeadA": "Every season,",
+    "servicesHeadB": "handled.",
+    "snowTitle": "Snow Removal",
+    "snowTags": [
+      "Driveways",
+      "Walkways",
+      "Salted",
+      "By 7AM"
+    ],
+    "snowBody": "Overnight plowing and salting for driveways, walkways and steps — cleared and photo-verified before your morning commute.",
+    "lawnTitle": "Lawn Mowing",
+    "lawnTags": [
+      "Crisp Edges",
+      "On Schedule",
+      "Clean Stripes",
+      "Trimmed"
+    ],
+    "lawnBody": "Even, tidy cuts on a schedule that fits your yard, with edges trimmed — a sharp lawn without lifting a finger.",
+    "seasonalTitle": "Seasonal Care",
+    "seasonalTags": [
+      "Spring Cleanup",
+      "Leaf Removal",
+      "Gutters",
+      "Year-Round"
+    ],
+    "seasonalBody": "Spring cleanups, fall leaf removal and the in-between jobs that keep your property sharp through every season."
   }
 }

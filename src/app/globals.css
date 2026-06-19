@@ -272,3 +272,139 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ===========================================================================
+   Immersive landing — liquid-glass design system + cinematic motion.
+   (Display: Instrument Serif italic; body: Barlow. Vars set in layout.tsx.)
+   =========================================================================== */
+.font-instrument {
+  font-family: var(--font-instrument), Georgia, "Times New Roman", serif;
+}
+.font-barlow {
+  font-family: var(--font-barlow), system-ui, sans-serif;
+}
+
+/* Brighter red->ember gradient text — legible over photography. */
+.text-ember {
+  background-image: linear-gradient(100deg, #ff5436, #ff9248);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Drop-shadow for white text sitting over bright video frames. */
+.tshadow {
+  text-shadow:
+    0 2px 26px rgba(0, 0, 0, 0.5),
+    0 1px 4px rgba(0, 0, 0, 0.42);
+}
+
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.15) 80%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.liquid-glass-strong {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  border: none;
+  box-shadow:
+    4px 4px 4px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cinematic scrim — darkens top/bottom thirds so glass + text read. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(8, 7, 9, 0.6) 0%, rgba(8, 7, 9, 0.1) 26%, rgba(8, 7, 9, 0) 46%),
+    linear-gradient(0deg, rgba(8, 7, 9, 0.74) 0%, rgba(8, 7, 9, 0.18) 34%, rgba(8, 7, 9, 0) 58%),
+    radial-gradient(130% 78% at 50% 38%, rgba(8, 7, 9, 0) 36%, rgba(8, 7, 9, 0.36) 100%);
+}
+
+@keyframes cc-kenburns {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1.16);
+  }
+}
+.kenburns {
+  animation: cc-kenburns 24s ease-in-out infinite alternate;
+}
+
+@keyframes cc-rise {
+  from {
+    filter: blur(10px);
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  opacity: 0;
+  animation: cc-rise 0.8s ease-out forwards;
+}
+
+@keyframes cc-blur-word {
+  0% {
+    filter: blur(10px);
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  50% {
+    filter: blur(5px);
+    opacity: 0.5;
+    transform: translateY(-5px);
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.blur-word {
+  display: inline-block;
+  margin-right: 0.28em;
+  opacity: 0;
+  animation: cc-blur-word 0.7s ease-out forwards;
+}

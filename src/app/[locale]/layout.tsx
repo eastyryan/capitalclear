@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Instrument_Serif, Barlow } from 'next/font/google';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -14,6 +14,20 @@ import '../globals.css';
 // `--font-sans` / `--font-geist-mono` match the @theme mapping in globals.css.
 const geistSans = Geist({ variable: '--font-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
+// Immersive landing display + body faces.
+const instrument = Instrument_Serif({
+  weight: '400',
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-instrument',
+  display: 'swap'
+});
+const barlow = Barlow({
+  weight: ['300', '400', '500', '600'],
+  subsets: ['latin'],
+  variable: '--font-barlow',
+  display: 'swap'
+});
 
 export const metadata: Metadata = {
   title: 'Capital Clear',
@@ -50,7 +64,7 @@ export default async function LocaleLayout({
       lang={locale}
       // `dark` keeps shadcn dark-scoped utilities aligned with the dark-first
       // palette (the palette also lives on :root as a fallback).
-      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} ${barlow.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
