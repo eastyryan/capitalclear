@@ -19,7 +19,8 @@
     "myJobs": "Mes travaux",
     "language": "Langue",
     "english": "English",
-    "french": "Français"
+    "french": "Français",
+    "contact": "Contact"
   },
   "Landing": {
     "loaderText": "Déneigement de l'entrée",
@@ -116,7 +117,14 @@
     "linkPricing": "Tarifs",
     "linkBook": "Réserver un déneigement",
     "linkPro": "Devenir pro",
-    "rights": "Tous droits réservés."
+    "rights": "Tous droits réservés.",
+    "supportTitle": "Aide",
+    "legalTitle": "Légal",
+    "linkAbout": "À propos",
+    "linkFaq": "FAQ",
+    "linkContact": "Contact",
+    "linkTerms": "Conditions",
+    "linkPrivacy": "Confidentialité"
   },
   "Common": {
     "continue": "Continuer",
@@ -419,5 +427,568 @@
       "Toute l’année"
     ],
     "seasonalBody": "Nettoyages de printemps, ramassage des feuilles à l’automne et tous les travaux qui gardent votre propriété impeccable en toute saison."
+  },
+  "HowItWorks": {
+    "metaTitle": "Comment ça marche",
+    "eyebrow": "Comment ça marche",
+    "title": "Réservé en minutes,",
+    "accent": "réglé au matin.",
+    "subtitle": "De la demande à la preuve photo — voici exactement comment Capital Clear relie votre propriété à un pro local vérifié.",
+    "homeownersKicker": "Pour les propriétaires",
+    "homeownersTitle": "Trois touches vers une",
+    "homeownersAccent": "entrée dégagée.",
+    "homeownersSteps": [
+      {
+        "title": "Réservez en 60 secondes",
+        "body": "Choisissez un service, indiquez votre adresse et une heure. Nous confirmons aussitôt que vous êtes dans la zone de la région de la capitale nationale."
+      },
+      {
+        "title": "Un pro local accepte",
+        "body": "Votre travail est offert aux entrepreneurs vérifiés à proximité. Le premier à accepter le réserve — vous voyez qui vient et quand."
+      },
+      {
+        "title": "Payez une fois terminé",
+        "body": "Votre pro réalise le travail et téléverse une preuve photo. Vous n'êtes facturé qu'une fois le travail vérifié."
+      }
+    ],
+    "prosKicker": "Pour les pros",
+    "prosTitle": "Arrivez, dégagez,",
+    "prosAccent": "soyez payé.",
+    "prosSteps": [
+      {
+        "title": "Réclamez des travaux proches",
+        "body": "Parcourez les travaux ouverts dans votre secteur et acceptez ceux qui conviennent à votre tournée et votre équipement — sans enchères."
+      },
+      {
+        "title": "Faites le travail",
+        "body": "Réalisez le travail selon la norme et prenez des photos avant/après depuis votre tableau de bord comme preuve."
+      },
+      {
+        "title": "Gardez 85 %",
+        "body": "Les versements sont libérés automatiquement après la fenêtre de vérification du client. Vous gardez 85 % de chaque travail, sans frais mensuels."
+      }
+    ],
+    "assuranceKicker": "Pourquoi ça marche",
+    "assuranceTitle": "Appuyé par de vraies garanties.",
+    "assurances": [
+      {
+        "title": "Vérifié par photo",
+        "body": "Chaque travail se termine par des photos avant/après horodatées."
+      },
+      {
+        "title": "Pros vérifiés",
+        "body": "Les entrepreneurs sont sélectionnés avant de pouvoir accepter du travail."
+      },
+      {
+        "title": "Payez à la fin",
+        "body": "Aucuns frais d'avance — vous payez seulement une fois terminé."
+      },
+      {
+        "title": "Dégagé pour 7 h",
+        "body": "Les travaux de nuit sont terminés avant votre trajet du matin."
+      }
+    ],
+    "ctaTitle": "Prêt dès le premier flocon.",
+    "ctaSubtitle": "Réservez un déneigement en moins d’une minute, ou inscrivez-vous comme pro.",
+    "ctaPrimary": "Réserver",
+    "ctaSecondary": "Voir les prix",
+    "ctaPro": "Devenir pro"
+  },
+  "PricingPage": {
+    "metaTitle": "Tarifs",
+    "eyebrow": "Tarifs",
+    "title": "Des prix honnêtes,",
+    "accent": "sans surprise.",
+    "subtitle": "Tarifs de départ fixes par visite. Aucun abonnement, aucuns frais cachés — vous payez seulement quand le travail est vérifié par photo.",
+    "from": "à partir de",
+    "perVisit": "/visite",
+    "popular": "Le plus réservé",
+    "cta": "Réserver",
+    "ctaFaq": "Lire la FAQ",
+    "features": {
+      "snow_removal": [
+        "Entrée, allées et marches",
+        "Salage inclus",
+        "Dégagé et salé pour 7 h",
+        "Preuve photo avant/après"
+      ],
+      "lawn_mowing": [
+        "Tonte complète et uniforme",
+        "Bordures nettes",
+        "Résidus ramassés",
+        "Hebdomadaire ou aux deux semaines"
+      ],
+      "seasonal_maintenance": [
+        "Nettoyages printemps et automne",
+        "Ramassage des feuilles",
+        "Nettoyage des gouttières",
+        "Liste personnalisée"
+      ]
+    },
+    "surgeNote": "Le déneigement inclut une majoration hivernale de 10 % de décembre à mars. Votre prix final est toujours affiché avant de confirmer.",
+    "billingKicker": "Facturation",
+    "billingTitle": "Comment le paiement",
+    "billingAccent": "fonctionne vraiment.",
+    "billing": [
+      {
+        "title": "Payez à la fin",
+        "body": "Nous plaçons une autorisation à la réservation et ne prélevons qu’une fois la preuve photo téléversée."
+      },
+      {
+        "title": "Aucuns frais cachés",
+        "body": "Le prix affiché est le prix payé. Aucuns frais de réservation, aucun abonnement, aucun supplément surprise."
+      },
+      {
+        "title": "Sécurisé et simulé",
+        "body": "Les paiements passent par un fournisseur sécurisé. Cet aperçu utilise le mode simulé, pour essayer gratuitement."
+      }
+    ],
+    "ctaTitle": "Voyez votre prix exact.",
+    "ctaSubtitle": "Commencez une réservation pour un devis en direct selon votre adresse et date — sans compte requis."
+  },
+  "ServicesPage": {
+    "metaTitle": "Déneigement",
+    "eyebrow": "Services",
+    "title": "Le déneigement,",
+    "accent": "bien fait.",
+    "subtitle": "Déneigement et salage de nuit pour les entrées, allées et marches d'Ottawa — vérifié par photo avant votre réveil.",
+    "from": "À partir de",
+    "cta": "Réserver",
+    "ctaHow": "Comment ça marche",
+    "ctaAll": "Tous les services",
+    "ctaPricing": "Voir les prix",
+    "detailEyebrow": "Service",
+    "includesTitle": "Ce qui est inclus",
+    "howKicker": "Le déroulement",
+    "howTitle": "Comment ça marche",
+    "ctaTitle": "Devancez la prochaine tempête.",
+    "ctaSubtitle": "Réservez le déneigement et réveillez-vous devant une entrée dégagée.",
+    "items": {
+      "snow-removal": {
+        "name": "Déneigement",
+        "tagline": "Déneigement et salage de nuit, dégagé avant votre trajet du matin.",
+        "intro": "Entrées, allées et marches dégagées et salées pour 7 h — vérifiées par photo avant votre réveil.",
+        "whatTitle": "La neige, partie au lever du jour.",
+        "whatBody": "Quand il neige la nuit, un pro local dégage votre entrée, vos allées et vos marches et sale contre la glace — puis téléverse une preuve photo. Vous vous réveillez devant une propriété dégagée et sûre, sans toucher à une pelle.",
+        "includes": [
+          "Déneigement de l'entrée",
+          "Allées et marches avant",
+          "Salage anti-glace",
+          "Dégagé et vérifié pour 7 h",
+          "Preuve photo avant/après"
+        ],
+        "steps": [
+          {
+            "title": "Réservez avant la tempête",
+            "body": "Configurez le déneigement pour votre adresse — ponctuel ou pour la saison."
+          },
+          {
+            "title": "Nous dégageons la nuit",
+            "body": "Un pro proche déneige et sale une fois la neige terminée."
+          },
+          {
+            "title": "Réveillez-vous dégagé",
+            "body": "Vérifiez la preuve photo et partez — facturé seulement une fois terminé."
+          }
+        ],
+        "ctaTitle": "Devancez la prochaine tempête.",
+        "ctaSubtitle": "Réservez le déneigement et réveillez-vous devant une entrée dégagée."
+      }
+    }
+  },
+  "About": {
+    "metaTitle": "À propos",
+    "eyebrow": "À propos",
+    "title": "Conçu pour les",
+    "accent": "hivers d'Ottawa.",
+    "subtitle": "Capital Clear relie les propriétaires de la région de la capitale nationale à des entrepreneurs locaux vérifiés pour un déneigement rapide et fiable — réservé en minutes, payé sur résultats.",
+    "story": [
+      "Capital Clear est né d'une frustration simple : à Ottawa, faire dégager son entrée après une tempête de nuit signifiait des appels sans fin, des absences et payer avant que quiconque ne lève une pelle.",
+      "Nous avons donc bâti un marché qui fonctionne comme la ville — rapide, local et responsable. Les propriétaires réservent en moins d'une minute. Les pros de déneigement vérifiés réclament des travaux à proximité. Chaque dégagement se conclut par une preuve photo, et le paiement n'est libéré qu'une fois vérifié.",
+      "Nous sommes fiers d'être locaux. De Kanata à Orléans, les pros de Capital Clear vivent et travaillent dans les quartiers qu'ils dégagent — et gardent 85 % de chaque travail."
+    ],
+    "stats": [
+      {
+        "value": "240+",
+        "label": "Pros locaux vérifiés"
+      },
+      {
+        "value": "7 h",
+        "label": "Garantie de dégagement"
+      },
+      {
+        "value": "100 %",
+        "label": "Travaux vérifiés par photo"
+      },
+      {
+        "value": "85 %",
+        "label": "Gardé par les pros"
+      }
+    ],
+    "valuesKicker": "Nos valeurs",
+    "valuesTitle": "Local, équitable,",
+    "valuesAccent": "responsable.",
+    "values": [
+      {
+        "title": "Le local d'abord",
+        "body": "Des pros de déneigement qui vivent et travaillent dans la région de la capitale nationale."
+      },
+      {
+        "title": "Équitable pour les pros",
+        "body": "Les entrepreneurs gardent 85 % de chaque travail — sans frais mensuels."
+      },
+      {
+        "title": "Responsable",
+        "body": "Chaque dégagement se termine par une preuve photo horodatée."
+      },
+      {
+        "title": "Sans effort",
+        "body": "Réservez en moins d'une minute et payez seulement à la fin."
+      }
+    ],
+    "ctaTitle": "Rejoignez le réseau.",
+    "ctaSubtitle": "Réservez votre premier déneigement, ou inscrivez-vous comme pro local.",
+    "ctaPrimary": "Réserver",
+    "ctaPro": "Devenir pro"
+  },
+  "Faq": {
+    "metaTitle": "FAQ",
+    "eyebrow": "FAQ",
+    "title": "Des réponses,",
+    "accent": "claires.",
+    "subtitle": "Tout ce qu’il faut savoir sur la réservation, les prix et le travail de pro. Toujours bloqué ? Écrivez-nous.",
+    "groups": [
+      {
+        "title": "Propriétaires",
+        "items": [
+          {
+            "q": "Où offrez-vous le service ?",
+            "a": "Dans la région de la capitale nationale — Ottawa, Kanata, Barrhaven, Orléans, Nepean, Gloucester et Stittsville. Nous confirmons votre adresse à la réservation."
+          },
+          {
+            "q": "Quand suis-je facturé ?",
+            "a": "Nous plaçons une autorisation à la réservation et ne prélevons qu’une fois la preuve photo de fin téléversée."
+          },
+          {
+            "q": "Et s’il neige la nuit ?",
+            "a": "Les déneigements sont dégagés et salés avant 7 h, pour que votre entrée et vos allées soient prêtes pour le matin."
+          },
+          {
+            "q": "Puis-je réserver un service récurrent ?",
+            "a": "Oui — réservez un seul déneigement ou configurez-le pour toute la saison hivernale."
+          }
+        ]
+      },
+      {
+        "title": "Prix et paiements",
+        "items": [
+          {
+            "q": "Combien ça coûte ?",
+            "a": "Le déneigement commence à 45 $ par visite. Le prix exact pour votre adresse et votre date est affiché avant de confirmer."
+          },
+          {
+            "q": "Pourquoi le déneigement coûte plus l’hiver ?",
+            "a": "Le déneigement comporte une majoration de 10 % de décembre à mars, en période de pointe. Le prix final est toujours affiché d’avance."
+          },
+          {
+            "q": "Y a-t-il des frais cachés ?",
+            "a": "Non. Aucuns frais de réservation, aucun abonnement. Le prix affiché est le prix payé."
+          }
+        ]
+      },
+      {
+        "title": "Pour les pros",
+        "items": [
+          {
+            "q": "Combien je garde ?",
+            "a": "Vous gardez 85 % de chaque travail réalisé. Aucuns frais mensuels — Capital Clear prélève 15 % par travail."
+          },
+          {
+            "q": "Comment suis-je payé ?",
+            "a": "Les versements sont libérés automatiquement après la fenêtre de vérification du client, une fois vos photos de fin téléversées."
+          },
+          {
+            "q": "Comment m’inscrire ?",
+            "a": "Créez un compte pro, indiquez votre secteur et commencez à réclamer des travaux proches. L’approbation est rapide."
+          }
+        ]
+      }
+    ],
+    "ctaTitle": "D’autres questions ?",
+    "ctaSubtitle": "Notre équipe est là pour aider — écrivez-nous et nous répondrons rapidement.",
+    "ctaContact": "Nous joindre",
+    "ctaBook": "Réserver"
+  },
+  "Contact": {
+    "metaTitle": "Contact",
+    "eyebrow": "Contact",
+    "title": "Entrez en",
+    "accent": "contact.",
+    "subtitle": "Des questions sur une réservation, votre secteur ou devenir pro ? Écrivez-nous et nous vous répondrons.",
+    "formTitle": "Envoyer un message",
+    "name": "Nom",
+    "email": "Courriel",
+    "message": "Message",
+    "messagePlaceholder": "Comment pouvons-nous aider ?",
+    "send": "Envoyer",
+    "sendAgain": "Envoyer un autre",
+    "sending": "Envoi…",
+    "successTitle": "Message envoyé",
+    "successBody": "Merci — nous vous contacterons sous peu.",
+    "errName": "Veuillez entrer votre nom.",
+    "errEmail": "Veuillez entrer un courriel valide.",
+    "errMessage": "Veuillez ajouter un peu plus de détails.",
+    "info": [
+      {
+        "label": "Courriel",
+        "value": "hello@capitalclear.ca"
+      },
+      {
+        "label": "Secteur",
+        "value": "Région de la capitale nationale, Ontario"
+      },
+      {
+        "label": "Heures",
+        "value": "7 jours sur 7 · 7 h–21 h"
+      }
+    ]
+  },
+  "BecomePro": {
+    "metaTitle": "Devenir pro",
+    "eyebrow": "Pour les entrepreneurs",
+    "title": "Transformez l'hiver en",
+    "accent": "revenu stable.",
+    "subtitle": "Réclamez des travaux de déneigement près de chez vous, dégagez-les et gardez 85 % de chacun. Sans enchères, sans frais mensuels.",
+    "ctaPrimary": "Commencer à gagner",
+    "ctaSecondary": "Comment ça marche",
+    "earningsKicker": "Votre part",
+    "keepPct": "85 %",
+    "earningsBody": "Vous gardez 85 % de chaque travail réalisé. Capital Clear prélève des frais fixes de 15 % — aucuns frais mensuels, aucun coût d'inscription, aucune surprise.",
+    "benefitsKicker": "Pourquoi les pros nous choisissent",
+    "benefitsTitle": "Conçu autour de votre horaire.",
+    "benefits": [
+      {
+        "title": "Gardez 85 %",
+        "body": "Frais fixes de 15 % par travail et rien d'autre."
+      },
+      {
+        "title": "Votre horaire",
+        "body": "Réclamez seulement les travaux qui conviennent à votre temps."
+      },
+      {
+        "title": "Travaux proches",
+        "body": "Voyez d’abord les travaux de déneigement ouverts dans votre secteur."
+      },
+      {
+        "title": "Payé rapidement",
+        "body": "Les versements sont libérés après la fenêtre de vérification."
+      }
+    ],
+    "stepsTitle": "Commencez en trois étapes.",
+    "steps": [
+      {
+        "title": "Créez votre compte pro",
+        "body": "Inscrivez-vous, indiquez votre secteur et la souffleuse ou la pelle que vous utilisez."
+      },
+      {
+        "title": "Réclamez des travaux proches",
+        "body": "Parcourez les travaux de déneigement ouverts près de vous et acceptez."
+      },
+      {
+        "title": "Terminez et soyez payé",
+        "body": "Téléversez les photos de fin et gardez 85 % de chaque travail."
+      }
+    ],
+    "requirementsTitle": "Ce qu'il vous faut",
+    "requirements": [
+      "Votre propre équipement (souffleuse, pelle ou plaque de déneigement)",
+      "Un transport fiable dans le secteur",
+      "Un téléphone pour réclamer des travaux et téléverser des photos",
+      "Un engagement envers un travail ponctuel et de qualité"
+    ],
+    "ctaTitle": "Prêt à commencer à gagner ?",
+    "ctaSubtitle": "Créez votre compte pro et réclamez votre premier travail dès aujourd’hui.",
+    "ctaContact": "Nous parler d'abord"
+  },
+  "Terms": {
+    "title": "Conditions d’utilisation",
+    "eyebrow": "Légal",
+    "effective": "En vigueur le 25 juin 2026",
+    "intro": "Ces conditions régissent votre utilisation de Capital Clear. En réservant ou en fournissant des services via la plateforme, vous les acceptez.",
+    "sections": [
+      {
+        "heading": "Aperçu",
+        "body": [
+          "Capital Clear est un marché en ligne qui relie les propriétaires (« Clients ») de la région de la capitale nationale à des entrepreneurs indépendants (« Pros ») pour le déneigement résidentiel.",
+          "Capital Clear facilite les réservations et les paiements, mais ne fournit pas les services et n’emploie pas les Pros."
+        ]
+      },
+      {
+        "heading": "Comptes",
+        "body": [
+          "Vous devez fournir des renseignements exacts lors de la création d’un compte et garder vos identifiants en sécurité.",
+          "Vous êtes responsable de toute activité effectuée sous votre compte."
+        ]
+      },
+      {
+        "heading": "Réservations et paiement",
+        "body": [
+          "Lors d’une réservation, Capital Clear peut placer une autorisation temporaire sur votre moyen de paiement. Le paiement n’est prélevé qu’après que le Pro a marqué le travail terminé et téléversé une preuve photo.",
+          "Les prix sont affichés avant la confirmation. Le déneigement est sujet à une majoration saisonnière de décembre à mars."
+        ]
+      },
+      {
+        "heading": "Pros",
+        "body": [
+          "Les Pros sont des entrepreneurs indépendants, et non des employés de Capital Clear. Ils fixent leurs disponibilités et sont responsables de réaliser les travaux acceptés selon une norme raisonnable.",
+          "Capital Clear retient des frais de plateforme sur chaque travail terminé; le reste est versé au Pro."
+        ]
+      },
+      {
+        "heading": "Annulations",
+        "body": [
+          "Les Clients et les Pros peuvent annuler un travail selon les règles d’annulation affichées au moment de la réservation. Des annulations tardives répétées peuvent entraîner des restrictions du compte."
+        ]
+      },
+      {
+        "heading": "Responsabilité",
+        "body": [
+          "Capital Clear fournit la plateforme « telle quelle » et n’est pas responsable des actes ou omissions des Clients ou des Pros. Dans la mesure permise par la loi, notre responsabilité se limite au montant payé pour la réservation concernée."
+        ]
+      },
+      {
+        "heading": "Modifications",
+        "body": [
+          "Nous pouvons mettre à jour ces conditions de temps à autre. L’utilisation continue après l’entrée en vigueur des changements constitue une acceptation des conditions révisées."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "body": [
+          "Les questions sur ces conditions peuvent être envoyées à hello@capitalclear.ca."
+        ]
+      }
+    ]
+  },
+  "Privacy": {
+    "title": "Politique de confidentialité",
+    "eyebrow": "Légal",
+    "effective": "En vigueur le 25 juin 2026",
+    "intro": "Cette politique explique quels renseignements Capital Clear recueille, comment nous les utilisons et les choix qui s’offrent à vous.",
+    "sections": [
+      {
+        "heading": "Renseignements recueillis",
+        "body": [
+          "Renseignements de compte comme votre nom, courriel et adresse.",
+          "Détails de réservation, dont le type de service, l’horaire et les notes de propriété.",
+          "Renseignements de paiement, traités de façon sécurisée par notre fournisseur."
+        ]
+      },
+      {
+        "heading": "Comment nous les utilisons",
+        "body": [
+          "Pour créer et gérer votre compte, traiter les réservations et relier Clients et Pros.",
+          "Pour envoyer des mises à jour, des preuves photo et des reçus.",
+          "Pour améliorer la plateforme et la garder sécurisée."
+        ]
+      },
+      {
+        "heading": "Partage",
+        "body": [
+          "Nous partageons les détails de réservation avec le Pro assigné à votre travail afin qu’il puisse le réaliser. Nous ne vendons pas vos renseignements personnels."
+        ]
+      },
+      {
+        "heading": "Paiements",
+        "body": [
+          "Les détails de paiement sont gérés par notre fournisseur. Capital Clear ne conserve pas les numéros de carte complets."
+        ]
+      },
+      {
+        "heading": "Conservation des données",
+        "body": [
+          "Nous conservons vos renseignements tant que votre compte est actif ou au besoin pour fournir le service et respecter nos obligations légales."
+        ]
+      },
+      {
+        "heading": "Vos droits",
+        "body": [
+          "Vous pouvez demander l’accès, la correction ou la suppression de vos renseignements personnels en nous contactant."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "body": [
+          "Les questions de confidentialité peuvent être envoyées à privacy@capitalclear.ca."
+        ]
+      }
+    ]
+  },
+  "NotFound": {
+    "eyebrow": "404",
+    "title": "Cette page a dérivé",
+    "accent": "hors carte.",
+    "subtitle": "La page recherchée n’existe pas ou a été déplacée. Revenons en terrain dégagé.",
+    "ctaHome": "Retour à l’accueil",
+    "ctaServices": "Voir les services"
+  },
+  "Home": {
+    "heroEyebrow": "Déneigement à Ottawa",
+    "heroTitle": "Dégagé avant",
+    "heroAccent": "votre réveil.",
+    "heroSubtitle": "Déneigement sur demande dans la région de la capitale nationale. Réservé en 60 secondes, dégagé et salé pour 7 h, vérifié par photo, et payé seulement une fois terminé.",
+    "heroPrimary": "Réserver",
+    "heroSecondary": "Comment ça marche",
+    "trust": "De confiance à Ottawa · Kanata · Barrhaven · Orléans · Nepean · Stittsville",
+    "whatKicker": "Ce que nous faisons",
+    "whatTitle": "La neige, gérée —",
+    "whatAccent": "de A à Z.",
+    "whatBody": "Quand il neige la nuit, un pro local vérifié dégage votre entrée, vos allées et vos marches et sale contre la glace. Vous vous réveillez devant une propriété dégagée et sûre — et payez seulement une fois la preuve photo confirmée.",
+    "whatFeatures": [
+      "Entrées, allées et marches",
+      "Salage anti-glace inclus",
+      "Dégagé et vérifié pour 7 h",
+      "Payez seulement une fois terminé"
+    ],
+    "howKicker": "Comment ça marche",
+    "howTitle": "Trois touches vers une entrée dégagée.",
+    "steps": [
+      {
+        "title": "Réservez en 60 secondes",
+        "body": "Choisissez le déneigement, indiquez votre adresse et une heure. Nous confirmons votre secteur aussitôt."
+      },
+      {
+        "title": "Un pro local dégage",
+        "body": "Le travail va aux pros vérifiés proches. L'un accepte, déneige et sale — la nuit en cas de tempête."
+      },
+      {
+        "title": "Payez une fois terminé",
+        "body": "Votre pro téléverse une preuve photo. Vous n'êtes facturé qu'une fois vérifié."
+      }
+    ],
+    "galleryKicker": "Sur le terrain",
+    "galleryTitle": "Conçu pour les hivers d'Ottawa.",
+    "stats": [
+      {
+        "value": "7 h",
+        "label": "Garantie de dégagement"
+      },
+      {
+        "value": "240+",
+        "label": "Pros locaux vérifiés"
+      },
+      {
+        "value": "100 %",
+        "label": "Vérifié par photo"
+      },
+      {
+        "value": "60 s",
+        "label": "Pour réserver"
+      }
+    ],
+    "ctaTitle": "Prêt dès le premier flocon.",
+    "ctaSubtitle": "Réservez en moins d'une minute — ou inscrivez-vous pour déneiger avec nous.",
+    "ctaPrimary": "Réserver",
+    "ctaSecondary": "Devenir pro"
   }
 }

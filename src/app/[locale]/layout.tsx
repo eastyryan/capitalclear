@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0A0708'
+  themeColor: '#f8f6f4'
 };
 
 export function generateStaticParams() {
@@ -62,9 +62,8 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      // `dark` keeps shadcn dark-scoped utilities aligned with the dark-first
-      // palette (the palette also lives on :root as a fallback).
-      className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} ${barlow.variable} dark h-full antialiased`}
+      // Light-first: the light palette lives on :root. No `dark` class.
+      className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} ${barlow.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
@@ -72,7 +71,7 @@ export default async function LocaleLayout({
           <SnowLayer />
           <Navbar />
           {children}
-          <Toaster richColors position="top-center" theme="dark" />
+          <Toaster richColors position="top-center" theme="light" />
         </NextIntlClientProvider>
       </body>
     </html>

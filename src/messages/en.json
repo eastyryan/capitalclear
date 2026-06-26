@@ -19,7 +19,8 @@
     "myJobs": "My jobs",
     "language": "Language",
     "english": "English",
-    "french": "Français"
+    "french": "Français",
+    "contact": "Contact"
   },
   "Landing": {
     "loaderText": "Clearing the driveway",
@@ -116,7 +117,14 @@
     "linkPricing": "Pricing",
     "linkBook": "Book a clear",
     "linkPro": "Become a pro",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "supportTitle": "Support",
+    "legalTitle": "Legal",
+    "linkAbout": "About",
+    "linkFaq": "FAQ",
+    "linkContact": "Contact",
+    "linkTerms": "Terms",
+    "linkPrivacy": "Privacy"
   },
   "Common": {
     "continue": "Continue",
@@ -419,5 +427,568 @@
       "Year-Round"
     ],
     "seasonalBody": "Spring cleanups, fall leaf removal and the in-between jobs that keep your property sharp through every season."
+  },
+  "HowItWorks": {
+    "metaTitle": "How it works",
+    "eyebrow": "How it works",
+    "title": "Booked in minutes,",
+    "accent": "handled by morning.",
+    "subtitle": "From request to photo-verified finish — here's exactly how Capital Clear connects your property with a vetted local pro.",
+    "homeownersKicker": "For homeowners",
+    "homeownersTitle": "Three taps to a",
+    "homeownersAccent": "cleared driveway.",
+    "homeownersSteps": [
+      {
+        "title": "Book in 60 seconds",
+        "body": "Pick a service, drop your address, and choose a time. We confirm you're inside the National Capital Region service area instantly."
+      },
+      {
+        "title": "A local pro accepts",
+        "body": "Your job is offered to vetted contractors nearby. The first to accept locks it in — you'll see who's coming and when."
+      },
+      {
+        "title": "Pay when it's done",
+        "body": "Your pro completes the work and uploads photo proof. You're only charged once the job is verified complete."
+      }
+    ],
+    "prosKicker": "For pros",
+    "prosTitle": "Show up, clear it,",
+    "prosAccent": "get paid.",
+    "prosSteps": [
+      {
+        "title": "Claim nearby jobs",
+        "body": "Browse open jobs in your area and accept the ones that fit your route and equipment — no bidding, no back-and-forth."
+      },
+      {
+        "title": "Do the work",
+        "body": "Complete the job to standard and snap before/after photos right from your dashboard as proof of completion."
+      },
+      {
+        "title": "Keep 85%",
+        "body": "Payouts release automatically after the homeowner's verification window. You keep 85% of every job, no monthly fees."
+      }
+    ],
+    "assuranceKicker": "Why it works",
+    "assuranceTitle": "Backed by real guarantees.",
+    "assurances": [
+      {
+        "title": "Photo-verified",
+        "body": "Every job closes with timestamped before/after photos."
+      },
+      {
+        "title": "Vetted pros",
+        "body": "Contractors are screened before they can accept work."
+      },
+      {
+        "title": "Pay on completion",
+        "body": "No upfront charges — you pay only when it's done."
+      },
+      {
+        "title": "Cleared by 7AM",
+        "body": "Overnight snow jobs are finished before your commute."
+      }
+    ],
+    "ctaTitle": "Ready when the first flake falls.",
+    "ctaSubtitle": "Book a clear in under a minute, or sign up to start earning as a pro.",
+    "ctaPrimary": "Book a clear",
+    "ctaSecondary": "See pricing",
+    "ctaPro": "Become a pro"
+  },
+  "PricingPage": {
+    "metaTitle": "Pricing",
+    "eyebrow": "Pricing",
+    "title": "Honest pricing,",
+    "accent": "no surprises.",
+    "subtitle": "Flat starting rates per visit. No subscriptions, no hidden fees — you only pay when the work is photo-verified complete.",
+    "from": "from",
+    "perVisit": "/visit",
+    "popular": "Most booked",
+    "cta": "Book now",
+    "ctaFaq": "Read the FAQ",
+    "features": {
+      "snow_removal": [
+        "Driveway, walkways & steps",
+        "Salting included",
+        "Cleared and salted by 7AM",
+        "Before/after photo proof"
+      ],
+      "lawn_mowing": [
+        "Full mow, even cut",
+        "Crisp trimmed edges",
+        "Clippings cleaned up",
+        "Flexible weekly or biweekly"
+      ],
+      "seasonal_maintenance": [
+        "Spring & fall cleanups",
+        "Leaf removal & hauling",
+        "Gutter clearing",
+        "Custom property checklist"
+      ]
+    },
+    "surgeNote": "Snow removal includes a 10% winter surge in December–March. Your final price is always shown before you confirm.",
+    "billingKicker": "Billing",
+    "billingTitle": "How payment",
+    "billingAccent": "actually works.",
+    "billing": [
+      {
+        "title": "Pay on completion",
+        "body": "We place a hold when you book and only capture payment once your pro uploads verified photo proof."
+      },
+      {
+        "title": "No hidden fees",
+        "body": "The price you see is the price you pay. No booking fees, no subscriptions, no surprise add-ons."
+      },
+      {
+        "title": "Secure & simulated",
+        "body": "Payments run through a secure provider. This preview uses simulated mode, so you can try the full flow free."
+      }
+    ],
+    "ctaTitle": "See your exact price.",
+    "ctaSubtitle": "Start a booking to get a live quote for your address and date — no account required to look."
+  },
+  "ServicesPage": {
+    "metaTitle": "Snow Removal",
+    "eyebrow": "Services",
+    "title": "Snow removal,",
+    "accent": "done right.",
+    "subtitle": "Overnight plowing and salting for Ottawa driveways, walkways and steps — photo-verified before you wake up.",
+    "from": "From",
+    "cta": "Book now",
+    "ctaHow": "How it works",
+    "ctaAll": "All services",
+    "ctaPricing": "See pricing",
+    "detailEyebrow": "Service",
+    "includesTitle": "What's included",
+    "howKicker": "The flow",
+    "howTitle": "How it works",
+    "ctaTitle": "Beat the next storm.",
+    "ctaSubtitle": "Book snow removal and wake up to a cleared driveway.",
+    "items": {
+      "snow-removal": {
+        "name": "Snow Removal",
+        "tagline": "Overnight plowing and salting, cleared before your morning commute.",
+        "intro": "Driveways, walkways and steps cleared and salted by 7AM — photo-verified before you wake up.",
+        "whatTitle": "Snow, gone by sunrise.",
+        "whatBody": "When it snows overnight, a local pro clears your driveway, walkways and steps and salts for ice — then uploads photo proof. You wake up to a clear, safe property without touching a shovel.",
+        "includes": [
+          "Driveway plowing or shovelling",
+          "Walkways and front steps",
+          "Ice-melt salting",
+          "Cleared and verified by 7AM",
+          "Before/after photo proof"
+        ],
+        "steps": [
+          {
+            "title": "Book before the storm",
+            "body": "Set up snow removal for your address — one-off or all season."
+          },
+          {
+            "title": "We clear overnight",
+            "body": "A nearby pro plows and salts after the snow stops falling."
+          },
+          {
+            "title": "Wake up clear",
+            "body": "Check the photo proof and head out — you're only charged once it's done."
+          }
+        ],
+        "ctaTitle": "Beat the next storm.",
+        "ctaSubtitle": "Book snow removal now and wake up to a cleared driveway."
+      }
+    }
+  },
+  "About": {
+    "metaTitle": "About",
+    "eyebrow": "About us",
+    "title": "Built for",
+    "accent": "Ottawa winters.",
+    "subtitle": "Capital Clear connects National Capital Region homeowners with vetted local contractors for fast, reliable snow removal — booked in minutes, paid on results.",
+    "story": [
+      "Capital Clear started with a simple frustration: in Ottawa, getting your driveway cleared after an overnight storm meant phone tag, no-shows, and paying before anyone lifted a shovel.",
+      "So we built a marketplace that works like the city does — fast, local, and accountable. Homeowners book in under a minute. Vetted plow pros claim jobs nearby. Every clear closes with photo proof, and payment only releases once the work is verified.",
+      "We're proud to be local. From Kanata to Orléans, the pros on Capital Clear live and work in the same neighbourhoods they clear — and keep 85% of every job."
+    ],
+    "stats": [
+      {
+        "value": "240+",
+        "label": "Vetted local pros"
+      },
+      {
+        "value": "7AM",
+        "label": "Cleared-by guarantee"
+      },
+      {
+        "value": "100%",
+        "label": "Photo-verified jobs"
+      },
+      {
+        "value": "85%",
+        "label": "Kept by pros"
+      }
+    ],
+    "valuesKicker": "What we stand for",
+    "valuesTitle": "Local, fair,",
+    "valuesAccent": "accountable.",
+    "values": [
+      {
+        "title": "Local first",
+        "body": "Plow pros who live and work across the National Capital Region."
+      },
+      {
+        "title": "Fair to pros",
+        "body": "Contractors keep 85% of every job — no monthly fees."
+      },
+      {
+        "title": "Accountable",
+        "body": "Every clear closes with timestamped photo proof."
+      },
+      {
+        "title": "Effortless",
+        "body": "Book in under a minute and pay only on completion."
+      }
+    ],
+    "ctaTitle": "Join the network.",
+    "ctaSubtitle": "Book your first clear, or sign up to start earning as a local pro.",
+    "ctaPrimary": "Book a clear",
+    "ctaPro": "Become a pro"
+  },
+  "Faq": {
+    "metaTitle": "FAQ",
+    "eyebrow": "FAQ",
+    "title": "Questions,",
+    "accent": "answered.",
+    "subtitle": "Everything you need to know about booking, pricing, and working as a pro. Still stuck? Reach out any time.",
+    "groups": [
+      {
+        "title": "Homeowners",
+        "items": [
+          {
+            "q": "Where do you operate?",
+            "a": "Across the National Capital Region — Ottawa, Kanata, Barrhaven, Orléans, Nepean, Gloucester and Stittsville. We confirm your address is in the service area when you book."
+          },
+          {
+            "q": "When do I get charged?",
+            "a": "We place a hold when you book and only capture payment once your pro uploads photo proof that the job is complete."
+          },
+          {
+            "q": "What if it snows overnight?",
+            "a": "Snow removal jobs are cleared and salted before 7AM, so your driveway and walkways are ready for your morning commute."
+          },
+          {
+            "q": "Can I book recurring service?",
+            "a": "Yes — book a single clear or set up snow removal for the whole winter season."
+          }
+        ]
+      },
+      {
+        "title": "Pricing & payments",
+        "items": [
+          {
+            "q": "How much does it cost?",
+            "a": "Snow removal starts at $45 per visit. You'll see the exact price for your address and date before you confirm."
+          },
+          {
+            "q": "Why is snow removal more in winter?",
+            "a": "Snow removal carries a 10% surge from December through March, when demand peaks. The final price is always shown up front."
+          },
+          {
+            "q": "Are there any hidden fees?",
+            "a": "No. No booking fees, no subscriptions. The price you see at checkout is the price you pay."
+          }
+        ]
+      },
+      {
+        "title": "For pros",
+        "items": [
+          {
+            "q": "How much do I keep?",
+            "a": "You keep 85% of every job you complete. There are no monthly fees — Capital Clear takes a 15% platform fee per job."
+          },
+          {
+            "q": "How do I get paid?",
+            "a": "Payouts release automatically after the homeowner's verification window once you've uploaded your completion photos."
+          },
+          {
+            "q": "How do I sign up?",
+            "a": "Create a pro account, tell us your service area, and start claiming open jobs nearby. Approval is quick."
+          }
+        ]
+      }
+    ],
+    "ctaTitle": "Still have questions?",
+    "ctaSubtitle": "Our team is happy to help — reach out and we'll get back to you.",
+    "ctaContact": "Contact us",
+    "ctaBook": "Book a clear"
+  },
+  "Contact": {
+    "metaTitle": "Contact",
+    "eyebrow": "Contact",
+    "title": "Get in",
+    "accent": "touch.",
+    "subtitle": "Questions about a booking, your service area, or becoming a pro? Send us a note and we'll get back to you.",
+    "formTitle": "Send a message",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "messagePlaceholder": "How can we help?",
+    "send": "Send message",
+    "sendAgain": "Send another",
+    "sending": "Sending…",
+    "successTitle": "Message sent",
+    "successBody": "Thanks — we'll be in touch shortly.",
+    "errName": "Please enter your name.",
+    "errEmail": "Please enter a valid email.",
+    "errMessage": "Please add a little more detail.",
+    "info": [
+      {
+        "label": "Email",
+        "value": "hello@capitalclear.ca"
+      },
+      {
+        "label": "Service area",
+        "value": "National Capital Region, Ontario"
+      },
+      {
+        "label": "Hours",
+        "value": "7 days a week · 7AM–9PM"
+      }
+    ]
+  },
+  "BecomePro": {
+    "metaTitle": "Become a pro",
+    "eyebrow": "For contractors",
+    "title": "Turn winter into",
+    "accent": "steady income.",
+    "subtitle": "Claim snow-removal jobs near you, clear them, and keep 85% of every one. No bidding, no monthly fees.",
+    "ctaPrimary": "Start earning",
+    "ctaSecondary": "How it works",
+    "earningsKicker": "Your cut",
+    "keepPct": "85%",
+    "earningsBody": "You keep 85% of every job you complete. Capital Clear takes a flat 15% platform fee — no monthly charges, no signup cost, no surprises.",
+    "benefitsKicker": "Why pros choose us",
+    "benefitsTitle": "Built around your schedule.",
+    "benefits": [
+      {
+        "title": "Keep 85%",
+        "body": "Flat 15% platform fee per job and nothing else."
+      },
+      {
+        "title": "Your schedule",
+        "body": "Claim only the jobs that fit your route and time."
+      },
+      {
+        "title": "Jobs nearby",
+        "body": "See open snow jobs in your own service area first."
+      },
+      {
+        "title": "Get paid fast",
+        "body": "Payouts release right after the verification window."
+      }
+    ],
+    "stepsTitle": "Start in three steps.",
+    "steps": [
+      {
+        "title": "Create your pro account",
+        "body": "Sign up, tell us your service area and the plow or equipment you run."
+      },
+      {
+        "title": "Claim nearby jobs",
+        "body": "Browse open snow-removal jobs near you and accept what fits your route."
+      },
+      {
+        "title": "Finish and get paid",
+        "body": "Upload completion photos and keep 85% of every job."
+      }
+    ],
+    "requirementsTitle": "What you'll need",
+    "requirements": [
+      "Your own equipment (plow, blower or shovel)",
+      "Reliable transportation in the service area",
+      "A smartphone to claim jobs and upload photos",
+      "A commitment to on-time, quality work"
+    ],
+    "ctaTitle": "Ready to start earning?",
+    "ctaSubtitle": "Create your pro account and claim your first job today.",
+    "ctaContact": "Talk to us first"
+  },
+  "Terms": {
+    "title": "Terms of Service",
+    "eyebrow": "Legal",
+    "effective": "Effective June 25, 2026",
+    "intro": "These terms govern your use of Capital Clear. By booking or providing services through the platform, you agree to them.",
+    "sections": [
+      {
+        "heading": "Overview",
+        "body": [
+          "Capital Clear is an online marketplace that connects homeowners (“Clients”) in the National Capital Region with independent contractors (“Pros”) for residential snow removal.",
+          "Capital Clear facilitates bookings and payments but is not the provider of the services and does not employ the Pros."
+        ]
+      },
+      {
+        "heading": "Accounts",
+        "body": [
+          "You must provide accurate information when creating an account and keep your credentials secure.",
+          "You are responsible for all activity that occurs under your account."
+        ]
+      },
+      {
+        "heading": "Bookings and payment",
+        "body": [
+          "When you book a service, Capital Clear may place a temporary hold on your payment method. Payment is captured only after the Pro marks the job complete and uploads photo proof.",
+          "Prices are shown before you confirm. Snow removal is subject to a seasonal surcharge from December through March."
+        ]
+      },
+      {
+        "heading": "Pros",
+        "body": [
+          "Pros are independent contractors, not employees of Capital Clear. Pros set their own availability and are responsible for completing accepted jobs to a reasonable standard.",
+          "Capital Clear retains a platform fee from each completed job; the remainder is paid out to the Pro."
+        ]
+      },
+      {
+        "heading": "Cancellations",
+        "body": [
+          "Clients and Pros may cancel a job subject to the cancellation rules shown at the time of booking. Repeated late cancellations may result in account restrictions."
+        ]
+      },
+      {
+        "heading": "Liability",
+        "body": [
+          "Capital Clear provides the platform “as is” and is not liable for the acts or omissions of Clients or Pros. To the maximum extent permitted by law, our liability is limited to the amount paid for the affected booking."
+        ]
+      },
+      {
+        "heading": "Changes",
+        "body": [
+          "We may update these terms from time to time. Continued use of the platform after changes take effect constitutes acceptance of the revised terms."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "body": [
+          "Questions about these terms can be sent to hello@capitalclear.ca."
+        ]
+      }
+    ]
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "eyebrow": "Legal",
+    "effective": "Effective June 25, 2026",
+    "intro": "This policy explains what information Capital Clear collects, how we use it, and the choices you have.",
+    "sections": [
+      {
+        "heading": "Information we collect",
+        "body": [
+          "Account information such as your name, email and address.",
+          "Booking details including service type, schedule and property notes.",
+          "Payment information, processed securely by our payment provider."
+        ]
+      },
+      {
+        "heading": "How we use it",
+        "body": [
+          "To create and manage your account, process bookings, and connect Clients with Pros.",
+          "To send service updates, photo proofs and receipts.",
+          "To improve the platform and keep it secure."
+        ]
+      },
+      {
+        "heading": "Sharing",
+        "body": [
+          "We share booking details with the Pro assigned to your job so they can complete it. We do not sell your personal information."
+        ]
+      },
+      {
+        "heading": "Payments",
+        "body": [
+          "Payment details are handled by our payment provider. Capital Clear does not store full card numbers."
+        ]
+      },
+      {
+        "heading": "Data retention",
+        "body": [
+          "We retain your information for as long as your account is active or as needed to provide the service and meet legal obligations."
+        ]
+      },
+      {
+        "heading": "Your rights",
+        "body": [
+          "You may request access to, correction of, or deletion of your personal information by contacting us."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "body": [
+          "Privacy questions can be sent to privacy@capitalclear.ca."
+        ]
+      }
+    ]
+  },
+  "NotFound": {
+    "eyebrow": "404",
+    "title": "This page drifted",
+    "accent": "off the map.",
+    "subtitle": "The page you're looking for doesn't exist or has moved. Let's get you back on cleared ground.",
+    "ctaHome": "Back home",
+    "ctaServices": "Browse services"
+  },
+  "Home": {
+    "heroEyebrow": "Ottawa snow removal",
+    "heroTitle": "Cleared before",
+    "heroAccent": "you wake up.",
+    "heroSubtitle": "On-demand snow removal across the National Capital Region. Booked in 60 seconds, cleared and salted by 7AM, photo-verified, and paid only when it's done.",
+    "heroPrimary": "Book a clear",
+    "heroSecondary": "How it works",
+    "trust": "Trusted across Ottawa · Kanata · Barrhaven · Orléans · Nepean · Stittsville",
+    "whatKicker": "What we do",
+    "whatTitle": "Snow, handled —",
+    "whatAccent": "start to finish.",
+    "whatBody": "When it snows overnight, a vetted local pro clears your driveway, walkways and steps and salts for ice. You wake up to a clear, safe property — and only pay once it's photo-verified.",
+    "whatFeatures": [
+      "Driveways, walkways & steps",
+      "Ice-melt salting included",
+      "Cleared and verified by 7AM",
+      "Pay only when it's done"
+    ],
+    "howKicker": "How it works",
+    "howTitle": "Three taps to a cleared driveway.",
+    "steps": [
+      {
+        "title": "Book in 60 seconds",
+        "body": "Pick snow removal, drop your address and a time. We confirm you're in the service area instantly."
+      },
+      {
+        "title": "A local pro clears it",
+        "body": "The job goes to vetted pros nearby. One accepts, plows and salts — overnight if it's a storm."
+      },
+      {
+        "title": "Pay when it's done",
+        "body": "Your pro uploads photo proof. You're only charged once the job is verified complete."
+      }
+    ],
+    "galleryKicker": "On the ground",
+    "galleryTitle": "Built for Ottawa winters.",
+    "stats": [
+      {
+        "value": "7AM",
+        "label": "Cleared-by guarantee"
+      },
+      {
+        "value": "240+",
+        "label": "Vetted local pros"
+      },
+      {
+        "value": "100%",
+        "label": "Photo-verified"
+      },
+      {
+        "value": "60s",
+        "label": "To book"
+      }
+    ],
+    "ctaTitle": "Ready when the first flake falls.",
+    "ctaSubtitle": "Book a clear in under a minute — or sign up to plow with us.",
+    "ctaPrimary": "Book a clear",
+    "ctaSecondary": "Become a pro"
   }
 }

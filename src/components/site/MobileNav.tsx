@@ -56,7 +56,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
             <SheetClose
               key={link.href}
               render={
-                <a
+                <Link
                   href={link.href}
                   className="flex h-11 items-center rounded-lg px-3 text-base text-foreground/90 transition-colors hover:bg-secondary hover:text-foreground"
                 />

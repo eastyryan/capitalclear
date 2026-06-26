@@ -66,7 +66,8 @@ export function SnowLayer() {
     const draw = () => {
       if (!running) return;
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#ffffff';
+      // Cool blue-grey flakes so the snow reads on the light background.
+      ctx.fillStyle = '#8fb0c8';
       for (const f of flakes) {
         f.sway += f.swaySpeed;
         f.y += f.vy;
@@ -115,7 +116,7 @@ export function SnowLayer() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 h-full w-full opacity-60"
+      className="pointer-events-none fixed inset-0 -z-10 h-full w-full opacity-40"
     />
   );
 }

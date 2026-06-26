@@ -72,41 +72,41 @@
   /* 8px corners */
   --radius: 0.5rem;
 
-  /* Named brand palette (hex, per design contract) */
-  --background: #0a0708; /* warm near-black */
-  --foreground: #f2eeec; /* warm off-white */
+  /* Named brand palette — LIGHT theme (warm white base, warm-red accent) */
+  --background: #f8f6f4; /* soft warm white */
+  --foreground: #1b1518; /* near-black warm ink */
   --primary: #e23a2c; /* warm red */
   --primary-foreground: #ffffff;
   --primary-hover: #c12e22;
   --ember: #ff7a2f;
-  --ice: #5bc8ff;
+  --ice: #2a93d5; /* deepened for contrast on light */
   --slate: #1e2a44;
-  --band-light: #f6f3f1;
+  --band-light: #ffffff;
 
-  /* Job-status palette */
-  --status-success: #34b36a; /* cleared */
-  --status-warning: #f2b53c; /* in-progress */
-  --status-danger: #b3261e; /* cancelled */
+  /* Job-status palette (tuned for light surfaces) */
+  --status-success: #1f9d57; /* cleared */
+  --status-warning: #c98a12; /* in-progress */
+  --status-danger: #c8362c; /* cancelled */
   --status-info: #2d6cf0; /* posted */
-  --status-violet: #7c5cff; /* awaiting */
+  --status-violet: #6b4bff; /* awaiting */
 
-  /* shadcn semantic surfaces, derived from the warm-dark base */
-  --card: #120d0f;
+  /* shadcn semantic surfaces, derived from the warm-light base */
+  --card: #ffffff;
   --card-foreground: var(--foreground);
-  --popover: #16100f;
+  --popover: #ffffff;
   --popover-foreground: var(--foreground);
-  --secondary: #1c1517;
+  --secondary: #f1ebe8;
   --secondary-foreground: var(--foreground);
-  --muted: #1c1517;
-  --muted-foreground: #a89f9c;
-  --accent: #241a1c;
+  --muted: #f1ebe8;
+  --muted-foreground: #6b5f5b;
+  --accent: #f4edea;
   --accent-foreground: var(--foreground);
   --destructive: var(--status-danger);
 
-  /* Hairline borders — rgba(255,255,255,.07) */
-  --border: rgba(255, 255, 255, 0.07);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: rgba(226, 58, 44, 0.55);
+  /* Hairline borders — rgba(20,12,14,.10) */
+  --border: rgba(20, 12, 14, 0.1);
+  --input: rgba(20, 12, 14, 0.16);
+  --ring: rgba(226, 58, 44, 0.45);
 
   --chart-1: var(--primary);
   --chart-2: var(--ember);
@@ -115,13 +115,13 @@
   --chart-5: var(--status-violet);
 
   /* Sidebar surfaces */
-  --sidebar: #0d0809;
+  --sidebar: #ffffff;
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: #1c1517;
+  --sidebar-accent: #f1ebe8;
   --sidebar-accent-foreground: var(--foreground);
-  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-border: rgba(20, 12, 14, 0.1);
   --sidebar-ring: var(--ring);
 }
 
@@ -184,9 +184,8 @@
   }
   html {
     @apply font-sans;
-    /* Force the dark color-scheme so native UI (scrollbars, form controls)
-       matches the dark-first theme. */
-    color-scheme: dark;
+    /* Light color-scheme so native UI (scrollbars, form controls) matches. */
+    color-scheme: light;
   }
 
   /* Big display headings: Geist Sans weight 400, tight tracking. */
@@ -198,6 +197,25 @@
 }
 
 @layer utilities {
+  /* Light elevated card surface for marketing pages. */
+  .surface-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow:
+      0 1px 2px rgba(16, 12, 14, 0.04),
+      0 18px 40px -24px rgba(16, 12, 14, 0.22);
+  }
+  /* Warm-tinted soft surface (subtle ember wash). */
+  .surface-soft {
+    background: color-mix(in srgb, var(--primary) 5%, var(--card));
+    border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+  }
+  /* Ember gradient chip (icon badges). */
+  .chip-ember {
+    background-image: linear-gradient(135deg, var(--primary), var(--ember));
+    color: #fff;
+  }
+
   /* Geist Mono utility for eyebrows + tabular stat numerals. */
   .font-mono {
     font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;

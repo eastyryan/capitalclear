@@ -25,11 +25,8 @@ import {
 import type { MoneyLocale } from '@/lib/format/money';
 import type { ServiceType } from '@/types/database.types';
 
-const SERVICES: readonly ServiceType[] = [
-  'snow_removal',
-  'lawn_mowing',
-  'seasonal_maintenance',
-] as const;
+// Snow-only product: booking offers snow removal exclusively.
+const SERVICES: readonly ServiceType[] = ['snow_removal'] as const;
 
 const TOTAL_STEPS = 6;
 
