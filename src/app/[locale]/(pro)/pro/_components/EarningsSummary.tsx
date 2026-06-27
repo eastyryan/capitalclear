@@ -25,6 +25,21 @@ export async function EarningsSummary({
   const t = await getTranslations('ProDashboard');
   const totalCents = heldCents + releasedCents;
 
+  // Pro-only fee disclosure. Kept OUT of the shared message bundle (which
+  // next-intl ships to every public page) so this is only ever rendered in the
+  // auth-gated pro dashboard — never exposed to the public site.
+  const FEE_NOTE = {
+    en: {
+      title: 'How payouts work',
+      body: "You keep 85% of every completed job; Capital Clear keeps a 15% platform fee. Payouts release automatically after the customer's verification window."
+    },
+    fr: {
+      title: 'Comment fonctionnent les versements',
+      body: 'Vous gardez 85 % de chaque travail terminé; Capital Clear conserve des frais de plateforme de 15 %. Les versements sont libérés automatiquement après la fenêtre de vérification du client.'
+    }
+  } as const;
+  const fee = FEE_NOTE[locale === 'fr' ? 'fr' : 'en'];
+
   return (
     <div className="flex flex-col gap-4">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -104,6 +119,17 @@ export async function EarningsSummary({
           </CardContent>
         </Card>
       </div>
+
+      {/* Pro-only payout/fee disclosure — never shown on the public site. */}
+      <Card>
+        <CardContent className="flex flex-col gap-1.5">
+          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+            <Wallet className="size-4" aria-hidden />
+            {fee.title}
+          </div>
+          <p className="text-sm text-muted-foreground">{fee.body}</p>
+        </CardContent>
+      </Card>
     </div>
   );
 }

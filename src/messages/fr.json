@@ -22,91 +22,6 @@
     "french": "Français",
     "contact": "Contact"
   },
-  "Landing": {
-    "loaderText": "Déneigement de l'entrée",
-    "heroEyebrow": "Ottawa · prêt pour l'hiver",
-    "heroTitle": "Enneigé à 6 h. Déneigé avant votre réveil.",
-    "heroSubtitle": "Déneigement, entretien de pelouse et entretien saisonnier à la demande dans la région de la capitale nationale. Réservé en quelques minutes, vérifié par photo, payé seulement une fois terminé.",
-    "heroCtaPrimary": "Réserver un déneigement",
-    "heroCtaSecondary": "Devenir pro",
-    "heroBadgeBefore": "Enneigé",
-    "heroBadgeAfter": "Déneigé",
-    "heroScrollHint": "Faites défiler pour déneiger",
-    "trustEyebrow": "La confiance de toute la capitale",
-    "trustItem1": "Avant et après vérifiés par photo",
-    "trustItem2": "Payez seulement une fois déneigé",
-    "trustItem3": "Pros locaux vérifiés",
-    "trustItem4": "Déneigé avant 7 h garanti",
-    "howEyebrow": "Comment ça marche",
-    "howTitle": "Trois clics, de la tempête à l'impeccable",
-    "step1Title": "Réservez en quelques minutes",
-    "step1Body": "Entrez votre adresse, choisissez un service et fixez votre plage horaire. Pas de téléphone, pas de devis qui n'arrivent jamais.",
-    "step2Title": "Un pro déneige",
-    "step2Body": "Un pro local vérifié accepte le travail, se déplace et s'attaque à la neige, aux feuilles ou à la pelouse.",
-    "step3Title": "Vérifiez et payez",
-    "step3Body": "Approuvez les photos avant et après. Le paiement n'est libéré qu'une fois le travail confirmé.",
-    "servicesEyebrow": "Ce que nous déneigeons",
-    "servicesTitle": "Une équipe pour chaque saison",
-    "serviceSnowTitle": "Déneigement",
-    "serviceSnowBody": "Entrées, allées et marches déneigées et salées avant le trajet du matin.",
-    "serviceSnowTag": "Nov – avr",
-    "serviceLawnTitle": "Tonte de pelouse",
-    "serviceLawnBody": "Des coupes nettes et régulières selon un horaire adapté à votre terrain — bordures incluses.",
-    "serviceLawnTag": "Mai – oct",
-    "serviceSeasonalTitle": "Entretien saisonnier",
-    "serviceSeasonalBody": "Nettoyages de printemps, ramassage des feuilles à l'automne et tous les travaux qui gardent une propriété impeccable.",
-    "serviceSeasonalTag": "Toute l'année",
-    "compareEyebrow": "Deux entrées. Une tempête.",
-    "compareTitle": "Même chute de neige. Des matins très différents.",
-    "compareToggleWithout": "Sans Capital Clear",
-    "compareToggleWith": "Avec Capital Clear",
-    "withoutLabel": "Par vous-même",
-    "withoutHeadline": "Toujours enneigé à 8 h",
-    "withoutPoint1": "Pelleter dans le noir avant le travail",
-    "withoutPoint2": "Ou courir après un déneigeur qui ne vient jamais",
-    "withoutCostLabel": "Coût-surprise de la saison",
-    "withoutHoursLabel": "Heures perdues à pelleter",
-    "withLabel": "Capital Clear",
-    "withHeadline": "Déneigé et salé avant 7 h",
-    "withPoint1": "Fait avant votre réveil — vérifié par photo",
-    "withPoint2": "Prix fixe et transparent. Aucune surprise.",
-    "withCostLabel": "Prix prévisible par déneigement",
-    "withHoursLabel": "Heures que vous passez à pelleter",
-    "statsEyebrow": "En chiffres",
-    "statsTitle": "Conçu pour les hivers de la capitale",
-    "stat1Value": "12000",
-    "stat1Label": "Entrées déneigées",
-    "stat2Value": "7",
-    "stat2Label": "Garantie de déneigement (h AM)",
-    "stat3Value": "98",
-    "stat3Label": "Travaux approuvés du premier coup (%)",
-    "stat4Value": "240",
-    "stat4Label": "Pros vérifiés disponibles",
-    "faqEyebrow": "Questions",
-    "faqTitle": "Bon à savoir avant le premier flocon",
-    "faq": [
-      {
-        "q": "Quelles régions desservez-vous ?",
-        "a": "Nous couvrons Ottawa, Kanata, Barrhaven, Orléans, Nepean, Gloucester et Stittsville. Entrez votre adresse lors de la réservation et nous confirmerons la disponibilité d'un pro."
-      },
-      {
-        "q": "Quand suis-je facturé ?",
-        "a": "Votre carte est autorisée à la réservation, mais le paiement n'est libéré qu'après votre approbation des photos avant et après. Si ce n'est pas déneigé, vous n'êtes pas facturé."
-      },
-      {
-        "q": "À quelle vitesse mon entrée sera-t-elle déneigée ?",
-        "a": "Les déneigements de nuit visent à être terminés avant 7 h. Vous recevez une notification dès que votre pro est en route, puis une autre une fois le travail vérifié."
-      },
-      {
-        "q": "Les pros sont-ils assurés et vérifiés ?",
-        "a": "Chaque pro sur Capital Clear est vérifié et évalué avant d'accepter des travaux. Vous voyez les notes et le nombre de travaux complétés avant même de réserver."
-      }
-    ],
-    "ctaTitle": "Laissez la prochaine tempête à quelqu'un d'autre.",
-    "ctaSubtitle": "Configurez votre premier déneigement en moins de deux minutes. Ne payez rien avant que ce soit terminé.",
-    "ctaPrimary": "Réserver un déneigement",
-    "ctaSecondary": "Devenir pro"
-  },
   "Footer": {
     "tagline": "Déneigement, entretien de pelouse et entretien saisonnier à la demande pour la région de la capitale nationale.",
     "serviceAreaTitle": "Zone desservie",
@@ -388,46 +303,6 @@
     "emptyReviews": "Aucun avis pour le moment.",
     "emptyPayments": "Aucun paiement pour le moment."
   },
-  "Immersive": {
-    "badgeNew": "Nouveau",
-    "badge": "Maintenant partout à Ottawa — réservez en 60 secondes",
-    "headline": "Déneigé avant même votre réveil",
-    "subhead": "Déneigement, entretien de pelouse et entretien saisonnier à la demande dans la région de la capitale nationale. Réservé en quelques minutes, vérifié par photo, et payé seulement une fois le travail terminé.",
-    "ctaPrimary": "Réserver",
-    "ctaSecondary": "Comment ça marche",
-    "stat1Value": "7 h",
-    "stat1Label": "Garantie de déneigement",
-    "stat2Value": "240+",
-    "stat2Label": "Pros locaux vérifiés",
-    "trust": "La confiance de toute la région de la capitale",
-    "servicesKicker": "Services",
-    "servicesHeadA": "Chaque saison,",
-    "servicesHeadB": "maîtrisée.",
-    "snowTitle": "Déneigement",
-    "snowTags": [
-      "Entrées",
-      "Trottoirs",
-      "Salage",
-      "Avant 7 h"
-    ],
-    "snowBody": "Déneigement et salage de nuit pour entrées, allées et marches — déneigé et vérifié par photo avant votre départ matinal.",
-    "lawnTitle": "Tonte de pelouse",
-    "lawnTags": [
-      "Bordures nettes",
-      "À l’horaire",
-      "Bandes propres",
-      "Taillé"
-    ],
-    "lawnBody": "Des coupes nettes et régulières selon un horaire adapté à votre terrain, bordures incluses — une pelouse impeccable sans lever le petit doigt.",
-    "seasonalTitle": "Entretien saisonnier",
-    "seasonalTags": [
-      "Ménage de printemps",
-      "Ramassage de feuilles",
-      "Gouttières",
-      "Toute l’année"
-    ],
-    "seasonalBody": "Nettoyages de printemps, ramassage des feuilles à l’automne et tous les travaux qui gardent votre propriété impeccable en toute saison."
-  },
   "HowItWorks": {
     "metaTitle": "Comment ça marche",
     "eyebrow": "Comment ça marche",
@@ -464,8 +339,8 @@
         "body": "Réalisez le travail selon la norme et prenez des photos avant/après depuis votre tableau de bord comme preuve."
       },
       {
-        "title": "Gardez 85 %",
-        "body": "Les versements sont libérés automatiquement après la fenêtre de vérification du client. Vous gardez 85 % de chaque travail, sans frais mensuels."
+        "title": "Soyez payé",
+        "body": "Les versements sont libérés automatiquement après la fenêtre de vérification du client, une fois vos photos téléversées."
       }
     ],
     "assuranceKicker": "Pourquoi ça marche",
@@ -484,8 +359,8 @@
         "body": "Aucuns frais d'avance — vous payez seulement une fois terminé."
       },
       {
-        "title": "Dégagé pour 7 h",
-        "body": "Les travaux de nuit sont terminés avant votre trajet du matin."
+        "title": "Sur demande",
+        "body": "Demandez un déneigement et un plow proche est dépêché — premier arrivé, premier servi."
       }
     ],
     "ctaTitle": "Prêt dès le premier flocon.",
@@ -497,61 +372,69 @@
   "PricingPage": {
     "metaTitle": "Tarifs",
     "eyebrow": "Tarifs",
-    "title": "Des prix honnêtes,",
-    "accent": "sans surprise.",
-    "subtitle": "Tarifs de départ fixes par visite. Aucun abonnement, aucuns frais cachés — vous payez seulement quand le travail est vérifié par photo.",
+    "title": "Des prix simples",
+    "accent": "par visite.",
+    "subtitle": "Choisissez ce qu'il faut dégager. Payez par visite — aucuns frais d'avance, et vous payez seulement une fois le travail vérifié par photo.",
     "from": "à partir de",
     "perVisit": "/visite",
+    "addOn": "Supplément",
     "popular": "Le plus réservé",
     "cta": "Réserver",
     "ctaFaq": "Lire la FAQ",
-    "features": {
-      "snow_removal": [
-        "Entrée, allées et marches",
-        "Salage inclus",
-        "Dégagé et salé pour 7 h",
-        "Preuve photo avant/après"
-      ],
-      "lawn_mowing": [
-        "Tonte complète et uniforme",
-        "Bordures nettes",
-        "Résidus ramassés",
-        "Hebdomadaire ou aux deux semaines"
-      ],
-      "seasonal_maintenance": [
-        "Nettoyages printemps et automne",
-        "Ramassage des feuilles",
-        "Nettoyage des gouttières",
-        "Liste personnalisée"
-      ]
+    "payNote": "Payez seulement une fois le travail terminé et vérifié par photo. Aucuns frais d'avance, aucuns frais cachés.",
+    "tiers": {
+      "single": {
+        "name": "Entrée simple",
+        "features": [
+          "Une entrée standard",
+          "Dégagée et salée",
+          "Finition vérifiée par photo"
+        ]
+      },
+      "double": {
+        "name": "Entrée double",
+        "features": [
+          "Entrée double largeur",
+          "Dégagée et salée",
+          "Finition vérifiée par photo"
+        ]
+      },
+      "walkway": {
+        "name": "Allée",
+        "features": [
+          "À ajouter à toute visite",
+          "Allée avant et marches",
+          "Salée contre la glace"
+        ]
+      }
     },
-    "surgeNote": "Le déneigement inclut une majoration hivernale de 10 % de décembre à mars. Votre prix final est toujours affiché avant de confirmer.",
-    "billingKicker": "Facturation",
-    "billingTitle": "Comment le paiement",
-    "billingAccent": "fonctionne vraiment.",
-    "billing": [
+    "premiumKicker": "Optionnel",
+    "premiumTitle": "Priorité Premium —",
+    "premiumAccent": "sautez la file.",
+    "premiumSubtitle": "Ce n'est pas un contrat à tarif fixe. Le premium est un supplément optionnel qui vous place en premier lors des tempêtes et verrouille votre prix pour la saison.",
+    "premium": [
       {
-        "title": "Payez à la fin",
-        "body": "Nous plaçons une autorisation à la réservation et ne prélevons qu’une fois la preuve photo téléversée."
+        "title": "Premier en file",
+        "body": "Lors d’une tempête, les membres premium sont dépêchés en premier — premier arrivé, premier servi, avant les travaux standards."
       },
       {
-        "title": "Aucuns frais cachés",
-        "body": "Le prix affiché est le prix payé. Aucuns frais de réservation, aucun abonnement, aucun supplément surprise."
+        "title": "Prix verrouillé",
+        "body": "Votre prix par visite est garanti pour la saison. Aucune majoration, aucune surprise, même sous les plus fortes neiges."
       },
       {
-        "title": "Sécurisé et simulé",
-        "body": "Les paiements passent par un fournisseur sécurisé. Cet aperçu utilise le mode simulé, pour essayer gratuitement."
+        "title": "Sans contrat",
+        "body": "Vous payez toujours par visite. Le premium garantit seulement votre place et votre tarif — annulable en tout temps."
       }
     ],
-    "ctaTitle": "Voyez votre prix exact.",
-    "ctaSubtitle": "Commencez une réservation pour un devis en direct selon votre adresse et date — sans compte requis."
+    "ctaTitle": "Faites-vous dégager cet hiver.",
+    "ctaSubtitle": "Réservez un déneigement, ou ajoutez la Priorité Premium pour verrouiller votre prix et sauter la file."
   },
   "ServicesPage": {
     "metaTitle": "Déneigement",
     "eyebrow": "Services",
     "title": "Le déneigement,",
     "accent": "bien fait.",
-    "subtitle": "Déneigement et salage de nuit pour les entrées, allées et marches d'Ottawa — vérifié par photo avant votre réveil.",
+    "subtitle": "Déneigement et salage sur demande pour les entrées, allées et marches d'Ottawa — vérifié par photo, dégagé rapidement.",
     "from": "À partir de",
     "cta": "Réserver",
     "ctaHow": "Comment ça marche",
@@ -566,33 +449,33 @@
     "items": {
       "snow-removal": {
         "name": "Déneigement",
-        "tagline": "Déneigement et salage de nuit, dégagé avant votre trajet du matin.",
-        "intro": "Entrées, allées et marches dégagées et salées pour 7 h — vérifiées par photo avant votre réveil.",
-        "whatTitle": "La neige, partie au lever du jour.",
-        "whatBody": "Quand il neige la nuit, un pro local dégage votre entrée, vos allées et vos marches et sale contre la glace — puis téléverse une preuve photo. Vous vous réveillez devant une propriété dégagée et sûre, sans toucher à une pelle.",
+        "tagline": "Déneigement et salage sur demande — demandez-le et un plow se dirige vers vous.",
+        "intro": "Entrées, allées et marches dégagées et salées dès que la neige cesse — vérifié par photo.",
+        "whatTitle": "La neige, partie vite.",
+        "whatBody": "Quand il neige, demandez un déneigement et un pro local dégage votre entrée, vos allées et vos marches et sale contre la glace — puis téléverse une preuve photo. Une propriété dégagée et sûre, sans toucher à une pelle.",
         "includes": [
           "Déneigement de l'entrée",
           "Allées et marches avant",
           "Salage anti-glace",
-          "Dégagé et vérifié pour 7 h",
+          "Dégagé dès la fin de la neige",
           "Preuve photo avant/après"
         ],
         "steps": [
           {
-            "title": "Réservez avant la tempête",
-            "body": "Configurez le déneigement pour votre adresse — ponctuel ou pour la saison."
+            "title": "Demandez un déneigement",
+            "body": "Réservez pour votre adresse — ponctuel, ou ajoutez la Priorité Premium pour la saison."
           },
           {
-            "title": "Nous dégageons la nuit",
-            "body": "Un pro proche déneige et sale une fois la neige terminée."
+            "title": "Un pro se dirige vers vous",
+            "body": "Un plow proche accepte et dégage une fois la neige terminée — premier arrivé, premier servi."
           },
           {
-            "title": "Réveillez-vous dégagé",
-            "body": "Vérifiez la preuve photo et partez — facturé seulement une fois terminé."
+            "title": "Payez une fois terminé",
+            "body": "Vérifiez la preuve photo — facturé seulement une fois vérifié."
           }
         ],
         "ctaTitle": "Devancez la prochaine tempête.",
-        "ctaSubtitle": "Réservez le déneigement et réveillez-vous devant une entrée dégagée."
+        "ctaSubtitle": "Réservez le déneigement et soyez dégagé rapidement."
       }
     }
   },
@@ -605,24 +488,24 @@
     "story": [
       "Capital Clear est né d'une frustration simple : à Ottawa, faire dégager son entrée après une tempête de nuit signifiait des appels sans fin, des absences et payer avant que quiconque ne lève une pelle.",
       "Nous avons donc bâti un marché qui fonctionne comme la ville — rapide, local et responsable. Les propriétaires réservent en moins d'une minute. Les pros de déneigement vérifiés réclament des travaux à proximité. Chaque dégagement se conclut par une preuve photo, et le paiement n'est libéré qu'une fois vérifié.",
-      "Nous sommes fiers d'être locaux. De Kanata à Orléans, les pros de Capital Clear vivent et travaillent dans les quartiers qu'ils dégagent — et gardent 85 % de chaque travail."
+      "Nous sommes fiers d'être locaux. De Kanata à Orléans, les pros de Capital Clear vivent et travaillent dans les quartiers qu'ils dégagent — et sont fiers de chaque travail."
     ],
     "stats": [
-      {
-        "value": "240+",
-        "label": "Pros locaux vérifiés"
-      },
-      {
-        "value": "7 h",
-        "label": "Garantie de dégagement"
-      },
       {
         "value": "100 %",
         "label": "Travaux vérifiés par photo"
       },
       {
-        "value": "85 %",
-        "label": "Gardé par les pros"
+        "value": "60 s",
+        "label": "Pour réserver"
+      },
+      {
+        "value": "ASAP",
+        "label": "Réponse aux tempêtes"
+      },
+      {
+        "value": "EN/FR",
+        "label": "Soutien bilingue"
       }
     ],
     "valuesKicker": "Nos valeurs",
@@ -635,7 +518,7 @@
       },
       {
         "title": "Équitable pour les pros",
-        "body": "Les entrepreneurs gardent 85 % de chaque travail — sans frais mensuels."
+        "body": "Une rémunération transparente par travail — chaque pro voit ses tarifs dans son tableau de bord."
       },
       {
         "title": "Responsable",
@@ -670,8 +553,8 @@
             "a": "Nous plaçons une autorisation à la réservation et ne prélevons qu’une fois la preuve photo de fin téléversée."
           },
           {
-            "q": "Et s’il neige la nuit ?",
-            "a": "Les déneigements sont dégagés et salés avant 7 h, pour que votre entrée et vos allées soient prêtes pour le matin."
+            "q": "À quelle vitesse mon entrée sera-t-elle dégagée ?",
+            "a": "Demandez un déneigement et un plow proche est dépêché dès que la neige cesse — premier arrivé, premier servi, comme un appel de course."
           },
           {
             "q": "Puis-je réserver un service récurrent ?",
@@ -684,11 +567,11 @@
         "items": [
           {
             "q": "Combien ça coûte ?",
-            "a": "Le déneigement commence à 45 $ par visite. Le prix exact pour votre adresse et votre date est affiché avant de confirmer."
+            "a": "Les entrées simples commencent à 45 $ par visite, les entrées doubles à 55 $, et ajouter une allée coûte +25 $. Le prix exact est affiché avant de confirmer."
           },
           {
-            "q": "Pourquoi le déneigement coûte plus l’hiver ?",
-            "a": "Le déneigement comporte une majoration de 10 % de décembre à mars, en période de pointe. Le prix final est toujours affiché d’avance."
+            "q": "Qu’est-ce que la Priorité Premium ?",
+            "a": "Un premium optionnel qui vous place en premier lors des tempêtes et verrouille votre prix par visite pour la saison — premier arrivé, premier servi, sans contrat."
           },
           {
             "q": "Y a-t-il des frais cachés ?",
@@ -700,8 +583,8 @@
         "title": "Pour les pros",
         "items": [
           {
-            "q": "Combien je garde ?",
-            "a": "Vous gardez 85 % de chaque travail réalisé. Aucuns frais mensuels — Capital Clear prélève 15 % par travail."
+            "q": "Où vois-je ma rémunération ?",
+            "a": "Vos tarifs, frais et détails de versement se trouvent dans votre tableau de bord pro une fois connecté."
           },
           {
             "q": "Comment suis-je payé ?",
@@ -749,7 +632,7 @@
       },
       {
         "label": "Heures",
-        "value": "7 jours sur 7 · 7 h–21 h"
+        "value": "7 jours sur 7 · réponse aux tempêtes"
       }
     ]
   },
@@ -758,18 +641,17 @@
     "eyebrow": "Pour les entrepreneurs",
     "title": "Transformez l'hiver en",
     "accent": "revenu stable.",
-    "subtitle": "Réclamez des travaux de déneigement près de chez vous, dégagez-les et gardez 85 % de chacun. Sans enchères, sans frais mensuels.",
+    "subtitle": "Réclamez des travaux de déneigement près de chez vous, dégagez-les et soyez payé rapidement. Sans enchères, sans frais mensuels.",
     "ctaPrimary": "Commencer à gagner",
     "ctaSecondary": "Comment ça marche",
-    "earningsKicker": "Votre part",
-    "keepPct": "85 %",
-    "earningsBody": "Vous gardez 85 % de chaque travail réalisé. Capital Clear prélève des frais fixes de 15 % — aucuns frais mensuels, aucun coût d'inscription, aucune surprise.",
+    "earningsKicker": "Rémunération",
+    "earningsBody": "Une rémunération concurrentielle par travail, versée rapidement après chaque travail terminé. Vos tarifs et détails de versement exacts sont dans votre tableau de bord pro une fois connecté — aucuns frais mensuels, jamais.",
     "benefitsKicker": "Pourquoi les pros nous choisissent",
     "benefitsTitle": "Conçu autour de votre horaire.",
     "benefits": [
       {
-        "title": "Gardez 85 %",
-        "body": "Frais fixes de 15 % par travail et rien d'autre."
+        "title": "Rémunération concurrentielle",
+        "body": "Une paie équitable par travail, sans frais mensuels."
       },
       {
         "title": "Votre horaire",
@@ -796,7 +678,7 @@
       },
       {
         "title": "Terminez et soyez payé",
-        "body": "Téléversez les photos de fin et gardez 85 % de chaque travail."
+        "body": "Téléversez les photos de fin et soyez payé rapidement après chaque déneigement."
       }
     ],
     "requirementsTitle": "Ce qu'il vous faut",
@@ -808,7 +690,8 @@
     ],
     "ctaTitle": "Prêt à commencer à gagner ?",
     "ctaSubtitle": "Créez votre compte pro et réclamez votre premier travail dès aujourd’hui.",
-    "ctaContact": "Nous parler d'abord"
+    "ctaContact": "Nous parler d'abord",
+    "earningsTitle": "Soyez payé pour chaque déneigement."
   },
   "Terms": {
     "title": "Conditions d’utilisation",
@@ -934,9 +817,9 @@
   },
   "Home": {
     "heroEyebrow": "Déneigement à Ottawa",
-    "heroTitle": "Dégagé avant",
-    "heroAccent": "votre réveil.",
-    "heroSubtitle": "Déneigement sur demande dans la région de la capitale nationale. Réservé en 60 secondes, dégagé et salé pour 7 h, vérifié par photo, et payé seulement une fois terminé.",
+    "heroTitle": "Déneigement,",
+    "heroAccent": "sur demande.",
+    "heroSubtitle": "Demandez un déneigement et un plow local vérifié se dirige vers vous — premier arrivé, premier servi, comme un appel de course. Vérifié par photo, et vous payez seulement une fois terminé.",
     "heroPrimary": "Réserver",
     "heroSecondary": "Comment ça marche",
     "trust": "De confiance à Ottawa · Kanata · Barrhaven · Orléans · Nepean · Stittsville",
@@ -947,7 +830,7 @@
     "whatFeatures": [
       "Entrées, allées et marches",
       "Salage anti-glace inclus",
-      "Dégagé et vérifié pour 7 h",
+      "Dégagé dès que la neige cesse",
       "Payez seulement une fois terminé"
     ],
     "howKicker": "Comment ça marche",
@@ -970,20 +853,20 @@
     "galleryTitle": "Conçu pour les hivers d'Ottawa.",
     "stats": [
       {
-        "value": "7 h",
-        "label": "Garantie de dégagement"
-      },
-      {
-        "value": "240+",
-        "label": "Pros locaux vérifiés"
+        "value": "60 s",
+        "label": "Pour réserver"
       },
       {
         "value": "100 %",
         "label": "Vérifié par photo"
       },
       {
-        "value": "60 s",
-        "label": "Pour réserver"
+        "value": "ASAP",
+        "label": "Dégagé après la tempête"
+      },
+      {
+        "value": "0 $",
+        "label": "À l’avance — payez à la fin"
       }
     ],
     "ctaTitle": "Prêt dès le premier flocon.",

@@ -22,91 +22,6 @@
     "french": "Français",
     "contact": "Contact"
   },
-  "Landing": {
-    "loaderText": "Clearing the driveway",
-    "heroEyebrow": "Ottawa · winter-ready",
-    "heroTitle": "Snowed in by 6AM. Cleared before you wake.",
-    "heroSubtitle": "On-demand snow removal, lawn care, and seasonal maintenance across the National Capital Region. Booked in minutes, photo-verified, paid only when it's done.",
-    "heroCtaPrimary": "Book snow removal",
-    "heroCtaSecondary": "Earn as a pro",
-    "heroBadgeBefore": "Snow-covered",
-    "heroBadgeAfter": "Cleared",
-    "heroScrollHint": "Scroll to clear",
-    "trustEyebrow": "Trusted across the capital",
-    "trustItem1": "Photo-verified before & after",
-    "trustItem2": "Pay only when cleared",
-    "trustItem3": "Vetted local pros",
-    "trustItem4": "Cleared by 7AM guarantee",
-    "howEyebrow": "How it works",
-    "howTitle": "Three taps from storm to spotless",
-    "step1Title": "Book in minutes",
-    "step1Body": "Drop your address, pick a service, and set your window. No phone tag, no quotes that never come.",
-    "step2Title": "A pro clears it",
-    "step2Body": "A vetted local pro accepts the job, heads out, and works through snow, leaves, or overgrowth.",
-    "step3Title": "Verify & pay",
-    "step3Body": "Approve the before & after photos. Payment releases only once the work is confirmed done.",
-    "servicesEyebrow": "What we clear",
-    "servicesTitle": "One crew for every season",
-    "serviceSnowTitle": "Snow removal",
-    "serviceSnowBody": "Driveways, walkways, and steps cleared and salted before the morning commute.",
-    "serviceSnowTag": "Nov – Apr",
-    "serviceLawnTitle": "Lawn mowing",
-    "serviceLawnBody": "Crisp, even cuts on a schedule that fits your yard — trimmed edges included.",
-    "serviceLawnTag": "May – Oct",
-    "serviceSeasonalTitle": "Seasonal maintenance",
-    "serviceSeasonalBody": "Spring cleanups, fall leaf removal, and the in-between jobs that keep a property sharp.",
-    "serviceSeasonalTag": "Year-round",
-    "compareEyebrow": "Two driveways. One storm.",
-    "compareTitle": "Same snowfall. Very different mornings.",
-    "compareToggleWithout": "Without Capital Clear",
-    "compareToggleWith": "With Capital Clear",
-    "withoutLabel": "On your own",
-    "withoutHeadline": "Still snowed in at 8AM",
-    "withoutPoint1": "Shovelling in the dark before work",
-    "withoutPoint2": "Or chasing a plow guy who never shows",
-    "withoutCostLabel": "Surprise season cost",
-    "withoutHoursLabel": "Hours lost shovelling",
-    "withLabel": "Capital Clear",
-    "withHeadline": "Cleared and salted by 7AM",
-    "withPoint1": "Done before you're awake — photo-verified",
-    "withPoint2": "Flat, upfront pricing. No surprises.",
-    "withCostLabel": "Predictable per-clear price",
-    "withHoursLabel": "Hours you spend shovelling",
-    "statsEyebrow": "By the numbers",
-    "statsTitle": "Built for capital winters",
-    "stat1Value": "12000",
-    "stat1Label": "Driveways cleared",
-    "stat2Value": "7",
-    "stat2Label": "Cleared-by guarantee (AM)",
-    "stat3Value": "98",
-    "stat3Label": "Jobs approved first try (%)",
-    "stat4Value": "240",
-    "stat4Label": "Vetted pros on call",
-    "faqEyebrow": "Questions",
-    "faqTitle": "Good to know before the first flake",
-    "faq": [
-      {
-        "q": "Which areas do you serve?",
-        "a": "We cover Ottawa, Kanata, Barrhaven, Orleans, Nepean, Gloucester, and Stittsville. Drop your address at booking and we'll confirm a pro is available."
-      },
-      {
-        "q": "When do I get charged?",
-        "a": "Your card is authorized when you book, but the payment only releases after you approve the before-and-after photos. If it's not cleared, you're not charged."
-      },
-      {
-        "q": "How fast will my driveway be cleared?",
-        "a": "Overnight snow jobs are targeted to be cleared by 7AM. You'll get a notification the moment your pro is en route and again when the work is verified."
-      },
-      {
-        "q": "Are the pros insured and vetted?",
-        "a": "Every pro on Capital Clear is identity-verified and reviewed before taking jobs. You see ratings and completed-job counts before you ever book."
-      }
-    ],
-    "ctaTitle": "Let the next storm be someone else's problem.",
-    "ctaSubtitle": "Set up your first clear in under two minutes. Pay nothing until it's done.",
-    "ctaPrimary": "Book snow removal",
-    "ctaSecondary": "Earn as a pro"
-  },
   "Footer": {
     "tagline": "On-demand snow removal, lawn care, and seasonal maintenance for the National Capital Region.",
     "serviceAreaTitle": "Service area",
@@ -388,46 +303,6 @@
     "emptyReviews": "No reviews yet.",
     "emptyPayments": "No payments yet."
   },
-  "Immersive": {
-    "badgeNew": "New",
-    "badge": "Now clearing all of Ottawa — book in 60 seconds",
-    "headline": "Cleared Before You Even Wake",
-    "subhead": "On-demand snow removal, lawn care, and seasonal maintenance across the National Capital Region. Booked in minutes, photo-verified, and paid only when the work is done.",
-    "ctaPrimary": "Book a Clear",
-    "ctaSecondary": "See how it works",
-    "stat1Value": "7AM",
-    "stat1Label": "Cleared-by guarantee",
-    "stat2Value": "240+",
-    "stat2Label": "Vetted local pros",
-    "trust": "Trusted across the National Capital Region",
-    "servicesKicker": "Services",
-    "servicesHeadA": "Every season,",
-    "servicesHeadB": "handled.",
-    "snowTitle": "Snow Removal",
-    "snowTags": [
-      "Driveways",
-      "Walkways",
-      "Salted",
-      "By 7AM"
-    ],
-    "snowBody": "Overnight plowing and salting for driveways, walkways and steps — cleared and photo-verified before your morning commute.",
-    "lawnTitle": "Lawn Mowing",
-    "lawnTags": [
-      "Crisp Edges",
-      "On Schedule",
-      "Clean Stripes",
-      "Trimmed"
-    ],
-    "lawnBody": "Even, tidy cuts on a schedule that fits your yard, with edges trimmed — a sharp lawn without lifting a finger.",
-    "seasonalTitle": "Seasonal Care",
-    "seasonalTags": [
-      "Spring Cleanup",
-      "Leaf Removal",
-      "Gutters",
-      "Year-Round"
-    ],
-    "seasonalBody": "Spring cleanups, fall leaf removal and the in-between jobs that keep your property sharp through every season."
-  },
   "HowItWorks": {
     "metaTitle": "How it works",
     "eyebrow": "How it works",
@@ -464,8 +339,8 @@
         "body": "Complete the job to standard and snap before/after photos right from your dashboard as proof of completion."
       },
       {
-        "title": "Keep 85%",
-        "body": "Payouts release automatically after the homeowner's verification window. You keep 85% of every job, no monthly fees."
+        "title": "Get paid",
+        "body": "Payouts release automatically after the customer's verification window once you've uploaded your photos."
       }
     ],
     "assuranceKicker": "Why it works",
@@ -484,8 +359,8 @@
         "body": "No upfront charges — you pay only when it's done."
       },
       {
-        "title": "Cleared by 7AM",
-        "body": "Overnight snow jobs are finished before your commute."
+        "title": "On-demand",
+        "body": "Request a clear and a nearby plow is dispatched — first come, first served."
       }
     ],
     "ctaTitle": "Ready when the first flake falls.",
@@ -497,61 +372,69 @@
   "PricingPage": {
     "metaTitle": "Pricing",
     "eyebrow": "Pricing",
-    "title": "Honest pricing,",
-    "accent": "no surprises.",
-    "subtitle": "Flat starting rates per visit. No subscriptions, no hidden fees — you only pay when the work is photo-verified complete.",
+    "title": "Simple per-visit",
+    "accent": "pricing.",
+    "subtitle": "Pick what you need cleared. Pay per visit — no upfront charges, and you only pay once the work is photo-verified.",
     "from": "from",
     "perVisit": "/visit",
+    "addOn": "Add-on",
     "popular": "Most booked",
     "cta": "Book now",
     "ctaFaq": "Read the FAQ",
-    "features": {
-      "snow_removal": [
-        "Driveway, walkways & steps",
-        "Salting included",
-        "Cleared and salted by 7AM",
-        "Before/after photo proof"
-      ],
-      "lawn_mowing": [
-        "Full mow, even cut",
-        "Crisp trimmed edges",
-        "Clippings cleaned up",
-        "Flexible weekly or biweekly"
-      ],
-      "seasonal_maintenance": [
-        "Spring & fall cleanups",
-        "Leaf removal & hauling",
-        "Gutter clearing",
-        "Custom property checklist"
-      ]
+    "payNote": "Pay only when the job is done and photo-verified. No upfront charges, no hidden fees.",
+    "tiers": {
+      "single": {
+        "name": "Single Driveway",
+        "features": [
+          "One standard driveway",
+          "Cleared and salted",
+          "Photo-verified finish"
+        ]
+      },
+      "double": {
+        "name": "Double Driveway",
+        "features": [
+          "Two-car / double-wide driveway",
+          "Cleared and salted",
+          "Photo-verified finish"
+        ]
+      },
+      "walkway": {
+        "name": "Walkway",
+        "features": [
+          "Add to any driveway visit",
+          "Front walk and steps",
+          "Salted for ice"
+        ]
+      }
     },
-    "surgeNote": "Snow removal includes a 10% winter surge in December–March. Your final price is always shown before you confirm.",
-    "billingKicker": "Billing",
-    "billingTitle": "How payment",
-    "billingAccent": "actually works.",
-    "billing": [
+    "premiumKicker": "Optional",
+    "premiumTitle": "Priority Premium —",
+    "premiumAccent": "skip the queue.",
+    "premiumSubtitle": "It's not a flat-rate contract. The premium is an optional add-on that puts you first in line during storms and locks your price for the season.",
+    "premium": [
       {
-        "title": "Pay on completion",
-        "body": "We place a hold when you book and only capture payment once your pro uploads verified photo proof."
+        "title": "First in line",
+        "body": "During a storm, premium members are dispatched first — first come, first served, ahead of standard jobs."
       },
       {
-        "title": "No hidden fees",
-        "body": "The price you see is the price you pay. No booking fees, no subscriptions, no surprise add-ons."
+        "title": "Locked-in price",
+        "body": "Your per-visit price is bonded for the season. No surge, no surprises, even in the heaviest snow."
       },
       {
-        "title": "Secure & simulated",
-        "body": "Payments run through a secure provider. This preview uses simulated mode, so you can try the full flow free."
+        "title": "No contract",
+        "body": "You still pay per visit. The premium just guarantees your spot and your rate — cancel anytime."
       }
     ],
-    "ctaTitle": "See your exact price.",
-    "ctaSubtitle": "Start a booking to get a live quote for your address and date — no account required to look."
+    "ctaTitle": "Get cleared this winter.",
+    "ctaSubtitle": "Book a single clear, or add Priority Premium to lock your price and skip the queue."
   },
   "ServicesPage": {
     "metaTitle": "Snow Removal",
     "eyebrow": "Services",
     "title": "Snow removal,",
     "accent": "done right.",
-    "subtitle": "Overnight plowing and salting for Ottawa driveways, walkways and steps — photo-verified before you wake up.",
+    "subtitle": "On-demand plowing and salting for Ottawa driveways, walkways and steps — photo-verified, cleared fast.",
     "from": "From",
     "cta": "Book now",
     "ctaHow": "How it works",
@@ -566,33 +449,33 @@
     "items": {
       "snow-removal": {
         "name": "Snow Removal",
-        "tagline": "Overnight plowing and salting, cleared before your morning commute.",
-        "intro": "Driveways, walkways and steps cleared and salted by 7AM — photo-verified before you wake up.",
-        "whatTitle": "Snow, gone by sunrise.",
-        "whatBody": "When it snows overnight, a local pro clears your driveway, walkways and steps and salts for ice — then uploads photo proof. You wake up to a clear, safe property without touching a shovel.",
+        "tagline": "On-demand plowing and salting — request it and a plow heads your way.",
+        "intro": "Driveways, walkways and steps cleared and salted as soon as the snow stops — photo-verified.",
+        "whatTitle": "Snow, gone fast.",
+        "whatBody": "When it snows, request a clear and a local pro plows your driveway, walkways and steps and salts for ice — then uploads photo proof. A clear, safe property without touching a shovel.",
         "includes": [
           "Driveway plowing or shovelling",
           "Walkways and front steps",
           "Ice-melt salting",
-          "Cleared and verified by 7AM",
+          "Cleared ASAP after snowfall",
           "Before/after photo proof"
         ],
         "steps": [
           {
-            "title": "Book before the storm",
-            "body": "Set up snow removal for your address — one-off or all season."
+            "title": "Request a clear",
+            "body": "Book snow removal for your address — one-off, or add Priority Premium for the season."
           },
           {
-            "title": "We clear overnight",
-            "body": "A nearby pro plows and salts after the snow stops falling."
+            "title": "A pro heads your way",
+            "body": "A nearby plow accepts and clears once the snow stops — first come, first served."
           },
           {
-            "title": "Wake up clear",
-            "body": "Check the photo proof and head out — you're only charged once it's done."
+            "title": "Pay when it's done",
+            "body": "Check the photo proof — you're only charged once it's verified complete."
           }
         ],
         "ctaTitle": "Beat the next storm.",
-        "ctaSubtitle": "Book snow removal now and wake up to a cleared driveway."
+        "ctaSubtitle": "Book snow removal and get cleared fast."
       }
     }
   },
@@ -605,24 +488,24 @@
     "story": [
       "Capital Clear started with a simple frustration: in Ottawa, getting your driveway cleared after an overnight storm meant phone tag, no-shows, and paying before anyone lifted a shovel.",
       "So we built a marketplace that works like the city does — fast, local, and accountable. Homeowners book in under a minute. Vetted plow pros claim jobs nearby. Every clear closes with photo proof, and payment only releases once the work is verified.",
-      "We're proud to be local. From Kanata to Orléans, the pros on Capital Clear live and work in the same neighbourhoods they clear — and keep 85% of every job."
+      "We're proud to be local. From Kanata to Orléans, the pros on Capital Clear live and work in the same neighbourhoods they clear — and take pride in every job."
     ],
     "stats": [
-      {
-        "value": "240+",
-        "label": "Vetted local pros"
-      },
-      {
-        "value": "7AM",
-        "label": "Cleared-by guarantee"
-      },
       {
         "value": "100%",
         "label": "Photo-verified jobs"
       },
       {
-        "value": "85%",
-        "label": "Kept by pros"
+        "value": "60s",
+        "label": "To book a clear"
+      },
+      {
+        "value": "ASAP",
+        "label": "Storm response"
+      },
+      {
+        "value": "EN/FR",
+        "label": "Bilingual support"
       }
     ],
     "valuesKicker": "What we stand for",
@@ -635,7 +518,7 @@
       },
       {
         "title": "Fair to pros",
-        "body": "Contractors keep 85% of every job — no monthly fees."
+        "body": "Transparent per-job pay — every pro sees their rates in their dashboard."
       },
       {
         "title": "Accountable",
@@ -670,8 +553,8 @@
             "a": "We place a hold when you book and only capture payment once your pro uploads photo proof that the job is complete."
           },
           {
-            "q": "What if it snows overnight?",
-            "a": "Snow removal jobs are cleared and salted before 7AM, so your driveway and walkways are ready for your morning commute."
+            "q": "How fast will my driveway be cleared?",
+            "a": "Request a clear and a nearby plow is dispatched as soon as the snow stops — first come, first served, like calling a ride."
           },
           {
             "q": "Can I book recurring service?",
@@ -684,11 +567,11 @@
         "items": [
           {
             "q": "How much does it cost?",
-            "a": "Snow removal starts at $45 per visit. You'll see the exact price for your address and date before you confirm."
+            "a": "Single driveways start at $45 per visit, double driveways $55, and adding a walkway is +$25. You'll see your exact price before you confirm."
           },
           {
-            "q": "Why is snow removal more in winter?",
-            "a": "Snow removal carries a 10% surge from December through March, when demand peaks. The final price is always shown up front."
+            "q": "What is Priority Premium?",
+            "a": "An optional premium that puts you first in line during storms and locks your per-visit price for the season — first come, first served, no contract."
           },
           {
             "q": "Are there any hidden fees?",
@@ -700,12 +583,12 @@
         "title": "For pros",
         "items": [
           {
-            "q": "How much do I keep?",
-            "a": "You keep 85% of every job you complete. There are no monthly fees — Capital Clear takes a 15% platform fee per job."
+            "q": "Where do I see my pay?",
+            "a": "Your rates, fees and payout details live in your pro dashboard once you sign in."
           },
           {
             "q": "How do I get paid?",
-            "a": "Payouts release automatically after the homeowner's verification window once you've uploaded your completion photos."
+            "a": "Payouts release automatically after the customer's verification window, once you've uploaded your completion photos."
           },
           {
             "q": "How do I sign up?",
@@ -749,7 +632,7 @@
       },
       {
         "label": "Hours",
-        "value": "7 days a week · 7AM–9PM"
+        "value": "7 days a week · storm response"
       }
     ]
   },
@@ -758,18 +641,17 @@
     "eyebrow": "For contractors",
     "title": "Turn winter into",
     "accent": "steady income.",
-    "subtitle": "Claim snow-removal jobs near you, clear them, and keep 85% of every one. No bidding, no monthly fees.",
+    "subtitle": "Claim snow-removal jobs near you, clear them, and get paid fast. No bidding, no monthly fees.",
     "ctaPrimary": "Start earning",
     "ctaSecondary": "How it works",
-    "earningsKicker": "Your cut",
-    "keepPct": "85%",
-    "earningsBody": "You keep 85% of every job you complete. Capital Clear takes a flat 15% platform fee — no monthly charges, no signup cost, no surprises.",
+    "earningsKicker": "Earnings",
+    "earningsBody": "Competitive per-job pay, paid out fast after each completed job. Your exact rates and payout details are in your pro dashboard once you sign in — no monthly fees, ever.",
     "benefitsKicker": "Why pros choose us",
     "benefitsTitle": "Built around your schedule.",
     "benefits": [
       {
-        "title": "Keep 85%",
-        "body": "Flat 15% platform fee per job and nothing else."
+        "title": "Competitive pay",
+        "body": "Fair per-job pay with no monthly fees."
       },
       {
         "title": "Your schedule",
@@ -796,7 +678,7 @@
       },
       {
         "title": "Finish and get paid",
-        "body": "Upload completion photos and keep 85% of every job."
+        "body": "Upload completion photos and get paid fast after each cleared job."
       }
     ],
     "requirementsTitle": "What you'll need",
@@ -808,7 +690,8 @@
     ],
     "ctaTitle": "Ready to start earning?",
     "ctaSubtitle": "Create your pro account and claim your first job today.",
-    "ctaContact": "Talk to us first"
+    "ctaContact": "Talk to us first",
+    "earningsTitle": "Get paid for every clear."
   },
   "Terms": {
     "title": "Terms of Service",
@@ -934,9 +817,9 @@
   },
   "Home": {
     "heroEyebrow": "Ottawa snow removal",
-    "heroTitle": "Cleared before",
-    "heroAccent": "you wake up.",
-    "heroSubtitle": "On-demand snow removal across the National Capital Region. Booked in 60 seconds, cleared and salted by 7AM, photo-verified, and paid only when it's done.",
+    "heroTitle": "Snow removal,",
+    "heroAccent": "on demand.",
+    "heroSubtitle": "Request a clear and a vetted local plow heads your way — first come, first served, like calling a ride. Photo-verified, and you pay only when it's done.",
     "heroPrimary": "Book a clear",
     "heroSecondary": "How it works",
     "trust": "Trusted across Ottawa · Kanata · Barrhaven · Orléans · Nepean · Stittsville",
@@ -947,7 +830,7 @@
     "whatFeatures": [
       "Driveways, walkways & steps",
       "Ice-melt salting included",
-      "Cleared and verified by 7AM",
+      "Cleared ASAP after the snow stops",
       "Pay only when it's done"
     ],
     "howKicker": "How it works",
@@ -970,20 +853,20 @@
     "galleryTitle": "Built for Ottawa winters.",
     "stats": [
       {
-        "value": "7AM",
-        "label": "Cleared-by guarantee"
-      },
-      {
-        "value": "240+",
-        "label": "Vetted local pros"
+        "value": "60s",
+        "label": "To book"
       },
       {
         "value": "100%",
         "label": "Photo-verified"
       },
       {
-        "value": "60s",
-        "label": "To book"
+        "value": "ASAP",
+        "label": "Cleared after the storm"
+      },
+      {
+        "value": "$0",
+        "label": "Upfront — pay when done"
       }
     ],
     "ctaTitle": "Ready when the first flake falls.",

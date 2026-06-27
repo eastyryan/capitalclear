@@ -55,15 +55,15 @@ export default async function BecomeProPage({
         <GhostCta href="/how-it-works">{t('ctaSecondary')}</GhostCta>
       </PageHero>
 
-      {/* Earnings split */}
+      {/* Earnings (rates + fees live in the private pro dashboard) */}
       <Section className="max-w-3xl">
         <GlassCard className="p-8 text-center md:p-12">
           <p className="font-barlow text-sm tracking-wide text-muted-foreground">
             // {t('earningsKicker')}
           </p>
-          <div className="mt-4 font-instrument text-7xl italic leading-none tracking-[-2px] text-foreground md:text-8xl">
-            <span className="text-ember">{t('keepPct')}</span>
-          </div>
+          <h2 className="mt-3 font-instrument text-4xl italic leading-[0.95] tracking-[-1px] text-foreground md:text-5xl">
+            {t('earningsTitle')}
+          </h2>
           <p className="mx-auto mt-5 max-w-xl font-barlow text-base font-light leading-relaxed text-muted-foreground">
             {t('earningsBody')}
           </p>

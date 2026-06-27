@@ -22,6 +22,8 @@
   /* Brand + status tokens exposed as Tailwind colors (bg-ember, text-ice…) */
   --color-ember: var(--ember);
   --color-ice: var(--ice);
+  --color-brand-green: var(--brand-green);
+  --color-maple: var(--maple);
   --color-slate: var(--slate);
   --color-band-light: var(--band-light);
   --color-status-success: var(--status-success);
@@ -72,16 +74,20 @@
   /* 8px corners */
   --radius: 0.5rem;
 
-  /* Named brand palette — LIGHT theme (warm white base, warm-red accent) */
-  --background: #f8f6f4; /* soft warm white */
-  --foreground: #1b1518; /* near-black warm ink */
-  --primary: #e23a2c; /* warm red */
+  /* Named brand palette — LIGHT theme, logo colours: navy blue (lead),
+     forest green (secondary), red maple accent. */
+  --background: #f6f8fb; /* cool light */
+  --foreground: #14203a; /* deep navy ink */
+  --primary: #1f3c70; /* logo navy — lead colour */
   --primary-foreground: #ffffff;
-  --primary-hover: #c12e22;
-  --ember: #ff7a2f;
-  --ice: #2a93d5; /* deepened for contrast on light */
+  --primary-hover: #16294f;
+  --ember: #2f6fd0; /* bright blue (gradient partner — keeps blue emphasis) */
+  --ice: #2f6fd0;
   --slate: #1e2a44;
   --band-light: #ffffff;
+  --brand-green: #4f8a67; /* logo forest green — secondary accent */
+  --brand-green-strong: #3f7657;
+  --maple: #d23a2e; /* red maple-leaf accent */
 
   /* Job-status palette (tuned for light surfaces) */
   --status-success: #1f9d57; /* cleared */
@@ -95,18 +101,18 @@
   --card-foreground: var(--foreground);
   --popover: #ffffff;
   --popover-foreground: var(--foreground);
-  --secondary: #f1ebe8;
+  --secondary: #eef1f6;
   --secondary-foreground: var(--foreground);
-  --muted: #f1ebe8;
-  --muted-foreground: #6b5f5b;
-  --accent: #f4edea;
+  --muted: #eef1f6;
+  --muted-foreground: #5a6478;
+  --accent: #e9eef6;
   --accent-foreground: var(--foreground);
   --destructive: var(--status-danger);
 
-  /* Hairline borders — rgba(20,12,14,.10) */
-  --border: rgba(20, 12, 14, 0.1);
-  --input: rgba(20, 12, 14, 0.16);
-  --ring: rgba(226, 58, 44, 0.45);
+  /* Hairline borders — cool navy-tinted */
+  --border: rgba(20, 32, 58, 0.1);
+  --input: rgba(20, 32, 58, 0.16);
+  --ring: rgba(31, 60, 112, 0.45);
 
   --chart-1: var(--primary);
   --chart-2: var(--ember);
@@ -210,9 +216,14 @@
     background: color-mix(in srgb, var(--primary) 5%, var(--card));
     border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
   }
-  /* Ember gradient chip (icon badges). */
+  /* Blue gradient chip (icon badges). */
   .chip-ember {
     background-image: linear-gradient(135deg, var(--primary), var(--ember));
+    color: #fff;
+  }
+  /* Green gradient chip (secondary accent). */
+  .chip-green {
+    background-image: linear-gradient(135deg, var(--brand-green-strong), var(--brand-green));
     color: #fff;
   }
 
@@ -302,9 +313,9 @@
   font-family: var(--font-barlow), system-ui, sans-serif;
 }
 
-/* Brighter red->ember gradient text — legible over photography. */
+/* Navy -> bright-blue gradient text — legible over photography. */
 .text-ember {
-  background-image: linear-gradient(100deg, #ff5436, #ff9248);
+  background-image: linear-gradient(100deg, #1f3c70, #2f6fd0);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
