@@ -67,7 +67,7 @@ export async function Footer() {
           <ul className="space-y-2 text-sm">
             {[
               { href: '/about', label: t('linkAbout') },
-              { href: '/faq', label: t('linkFaq') },
+              { href: '/contact#faq', label: t('linkFaq') },
               { href: '/contact', label: t('linkContact') }
             ].map((l) => (
               <li key={l.href}>

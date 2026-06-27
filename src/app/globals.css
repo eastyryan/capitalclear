@@ -78,11 +78,11 @@
      forest green (secondary), red maple accent. */
   --background: #f6f8fb; /* cool light */
   --foreground: #14203a; /* deep navy ink */
-  --primary: #1f3c70; /* logo navy — lead colour */
+  --primary: #2f5cab; /* lighter royal blue — lead colour */
   --primary-foreground: #ffffff;
-  --primary-hover: #16294f;
-  --ember: #2f6fd0; /* bright blue (gradient partner — keeps blue emphasis) */
-  --ice: #2f6fd0;
+  --primary-hover: #274e93;
+  --ember: #4d86e0; /* lighter bright blue (gradient partner) */
+  --ice: #4d86e0;
   --slate: #1e2a44;
   --band-light: #ffffff;
   --brand-green: #4f8a67; /* logo forest green — secondary accent */
@@ -112,7 +112,7 @@
   /* Hairline borders — cool navy-tinted */
   --border: rgba(20, 32, 58, 0.1);
   --input: rgba(20, 32, 58, 0.16);
-  --ring: rgba(31, 60, 112, 0.45);
+  --ring: rgba(47, 92, 171, 0.45);
 
   --chart-1: var(--primary);
   --chart-2: var(--ember);
@@ -313,9 +313,9 @@
   font-family: var(--font-barlow), system-ui, sans-serif;
 }
 
-/* Navy -> bright-blue gradient text — legible over photography. */
+/* Royal -> bright-blue gradient text — legible over photography. */
 .text-ember {
-  background-image: linear-gradient(100deg, #1f3c70, #2f6fd0);
+  background-image: linear-gradient(100deg, #2f5cab, #4d86e0);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

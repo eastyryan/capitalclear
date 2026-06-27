@@ -16,7 +16,7 @@ export function EmberGlow() {
       className="pointer-events-none absolute inset-0 z-0"
       style={{
         background:
-          'radial-gradient(55% 45% at 50% 0%, rgba(255,122,47,0.10) 0%, rgba(255,122,47,0) 60%), radial-gradient(40% 38% at 85% 10%, rgba(226,58,44,0.07) 0%, rgba(226,58,44,0) 60%)'
+          'radial-gradient(55% 45% at 50% 0%, rgba(77,134,224,0.12) 0%, rgba(77,134,224,0) 60%), radial-gradient(40% 38% at 85% 10%, rgba(79,138,103,0.08) 0%, rgba(79,138,103,0) 60%)'
       }}
     />
   );

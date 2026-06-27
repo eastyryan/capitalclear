@@ -142,7 +142,7 @@ export default async function PricingPage({
         subtitle={t('ctaSubtitle')}
         primaryHref="/book"
         primaryLabel={t('cta')}
-        secondaryHref="/faq"
+        secondaryHref="/contact#faq"
         secondaryLabel={t('ctaFaq')}
       />
       <Footer />
