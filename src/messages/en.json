@@ -301,7 +301,18 @@
     "emptyJobs": "No jobs yet.",
     "emptyUsers": "No users yet.",
     "emptyReviews": "No reviews yet.",
-    "emptyPayments": "No payments yet."
+    "emptyPayments": "No payments yet.",
+    "tabPros": "Pros",
+    "colCompany": "Company",
+    "colContact": "Contact",
+    "colJobsDone": "Jobs done",
+    "colActiveJobs": "Active",
+    "colEarnings": "Earnings",
+    "prosTitle": "By subcontractor",
+    "prosSubtitle": "Every pro company on the platform, with the work and money attributed to them.",
+    "paymentsByProTitle": "Payments by subcontractor",
+    "colPayment": "Payment",
+    "unrated": "No ratings"
   },
   "HowItWorks": {
     "metaTitle": "How it works",

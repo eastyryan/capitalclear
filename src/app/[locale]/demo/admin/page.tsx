@@ -3,6 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import type { MoneyLocale } from '@/lib/format/money';
 import { KpiCards } from '../../(admin)/admin/_components/KpiCards';
+import { ProsPanel } from './_ProsPanel';
 import { JobsTable } from '../../(admin)/admin/_components/JobsTable';
 import { UsersTable } from '../../(admin)/admin/_components/UsersTable';
 import { ReviewsTable } from '../../(admin)/admin/_components/ReviewsTable';
@@ -28,10 +29,12 @@ export default async function DemoAdmin({
 
   return (
     <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
-      <header className="mb-6 flex flex-col gap-1">
+      <header className="mb-8 flex flex-col gap-1">
         <span className="eyebrow text-muted-foreground">{t('title')}</span>
-        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{t('title')}</h1>
-        <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+        <h1 className="font-heading text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">
+          {t('title')}
+        </h1>
+        <p className="text-base text-muted-foreground">{t('subtitle')}</p>
       </header>
 
       <div className="mb-8">
@@ -44,14 +47,18 @@ export default async function DemoAdmin({
         />
       </div>
 
-      <Tabs defaultValue="jobs" className="gap-6">
-        <TabsList className="w-full max-w-xl overflow-x-auto">
+      <Tabs defaultValue="pros" className="gap-7">
+        <TabsList className="w-full max-w-3xl overflow-x-auto">
+          <TabsTrigger value="pros">{t('tabPros')}</TabsTrigger>
           <TabsTrigger value="jobs">{t('tabJobs')}</TabsTrigger>
           <TabsTrigger value="users">{t('tabUsers')}</TabsTrigger>
           <TabsTrigger value="reviews">{t('tabReviews')}</TabsTrigger>
           <TabsTrigger value="payments">{t('tabPayments')}</TabsTrigger>
         </TabsList>
 
+        <TabsContent value="pros">
+          <ProsPanel locale={moneyLocale} />
+        </TabsContent>
         <TabsContent value="jobs">
           <Card>
             <CardContent className="p-3 sm:p-4">

@@ -8,10 +8,18 @@ import { PRO_AVAILABLE, PRO_ACTIVE, PRO_COMPLETED, PRO_EARNINGS } from '../_mock
 
 type FeedJob = (typeof PRO_AVAILABLE)[number];
 
-// Disabled pill standing in for the real Accept / View actions (no backend).
-function DemoAction({ label }: { label: string }) {
+// Stand-ins for the real Accept / View actions (no backend in the demo).
+// Accept is rendered as the real solid-blue primary button so the feed reads
+// exactly like production; View stays a quiet outline.
+function DemoAction({ label, primary = false }: { label: string; primary?: boolean }) {
   return (
-    <span className="cursor-not-allowed rounded-md border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground">
+    <span
+      className={
+        primary
+          ? 'inline-flex cursor-not-allowed items-center rounded-lg bg-primary px-5 py-2.5 text-base font-medium leading-none text-primary-foreground'
+          : 'inline-flex cursor-not-allowed items-center rounded-lg border border-border px-4 py-2.5 text-sm font-medium leading-none text-muted-foreground'
+      }
+    >
       {label}
     </span>
   );
@@ -41,14 +49,16 @@ export default async function DemoPro({
 
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12">
-      <header className="mb-6">
+      <header className="mb-8">
         <p className="eyebrow">{t('liveBadge')}</p>
-        <h1 className="font-heading text-2xl font-semibold sm:text-3xl">{t('title')}</h1>
-        <p className="max-w-prose text-sm text-muted-foreground">{t('subtitle')}</p>
+        <h1 className="mt-1 font-heading text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">
+          {t('title')}
+        </h1>
+        <p className="mt-2 max-w-prose text-base text-muted-foreground">{t('subtitle')}</p>
       </header>
 
-      <Tabs defaultValue="available" className="gap-6">
-        <TabsList className="w-full max-w-md">
+      <Tabs defaultValue="available" className="gap-7">
+        <TabsList className="w-full max-w-3xl">
           <TabsTrigger value="available">{t('tabAvailable')}</TabsTrigger>
           <TabsTrigger value="active">{t('tabActive')}</TabsTrigger>
           <TabsTrigger value="completed">{t('tabCompleted')}</TabsTrigger>
@@ -56,7 +66,7 @@ export default async function DemoPro({
         </TabsList>
 
         <TabsContent value="available">
-          <JobGrid jobs={PRO_AVAILABLE} action={<DemoAction label={t('accept')} />} />
+          <JobGrid jobs={PRO_AVAILABLE} action={<DemoAction primary label={t('accept')} />} />
         </TabsContent>
         <TabsContent value="active">
           <JobGrid jobs={PRO_ACTIVE} action={<DemoAction label={t('viewJob')} />} />

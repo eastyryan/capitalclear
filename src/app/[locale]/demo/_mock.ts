@@ -76,12 +76,22 @@ export const PRO_EARNINGS = {
 // ---- Admin console ----
 export const ADMIN_KPIS = { jobs: 128, users: 86, pros: 14, revenueCents: 372_000 };
 
+/** Subcontractor company behind each pro account. */
+export const ADMIN_PRO_COMPANIES: Record<string, string> = {
+  u2: 'Lefebvre Snow Co.',
+  u4: 'Gallagher Property Services',
+  u6: 'Volkov Winter Services'
+};
+
+// Pro names carry their company so the Jobs table shows which subcontractor
+// did the work at a glance.
 export const ADMIN_NAMES: Record<string, { full_name: string | null; email: string | null }> = {
   u1: { full_name: 'Sarah Tremblay', email: 'sarah.t@example.com' },
-  u2: { full_name: 'Marc Lefebvre', email: 'marc.l@example.com' },
+  u2: { full_name: 'Marc Lefebvre · Lefebvre Snow Co.', email: 'marc.l@example.com' },
   u3: { full_name: 'Priya Sharma', email: 'priya.s@example.com' },
-  u4: { full_name: 'Owen Gallagher', email: 'owen.g@example.com' },
-  u5: { full_name: 'Demo Admin', email: 'admin@capitalclear.ca' }
+  u4: { full_name: 'Owen Gallagher · Gallagher Property Services', email: 'owen.g@example.com' },
+  u5: { full_name: 'Demo Admin', email: 'admin@capitalclear.ca' },
+  u6: { full_name: 'Dmitri Volkov · Volkov Winter Services', email: 'dmitri.v@example.com' }
 };
 
 export const ADMIN_JOBS: AdminJobRow[] = [
@@ -89,15 +99,19 @@ export const ADMIN_JOBS: AdminJobRow[] = [
   { id: 'j2', service_type: 'snow_removal', status: 'in_progress', homeowner_id: 'u3', pro_id: 'u4', final_price_cents: null, quoted_price_cents: 4500, created_at: '2026-02-12T10:00:00Z' },
   { id: 'j3', service_type: 'snow_removal', status: 'posted', homeowner_id: 'u1', pro_id: null, final_price_cents: null, quoted_price_cents: 4500, created_at: '2026-02-12T09:30:00Z' },
   { id: 'j4', service_type: 'snow_removal', status: 'awaiting_approval', homeowner_id: 'u3', pro_id: 'u2', final_price_cents: null, quoted_price_cents: 5500, created_at: '2026-02-11T22:00:00Z' },
-  { id: 'j5', service_type: 'snow_removal', status: 'cancelled', homeowner_id: 'u1', pro_id: null, final_price_cents: null, quoted_price_cents: 4500, created_at: '2026-02-09T14:00:00Z' }
+  { id: 'j5', service_type: 'snow_removal', status: 'cancelled', homeowner_id: 'u1', pro_id: null, final_price_cents: null, quoted_price_cents: 4500, created_at: '2026-02-09T14:00:00Z' },
+  { id: 'j6', service_type: 'snow_removal', status: 'completed', homeowner_id: 'u3', pro_id: 'u6', final_price_cents: 4500, quoted_price_cents: 4500, created_at: '2026-02-07T09:00:00Z' },
+  { id: 'j7', service_type: 'snow_removal', status: 'completed', homeowner_id: 'u1', pro_id: 'u6', final_price_cents: 5500, quoted_price_cents: 5500, created_at: '2026-02-05T08:30:00Z' },
+  { id: 'j8', service_type: 'snow_removal', status: 'completed', homeowner_id: 'u3', pro_id: 'u4', final_price_cents: 4500, quoted_price_cents: 4500, created_at: '2026-02-03T07:45:00Z' }
 ];
 
 export const ADMIN_USERS: AdminUserRow[] = [
   { id: 'u1', full_name: 'Sarah Tremblay', email: 'sarah.t@example.com', role: 'homeowner', created_at: '2026-01-15T12:00:00Z', isPro: false, verified: null },
-  { id: 'u2', full_name: 'Marc Lefebvre', email: 'marc.l@example.com', role: 'pro', created_at: '2026-01-10T12:00:00Z', isPro: true, verified: true },
+  { id: 'u2', full_name: 'Marc Lefebvre · Lefebvre Snow Co.', email: 'marc.l@example.com', role: 'pro', created_at: '2026-01-10T12:00:00Z', isPro: true, verified: true },
   { id: 'u3', full_name: 'Priya Sharma', email: 'priya.s@example.com', role: 'homeowner', created_at: '2026-01-20T12:00:00Z', isPro: false, verified: null },
-  { id: 'u4', full_name: 'Owen Gallagher', email: 'owen.g@example.com', role: 'pro', created_at: '2026-01-12T12:00:00Z', isPro: true, verified: false },
-  { id: 'u5', full_name: 'Demo Admin', email: 'admin@capitalclear.ca', role: 'admin', created_at: '2026-01-05T12:00:00Z', isPro: false, verified: null }
+  { id: 'u4', full_name: 'Owen Gallagher · Gallagher Property Services', email: 'owen.g@example.com', role: 'pro', created_at: '2026-01-12T12:00:00Z', isPro: true, verified: false },
+  { id: 'u5', full_name: 'Demo Admin', email: 'admin@capitalclear.ca', role: 'admin', created_at: '2026-01-05T12:00:00Z', isPro: false, verified: null },
+  { id: 'u6', full_name: 'Dmitri Volkov · Volkov Winter Services', email: 'dmitri.v@example.com', role: 'pro', created_at: '2026-01-18T12:00:00Z', isPro: true, verified: true }
 ];
 
 export const ADMIN_REVIEWS: AdminReviewRow[] = [
@@ -110,5 +124,15 @@ export const ADMIN_PAYMENTS: AdminPaymentRow[] = [
   { id: 'pay1', job_id: 'j1', amount_cents: 5500, status: 'released', created_at: '2026-02-08T12:00:00Z' },
   { id: 'pay2', job_id: 'j2', amount_cents: 4500, status: 'authorized', created_at: '2026-02-12T10:05:00Z' },
   { id: 'pay3', job_id: 'j4', amount_cents: 5500, status: 'authorized', created_at: '2026-02-11T22:05:00Z' },
-  { id: 'pay4', job_id: 'j5', amount_cents: 4500, status: 'none', created_at: '2026-02-09T14:05:00Z' }
+  { id: 'pay4', job_id: 'j5', amount_cents: 4500, status: 'none', created_at: '2026-02-09T14:05:00Z' },
+  { id: 'pay5', job_id: 'j6', amount_cents: 4500, status: 'released', created_at: '2026-02-07T10:00:00Z' },
+  { id: 'pay6', job_id: 'j7', amount_cents: 5500, status: 'released', created_at: '2026-02-05T09:30:00Z' },
+  { id: 'pay7', job_id: 'j8', amount_cents: 4500, status: 'released', created_at: '2026-02-03T08:30:00Z' }
 ];
+
+// Per-subcontractor rating snapshots for the admin Pros rollup.
+export const ADMIN_PRO_STATS: Record<string, { ratingAvg: number | null }> = {
+  u2: { ratingAvg: 4.8 },
+  u4: { ratingAvg: 4.5 },
+  u6: { ratingAvg: 4.9 }
+};

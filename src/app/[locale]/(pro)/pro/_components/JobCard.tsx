@@ -8,6 +8,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Money } from '@/components/Money';
 import { ServiceBadge } from '@/components/jobs/ServiceBadge';
 import { StatusBadge } from '@/components/jobs/StatusBadge';
+import { neighbourhoodOf } from '@/lib/geo/ottawa';
 import type { Job } from '@/types/database.types';
 
 // Presentational card for a single job in the pro dashboard. Used in every
@@ -46,9 +47,9 @@ export function JobCard({
           <StatusBadge status={job.status} />
         </div>
 
-        <dl className="flex flex-col gap-2 text-sm text-muted-foreground">
-          <div className="flex items-start gap-2">
-            <CalendarClock className="mt-0.5 size-4 shrink-0" aria-hidden />
+        <dl className="flex flex-col gap-2.5 text-base text-muted-foreground">
+          <div className="flex items-start gap-2.5">
+            <CalendarClock className="mt-1 size-5 shrink-0" aria-hidden />
             <div>
               <dt className="sr-only">{t('scheduledFor')}</dt>
               <dd className="text-foreground">
@@ -65,26 +66,28 @@ export function JobCard({
             </div>
           </div>
 
-          <div className="flex items-start gap-2">
-            <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden />
+          <div className="flex items-start gap-2.5">
+            <MapPin className="mt-1 size-5 shrink-0" aria-hidden />
             <div>
               <dt className="sr-only">{t('distance')}</dt>
               <dd className="text-foreground">
                 {job.address ?? job.postal_code}
               </dd>
               {job.address ? (
-                <dd className="font-mono text-xs uppercase">
+                <dd className="font-mono text-sm uppercase">
                   {job.postal_code}
                 </dd>
               ) : null}
             </div>
           </div>
 
-          {/* Distance is a placeholder until pro geolocation lands. */}
-          <div className="flex items-center gap-2">
-            <Navigation className="size-4 shrink-0" aria-hidden />
+          {/* Neighbourhood derived from the postal code's FSA. */}
+          <div className="flex items-center gap-2.5">
+            <Navigation className="size-5 shrink-0" aria-hidden />
             <dt className="sr-only">{t('distance')}</dt>
-            <dd>{t('distancePlaceholder')}</dd>
+            <dd className="font-medium text-primary">
+              {neighbourhoodOf(job.postal_code) ?? t('distancePlaceholder')}
+            </dd>
           </div>
         </dl>
       </CardContent>
@@ -92,7 +95,7 @@ export function JobCard({
       <CardFooter className="flex items-center justify-between gap-3">
         <Money
           cents={priceCents}
-          className="font-mono text-base font-semibold text-foreground"
+          className="font-mono text-xl font-semibold text-foreground"
         />
         {action ? <div className="shrink-0">{action}</div> : null}
       </CardFooter>

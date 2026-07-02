@@ -25,10 +25,10 @@ import {
 import type { MoneyLocale } from '@/lib/format/money';
 import type { ServiceType } from '@/types/database.types';
 
-// Snow-only product: booking offers snow removal exclusively.
-const SERVICES: readonly ServiceType[] = ['snow_removal'] as const;
-
-const TOTAL_STEPS = 6;
+// Snow-only product: every booking IS snow removal, done as fast as possible,
+// so there is no service-selection step. The date step remains for scheduling
+// ahead of an incoming storm.
+const TOTAL_STEPS = 5;
 
 /** createJob error code -> Booking.* i18n key. */
 const ERROR_KEY: Record<string, string> = {
@@ -50,7 +50,7 @@ interface WizardState {
 }
 
 const INITIAL: WizardState = {
-  service: null,
+  service: 'snow_removal',
   address: '',
   postal: '',
   date: '',
@@ -108,14 +108,12 @@ export function BookingWizard() {
   function canContinue(): boolean {
     switch (step) {
       case 1:
-        return state.service !== null;
-      case 2:
         return addressOk && postalOk;
-      case 3:
+      case 2:
         return scheduledISO !== null;
-      case 4:
+      case 3:
         return true; // notes optional
-      case 5:
+      case 4:
         return quote !== null;
       default:
         return true;
@@ -123,7 +121,6 @@ export function BookingWizard() {
   }
 
   const stepTitles = [
-    t('stepServiceTitle'),
     t('stepAddressTitle'),
     t('stepScheduleTitle'),
     t('stepNotesTitle'),
@@ -184,13 +181,6 @@ export function BookingWizard() {
       {/* Step body */}
       <div className="flex-1">
         {step === 1 && (
-          <ServiceStep
-            value={state.service}
-            onChange={(service) => patch({ service })}
-          />
-        )}
-
-        {step === 2 && (
           <AddressStep
             address={state.address}
             postal={state.postal}
@@ -202,7 +192,7 @@ export function BookingWizard() {
           />
         )}
 
-        {step === 3 && (
+        {step === 2 && (
           <ScheduleStep
             date={state.date}
             time={state.time}
@@ -211,11 +201,11 @@ export function BookingWizard() {
           />
         )}
 
-        {step === 4 && (
+        {step === 3 && (
           <NotesStep value={state.notes} onChange={(notes) => patch({ notes })} />
         )}
 
-        {step === 5 && quote && (
+        {step === 4 && quote && (
           <ReviewStep
             service={state.service!}
             address={state.address.trim()}
@@ -226,7 +216,7 @@ export function BookingWizard() {
           />
         )}
 
-        {step === 6 && quote && (
+        {step === 5 && quote && (
           <ConfirmStep
             service={state.service!}
             address={state.address.trim()}
@@ -322,56 +312,7 @@ function StepDots({ step, total }: { step: number; total: number }) {
 }
 
 // ---------------------------------------------------------------------------
-// Step 1 — Service
-// ---------------------------------------------------------------------------
-
-function ServiceStep({
-  value,
-  onChange,
-}: {
-  value: ServiceType | null;
-  onChange: (s: ServiceType) => void;
-}) {
-  return (
-    <div className="space-y-3" role="radiogroup" aria-label="service">
-      {SERVICES.map((service) => {
-        const selected = value === service;
-        return (
-          <button
-            key={service}
-            type="button"
-            role="radio"
-            aria-checked={selected}
-            onClick={() => onChange(service)}
-            className={cn(
-              'flex w-full items-center justify-between rounded-xl border p-4 text-left transition-colors',
-              'min-h-[64px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-              selected
-                ? 'border-primary bg-primary/10'
-                : 'border-border bg-card hover:border-primary/50',
-            )}
-          >
-            <ServiceBadge service={service} className="text-base font-medium" />
-            <span
-              className={cn(
-                'flex size-5 items-center justify-center rounded-full border',
-                selected
-                  ? 'border-primary bg-primary text-primary-foreground'
-                  : 'border-muted-foreground/40',
-              )}
-              aria-hidden
-            >
-              {selected && <Check className="size-3.5" />}
-            </span>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Step 2 — Address + postal
+// Step 1 — Address + postal
 // ---------------------------------------------------------------------------
 
 function AddressStep({

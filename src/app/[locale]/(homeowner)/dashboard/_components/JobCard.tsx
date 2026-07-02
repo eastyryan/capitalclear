@@ -69,16 +69,16 @@ export function JobCard({ job }: { job: Job }) {
           <StatusBadge status={job.status} />
         </div>
 
-        <dl className="flex flex-col gap-2 text-sm">
+        <dl className="flex flex-col gap-2.5 text-base">
           {scheduled && (
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <CalendarClock className="size-4 shrink-0" aria-hidden />
+            <div className="flex items-center gap-2.5 text-muted-foreground">
+              <CalendarClock className="size-5 shrink-0" aria-hidden />
               <dt className="sr-only">{t('scheduledFor')}</dt>
               <dd>{scheduled}</dd>
             </div>
           )}
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <MapPin className="size-4 shrink-0" aria-hidden />
+          <div className="flex items-center gap-2.5 text-muted-foreground">
+            <MapPin className="size-5 shrink-0" aria-hidden />
             <dt className="sr-only">{t('status')}</dt>
             <dd className={job.address ? '' : 'italic'}>
               {job.address ?? t('noAddress')}
@@ -90,7 +90,7 @@ export function JobCard({ job }: { job: Job }) {
           <Money
             cents={job.quoted_price_cents}
             locale={locale as MoneyLocale}
-            className="text-lg font-semibold text-foreground"
+            className="font-mono text-xl font-semibold text-foreground"
           />
         )}
       </CardContent>

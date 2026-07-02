@@ -301,7 +301,18 @@
     "emptyJobs": "Aucun travail pour le moment.",
     "emptyUsers": "Aucun utilisateur pour le moment.",
     "emptyReviews": "Aucun avis pour le moment.",
-    "emptyPayments": "Aucun paiement pour le moment."
+    "emptyPayments": "Aucun paiement pour le moment.",
+    "tabPros": "Pros",
+    "colCompany": "Entreprise",
+    "colContact": "Contact",
+    "colJobsDone": "Travaux terminés",
+    "colActiveJobs": "En cours",
+    "colEarnings": "Gains",
+    "prosTitle": "Par sous-traitant",
+    "prosSubtitle": "Chaque entreprise pro de la plateforme, avec les travaux et les montants qui lui sont attribués.",
+    "paymentsByProTitle": "Paiements par sous-traitant",
+    "colPayment": "Paiement",
+    "unrated": "Aucune évaluation"
   },
   "HowItWorks": {
     "metaTitle": "Comment ça marche",
