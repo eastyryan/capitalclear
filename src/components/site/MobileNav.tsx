@@ -34,7 +34,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
             variant="ghost"
             size="icon-lg"
             aria-label={t('openMenu')}
-            className="md:hidden size-11"
+            className="size-11 text-white hover:bg-white/10 hover:text-white lg:hidden"
           />
         }
       >

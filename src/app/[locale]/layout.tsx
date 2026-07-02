@@ -7,7 +7,6 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Toaster } from '@/components/ui/sonner';
 import { Navbar } from '@/components/site/Navbar';
-import { SnowLayer } from '@/components/site/SnowLayer';
 import '../globals.css';
 
 // Azure design system faces: Archivo (heavy display grotesque), Inter (body),
@@ -65,8 +64,6 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
-          {/* Persistent falling-snow canvas behind all content (-z-10). */}
-          <SnowLayer />
           <Navbar />
           {children}
           <Toaster richColors position="top-center" theme="light" />

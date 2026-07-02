@@ -873,5 +873,46 @@
     "ctaSubtitle": "Réservez en moins d'une minute — ou inscrivez-vous pour déneiger avec nous.",
     "ctaPrimary": "Réserver",
     "ctaSecondary": "Devenir pro"
+  },
+  "UberHome": {
+    "heroTitle": "Déneigement sur demande",
+    "heroForm": {
+      "clearNow": "Déneiger maintenant",
+      "address": "Adresse du domicile",
+      "size": "Taille de l'entrée",
+      "seePrices": "Voir les prix",
+      "recentActivity": "Connectez-vous pour voir votre activité récente"
+    },
+    "suggestionsTitle": "Services",
+    "details": "Détails",
+    "cards": {
+      "single": {
+        "title": "Entrée simple",
+        "body": "Une entrée standard déneigée et salée, avec preuve photo à la fin."
+      },
+      "double": {
+        "title": "Entrée double",
+        "body": "Entrées doubles et deux voitures, déneigées et salées après la tempête."
+      },
+      "walkway": {
+        "title": "Allée piétonne",
+        "body": "Ajoutez votre allée et vos marches à toute visite, salées contre la glace."
+      },
+      "premium": {
+        "title": "Priorité Premium",
+        "body": "Évitez la file pendant les tempêtes et bloquez votre prix pour la saison."
+      }
+    },
+    "accountTitle": "Connectez-vous pour voir les détails de votre compte",
+    "accountBody": "Consultez vos déneigements passés, adresses enregistrées, reçus, ressources d'aide et plus encore.",
+    "accountCta": "Connexion à votre compte",
+    "accountAlt": "Créer un compte",
+    "proTitle": "Déneigez quand vous voulez, gagnez ce qu'il vous faut",
+    "proBody": "Réclamez des contrats de déneigement près de chez vous, travaillez selon votre horaire et soyez payé rapidement après chaque travail vérifié par photo. Sans enchères, sans frais mensuels.",
+    "proCta": "Commencer",
+    "proAlt": "Déjà un compte pro ? Connexion",
+    "safetyTitle": "Chaque déneigement, vérifié",
+    "safetyBody": "Chaque pro est vérifié avant d'accepter un travail, et chaque travail se termine par une preuve photo. Vous ne payez qu'une fois le travail vérifié — 0 $ d'avance.",
+    "safetyCta": "Comment ça marche"
   }
 }

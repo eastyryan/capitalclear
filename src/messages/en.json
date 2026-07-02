@@ -873,5 +873,46 @@
     "ctaSubtitle": "Book a clear in under a minute — or sign up to plow with us.",
     "ctaPrimary": "Book a clear",
     "ctaSecondary": "Become a pro"
+  },
+  "UberHome": {
+    "heroTitle": "Snow removal on demand",
+    "heroForm": {
+      "clearNow": "Clear now",
+      "address": "Home address",
+      "size": "Driveway size",
+      "seePrices": "See prices",
+      "recentActivity": "Log in to see your recent activity"
+    },
+    "suggestionsTitle": "Services",
+    "details": "Details",
+    "cards": {
+      "single": {
+        "title": "Single Driveway",
+        "body": "One standard driveway cleared and salted, with a photo-verified finish."
+      },
+      "double": {
+        "title": "Double Driveway",
+        "body": "Two-car and double-wide driveways, cleared and salted after the storm."
+      },
+      "walkway": {
+        "title": "Walkway",
+        "body": "Add your front walk and steps to any driveway visit, salted for ice."
+      },
+      "premium": {
+        "title": "Priority Premium",
+        "body": "Skip the queue during storms and lock your per-visit price for the season."
+      }
+    },
+    "accountTitle": "Log in to see your account details",
+    "accountBody": "View past clears, saved addresses, receipts, support resources, and more.",
+    "accountCta": "Log in to your account",
+    "accountAlt": "Create an account",
+    "proTitle": "Plow when you want, earn what you need",
+    "proBody": "Claim snow-removal jobs near you, clear them on your schedule, and get paid fast after every photo-verified job. No bidding, no monthly fees.",
+    "proCta": "Get started",
+    "proAlt": "Already have a pro account? Sign in",
+    "safetyTitle": "Every clear, verified",
+    "safetyBody": "Every pro is vetted before they take a job, and every job ends with photo proof. You're only charged once the work is verified complete — $0 upfront.",
+    "safetyCta": "How it works"
   }
 }

@@ -1,28 +1,122 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { Snowflake, Clock, ShieldCheck, Camera, type LucideIcon } from 'lucide-react';
+import Image from 'next/image';
+import {
+  Car,
+  Truck,
+  Footprints,
+  Crown,
+  Check,
+  Clock,
+  ShieldCheck,
+  Send,
+  type LucideIcon
+} from 'lucide-react';
+import { Link } from '@/i18n/navigation';
 import { PHOTOS } from '@/lib/images';
 import { Footer } from '@/components/site/Footer';
-import {
-  PageHero,
-  Section,
-  SectionHeading,
-  GlassCard,
-  CtaBand,
-  PrimaryCta,
-  GhostCta,
-  IconChip,
-  NumberBadge,
-  Feature,
-  PhotoFrame
-} from '@/components/marketing/parts';
-
-const STAT_ICONS: LucideIcon[] = [Clock, ShieldCheck, Camera, Snowflake];
 
 /**
- * Light, snow-only landing. Photographic hero, a "what we do" section with real
- * snow photography, a how-it-works teaser, stats, a photo strip, and a closing
- * CTA. Built entirely from the shared light marketing primitives.
+ * Uber.com-style landing rendered in the Azure design system. Structure
+ * mirrors uber.com/ca/en: solid-blue nav (global), hero with a request form,
+ * "Suggestions"-style service cards, per-visit pricing detail, Priority
+ * Premium, alternating login/pro/safety split rows, how-it-works steps, a
+ * brand stats band, and the dark columned footer.
  */
+
+const money = (locale: string, cents: number) =>
+  new Intl.NumberFormat(locale === 'fr' ? 'fr-CA' : 'en-CA', {
+    style: 'currency',
+    currency: 'CAD',
+    minimumFractionDigits: 0
+  }).format(cents / 100);
+
+const TIERS: {
+  key: 'single' | 'double' | 'walkway';
+  cents: number;
+  Icon: LucideIcon;
+  featured?: boolean;
+  addon?: boolean;
+}[] = [
+  { key: 'single', cents: 4500, Icon: Car },
+  { key: 'double', cents: 5500, Icon: Truck, featured: true },
+  { key: 'walkway', cents: 2500, Icon: Footprints, addon: true }
+];
+
+const PREMIUM_ICONS: LucideIcon[] = [Crown, ShieldCheck, Clock];
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="font-heading text-3xl font-extrabold tracking-[-0.02em] text-foreground md:text-4xl">
+      {children}
+    </h2>
+  );
+}
+
+/** Uber-style solid primary button. */
+function BtnPrimary({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3.5 text-base font-medium leading-none text-primary-foreground transition-colors hover:bg-[var(--primary-hover)] active:bg-[var(--primary-pressed)]"
+    >
+      {children}
+    </Link>
+  );
+}
+
+/** Uber-style quiet underlined text link. */
+function BtnLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="text-base font-medium text-primary underline decoration-[1.5px] underline-offset-4 hover:text-[var(--primary-hover)]"
+    >
+      {children}
+    </Link>
+  );
+}
+
+/** Alternating text/media row, like Uber's account / drive / safety rows. */
+function SplitRow({
+  title,
+  body,
+  cta,
+  ctaHref,
+  alt,
+  altHref,
+  image,
+  imageAlt,
+  flip
+}: {
+  title: string;
+  body: string;
+  cta: string;
+  ctaHref: string;
+  alt?: string;
+  altHref?: string;
+  image: string;
+  imageAlt: string;
+  flip?: boolean;
+}) {
+  return (
+    <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <div className={flip ? 'lg:order-2' : ''}>
+        <h2 className="font-heading text-3xl font-extrabold leading-[1.05] tracking-[-0.02em] text-foreground md:text-5xl">
+          {title}
+        </h2>
+        <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">{body}</p>
+        <div className="mt-8 flex flex-wrap items-center gap-6">
+          <BtnPrimary href={ctaHref}>{cta}</BtnPrimary>
+          {alt && altHref ? <BtnLink href={altHref}>{alt}</BtnLink> : null}
+        </div>
+      </div>
+      <div className={`relative h-72 overflow-hidden rounded-xl md:h-[420px] ${flip ? 'lg:order-1' : ''}`}>
+        <Image src={image} alt={imageAlt} fill unoptimized className="object-cover" />
+      </div>
+    </div>
+  );
+}
+
 export default async function LandingPage({
   params
 }: {
@@ -30,120 +124,318 @@ export default async function LandingPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'Home' });
+  const t = await getTranslations({ locale, namespace: 'UberHome' });
+  const home = await getTranslations({ locale, namespace: 'Home' });
+  const pricing = await getTranslations({ locale, namespace: 'PricingPage' });
 
-  const features = t.raw('whatFeatures') as string[];
-  const steps = t.raw('steps') as { title: string; body: string }[];
-  const stats = t.raw('stats') as { value: string; label: string }[];
+  const steps = home.raw('steps') as { title: string; body: string }[];
+  const stats = home.raw('stats') as { value: string; label: string }[];
+  const premium = pricing.raw('premium') as { title: string; body: string }[];
+
+  const cardMeta: { key: 'single' | 'double' | 'walkway' | 'premium'; Icon: LucideIcon; price?: string; badge?: string }[] = [
+    { key: 'single', Icon: Car, price: money(locale, 4500) },
+    { key: 'double', Icon: Truck, price: money(locale, 5500), badge: pricing('popular') },
+    { key: 'walkway', Icon: Footprints, price: `+${money(locale, 2500)}` },
+    { key: 'premium', Icon: Crown }
+  ];
 
   return (
-    <main className="flex flex-1 flex-col">
-      <PageHero
-        eyebrow={t('heroEyebrow')}
-        title={t('heroTitle')}
-        accent={t('heroAccent')}
-        subtitle={t('heroSubtitle')}
-        image={PHOTOS.hero}
-        imageAlt="A snow plow clearing a road during heavy snowfall at dusk"
-      >
-        <PrimaryCta href="/book">{t('heroPrimary')}</PrimaryCta>
-        <GhostCta href="/how-it-works">{t('heroSecondary')}</GhostCta>
-      </PageHero>
+    <main className="flex flex-1 flex-col pt-16">
+      {/* ============ HERO — Uber "Go anywhere" module with request form ============ */}
+      <section className="bg-[linear-gradient(180deg,var(--brand-50),transparent_70%)]">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-20 lg:px-8">
+          <div>
+            <div className="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-primary">
+              <Send className="size-3.5" aria-hidden />
+              {home('heroEyebrow')}
+            </div>
+            <h1 className="font-heading text-5xl font-extrabold leading-[0.98] tracking-[-0.03em] text-foreground md:text-6xl lg:text-7xl">
+              {t('heroTitle')}
+            </h1>
 
-      <div className="border-b border-border bg-card">
-        <p className="mx-auto max-w-6xl px-6 py-4 text-center font-barlow text-sm text-muted-foreground">
-          {t('trust')}
+            {/* Request form (visual, routes to the booking wizard) */}
+            <div className="mt-9 flex max-w-md flex-col gap-3">
+              <span className="inline-flex items-center gap-2 self-start rounded-full bg-[var(--brand-100)] px-4 py-2.5 text-sm font-medium text-foreground">
+                <Clock className="size-4 text-primary" aria-hidden />
+                {t('heroForm.clearNow')}
+              </span>
+              <Link
+                href="/book"
+                className="flex h-14 items-center gap-3 rounded-xl bg-[var(--brand-50)] px-4 transition-shadow hover:shadow-[inset_0_0_0_2px_var(--color-primary)]"
+              >
+                <span className="size-2.5 shrink-0 rounded-full bg-primary" aria-hidden />
+                <span className="text-base text-muted-foreground">{t('heroForm.address')}</span>
+                <Send className="ml-auto size-5 text-primary" aria-hidden />
+              </Link>
+              <Link
+                href="/book"
+                className="flex h-14 items-center gap-3 rounded-xl bg-[var(--brand-50)] px-4 transition-shadow hover:shadow-[inset_0_0_0_2px_var(--color-primary)]"
+              >
+                <span className="size-2.5 shrink-0 rounded-[2px] bg-foreground" aria-hidden />
+                <span className="text-base text-muted-foreground">{t('heroForm.size')}</span>
+              </Link>
+              <div className="mt-3 flex flex-wrap items-center gap-6">
+                <BtnPrimary href="/book">{t('heroForm.seePrices')}</BtnPrimary>
+                <BtnLink href="/login">{t('heroForm.recentActivity')}</BtnLink>
+              </div>
+            </div>
+          </div>
+
+          {/* Brand art panel (Azure context__art) */}
+          <div className="relative hidden min-h-[420px] overflow-hidden rounded-xl bg-[radial-gradient(circle_at_70%_25%,var(--brand-300),transparent_55%),linear-gradient(150deg,var(--brand-500)_0%,var(--brand-700)_100%)] lg:block">
+            <div
+              className="absolute inset-0 [background-image:radial-gradient(rgba(255,255,255,.2)_1.5px,transparent_1.5px)] [background-size:22px_22px]"
+              aria-hidden
+            />
+            <div className="absolute inset-x-5 bottom-5 flex items-center justify-between gap-3 rounded-lg bg-[rgba(11,42,74,.82)] px-4 py-3.5 backdrop-blur-[2px]">
+              <span className="text-sm font-bold text-white">{home('ctaTitle')}</span>
+              <Link
+                href="/book"
+                className="rounded-lg bg-white px-4 py-2 text-sm font-bold text-primary"
+              >
+                {home('heroPrimary')}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust strip */}
+      <div className="border-y border-border">
+        <p className="mx-auto max-w-7xl px-4 py-4 font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground sm:px-6 lg:px-8">
+          {home('trust')}
         </p>
       </div>
 
-      {/* What we do */}
-      <Section>
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            <div className="mb-4 font-barlow text-sm tracking-wide text-muted-foreground">
-              // {t('whatKicker')}
+      {/* ============ SUGGESTIONS — Uber service cards ============ */}
+      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <SectionTitle>{t('suggestionsTitle')}</SectionTitle>
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {cardMeta.map(({ key, Icon, price, badge }) => (
+            <div
+              key={key}
+              className="flex flex-col rounded-xl border border-border bg-card p-5 transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_2px_10px_rgba(11,42,74,.12)]"
+            >
+              <div className="flex items-start justify-between">
+                <div className="flex size-11 items-center justify-center rounded-lg bg-[var(--brand-50)] text-primary">
+                  <Icon className="size-6" aria-hidden />
+                </div>
+                {badge ? (
+                  <span className="rounded-sm bg-primary px-2.5 py-1 text-xs font-bold text-white">
+                    {badge}
+                  </span>
+                ) : null}
+              </div>
+              <h3 className="mt-4 font-heading text-lg font-bold text-foreground">
+                {t(`cards.${key}.title`)}
+              </h3>
+              <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">
+                {t(`cards.${key}.body`)}
+              </p>
+              <div className="mt-5 flex items-center justify-between">
+                {price ? (
+                  <span className="font-heading text-xl font-extrabold text-foreground">
+                    {price}
+                    <span className="ml-1 align-baseline font-mono text-xs font-medium text-muted-foreground">
+                      {pricing('perVisit')}
+                    </span>
+                  </span>
+                ) : (
+                  <span aria-hidden />
+                )}
+                <Link
+                  href={key === 'premium' ? '/pricing' : '/book'}
+                  className="rounded-full bg-[var(--brand-50)] px-4 py-2 text-sm font-medium text-primary shadow-[inset_0_0_0_1px_var(--brand-300)] transition-colors hover:bg-[var(--brand-100)]"
+                >
+                  {t('details')}
+                </Link>
+              </div>
             </div>
-            <h2 className="font-instrument text-4xl italic leading-[0.95] tracking-[-1px] text-foreground md:text-5xl">
-              {t('whatTitle')} <span className="text-ember">{t('whatAccent')}</span>
-            </h2>
-            <p className="mt-5 font-barlow text-base font-light leading-relaxed text-muted-foreground">
-              {t('whatBody')}
-            </p>
-            <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {features.map((f) => (
-                <Feature key={f}>{f}</Feature>
-              ))}
-            </ul>
-            <div className="mt-8">
-              <PrimaryCta href="/book">{t('heroPrimary')}</PrimaryCta>
-            </div>
-          </div>
-          <PhotoFrame
-            src={PHOTOS.driveway}
-            alt="A person clearing a residential driveway with a snow shovel"
-            className="aspect-[4/3] lg:aspect-auto lg:h-[420px]"
-          />
+          ))}
         </div>
-      </Section>
+      </section>
 
-      {/* How it works */}
-      <div className="bg-card">
-        <Section>
-          <SectionHeading eyebrow={t('howKicker')} title={t('howTitle')} />
-          <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {steps.map((step, i) => (
-              <GlassCard key={step.title} className="flex min-h-[200px] flex-col">
-                <NumberBadge n={i + 1} />
-                <h3 className="mt-5 font-instrument text-2xl italic leading-none tracking-[-0.5px] text-foreground">
-                  {step.title}
-                </h3>
-                <p className="mt-3 font-barlow text-sm font-light leading-relaxed text-muted-foreground">
-                  {step.body}
-                </p>
-              </GlassCard>
-            ))}
-          </div>
-        </Section>
-      </div>
+      {/* ============ PRICING DETAIL ============ */}
+      <section className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8" id="pricing">
+        <SectionTitle>
+          {pricing('title')} {pricing('accent')}
+        </SectionTitle>
+        <p className="mt-3 max-w-2xl text-base text-muted-foreground">{pricing('subtitle')}</p>
 
-      {/* Stats */}
-      <Section>
-        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-          {stats.map((s, i) => {
-            const Icon = STAT_ICONS[i % STAT_ICONS.length];
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {TIERS.map(({ key, cents, Icon, featured, addon }) => {
+            const features = pricing.raw(`tiers.${key}.features`) as string[];
             return (
-              <GlassCard key={s.label} className="flex flex-col items-start">
-                <IconChip Icon={Icon} />
-                <div className="mt-5 font-instrument text-5xl italic leading-none tracking-[-1px] text-foreground">
-                  {s.value}
+              <div
+                key={key}
+                className={`flex flex-col rounded-[20px] border bg-card p-7 ${
+                  featured
+                    ? 'border-transparent shadow-[inset_0_0_0_2px_var(--color-primary)]'
+                    : 'border-border'
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex size-11 items-center justify-center rounded-lg bg-[var(--brand-50)] text-primary">
+                    <Icon className="size-6" aria-hidden />
+                  </div>
+                  {featured ? (
+                    <span className="rounded-sm bg-primary px-2.5 py-1 text-xs font-bold text-white">
+                      {pricing('popular')}
+                    </span>
+                  ) : addon ? (
+                    <span className="rounded-sm bg-[var(--brand-100)] px-2.5 py-1 text-xs font-bold text-[var(--brand-700)]">
+                      {pricing('addOn')}
+                    </span>
+                  ) : null}
                 </div>
-                <div className="mt-2 font-barlow text-xs font-light text-muted-foreground">
-                  {s.label}
+
+                <h3 className="mt-6 font-heading text-2xl font-bold text-foreground">
+                  {pricing(`tiers.${key}.name`)}
+                </h3>
+                <div className="mt-3 flex items-baseline gap-1.5">
+                  <span className="font-heading text-5xl font-extrabold tracking-[-0.02em] text-foreground">
+                    {addon ? '+' : ''}
+                    {money(locale, cents)}
+                  </span>
+                  <span className="font-mono text-xs text-muted-foreground">
+                    {pricing('perVisit')}
+                  </span>
                 </div>
-              </GlassCard>
+
+                <ul className="mt-6 flex-1 space-y-3">
+                  {features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-sm text-foreground">
+                      <Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-8">
+                  <Link
+                    href="/book"
+                    className={`inline-flex w-full items-center justify-center rounded-lg px-6 py-3.5 text-base font-medium leading-none transition-colors ${
+                      featured
+                        ? 'bg-primary text-primary-foreground hover:bg-[var(--primary-hover)]'
+                        : 'bg-[var(--brand-100)] text-foreground hover:bg-[var(--brand-200)]'
+                    }`}
+                  >
+                    {pricing('cta')}
+                  </Link>
+                </div>
+              </div>
             );
           })}
         </div>
-      </Section>
+        <p className="mt-6 text-center text-sm text-muted-foreground">{pricing('payNote')}</p>
+      </section>
 
-      {/* Photo strip */}
-      <Section className="pt-0">
-        <SectionHeading eyebrow={t('galleryKicker')} title={t('galleryTitle')} />
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-3">
-          <PhotoFrame src={PHOTOS.cityPlow} alt="A grader clearing a downtown street in snow" className="h-64" />
-          <PhotoFrame src={PHOTOS.snowblower} alt="A resident clearing a walkway with a snowblower" className="h-64" />
-          <PhotoFrame src={PHOTOS.roadPlow} alt="A plow truck clearing a snowy road" className="h-64" />
+      {/* ============ PRIORITY PREMIUM band ============ */}
+      <section className="bg-[var(--brand-50)]">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-primary">
+            {pricing('premiumKicker')}
+          </div>
+          <h2 className="mt-2 font-heading text-3xl font-extrabold tracking-[-0.02em] text-foreground md:text-4xl">
+            {pricing('premiumTitle')} {pricing('premiumAccent')}
+          </h2>
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground">
+            {pricing('premiumSubtitle')}
+          </p>
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {premium.map((p, i) => {
+              const Icon = PREMIUM_ICONS[i % PREMIUM_ICONS.length];
+              return (
+                <div key={p.title} className="rounded-xl border border-border bg-card p-6">
+                  <div className="flex size-11 items-center justify-center rounded-lg bg-primary text-white">
+                    <Icon className="size-6" aria-hidden />
+                  </div>
+                  <h3 className="mt-4 font-heading text-lg font-bold text-foreground">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </Section>
+      </section>
 
-      <CtaBand
-        title={t('ctaTitle')}
-        subtitle={t('ctaSubtitle')}
-        primaryHref="/book"
-        primaryLabel={t('ctaPrimary')}
-        secondaryHref="/become-a-pro"
-        secondaryLabel={t('ctaSecondary')}
-      />
+      {/* ============ SPLIT ROWS — account / pro / safety ============ */}
+      <section className="mx-auto flex w-full max-w-7xl flex-col gap-24 px-4 py-20 sm:px-6 lg:px-8">
+        <SplitRow
+          title={t('accountTitle')}
+          body={t('accountBody')}
+          cta={t('accountCta')}
+          ctaHref="/login"
+          alt={t('accountAlt')}
+          altHref="/register"
+          image={PHOTOS.driveway}
+          imageAlt="A person clearing a residential driveway with a snow shovel"
+        />
+        <SplitRow
+          flip
+          title={t('proTitle')}
+          body={t('proBody')}
+          cta={t('proCta')}
+          ctaHref="/register?role=pro"
+          alt={t('proAlt')}
+          altHref="/login"
+          image={PHOTOS.roadPlow}
+          imageAlt="A plow truck clearing a snowy road"
+        />
+        <SplitRow
+          title={t('safetyTitle')}
+          body={t('safetyBody')}
+          cta={t('safetyCta')}
+          ctaHref="/how-it-works"
+          image={PHOTOS.snowblower}
+          imageAlt="A resident clearing a walkway with a snowblower"
+        />
+      </section>
+
+      {/* ============ HOW IT WORKS ============ */}
+      <section className="border-t border-border">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <SectionTitle>{home('howTitle')}</SectionTitle>
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {steps.map((step, i) => (
+              <div key={step.title} className="rounded-xl border border-border bg-card p-6">
+                <span className="flex size-9 items-center justify-center rounded-full bg-primary font-mono text-sm font-bold text-white">
+                  {i + 1}
+                </span>
+                <h3 className="mt-4 font-heading text-lg font-bold text-foreground">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ STATS — brand blue band ============ */}
+      <section className="bg-primary text-primary-foreground">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <div className="font-heading text-4xl font-extrabold tracking-[-0.02em] md:text-5xl">
+                {s.value}
+              </div>
+              <div className="mt-2 text-sm text-white/80">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ============ CLOSING CTA ============ */}
+      <section className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <h2 className="max-w-2xl font-heading text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] text-foreground md:text-5xl">
+          {home('ctaTitle')}
+        </h2>
+        <p className="mt-4 max-w-xl text-base text-muted-foreground">{home('ctaSubtitle')}</p>
+        <div className="mt-8 flex flex-wrap items-center gap-6">
+          <BtnPrimary href="/book">{home('ctaPrimary')}</BtnPrimary>
+          <BtnLink href="/register?role=pro">{home('ctaSecondary')}</BtnLink>
+        </div>
+      </section>
+
       <Footer />
     </main>
   );
