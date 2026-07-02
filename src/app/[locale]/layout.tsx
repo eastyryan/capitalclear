@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono, Instrument_Serif, Barlow } from 'next/font/google';
+import { Archivo, Inter, JetBrains_Mono } from 'next/font/google';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -10,22 +10,20 @@ import { Navbar } from '@/components/site/Navbar';
 import { SnowLayer } from '@/components/site/SnowLayer';
 import '../globals.css';
 
-// Geist Sans (display/body) + Geist Mono (eyebrows + tabular stat numerals).
+// Azure design system faces: Archivo (heavy display grotesque), Inter (body),
+// JetBrains Mono (eyebrows, data, tabular stat numerals).
 // `--font-sans` / `--font-geist-mono` match the @theme mapping in globals.css.
-const geistSans = Geist({ variable: '--font-sans', subsets: ['latin'] });
-const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
-// Immersive landing display + body faces.
-const instrument = Instrument_Serif({
-  weight: '400',
-  style: ['normal', 'italic'],
+const inter = Inter({ variable: '--font-sans', subsets: ['latin'], display: 'swap' });
+const jetbrainsMono = JetBrains_Mono({
+  weight: ['400', '500', '700'],
+  variable: '--font-geist-mono',
   subsets: ['latin'],
-  variable: '--font-instrument',
   display: 'swap'
 });
-const barlow = Barlow({
-  weight: ['300', '400', '500', '600'],
+const archivo = Archivo({
+  weight: ['400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
-  variable: '--font-barlow',
+  variable: '--font-display',
   display: 'swap'
 });
 
@@ -36,7 +34,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#f8f6f4'
+  themeColor: '#ffffff'
 };
 
 export function generateStaticParams() {
@@ -63,7 +61,7 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       // Light-first: the light palette lives on :root. No `dark` class.
-      className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} ${barlow.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${archivo.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>

@@ -70,7 +70,7 @@ export function Services() {
                     {service.tag}
                   </span>
                 </div>
-                <h3 className="mt-5 text-lg font-medium text-[#1a1416]">
+                <h3 className="mt-5 text-lg font-medium text-foreground">
                   {service.title}
                 </h3>
                 <p className="mt-2 flex-1 text-sm text-black/60">{service.body}</p>

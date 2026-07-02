@@ -91,7 +91,7 @@ export function FaqAndCta() {
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link
                   href="/book"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-semibold text-[#1a1416] shadow-lg transition-transform hover:scale-[1.02] active:scale-100"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-semibold text-foreground shadow-lg transition-transform hover:scale-[1.02] active:scale-100"
                 >
                   <SnowflakeIcon className="size-4" />
                   {t('ctaPrimary')}
