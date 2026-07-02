@@ -159,7 +159,12 @@
     "errorForbidden": "Seuls les propriétaires peuvent réserver des services.",
     "errorInvalidInput": "Certains détails semblent incorrects. Veuillez vérifier et réessayer.",
     "errorCreateFailed": "Nous n'avons pas pu créer votre réservation. Veuillez réessayer.",
-    "errorPaymentHoldFailed": "Nous n'avons pas pu garantir le paiement de cette réservation. Veuillez réessayer."
+    "errorPaymentHoldFailed": "Nous n'avons pas pu garantir le paiement de cette réservation. Veuillez réessayer.",
+    "asapTitle": "Dès que possible",
+    "asapBody": "Un pro local vérifié est envoyé immédiatement — premier arrivé, premier servi.",
+    "asapLabel": "Dès que possible",
+    "scheduleLaterTitle": "Planifier plus tard",
+    "scheduleLaterBody": "Choisissez une date et une heure — pratique si une grosse tempête approche."
   },
   "HomeownerDashboard": {
     "title": "Mes travaux",

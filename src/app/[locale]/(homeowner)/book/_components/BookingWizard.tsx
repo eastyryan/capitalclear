@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Check, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight, Loader2, Zap, CalendarClock } from 'lucide-react';
 
 import { useRouter } from '@/i18n/navigation';
 import { toast } from 'sonner';
@@ -44,7 +44,8 @@ interface WizardState {
   service: ServiceType | null;
   address: string;
   postal: string;
-  date: string; // yyyy-mm-dd
+  asap: boolean; // ASAP is the default — clear as fast as possible
+  date: string; // yyyy-mm-dd (only when scheduling for later)
   time: string; // HH:mm
   notes: string;
 }
@@ -53,6 +54,7 @@ const INITIAL: WizardState = {
   service: 'snow_removal',
   address: '',
   postal: '',
+  asap: true,
   date: '',
   time: '',
   notes: '',
@@ -93,15 +95,21 @@ export function BookingWizard() {
   const postalDirty = state.postal.trim().length > 0;
   const addressOk = state.address.trim().length > 0;
 
+  // When scheduling for later, this is the chosen slot; for ASAP it stays null
+  // and the timestamp is stamped at submit time (see `submit`).
   const scheduledISO = useMemo(
-    () => toISO(state.date, state.time),
-    [state.date, state.time],
+    () => (state.asap ? null : toISO(state.date, state.time)),
+    [state.asap, state.date, state.time],
   );
+
+  // Effective date drives the quote's winter-surge check — "now" for ASAP.
+  const quoteDate = state.asap ? new Date() : scheduledISO;
 
   const quote = useMemo(
     () =>
-      state.service ? getQuote(state.service, scheduledISO ?? undefined) : null,
-    [state.service, scheduledISO],
+      state.service ? getQuote(state.service, quoteDate ?? undefined) : null,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [state.service, state.asap, scheduledISO],
   );
 
   // Per-step gate for the Continue button.
@@ -110,7 +118,7 @@ export function BookingWizard() {
       case 1:
         return addressOk && postalOk;
       case 2:
-        return scheduledISO !== null;
+        return state.asap || scheduledISO !== null;
       case 3:
         return true; // notes optional
       case 4:
@@ -137,13 +145,16 @@ export function BookingWizard() {
   }
 
   async function submit() {
-    if (!state.service || !scheduledISO) return;
+    if (!state.service) return;
+    // ASAP stamps the current time; scheduled uses the chosen slot.
+    const when = state.asap ? new Date().toISOString() : scheduledISO;
+    if (!when) return;
     setSubmitting(true);
     const res = await createJob({
       service_type: state.service,
       address: state.address.trim(),
       postal_code: normalizePostal(state.postal),
-      scheduled_for: scheduledISO,
+      scheduled_for: when,
       notes: state.notes.trim() ? state.notes.trim() : undefined,
     });
     if (res.ok) {
@@ -157,12 +168,14 @@ export function BookingWizard() {
   }
 
   const scheduledLabel = useMemo(() => {
+    if (state.asap) return t('asapLabel');
     if (!scheduledISO) return '';
     return new Intl.DateTimeFormat(locale === 'fr' ? 'fr-CA' : 'en-CA', {
       dateStyle: 'full',
       timeStyle: 'short',
     }).format(new Date(scheduledISO));
-  }, [scheduledISO, locale]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.asap, scheduledISO, locale]);
 
   return (
     <div className="flex min-h-[60vh] flex-col">
@@ -194,8 +207,10 @@ export function BookingWizard() {
 
         {step === 2 && (
           <ScheduleStep
+            asap={state.asap}
             date={state.date}
             time={state.time}
+            onAsap={(asap) => patch({ asap })}
             onDate={(date) => patch({ date })}
             onTime={(time) => patch({ time })}
           />
@@ -386,17 +401,21 @@ function AddressStep({
 }
 
 // ---------------------------------------------------------------------------
-// Step 3 — Date / time
+// Step 2 — Timing: ASAP (default) or schedule a specific date/time
 // ---------------------------------------------------------------------------
 
 function ScheduleStep({
+  asap,
   date,
   time,
+  onAsap,
   onDate,
   onTime,
 }: {
+  asap: boolean;
   date: string;
   time: string;
+  onAsap: (v: boolean) => void;
   onDate: (v: string) => void;
   onTime: (v: string) => void;
 }) {
@@ -406,31 +425,95 @@ function ScheduleStep({
   const minDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
   return (
-    <div className="space-y-5">
-      <div className="space-y-2">
-        <Label htmlFor="date">{t('date')}</Label>
-        <Input
-          id="date"
-          name="date"
-          type="date"
-          min={minDate}
-          value={date}
-          onChange={(e) => onDate(e.target.value)}
-          className="h-11"
-        />
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="time">{t('time')}</Label>
-        <Input
-          id="time"
-          name="time"
-          type="time"
-          value={time}
-          onChange={(e) => onTime(e.target.value)}
-          className="h-11"
-        />
-      </div>
+    <div className="space-y-3">
+      {/* ASAP — the default, matching the "cleared as fast as possible" model */}
+      <button
+        type="button"
+        role="radio"
+        aria-checked={asap}
+        onClick={() => onAsap(true)}
+        className={cn(
+          'flex w-full items-start justify-between gap-3 rounded-xl border p-4 text-left transition-colors',
+          'min-h-[72px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+          asap ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-primary/50',
+        )}
+      >
+        <span>
+          <span className="flex items-center gap-2 text-base font-semibold text-foreground">
+            <Zap className="size-5 text-primary" aria-hidden />
+            {t('asapTitle')}
+          </span>
+          <span className="mt-1 block text-sm text-muted-foreground">{t('asapBody')}</span>
+        </span>
+        <RadioDot selected={asap} />
+      </button>
+
+      {/* Schedule for later — expands the native date/time inputs when chosen */}
+      <button
+        type="button"
+        role="radio"
+        aria-checked={!asap}
+        onClick={() => onAsap(false)}
+        className={cn(
+          'flex w-full items-start justify-between gap-3 rounded-xl border p-4 text-left transition-colors',
+          'min-h-[72px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+          !asap ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-primary/50',
+        )}
+      >
+        <span>
+          <span className="flex items-center gap-2 text-base font-semibold text-foreground">
+            <CalendarClock className="size-5 text-primary" aria-hidden />
+            {t('scheduleLaterTitle')}
+          </span>
+          <span className="mt-1 block text-sm text-muted-foreground">
+            {t('scheduleLaterBody')}
+          </span>
+        </span>
+        <RadioDot selected={!asap} />
+      </button>
+
+      {!asap && (
+        <div className="space-y-5 rounded-xl border border-border bg-card p-4">
+          <div className="space-y-2">
+            <Label htmlFor="date">{t('date')}</Label>
+            <Input
+              id="date"
+              name="date"
+              type="date"
+              min={minDate}
+              value={date}
+              onChange={(e) => onDate(e.target.value)}
+              className="h-11"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="time">{t('time')}</Label>
+            <Input
+              id="time"
+              name="time"
+              type="time"
+              value={time}
+              onChange={(e) => onTime(e.target.value)}
+              className="h-11"
+            />
+          </div>
+        </div>
+      )}
     </div>
+  );
+}
+
+function RadioDot({ selected }: { selected: boolean }) {
+  return (
+    <span
+      className={cn(
+        'mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full border',
+        selected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40',
+      )}
+      aria-hidden
+    >
+      {selected && <Check className="size-3.5" />}
+    </span>
   );
 }
 

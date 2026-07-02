@@ -159,7 +159,12 @@
     "errorForbidden": "Only homeowners can book services.",
     "errorInvalidInput": "Some details look incorrect. Please review and try again.",
     "errorCreateFailed": "We couldn't create your booking. Please try again.",
-    "errorPaymentHoldFailed": "We couldn't secure payment for this booking. Please try again."
+    "errorPaymentHoldFailed": "We couldn't secure payment for this booking. Please try again.",
+    "asapTitle": "As soon as possible",
+    "asapBody": "A vetted local pro is dispatched right away — first come, first served.",
+    "asapLabel": "As soon as possible",
+    "scheduleLaterTitle": "Schedule for later",
+    "scheduleLaterBody": "Pick a date and time — handy if a big storm is coming."
   },
   "HomeownerDashboard": {
     "title": "My jobs",
