@@ -12,7 +12,14 @@ import { cn } from '@/lib/utils';
  * WITHOUT the locale prefix, so `router.replace(pathname, { locale })`
  * re-renders the same route under the target locale.
  */
-export function LocaleSwitcher({ className }: { className?: string }) {
+export function LocaleSwitcher({
+  className,
+  onBrand = false
+}: {
+  className?: string;
+  /** Restyles the pill for the solid brand-blue navbar. */
+  onBrand?: boolean;
+}) {
   const active = useLocale();
   const pathname = usePathname();
   const router = useRouter();
@@ -28,7 +35,8 @@ export function LocaleSwitcher({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'inline-flex items-center gap-0.5 rounded-full border border-border bg-secondary/40 p-0.5',
+        'inline-flex items-center gap-0.5 rounded-full border p-0.5',
+        onBrand ? 'border-white/30 bg-transparent' : 'border-border bg-secondary/40',
         className
       )}
       role="group"
@@ -47,8 +55,12 @@ export function LocaleSwitcher({ className }: { className?: string }) {
               'font-mono min-w-[2.25rem] rounded-full px-2.5 py-1 text-xs uppercase tracking-[0.12em] transition-colors',
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
               isActive
-                ? 'bg-primary text-primary-foreground'
-                : 'text-muted-foreground hover:text-foreground'
+                ? onBrand
+                  ? 'bg-white text-primary'
+                  : 'bg-primary text-primary-foreground'
+                : onBrand
+                  ? 'text-white/75 hover:text-white'
+                  : 'text-muted-foreground hover:text-foreground'
             )}
           >
             {locale}

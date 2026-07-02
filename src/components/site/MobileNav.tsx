@@ -72,7 +72,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
           <SheetClose
             render={
               <Link
-                href="/login"
+                href="/demo"
                 className="flex h-11 items-center justify-center rounded-lg border border-border text-sm font-medium text-foreground transition-colors hover:bg-secondary"
               />
             }

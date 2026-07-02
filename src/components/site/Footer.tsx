@@ -19,26 +19,16 @@ export async function Footer() {
     {
       title: t('companyTitle'),
       links: [
-        { href: '/about', label: t('linkAbout') },
-        { href: '/how-it-works', label: t('linkHowItWorks') },
-        { href: '/pricing', label: t('linkPricing') },
-        { href: '/contact', label: t('linkContact') }
-      ]
-    },
-    {
-      title: nav('services'),
-      links: [
-        { href: '/services', label: t('linkServices') },
         { href: '/book', label: t('linkBook') },
-        { href: '/register?role=pro', label: t('linkPro') }
+        { href: '/become-a-pro', label: t('linkPro') },
+        { href: '/contact', label: t('linkContact') }
       ]
     },
     {
       title: t('supportTitle'),
       links: [
         { href: '/contact#faq', label: t('linkFaq') },
-        { href: '/contact', label: t('linkContact') },
-        { href: '/login', label: nav('login') }
+        { href: '/demo', label: nav('login') }
       ]
     },
     {
@@ -63,7 +53,7 @@ export async function Footer() {
         </div>
         <p className="mt-3 max-w-md text-sm text-white/60">{t('tagline')}</p>
 
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3">
           {columns.map((col) => (
             <nav key={col.title} className="space-y-4">
               <p className="text-sm font-bold">{col.title}</p>

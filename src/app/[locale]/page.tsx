@@ -1,5 +1,4 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import Image from 'next/image';
 import {
   Car,
   Truck,
@@ -12,15 +11,13 @@ import {
   type LucideIcon
 } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
-import { PHOTOS } from '@/lib/images';
 import { Footer } from '@/components/site/Footer';
 
 /**
  * Uber.com-style landing rendered in the Azure design system. Structure
  * mirrors uber.com/ca/en: solid-blue nav (global), hero with a request form,
- * "Suggestions"-style service cards, per-visit pricing detail, Priority
- * Premium, alternating login/pro/safety split rows, how-it-works steps, a
- * brand stats band, and the dark columned footer.
+ * how-it-works steps, "Suggestions"-style service cards, per-visit pricing
+ * detail, Priority Premium, a brand stats band, and the dark columned footer.
  */
 
 const money = (locale: string, cents: number) =>
@@ -73,47 +70,6 @@ function BtnLink({ href, children }: { href: string; children: React.ReactNode }
     >
       {children}
     </Link>
-  );
-}
-
-/** Alternating text/media row, like Uber's account / drive / safety rows. */
-function SplitRow({
-  title,
-  body,
-  cta,
-  ctaHref,
-  alt,
-  altHref,
-  image,
-  imageAlt,
-  flip
-}: {
-  title: string;
-  body: string;
-  cta: string;
-  ctaHref: string;
-  alt?: string;
-  altHref?: string;
-  image: string;
-  imageAlt: string;
-  flip?: boolean;
-}) {
-  return (
-    <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
-      <div className={flip ? 'lg:order-2' : ''}>
-        <h2 className="font-heading text-3xl font-extrabold leading-[1.05] tracking-[-0.02em] text-foreground md:text-5xl">
-          {title}
-        </h2>
-        <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">{body}</p>
-        <div className="mt-8 flex flex-wrap items-center gap-6">
-          <BtnPrimary href={ctaHref}>{cta}</BtnPrimary>
-          {alt && altHref ? <BtnLink href={altHref}>{alt}</BtnLink> : null}
-        </div>
-      </div>
-      <div className={`relative h-72 overflow-hidden rounded-xl md:h-[420px] ${flip ? 'lg:order-1' : ''}`}>
-        <Image src={image} alt={imageAlt} fill unoptimized className="object-cover" />
-      </div>
-    </div>
   );
 }
 
@@ -176,7 +132,7 @@ export default async function LandingPage({
               </Link>
               <div className="mt-3 flex flex-wrap items-center gap-6">
                 <BtnPrimary href="/book">{t('heroForm.seePrices')}</BtnPrimary>
-                <BtnLink href="/login">{t('heroForm.recentActivity')}</BtnLink>
+                <BtnLink href="/demo">{t('heroForm.recentActivity')}</BtnLink>
               </div>
             </div>
           </div>
@@ -206,6 +162,22 @@ export default async function LandingPage({
           {home('trust')}
         </p>
       </div>
+
+      {/* ============ HOW IT WORKS ============ */}
+      <section className="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
+        <SectionTitle>{home('howTitle')}</SectionTitle>
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {steps.map((step, i) => (
+            <div key={step.title} className="rounded-xl border border-border bg-card p-6">
+              <span className="flex size-9 items-center justify-center rounded-full bg-primary font-mono text-sm font-bold text-white">
+                {i + 1}
+              </span>
+              <h3 className="mt-4 font-heading text-lg font-bold text-foreground">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* ============ SUGGESTIONS — Uber service cards ============ */}
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -244,7 +216,7 @@ export default async function LandingPage({
                   <span aria-hidden />
                 )}
                 <Link
-                  href={key === 'premium' ? '/pricing' : '/book'}
+                  href="/book"
                   className="rounded-full bg-[var(--brand-50)] px-4 py-2 text-sm font-medium text-primary shadow-[inset_0_0_0_1px_var(--brand-300)] transition-colors hover:bg-[var(--brand-100)]"
                 >
                   {t('details')}
@@ -359,57 +331,6 @@ export default async function LandingPage({
         </div>
       </section>
 
-      {/* ============ SPLIT ROWS — account / pro / safety ============ */}
-      <section className="mx-auto flex w-full max-w-7xl flex-col gap-24 px-4 py-20 sm:px-6 lg:px-8">
-        <SplitRow
-          title={t('accountTitle')}
-          body={t('accountBody')}
-          cta={t('accountCta')}
-          ctaHref="/login"
-          alt={t('accountAlt')}
-          altHref="/register"
-          image={PHOTOS.driveway}
-          imageAlt="A person clearing a residential driveway with a snow shovel"
-        />
-        <SplitRow
-          flip
-          title={t('proTitle')}
-          body={t('proBody')}
-          cta={t('proCta')}
-          ctaHref="/register?role=pro"
-          alt={t('proAlt')}
-          altHref="/login"
-          image={PHOTOS.roadPlow}
-          imageAlt="A plow truck clearing a snowy road"
-        />
-        <SplitRow
-          title={t('safetyTitle')}
-          body={t('safetyBody')}
-          cta={t('safetyCta')}
-          ctaHref="/how-it-works"
-          image={PHOTOS.snowblower}
-          imageAlt="A resident clearing a walkway with a snowblower"
-        />
-      </section>
-
-      {/* ============ HOW IT WORKS ============ */}
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionTitle>{home('howTitle')}</SectionTitle>
-          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {steps.map((step, i) => (
-              <div key={step.title} className="rounded-xl border border-border bg-card p-6">
-                <span className="flex size-9 items-center justify-center rounded-full bg-primary font-mono text-sm font-bold text-white">
-                  {i + 1}
-                </span>
-                <h3 className="mt-4 font-heading text-lg font-bold text-foreground">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ============ STATS — brand blue band ============ */}
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
@@ -432,7 +353,7 @@ export default async function LandingPage({
         <p className="mt-4 max-w-xl text-base text-muted-foreground">{home('ctaSubtitle')}</p>
         <div className="mt-8 flex flex-wrap items-center gap-6">
           <BtnPrimary href="/book">{home('ctaPrimary')}</BtnPrimary>
-          <BtnLink href="/register?role=pro">{home('ctaSecondary')}</BtnLink>
+          <BtnLink href="/become-a-pro">{home('ctaSecondary')}</BtnLink>
         </div>
       </section>
 
