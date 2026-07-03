@@ -1001,5 +1001,8 @@
     "landmarks": "Nous desservons {landmarks} — et tout ce qui se trouve entre les deux.",
     "cta": "Réserver un déneigement à {area}",
     "pricingTitle": "Tarifs par visite à {area}"
+  },
+  "Testimonials": {
+    "title": "Ce que disent les propriétaires"
   }
 }

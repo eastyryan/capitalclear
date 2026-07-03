@@ -1001,5 +1001,8 @@
     "landmarks": "Serving {landmarks} — and everywhere in between.",
     "cta": "Book a clear in {area}",
     "pricingTitle": "Per-visit pricing in {area}"
+  },
+  "Testimonials": {
+    "title": "What homeowners say"
   }
 }

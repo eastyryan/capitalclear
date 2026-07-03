@@ -15,6 +15,7 @@ import { Footer } from '@/components/site/Footer';
 import { HeroBookingForm } from '@/components/landing/HeroBookingForm';
 import { AreaChecker } from '@/components/landing/AreaChecker';
 import { StormBanner } from '@/components/landing/StormBanner';
+import { Testimonials } from '@/components/landing/Testimonials';
 
 /**
  * Uber.com-style landing rendered in the Azure design system. Structure
@@ -251,6 +252,9 @@ export default async function LandingPage({
           </div>
         </div>
       </section>
+
+      {/* ============ TESTIMONIALS (sample data — replace with real reviews) ============ */}
+      <Testimonials locale={locale} />
 
       {/* ============ SERVICE-AREA CHECK ============ */}
       <section className="border-b border-border">
