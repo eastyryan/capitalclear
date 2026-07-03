@@ -987,5 +987,11 @@
     "outside": "Nous ne sommes pas encore dans votre secteur — nous prenons de l'expansion chaque saison.",
     "invalid": "Cela ne ressemble pas encore à un code postal canadien — continuez à taper.",
     "bookCta": "Réserver un déneigement"
+  },
+  "StormBanner": {
+    "today": "aujourd'hui",
+    "tomorrow": "demain",
+    "message": "{cm} cm de neige prévus {day} — réservez à l'avance et évitez la cohue.",
+    "cta": "Réserver à l'avance"
   }
 }

@@ -14,6 +14,7 @@ import { Link } from '@/i18n/navigation';
 import { Footer } from '@/components/site/Footer';
 import { HeroBookingForm } from '@/components/landing/HeroBookingForm';
 import { AreaChecker } from '@/components/landing/AreaChecker';
+import { StormBanner } from '@/components/landing/StormBanner';
 
 /**
  * Uber.com-style landing rendered in the Azure design system. Structure
@@ -95,6 +96,9 @@ export default async function LandingPage({
 
   return (
     <main className="flex flex-1 flex-col pt-16">
+      {/* Storm-watch alert — only renders when snow is in the 3-day forecast */}
+      <StormBanner locale={locale} />
+
       {/* ============ HERO — Uber "Go anywhere" module with request form ============ */}
       <section className="bg-[linear-gradient(180deg,var(--brand-50),transparent_70%)]">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-20 lg:px-8">

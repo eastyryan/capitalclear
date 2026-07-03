@@ -987,5 +987,11 @@
     "outside": "We're not in your area yet — we're expanding across the region every season.",
     "invalid": "That doesn't look like a Canadian postal code yet — keep typing.",
     "bookCta": "Book a clear"
+  },
+  "StormBanner": {
+    "today": "today",
+    "tomorrow": "tomorrow",
+    "message": "{cm} cm of snow expected {day} — book ahead and skip the rush.",
+    "cta": "Book ahead"
   }
 }
