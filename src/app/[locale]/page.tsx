@@ -113,7 +113,7 @@ export default async function LandingPage({
           <div className="relative hidden min-h-[420px] overflow-hidden rounded-xl border border-border lg:block">
             <iframe
               title="Capital Clear service area — Ottawa"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97855.9701373166!2d-75.81279066899162!3d45.3448567417372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51e131dd15ed!2sOttawa%2C%20ON!5e0!3m2!1sen!2sca!4v1783042429550!5m2!1sen!2sca"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d73104.68602989962!2d-75.83189422590335!3d45.372168163323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51e131dd15ed!2sOttawa%2C%20ON!5e0!3m2!1sen!2sca!4v1783043750596!5m2!1sen!2sca"
               className="absolute inset-0 h-full w-full"
               style={{ border: 0 }}
               loading="lazy"
