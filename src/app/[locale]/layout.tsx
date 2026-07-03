@@ -26,10 +26,29 @@ const archivo = Archivo({
   display: 'swap'
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://capitalclear.vercel.app';
+
 export const metadata: Metadata = {
-  title: 'Capital Clear',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Capital Clear — Ottawa Snow Removal, On Demand',
+    template: '%s'
+  },
   description:
-    'Ottawa snow removal, lawn care, and seasonal property maintenance marketplace.'
+    'On-demand snow removal for Ottawa driveways and walkways. Book in 60 seconds, a vetted local pro clears it, and you only pay after photo-verified proof. From $45 per visit.',
+  openGraph: {
+    type: 'website',
+    siteName: 'Capital Clear',
+    title: 'Capital Clear — Ottawa Snow Removal, On Demand',
+    description:
+      'Book in 60 seconds. A vetted local pro clears your driveway, and you only pay after photo-verified proof. From $45 per visit across Ottawa.'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Capital Clear — Ottawa Snow Removal, On Demand',
+    description:
+      'On-demand driveway snow clearing across Ottawa. $0 upfront — pay when the job is photo-verified.'
+  }
 };
 
 export const viewport: Viewport = {
