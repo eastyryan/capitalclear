@@ -140,19 +140,38 @@ export default async function LandingPage({
         </p>
       </div>
 
-      {/* ============ HOW IT WORKS ============ */}
-      <section className="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
-        <SectionTitle>{home('howTitle')}</SectionTitle>
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {steps.map((step, i) => (
-            <div key={step.title} className="rounded-xl border border-border bg-card p-6">
-              <span className="flex size-9 items-center justify-center rounded-full bg-primary font-mono text-sm font-bold text-white">
-                {i + 1}
-              </span>
-              <h3 className="mt-4 font-heading text-lg font-bold text-foreground">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-            </div>
-          ))}
+      {/* ============ HOW IT WORKS + STATS — one blue section ============ */}
+      <section className="bg-primary text-primary-foreground">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <h2 className="max-w-2xl font-heading text-3xl font-extrabold tracking-[-0.02em] md:text-4xl">
+            {home('howTitle')}
+          </h2>
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {steps.map((step, i) => (
+              <div
+                key={step.title}
+                className="rounded-xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm"
+              >
+                <span className="flex size-9 items-center justify-center rounded-full bg-white font-mono text-sm font-bold text-primary">
+                  {i + 1}
+                </span>
+                <h3 className="mt-4 font-heading text-lg font-bold text-white">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/80">{step.body}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Stats — same blue field, divided from the steps */}
+          <div className="mt-14 grid grid-cols-2 gap-8 border-t border-white/20 pt-12 lg:grid-cols-4">
+            {stats.map((s) => (
+              <div key={s.label}>
+                <div className="font-heading text-4xl font-extrabold tracking-[-0.02em] md:text-5xl">
+                  {s.value}
+                </div>
+                <div className="mt-2 text-sm text-white/80">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -305,20 +324,6 @@ export default async function LandingPage({
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* ============ STATS — brand blue band ============ */}
-      <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <div className="font-heading text-4xl font-extrabold tracking-[-0.02em] md:text-5xl">
-                {s.value}
-              </div>
-              <div className="mt-2 text-sm text-white/80">{s.label}</div>
-            </div>
-          ))}
         </div>
       </section>
 

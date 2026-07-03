@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { Clock, Send } from 'lucide-react';
+import { Send } from 'lucide-react';
 import { useRouter } from '@/i18n/navigation';
 import { DRIVEWAY_BASE_CENTS, WALKWAY_ADDON_CENTS, type DrivewaySize } from '@/lib/pricing/quote';
 
@@ -39,14 +39,8 @@ export function HeroBookingForm() {
 
   return (
     <div className="mt-9 flex max-w-md flex-col gap-3">
-      <span className="inline-flex items-center gap-2 self-start rounded-full bg-[var(--brand-100)] px-4 py-2.5 text-sm font-medium text-foreground">
-        <Clock className="size-4 text-primary" aria-hidden />
-        {t('heroForm.clearNow')}
-      </span>
-
       {/* Address */}
       <div className="flex h-14 items-center gap-3 rounded-xl bg-[var(--brand-50)] px-4 transition-shadow focus-within:shadow-[inset_0_0_0_2px_var(--color-primary)]">
-        <span className="size-2.5 shrink-0 rounded-full bg-primary" aria-hidden />
         <input
           type="text"
           value={address}
@@ -60,7 +54,6 @@ export function HeroBookingForm() {
 
       {/* Driveway size */}
       <div className="flex h-14 items-center gap-3 rounded-xl bg-[var(--brand-50)] px-4 transition-shadow focus-within:shadow-[inset_0_0_0_2px_var(--color-primary)]">
-        <span className="size-2.5 shrink-0 rounded-[2px] bg-foreground" aria-hidden />
         <select
           value={size}
           onChange={(e) => setSize(e.target.value as DrivewaySize | '')}
