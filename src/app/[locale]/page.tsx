@@ -109,20 +109,25 @@ export default async function LandingPage({
             <HeroBookingForm />
           </div>
 
-          {/* Brand art panel (Azure context__art) */}
-          <div className="relative hidden min-h-[420px] overflow-hidden rounded-xl bg-[radial-gradient(circle_at_70%_25%,var(--brand-300),transparent_55%),linear-gradient(150deg,var(--brand-500)_0%,var(--brand-700)_100%)] lg:block">
-            <div
-              className="absolute inset-0 [background-image:radial-gradient(rgba(255,255,255,.2)_1.5px,transparent_1.5px)] [background-size:22px_22px]"
-              aria-hidden
+          {/* Ottawa service-area map — brand-tinted (grayscale + blue overlay) */}
+          <div className="relative isolate hidden min-h-[420px] overflow-hidden rounded-xl border border-border lg:block">
+            <iframe
+              title="Capital Clear service area — Ottawa"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97855.9701373166!2d-75.81279066899162!3d45.3448567417372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51e131dd15ed!2sOttawa%2C%20ON!5e0!3m2!1sen!2sca!4v1783042429550!5m2!1sen!2sca"
+              className="absolute inset-0 h-full w-full"
+              style={{ border: 0, filter: 'grayscale(1) brightness(1.05) contrast(0.95)' }}
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
             />
-            <div className="absolute inset-x-5 bottom-5 flex items-center justify-between gap-3 rounded-lg bg-[rgba(11,42,74,.82)] px-4 py-3.5 backdrop-blur-[2px]">
-              <span className="text-sm font-bold text-white">{home('ctaTitle')}</span>
-              <Link
-                href="/demo/book"
-                className="rounded-lg bg-white px-4 py-2 text-sm font-bold text-primary"
-              >
-                {home('heroPrimary')}
-              </Link>
+            {/* Brand-blue wash so the map reads on-brand */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-[var(--brand-500)] opacity-30 mix-blend-multiply"
+            />
+            {/* Service-area label */}
+            <div className="pointer-events-none absolute left-5 top-5 rounded-full bg-[rgba(11,42,74,.82)] px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white backdrop-blur-[2px]">
+              {home('heroEyebrow')}
             </div>
           </div>
         </div>
