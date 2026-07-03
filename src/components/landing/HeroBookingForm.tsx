@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Send, ChevronsUpDown } from 'lucide-react';
+import { track } from '@vercel/analytics';
 import { useRouter } from '@/i18n/navigation';
 import { AddressAutocomplete } from '@/components/site/AddressAutocomplete';
 import { DRIVEWAY_BASE_CENTS, WALKWAY_ADDON_CENTS, type DrivewaySize } from '@/lib/pricing/quote';
@@ -31,6 +32,8 @@ export function HeroBookingForm() {
     }).format(cents / 100);
 
   function seePrices() {
+    // Funnel event: hero form → booking flow (no PII).
+    track('hero_continue_booking', { size: size || 'unset', walkway });
     const qs = new URLSearchParams();
     if (size) qs.set('size', size);
     if (walkway) qs.set('walkway', '1');

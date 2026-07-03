@@ -16,6 +16,7 @@ import { HeroBookingForm } from '@/components/landing/HeroBookingForm';
 import { AreaChecker } from '@/components/landing/AreaChecker';
 import { StormBanner } from '@/components/landing/StormBanner';
 import { Testimonials } from '@/components/landing/Testimonials';
+import { JsonLd } from '@/components/landing/JsonLd';
 
 /**
  * Uber.com-style landing rendered in the Azure design system. Structure
@@ -97,6 +98,9 @@ export default async function LandingPage({
 
   return (
     <main className="flex flex-1 flex-col pt-16">
+      {/* Structured data for search (LocalBusiness + FAQ rich results) */}
+      <JsonLd locale={locale} />
+
       {/* Storm-watch alert — only renders when snow is in the 3-day forecast */}
       <StormBanner locale={locale} />
 

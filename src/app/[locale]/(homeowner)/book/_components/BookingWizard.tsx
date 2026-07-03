@@ -6,6 +6,7 @@ import { Check, ChevronLeft, ChevronRight, Loader2, Zap, CalendarClock, Crown } 
 
 import { useRouter } from '@/i18n/navigation';
 import { toast } from 'sonner';
+import { track } from '@vercel/analytics';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -189,6 +190,8 @@ export function BookingWizard({
 
   function next() {
     if (!canContinue()) return;
+    // Funnel event: which step the user just completed (drop-off analysis).
+    track('booking_step_completed', { step });
     setStep((s) => Math.min(s + 1, TOTAL_STEPS));
   }
   function back() {
@@ -200,6 +203,13 @@ export function BookingWizard({
     // ASAP stamps the current time; scheduled uses the chosen slot.
     const when = state.asap ? new Date().toISOString() : scheduledISO;
     if (!when) return;
+    // Funnel event: booking confirmed (with package shape, no PII).
+    track('booking_confirmed', {
+      size: state.size,
+      walkway: state.walkway,
+      premium: state.premium,
+      asap: state.asap
+    });
     setSubmitting(true);
     const res = await createJob({
       service_type: state.service,

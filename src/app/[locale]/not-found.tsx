@@ -17,7 +17,7 @@ export default async function NotFound() {
         subtitle={t('subtitle')}
       >
         <PrimaryCta href="/">{t('ctaHome')}</PrimaryCta>
-        <GhostCta href="/services">{t('ctaServices')}</GhostCta>
+        <GhostCta href="/contact">{t('ctaServices')}</GhostCta>
       </PageHero>
     </main>
   );
