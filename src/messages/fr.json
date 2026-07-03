@@ -168,11 +168,11 @@
     "stepPackageTitle": "Choisissez votre déneigement",
     "stepDetailsTitle": "Vos coordonnées",
     "pkgSingleName": "Entrée simple",
-    "pkgSingleBody": "Une entrée standard, déneigée et salée.",
+    "pkgSingleBody": "Une entrée standard, déneigée.",
     "pkgDoubleName": "Entrée double",
-    "pkgDoubleBody": "Entrée double ou deux voitures, déneigée et salée.",
+    "pkgDoubleBody": "Entrée double ou deux voitures, déneigée.",
     "pkgWalkwayName": "Ajouter une allée",
-    "pkgWalkwayBody": "Allée et marches avant, salées contre la glace.",
+    "pkgWalkwayBody": "Allée et marches avant, dégagées.",
     "guestNote": "Aucun compte requis — seulement vos coordonnées pour que votre pro puisse vous joindre et envoyer la preuve photo.",
     "name": "Nom complet",
     "nameRequired": "Veuillez entrer votre nom.",
@@ -183,7 +183,9 @@
     "liabilityTitle": "Responsabilité et conditions",
     "liabilityBody": "Capital Clear est une place de marché qui vous met en relation avec des sous-traitants indépendants de déneigement. Capital Clear n'est pas responsable des blessures dues aux glissades et chutes, ni des dommages à votre maison, votre propriété ou vos biens. Le sous-traitant qui effectue le travail assume l'entière responsabilité du service et de toute blessure ou tout dommage en résultant.",
     "liabilityAgree": "J'ai lu et j'accepte les conditions de service et cette décharge de responsabilité.",
-    "liabilityRequired": "Veuillez accepter la décharge de responsabilité pour confirmer votre réservation."
+    "liabilityRequired": "Veuillez accepter la décharge de responsabilité pour confirmer votre réservation.",
+    "subtotal": "Sous-total",
+    "hst": "TVH (13 %)"
   },
   "HomeownerDashboard": {
     "title": "Mes travaux",
@@ -422,7 +424,7 @@
         "name": "Entrée simple",
         "features": [
           "Une entrée standard",
-          "Dégagée et salée",
+          "Déneigée",
           "Finition vérifiée par photo"
         ]
       },
@@ -430,7 +432,7 @@
         "name": "Entrée double",
         "features": [
           "Entrée double largeur",
-          "Dégagée et salée",
+          "Déneigée",
           "Finition vérifiée par photo"
         ]
       },
@@ -439,7 +441,7 @@
         "features": [
           "À ajouter à toute visite",
           "Allée avant et marches",
-          "Salée contre la glace"
+          "Dégagée pour un pas sûr"
         ]
       }
     },
@@ -469,7 +471,7 @@
     "eyebrow": "Services",
     "title": "Le déneigement,",
     "accent": "bien fait.",
-    "subtitle": "Déneigement et salage sur demande pour les entrées, allées et marches d'Ottawa — vérifié par photo, dégagé rapidement.",
+    "subtitle": "Déneigement sur demande pour les entrées, allées et marches d'Ottawa — vérifié par photo, dégagé rapidement.",
     "from": "À partir de",
     "cta": "Réserver",
     "ctaHow": "Comment ça marche",
@@ -484,14 +486,14 @@
     "items": {
       "snow-removal": {
         "name": "Déneigement",
-        "tagline": "Déneigement et salage sur demande — demandez-le et un plow se dirige vers vous.",
-        "intro": "Entrées, allées et marches dégagées et salées dès que la neige cesse — vérifié par photo.",
+        "tagline": "Déneigement sur demande — demandez-le et un plow se dirige vers vous.",
+        "intro": "Entrées, allées et marches dégagées dès que la neige cesse — vérifié par photo.",
         "whatTitle": "La neige, partie vite.",
-        "whatBody": "Quand il neige, demandez un déneigement et un pro local dégage votre entrée, vos allées et vos marches et sale contre la glace — puis téléverse une preuve photo. Une propriété dégagée et sûre, sans toucher à une pelle.",
+        "whatBody": "Quand il neige, demandez un déneigement et un pro local dégage votre entrée, vos allées et vos marches — puis téléverse une preuve photo. Une propriété dégagée et sûre, sans toucher à une pelle.",
         "includes": [
           "Déneigement de l'entrée",
           "Allées et marches avant",
-          "Salage anti-glace",
+          "Dégagé jusqu'au pavé",
           "Dégagé dès la fin de la neige",
           "Preuve photo avant/après"
         ],
@@ -864,10 +866,10 @@
     "whatKicker": "Ce que nous faisons",
     "whatTitle": "La neige, gérée —",
     "whatAccent": "de A à Z.",
-    "whatBody": "Quand il neige la nuit, un pro local vérifié dégage votre entrée, vos allées et vos marches et sale contre la glace. Vous vous réveillez devant une propriété dégagée et sûre — et payez seulement une fois la preuve photo confirmée.",
+    "whatBody": "Quand il neige la nuit, un pro local vérifié dégage votre entrée, vos allées et vos marches. Vous vous réveillez devant une propriété dégagée et sûre — et payez seulement une fois la preuve photo confirmée.",
     "whatFeatures": [
       "Entrées, allées et marches",
-      "Salage anti-glace inclus",
+      "Dégagé jusqu'au pavé",
       "Dégagé dès que la neige cesse",
       "Payez seulement une fois terminé"
     ],
@@ -926,15 +928,15 @@
     "cards": {
       "single": {
         "title": "Entrée simple",
-        "body": "Une entrée standard déneigée et salée, avec preuve photo à la fin."
+        "body": "Une entrée standard déneigée, avec preuve photo à la fin."
       },
       "double": {
         "title": "Entrée double",
-        "body": "Entrées doubles et deux voitures, déneigées et salées après la tempête."
+        "body": "Entrées doubles et deux voitures, déneigées après la tempête."
       },
       "walkway": {
         "title": "Allée piétonne",
-        "body": "Ajoutez votre allée et vos marches à toute visite, salées contre la glace."
+        "body": "Ajoutez votre allée et vos marches à toute visite."
       },
       "premium": {
         "title": "Priorité Premium",

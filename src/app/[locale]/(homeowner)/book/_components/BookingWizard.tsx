@@ -838,10 +838,24 @@ function ReviewStep({
             <div className="flex items-center justify-between text-sm">
               <dt className="text-muted-foreground">{t('winterSurge')}</dt>
               <dd className="text-[var(--status-warning)]">
-                +<Money cents={quote.totalCents - quote.baseCents} locale={locale} />
+                +<Money cents={quote.subtotalCents - quote.baseCents} locale={locale} />
               </dd>
             </div>
           )}
+
+          <div className="flex items-center justify-between border-t border-border pt-2.5 text-sm">
+            <dt className="text-muted-foreground">{t('subtotal')}</dt>
+            <dd>
+              <Money cents={quote.subtotalCents} locale={locale} />
+            </dd>
+          </div>
+
+          <div className="flex items-center justify-between text-sm">
+            <dt className="text-muted-foreground">{t('hst')}</dt>
+            <dd>
+              <Money cents={quote.taxCents} locale={locale} />
+            </dd>
+          </div>
 
           <div className="mt-1 flex items-center justify-between border-t border-border pt-3 text-base font-semibold">
             <dt>{t('total')}</dt>

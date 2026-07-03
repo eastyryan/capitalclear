@@ -168,11 +168,11 @@
     "stepPackageTitle": "Choose your snow removal",
     "stepDetailsTitle": "Your details",
     "pkgSingleName": "Single Driveway",
-    "pkgSingleBody": "One standard driveway, cleared and salted.",
+    "pkgSingleBody": "One standard driveway, plowed and cleared.",
     "pkgDoubleName": "Double Driveway",
-    "pkgDoubleBody": "Two-car or double-wide driveway, cleared and salted.",
+    "pkgDoubleBody": "Two-car or double-wide driveway, plowed and cleared.",
     "pkgWalkwayName": "Add a walkway",
-    "pkgWalkwayBody": "Front walk and steps, salted for ice.",
+    "pkgWalkwayBody": "Front walk and steps, cleared.",
     "guestNote": "No account needed — just your contact info so your pro can reach you and send photo proof.",
     "name": "Full name",
     "nameRequired": "Please enter your name.",
@@ -183,7 +183,9 @@
     "liabilityTitle": "Liability & terms",
     "liabilityBody": "Capital Clear is a marketplace that connects you with independent snow-removal subcontractors. Capital Clear is not liable or responsible for any slip-and-fall injuries, or for any damage to your house, property, or belongings. The subcontractor who performs the work carries sole responsibility and liability for the service and any resulting injury or damage.",
     "liabilityAgree": "I have read and agree to the Terms of Service and this liability waiver.",
-    "liabilityRequired": "Please accept the liability waiver to confirm your booking."
+    "liabilityRequired": "Please accept the liability waiver to confirm your booking.",
+    "subtotal": "Subtotal",
+    "hst": "HST (13%)"
   },
   "HomeownerDashboard": {
     "title": "My jobs",
@@ -422,7 +424,7 @@
         "name": "Single Driveway",
         "features": [
           "One standard driveway",
-          "Cleared and salted",
+          "Plowed and cleared",
           "Photo-verified finish"
         ]
       },
@@ -430,7 +432,7 @@
         "name": "Double Driveway",
         "features": [
           "Two-car / double-wide driveway",
-          "Cleared and salted",
+          "Plowed and cleared",
           "Photo-verified finish"
         ]
       },
@@ -439,7 +441,7 @@
         "features": [
           "Add to any driveway visit",
           "Front walk and steps",
-          "Salted for ice"
+          "Cleared for safe footing"
         ]
       }
     },
@@ -469,7 +471,7 @@
     "eyebrow": "Services",
     "title": "Snow removal,",
     "accent": "done right.",
-    "subtitle": "On-demand plowing and salting for Ottawa driveways, walkways and steps — photo-verified, cleared fast.",
+    "subtitle": "On-demand snow plowing for Ottawa driveways, walkways and steps — photo-verified, cleared fast.",
     "from": "From",
     "cta": "Book now",
     "ctaHow": "How it works",
@@ -484,14 +486,14 @@
     "items": {
       "snow-removal": {
         "name": "Snow Removal",
-        "tagline": "On-demand plowing and salting — request it and a plow heads your way.",
-        "intro": "Driveways, walkways and steps cleared and salted as soon as the snow stops — photo-verified.",
+        "tagline": "On-demand snow plowing — request it and a plow heads your way.",
+        "intro": "Driveways, walkways and steps cleared as soon as the snow stops — photo-verified.",
         "whatTitle": "Snow, gone fast.",
-        "whatBody": "When it snows, request a clear and a local pro plows your driveway, walkways and steps and salts for ice — then uploads photo proof. A clear, safe property without touching a shovel.",
+        "whatBody": "When it snows, request a clear and a local pro plows your driveway, walkways and steps — then uploads photo proof. A clear, safe property without touching a shovel.",
         "includes": [
           "Driveway plowing or shovelling",
           "Walkways and front steps",
-          "Ice-melt salting",
+          "Cleared to the pavement",
           "Cleared ASAP after snowfall",
           "Before/after photo proof"
         ],
@@ -864,10 +866,10 @@
     "whatKicker": "What we do",
     "whatTitle": "Snow, handled —",
     "whatAccent": "start to finish.",
-    "whatBody": "When it snows overnight, a vetted local pro clears your driveway, walkways and steps and salts for ice. You wake up to a clear, safe property — and only pay once it's photo-verified.",
+    "whatBody": "When it snows overnight, a vetted local pro clears your driveway, walkways and steps. You wake up to a clear, safe property — and only pay once it's photo-verified.",
     "whatFeatures": [
       "Driveways, walkways & steps",
-      "Ice-melt salting included",
+      "Cleared down to the pavement",
       "Cleared ASAP after the snow stops",
       "Pay only when it's done"
     ],
@@ -880,7 +882,7 @@
       },
       {
         "title": "A local pro clears it",
-        "body": "The job goes to vetted pros nearby. One accepts, plows and salts — overnight if it's a storm."
+        "body": "The job goes to vetted pros nearby. One accepts and plows — overnight if it's a storm."
       },
       {
         "title": "Pay when it's done",
@@ -926,15 +928,15 @@
     "cards": {
       "single": {
         "title": "Single Driveway",
-        "body": "One standard driveway cleared and salted, with a photo-verified finish."
+        "body": "One standard driveway plowed and cleared, with a photo-verified finish."
       },
       "double": {
         "title": "Double Driveway",
-        "body": "Two-car and double-wide driveways, cleared and salted after the storm."
+        "body": "Two-car and double-wide driveways, plowed and cleared after the storm."
       },
       "walkway": {
         "title": "Walkway",
-        "body": "Add your front walk and steps to any driveway visit, salted for ice."
+        "body": "Add your front walk and steps to any driveway visit."
       },
       "premium": {
         "title": "Priority Premium",

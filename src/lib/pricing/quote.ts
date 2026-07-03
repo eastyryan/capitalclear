@@ -41,6 +41,9 @@ const WINTER_SURGE_MULTIPLIER = 1.1;
 /** Months (1-based) considered winter for snow-removal surge pricing. */
 const WINTER_MONTHS = new Set([12, 1, 2, 3]);
 
+/** Ontario HST — applied to the pre-tax subtotal at checkout. */
+export const HST_RATE = 0.13;
+
 export interface QuoteLineItem {
   labelKey: string;
   cents: number;
@@ -49,6 +52,13 @@ export interface QuoteLineItem {
 export interface Quote {
   baseCents: number;
   surgeMultiplier: number;
+  /** Pre-tax subtotal (base × surge). */
+  subtotalCents: number;
+  /** Ontario HST rate applied (e.g. 0.13). */
+  taxRate: number;
+  /** HST amount in cents. */
+  taxCents: number;
+  /** Grand total charged: subtotal + HST. */
   totalCents: number;
   isWinterSurge: boolean;
   lineItems: QuoteLineItem[];
@@ -101,7 +111,9 @@ function buildQuote(
     surgeEligible && month !== null && WINTER_MONTHS.has(month);
 
   const surgeMultiplier = isWinterSurge ? WINTER_SURGE_MULTIPLIER : 1;
-  const totalCents = Math.round(baseCents * surgeMultiplier);
+  const subtotalCents = Math.round(baseCents * surgeMultiplier);
+  const taxCents = Math.round(subtotalCents * HST_RATE);
+  const totalCents = subtotalCents + taxCents;
 
   const lineItems: QuoteLineItem[] = [
     { labelKey: 'Pricing.base', cents: baseCents },
@@ -110,9 +122,20 @@ function buildQuote(
   if (isWinterSurge) {
     lineItems.push({
       labelKey: 'Pricing.winterSurge',
-      cents: totalCents - baseCents,
+      cents: subtotalCents - baseCents,
     });
   }
 
-  return { baseCents, surgeMultiplier, totalCents, isWinterSurge, lineItems };
+  lineItems.push({ labelKey: 'Pricing.hst', cents: taxCents });
+
+  return {
+    baseCents,
+    surgeMultiplier,
+    subtotalCents,
+    taxRate: HST_RATE,
+    taxCents,
+    totalCents,
+    isWinterSurge,
+    lineItems,
+  };
 }

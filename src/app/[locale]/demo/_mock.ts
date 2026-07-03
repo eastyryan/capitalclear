@@ -116,7 +116,7 @@ export const ADMIN_USERS: AdminUserRow[] = [
 
 export const ADMIN_REVIEWS: AdminReviewRow[] = [
   { id: 'r1', rating: 5, comment: 'Driveway cleared before I woke up. Incredible.', created_at: '2026-02-09T13:00:00Z', reviewerName: 'Sarah Tremblay', proName: 'Marc Lefebvre' },
-  { id: 'r2', rating: 4, comment: 'Fast and tidy, salted the steps too.', created_at: '2026-02-07T13:00:00Z', reviewerName: 'Priya Sharma', proName: 'Marc Lefebvre' },
+  { id: 'r2', rating: 4, comment: 'Fast and tidy, did the steps too.', created_at: '2026-02-07T13:00:00Z', reviewerName: 'Priya Sharma', proName: 'Marc Lefebvre' },
   { id: 'r3', rating: 5, comment: null, created_at: '2026-02-05T13:00:00Z', reviewerName: 'Owen Gallagher', proName: 'Marc Lefebvre' }
 ];
 
