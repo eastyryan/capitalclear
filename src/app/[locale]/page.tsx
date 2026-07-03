@@ -88,6 +88,7 @@ export default async function LandingPage({
   const pricing = await getTranslations({ locale, namespace: 'PricingPage' });
 
   const premium = pricing.raw('premium') as { title: string; body: string }[];
+  const stats = home.raw('stats') as { value: string; label: string; desc: string }[];
 
   return (
     <main className="flex flex-1 flex-col pt-16">
@@ -122,6 +123,23 @@ export default async function LandingPage({
                 {home('heroPrimary')}
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ STATS — blue band (no heading) ============ */}
+      <section className="bg-primary text-primary-foreground">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            {stats.map((s) => (
+              <div key={s.label}>
+                <div className="font-heading text-4xl font-extrabold tracking-[-0.02em] md:text-5xl">
+                  {s.value}
+                </div>
+                <div className="mt-2 text-base font-semibold text-white">{s.label}</div>
+                <p className="mt-1.5 text-sm leading-relaxed text-white/75">{s.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
