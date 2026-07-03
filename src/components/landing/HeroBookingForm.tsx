@@ -79,7 +79,7 @@ export function HeroBookingForm() {
         </select>
       </div>
 
-      {/* Walkway add-on */}
+      {/* Walkway add-on — label + faded price inline; selection circle at right */}
       <button
         type="button"
         role="checkbox"
@@ -89,21 +89,23 @@ export function HeroBookingForm() {
           walkway ? 'border-primary bg-primary/10' : 'border-transparent bg-[var(--brand-50)] hover:bg-[var(--brand-100)]'
         }`}
       >
+        <span className="flex-1 text-base text-foreground">
+          {t('heroForm.walkway')}{' '}
+          <span className="font-mono text-sm text-muted-foreground">
+            +{money(WALKWAY_ADDON_CENTS)}
+          </span>
+        </span>
         <span
-          className={`flex size-5 shrink-0 items-center justify-center rounded-md border ${
+          className={`flex size-5 shrink-0 items-center justify-center rounded-full border ${
             walkway ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40'
           }`}
           aria-hidden
         >
           {walkway && (
-            <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="3">
+            <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3">
               <path d="M5 12l5 5L20 6" />
             </svg>
           )}
-        </span>
-        <span className="flex-1 text-base text-foreground">{t('heroForm.walkway')}</span>
-        <span className="font-mono text-sm font-semibold text-muted-foreground">
-          +{money(WALKWAY_ADDON_CENTS)}
         </span>
       </button>
 
