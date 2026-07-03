@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { ok, err, type ActionResult } from '@/lib/types';
 import { assertOttawaPostal } from '@/lib/geo/ottawa';
-import { getQuote } from '@/lib/pricing/quote';
+import { getQuote, getSnowQuote } from '@/lib/pricing/quote';
 import { canTransition, isCancellable } from '@/lib/jobs/status';
 import { getPaymentProvider } from '@/lib/payments/provider';
 import type { JobStatus, ServiceType } from '@/types/database.types';
@@ -46,6 +46,15 @@ const createJobSchema = z.object({
     .datetime({ offset: true })
     .refine((v) => !Number.isNaN(Date.parse(v)), { message: 'invalidDate' }),
   notes: z.string().trim().max(2000).optional(),
+  // Snow-removal package: driveway size + optional walkway add-on. Drives the
+  // server-side price for snow jobs; ignored for other service types.
+  driveway_size: z.enum(['single', 'double']).optional(),
+  walkway: z.boolean().optional(),
+  // Guest contact (booking without an account) + liability-waiver acceptance.
+  contact_name: z.string().trim().max(200).optional(),
+  contact_email: z.string().trim().email().max(320).optional(),
+  contact_phone: z.string().trim().max(40).optional(),
+  agreed_terms: z.boolean().optional(),
 });
 
 export type CreateJobInput = z.input<typeof createJobSchema>;
@@ -83,8 +92,24 @@ export async function createJob(
   // Validate input.
   const parsed = createJobSchema.safeParse(input);
   if (!parsed.success) return err('invalidInput');
-  const { service_type, address, postal_code, scheduled_for, notes } =
-    parsed.data;
+  const {
+    service_type,
+    address,
+    postal_code,
+    scheduled_for,
+    notes,
+    driveway_size,
+    walkway,
+    contact_name,
+    contact_email,
+    contact_phone,
+    agreed_terms,
+  } = parsed.data;
+
+  // Booking requires accepting the liability waiver.
+  if (agreed_terms === false) {
+    return err('invalidInput');
+  }
 
   // Geofence: Ottawa service area only.
   try {
@@ -93,9 +118,28 @@ export async function createJob(
     return err('outOfArea');
   }
 
-  // Price the job server-side; never trust a client-supplied amount.
-  const quote = getQuote(service_type, scheduled_for);
+  // Price the job server-side; never trust a client-supplied amount. Snow jobs
+  // price off the chosen package (driveway size + walkway); other services use
+  // their flat service base.
+  const quote =
+    service_type === 'snow_removal' && driveway_size
+      ? getSnowQuote({ size: driveway_size, walkway: walkway ?? false }, scheduled_for)
+      : getQuote(service_type, scheduled_for);
   const quotedPriceCents = quote.totalCents;
+
+  // Capture the package + guest contact in notes so the pro sees what was
+  // booked and who to reach (no dedicated columns for these yet).
+  const packageNote =
+    service_type === 'snow_removal' && driveway_size
+      ? `${driveway_size === 'double' ? 'Double driveway' : 'Single driveway'}${walkway ? ' + walkway' : ''}`
+      : null;
+  const contactNote =
+    contact_name || contact_email || contact_phone
+      ? `Contact: ${[contact_name, contact_email, contact_phone].filter(Boolean).join(' · ')}`
+      : null;
+  const combinedNotes = [packageNote, contactNote, notes?.trim() || null]
+    .filter(Boolean)
+    .join('\n\n');
 
   // Insert the job as 'posted' with no funds secured yet.
   let jobId: string;
@@ -109,7 +153,7 @@ export async function createJob(
         address,
         postal_code,
         scheduled_for,
-        notes: notes ?? null,
+        notes: combinedNotes || null,
         quoted_price_cents: quotedPriceCents,
         currency: 'CAD',
         payment_status: 'none',

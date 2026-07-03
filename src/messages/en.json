@@ -164,7 +164,26 @@
     "asapBody": "A vetted local pro is dispatched right away — first come, first served.",
     "asapLabel": "As soon as possible",
     "scheduleLaterTitle": "Schedule for later",
-    "scheduleLaterBody": "Pick a date and time — handy if a big storm is coming."
+    "scheduleLaterBody": "Pick a date and time — handy if a big storm is coming.",
+    "stepPackageTitle": "Choose your snow removal",
+    "stepDetailsTitle": "Your details",
+    "pkgSingleName": "Single Driveway",
+    "pkgSingleBody": "One standard driveway, cleared and salted.",
+    "pkgDoubleName": "Double Driveway",
+    "pkgDoubleBody": "Two-car or double-wide driveway, cleared and salted.",
+    "pkgWalkwayName": "Add a walkway",
+    "pkgWalkwayBody": "Front walk and steps, salted for ice.",
+    "guestNote": "No account needed — just your contact info so your pro can reach you and send photo proof.",
+    "name": "Full name",
+    "nameRequired": "Please enter your name.",
+    "email": "Email",
+    "emailInvalid": "Please enter a valid email.",
+    "phone": "Phone",
+    "reviewName": "Name",
+    "liabilityTitle": "Liability & terms",
+    "liabilityBody": "Capital Clear is a marketplace that connects you with independent snow-removal subcontractors. Capital Clear is not liable or responsible for any slip-and-fall injuries, or for any damage to your house, property, or belongings. The subcontractor who performs the work carries sole responsibility and liability for the service and any resulting injury or damage.",
+    "liabilityAgree": "I have read and agree to the Terms of Service and this liability waiver.",
+    "liabilityRequired": "Please accept the liability waiver to confirm your booking."
   },
   "HomeownerDashboard": {
     "title": "My jobs",
@@ -752,7 +771,10 @@
       {
         "heading": "Liability",
         "body": [
-          "Capital Clear provides the platform “as is” and is not liable for the acts or omissions of Clients or Pros. To the maximum extent permitted by law, our liability is limited to the amount paid for the affected booking."
+          "Capital Clear provides the platform “as is” and is a marketplace only — it does not perform snow removal and does not employ the Pros.",
+          "Capital Clear is not liable or responsible for any slip-and-fall or other personal injury, or for any damage to a Client's house, driveway, property, or belongings, arising from services booked through the platform.",
+          "The independent Pro (subcontractor) who performs the work carries sole responsibility and liability for the service and for any injury or damage resulting from it. Clients accept this waiver when confirming a booking.",
+          "To the maximum extent permitted by law, Capital Clear's liability is limited to the amount paid for the affected booking."
         ]
       },
       {

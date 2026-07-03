@@ -10,6 +10,31 @@ export const SERVICE_BASE_CENTS: Record<ServiceType, number> = {
   seasonal_maintenance: 12000,
 };
 
+// ---- Snow-removal packages ------------------------------------------------
+// The bookable snow-removal tiers. Driveway size sets the base price; the
+// walkway is an optional add-on that stacks on top.
+
+export type DrivewaySize = 'single' | 'double';
+
+/** Base price per driveway size, in integer cents (CAD). */
+export const DRIVEWAY_BASE_CENTS: Record<DrivewaySize, number> = {
+  single: 4500,
+  double: 5500,
+};
+
+/** Walkway + steps add-on, in integer cents (CAD). */
+export const WALKWAY_ADDON_CENTS = 2500;
+
+export interface SnowPackage {
+  size: DrivewaySize;
+  walkway: boolean;
+}
+
+/** Pre-surge base for a snow package (driveway + optional walkway). */
+export function snowPackageBaseCents({ size, walkway }: SnowPackage): number {
+  return DRIVEWAY_BASE_CENTS[size] + (walkway ? WALKWAY_ADDON_CENTS : 0);
+}
+
 /** Winter-surge multiplier applied to snow removal in snow months. */
 const WINTER_SURGE_MULTIPLIER = 1.1;
 
@@ -38,8 +63,30 @@ export function getQuote(
   service: ServiceType,
   scheduledFor?: Date | string | null,
 ): Quote {
-  const baseCents = SERVICE_BASE_CENTS[service];
+  return buildQuote(
+    SERVICE_BASE_CENTS[service],
+    service === 'snow_removal',
+    scheduledFor,
+  );
+}
 
+/**
+ * Quote a snow-removal package (driveway size + optional walkway add-on).
+ * Same winter-surge rules as getQuote, priced off the package base.
+ */
+export function getSnowQuote(
+  pkg: SnowPackage,
+  scheduledFor?: Date | string | null,
+): Quote {
+  return buildQuote(snowPackageBaseCents(pkg), true, scheduledFor);
+}
+
+/** Shared surge math for the quote builders. */
+function buildQuote(
+  baseCents: number,
+  surgeEligible: boolean,
+  scheduledFor?: Date | string | null,
+): Quote {
   const date =
     scheduledFor == null
       ? null
@@ -51,7 +98,7 @@ export function getQuote(
     date && !Number.isNaN(date.getTime()) ? date.getMonth() + 1 : null;
 
   const isWinterSurge =
-    service === 'snow_removal' && month !== null && WINTER_MONTHS.has(month);
+    surgeEligible && month !== null && WINTER_MONTHS.has(month);
 
   const surgeMultiplier = isWinterSurge ? WINTER_SURGE_MULTIPLIER : 1;
   const totalCents = Math.round(baseCents * surgeMultiplier);

@@ -164,7 +164,26 @@
     "asapBody": "Un pro local vérifié est envoyé immédiatement — premier arrivé, premier servi.",
     "asapLabel": "Dès que possible",
     "scheduleLaterTitle": "Planifier plus tard",
-    "scheduleLaterBody": "Choisissez une date et une heure — pratique si une grosse tempête approche."
+    "scheduleLaterBody": "Choisissez une date et une heure — pratique si une grosse tempête approche.",
+    "stepPackageTitle": "Choisissez votre déneigement",
+    "stepDetailsTitle": "Vos coordonnées",
+    "pkgSingleName": "Entrée simple",
+    "pkgSingleBody": "Une entrée standard, déneigée et salée.",
+    "pkgDoubleName": "Entrée double",
+    "pkgDoubleBody": "Entrée double ou deux voitures, déneigée et salée.",
+    "pkgWalkwayName": "Ajouter une allée",
+    "pkgWalkwayBody": "Allée et marches avant, salées contre la glace.",
+    "guestNote": "Aucun compte requis — seulement vos coordonnées pour que votre pro puisse vous joindre et envoyer la preuve photo.",
+    "name": "Nom complet",
+    "nameRequired": "Veuillez entrer votre nom.",
+    "email": "Courriel",
+    "emailInvalid": "Veuillez entrer un courriel valide.",
+    "phone": "Téléphone",
+    "reviewName": "Nom",
+    "liabilityTitle": "Responsabilité et conditions",
+    "liabilityBody": "Capital Clear est une place de marché qui vous met en relation avec des sous-traitants indépendants de déneigement. Capital Clear n'est pas responsable des blessures dues aux glissades et chutes, ni des dommages à votre maison, votre propriété ou vos biens. Le sous-traitant qui effectue le travail assume l'entière responsabilité du service et de toute blessure ou tout dommage en résultant.",
+    "liabilityAgree": "J'ai lu et j'accepte les conditions de service et cette décharge de responsabilité.",
+    "liabilityRequired": "Veuillez accepter la décharge de responsabilité pour confirmer votre réservation."
   },
   "HomeownerDashboard": {
     "title": "Mes travaux",
@@ -752,7 +771,10 @@
       {
         "heading": "Responsabilité",
         "body": [
-          "Capital Clear fournit la plateforme « telle quelle » et n’est pas responsable des actes ou omissions des Clients ou des Pros. Dans la mesure permise par la loi, notre responsabilité se limite au montant payé pour la réservation concernée."
+          "Capital Clear fournit la plateforme « telle quelle » et n'est qu'une place de marché — elle n'effectue pas de déneigement et n'emploie pas les Pros.",
+          "Capital Clear n'est pas responsable des glissades, chutes ou autres blessures corporelles, ni des dommages causés à la maison, l'entrée, la propriété ou les biens d'un Client dans le cadre des services réservés via la plateforme.",
+          "Le Pro indépendant (sous-traitant) qui effectue le travail assume l'entière responsabilité du service et de toute blessure ou tout dommage en résultant. Les Clients acceptent cette décharge en confirmant une réservation.",
+          "Dans la mesure maximale permise par la loi, la responsabilité de Capital Clear est limitée au montant payé pour la réservation concernée."
         ]
       },
       {

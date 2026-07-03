@@ -16,7 +16,13 @@ import { ServiceBadge } from '@/components/jobs/ServiceBadge';
 import { Money } from '@/components/Money';
 
 import { createJob } from '@/app/actions/jobs';
-import { getQuote } from '@/lib/pricing/quote';
+import {
+  getSnowQuote,
+  snowPackageBaseCents,
+  DRIVEWAY_BASE_CENTS,
+  WALKWAY_ADDON_CENTS,
+  type DrivewaySize,
+} from '@/lib/pricing/quote';
 import {
   isOttawaPostal,
   normalizePostal,
@@ -25,10 +31,10 @@ import {
 import type { MoneyLocale } from '@/lib/format/money';
 import type { ServiceType } from '@/types/database.types';
 
-// Snow-only product: every booking IS snow removal, done as fast as possible,
-// so there is no service-selection step. The date step remains for scheduling
-// ahead of an incoming storm.
-const TOTAL_STEPS = 5;
+// Snow-only product: every booking IS snow removal, done as fast as possible.
+// Step 1 picks the package (driveway size + optional walkway); the schedule
+// step remains for booking ahead of an incoming storm.
+const TOTAL_STEPS = 6;
 
 /** createJob error code -> Booking.* i18n key. */
 const ERROR_KEY: Record<string, string> = {
@@ -42,22 +48,34 @@ const ERROR_KEY: Record<string, string> = {
 
 interface WizardState {
   service: ServiceType | null;
+  size: DrivewaySize | null; // snow package: driveway size
+  walkway: boolean; // walkway + steps add-on
+  name: string; // guest contact — no account required
+  email: string;
+  phone: string;
   address: string;
   postal: string;
   asap: boolean; // ASAP is the default — clear as fast as possible
   date: string; // yyyy-mm-dd (only when scheduling for later)
   time: string; // HH:mm
   notes: string;
+  agreed: boolean; // liability waiver acceptance
 }
 
 const INITIAL: WizardState = {
   service: 'snow_removal',
+  size: null,
+  walkway: false,
+  name: '',
+  email: '',
+  phone: '',
   address: '',
   postal: '',
   asap: true,
   date: '',
   time: '',
   notes: '',
+  agreed: false,
 };
 
 /**
@@ -94,6 +112,9 @@ export function BookingWizard() {
   );
   const postalDirty = state.postal.trim().length > 0;
   const addressOk = state.address.trim().length > 0;
+  const nameOk = state.name.trim().length > 0;
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email.trim());
+  const detailsOk = nameOk && emailOk && addressOk && postalOk;
 
   // When scheduling for later, this is the chosen slot; for ASAP it stays null
   // and the timestamp is stamped at submit time (see `submit`).
@@ -107,21 +128,25 @@ export function BookingWizard() {
 
   const quote = useMemo(
     () =>
-      state.service ? getQuote(state.service, quoteDate ?? undefined) : null,
+      state.size
+        ? getSnowQuote({ size: state.size, walkway: state.walkway }, quoteDate ?? undefined)
+        : null,
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [state.service, state.asap, scheduledISO],
+    [state.size, state.walkway, state.asap, scheduledISO],
   );
 
   // Per-step gate for the Continue button.
   function canContinue(): boolean {
     switch (step) {
       case 1:
-        return addressOk && postalOk;
+        return state.size !== null;
       case 2:
-        return state.asap || scheduledISO !== null;
+        return detailsOk;
       case 3:
-        return true; // notes optional
+        return state.asap || scheduledISO !== null;
       case 4:
+        return true; // notes optional
+      case 5:
         return quote !== null;
       default:
         return true;
@@ -129,7 +154,8 @@ export function BookingWizard() {
   }
 
   const stepTitles = [
-    t('stepAddressTitle'),
+    t('stepPackageTitle'),
+    t('stepDetailsTitle'),
     t('stepScheduleTitle'),
     t('stepNotesTitle'),
     t('stepReviewTitle'),
@@ -145,13 +171,19 @@ export function BookingWizard() {
   }
 
   async function submit() {
-    if (!state.service) return;
+    if (!state.service || !state.size) return;
     // ASAP stamps the current time; scheduled uses the chosen slot.
     const when = state.asap ? new Date().toISOString() : scheduledISO;
     if (!when) return;
     setSubmitting(true);
     const res = await createJob({
       service_type: state.service,
+      driveway_size: state.size,
+      walkway: state.walkway,
+      contact_name: state.name.trim(),
+      contact_email: state.email.trim(),
+      contact_phone: state.phone.trim() || undefined,
+      agreed_terms: state.agreed,
       address: state.address.trim(),
       postal_code: normalizePostal(state.postal),
       scheduled_for: when,
@@ -177,6 +209,13 @@ export function BookingWizard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.asap, scheduledISO, locale]);
 
+  const packageLabel = useMemo(() => {
+    if (!state.size) return '';
+    const base = state.size === 'double' ? t('pkgDoubleName') : t('pkgSingleName');
+    return state.walkway ? `${base} + ${t('pkgWalkwayName')}` : base;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.size, state.walkway]);
+
   return (
     <div className="flex min-h-[60vh] flex-col">
       {/* Header + progress */}
@@ -194,18 +233,36 @@ export function BookingWizard() {
       {/* Step body */}
       <div className="flex-1">
         {step === 1 && (
-          <AddressStep
+          <PackageStep
+            size={state.size}
+            walkway={state.walkway}
+            onSize={(size) => patch({ size })}
+            onWalkway={(walkway) => patch({ walkway })}
+            locale={locale}
+          />
+        )}
+
+        {step === 2 && (
+          <DetailsStep
+            name={state.name}
+            email={state.email}
+            phone={state.phone}
             address={state.address}
             postal={state.postal}
+            nameOk={nameOk}
+            emailOk={emailOk}
             addressOk={addressOk}
             postalDirty={postalDirty}
             postalOk={postalOk}
+            onName={(name) => patch({ name })}
+            onEmail={(email) => patch({ email })}
+            onPhone={(phone) => patch({ phone })}
             onAddress={(address) => patch({ address })}
             onPostal={(postal) => patch({ postal })}
           />
         )}
 
-        {step === 2 && (
+        {step === 3 && (
           <ScheduleStep
             asap={state.asap}
             date={state.date}
@@ -216,13 +273,14 @@ export function BookingWizard() {
           />
         )}
 
-        {step === 3 && (
+        {step === 4 && (
           <NotesStep value={state.notes} onChange={(notes) => patch({ notes })} />
         )}
 
-        {step === 4 && quote && (
+        {step === 5 && quote && (
           <ReviewStep
             service={state.service!}
+            packageLabel={packageLabel}
             address={state.address.trim()}
             postal={normalizePostal(state.postal)}
             scheduledLabel={scheduledLabel}
@@ -231,14 +289,18 @@ export function BookingWizard() {
           />
         )}
 
-        {step === 5 && quote && (
+        {step === 6 && quote && (
           <ConfirmStep
             service={state.service!}
+            packageLabel={packageLabel}
+            name={state.name.trim()}
             address={state.address.trim()}
             scheduledLabel={scheduledLabel}
             notes={state.notes.trim()}
             quote={quote}
             locale={locale}
+            agreed={state.agreed}
+            onAgree={(agreed) => patch({ agreed })}
           />
         )}
       </div>
@@ -272,7 +334,7 @@ export function BookingWizard() {
               type="button"
               className="h-11 flex-1"
               onClick={submit}
-              disabled={submitting}
+              disabled={submitting || !state.agreed}
             >
               {submitting ? (
                 <>
@@ -327,31 +389,197 @@ function StepDots({ step, total }: { step: number; total: number }) {
 }
 
 // ---------------------------------------------------------------------------
-// Step 1 — Address + postal
+// Step 1 — Snow removal package (driveway size + walkway add-on)
 // ---------------------------------------------------------------------------
 
-function AddressStep({
+function PackageStep({
+  size,
+  walkway,
+  onSize,
+  onWalkway,
+  locale,
+}: {
+  size: DrivewaySize | null;
+  walkway: boolean;
+  onSize: (s: DrivewaySize) => void;
+  onWalkway: (v: boolean) => void;
+  locale: MoneyLocale;
+}) {
+  const t = useTranslations('Booking');
+  const sizes: { key: DrivewaySize; name: string; body: string }[] = [
+    { key: 'single', name: t('pkgSingleName'), body: t('pkgSingleBody') },
+    { key: 'double', name: t('pkgDoubleName'), body: t('pkgDoubleBody') },
+  ];
+
+  return (
+    <div className="space-y-5">
+      <div className="space-y-3" role="radiogroup" aria-label={t('stepPackageTitle')}>
+        {sizes.map((s) => {
+          const selected = size === s.key;
+          return (
+            <button
+              key={s.key}
+              type="button"
+              role="radio"
+              aria-checked={selected}
+              onClick={() => onSize(s.key)}
+              className={cn(
+                'flex w-full items-start justify-between gap-3 rounded-xl border p-4 text-left transition-colors',
+                'min-h-[76px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                selected ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-primary/50',
+              )}
+            >
+              <span>
+                <span className="text-base font-semibold text-foreground">{s.name}</span>
+                <span className="mt-1 block text-sm text-muted-foreground">{s.body}</span>
+              </span>
+              <span className="flex shrink-0 flex-col items-end gap-1">
+                <Money
+                  cents={DRIVEWAY_BASE_CENTS[s.key]}
+                  locale={locale}
+                  className="font-mono text-lg font-semibold text-foreground"
+                />
+                <RadioDot selected={selected} />
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Walkway add-on toggle */}
+      <button
+        type="button"
+        role="checkbox"
+        aria-checked={walkway}
+        onClick={() => onWalkway(!walkway)}
+        className={cn(
+          'flex w-full items-start justify-between gap-3 rounded-xl border p-4 text-left transition-colors',
+          walkway ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-primary/50',
+        )}
+      >
+        <span>
+          <span className="text-base font-semibold text-foreground">{t('pkgWalkwayName')}</span>
+          <span className="mt-1 block text-sm text-muted-foreground">{t('pkgWalkwayBody')}</span>
+        </span>
+        <span className="flex shrink-0 flex-col items-end gap-1">
+          <span className="font-mono text-lg font-semibold text-foreground">
+            +<Money cents={WALKWAY_ADDON_CENTS} locale={locale} />
+          </span>
+          <span
+            className={cn(
+              'mt-0.5 flex size-5 items-center justify-center rounded-md border',
+              walkway ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40',
+            )}
+            aria-hidden
+          >
+            {walkway && <Check className="size-3.5" />}
+          </span>
+        </span>
+      </button>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Step 2 — Address + postal
+// ---------------------------------------------------------------------------
+
+function DetailsStep({
+  name,
+  email,
+  phone,
   address,
   postal,
+  nameOk,
+  emailOk,
   addressOk,
   postalDirty,
   postalOk,
+  onName,
+  onEmail,
+  onPhone,
   onAddress,
   onPostal,
 }: {
+  name: string;
+  email: string;
+  phone: string;
   address: string;
   postal: string;
+  nameOk: boolean;
+  emailOk: boolean;
   addressOk: boolean;
   postalDirty: boolean;
   postalOk: boolean;
+  onName: (v: string) => void;
+  onEmail: (v: string) => void;
+  onPhone: (v: string) => void;
   onAddress: (v: string) => void;
   onPostal: (v: string) => void;
 }) {
   const t = useTranslations('Booking');
+  const tc = useTranslations('Common');
   const showPostalError = postalDirty && !postalOk;
+  const showEmailError = email.trim().length > 0 && !emailOk;
 
   return (
     <div className="space-y-5">
+      {/* No account needed — guest contact details */}
+      <p className="rounded-lg border border-border bg-[var(--brand-50)] px-3.5 py-3 text-sm text-muted-foreground">
+        {t('guestNote')}
+      </p>
+
+      <div className="space-y-2">
+        <Label htmlFor="name">{t('name')}</Label>
+        <Input
+          id="name"
+          name="name"
+          autoComplete="name"
+          value={name}
+          onChange={(e) => onName(e.target.value)}
+          className="h-11"
+          placeholder="Jane Doe"
+        />
+        {!nameOk && name.length > 0 && (
+          <p className="text-sm text-[var(--status-danger)]">{t('nameRequired')}</p>
+        )}
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="email">{t('email')}</Label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          value={email}
+          onChange={(e) => onEmail(e.target.value)}
+          className={cn('h-11', showEmailError && 'border-[var(--status-danger)]')}
+          aria-invalid={showEmailError}
+          placeholder="jane@example.com"
+        />
+        {showEmailError && (
+          <p className="text-sm text-[var(--status-danger)]">{t('emailInvalid')}</p>
+        )}
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <Label htmlFor="phone">{t('phone')}</Label>
+          <span className="text-xs text-muted-foreground">{tc('optional')}</span>
+        </div>
+        <Input
+          id="phone"
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          value={phone}
+          onChange={(e) => onPhone(e.target.value)}
+          className="h-11"
+          placeholder="613 555 0199"
+        />
+      </div>
+
       <div className="space-y-2">
         <Label htmlFor="address">{t('address')}</Label>
         <Input
@@ -556,6 +784,7 @@ function NotesStep({
 
 function ReviewStep({
   service,
+  packageLabel,
   address,
   postal,
   scheduledLabel,
@@ -563,10 +792,11 @@ function ReviewStep({
   locale,
 }: {
   service: ServiceType;
+  packageLabel: string;
   address: string;
   postal: string;
   scheduledLabel: string;
-  quote: ReturnType<typeof getQuote>;
+  quote: ReturnType<typeof getSnowQuote>;
   locale: MoneyLocale;
 }) {
   const t = useTranslations('Booking');
@@ -576,7 +806,10 @@ function ReviewStep({
       {/* Booking summary */}
       <Card className="gap-0 divide-y divide-border p-0">
         <SummaryRow label={t('reviewService')}>
-          <ServiceBadge service={service} />
+          <div className="flex flex-col items-end gap-1">
+            <ServiceBadge service={service} />
+            <span className="text-muted-foreground">{packageLabel}</span>
+          </div>
         </SummaryRow>
         <SummaryRow label={t('reviewAddress')}>
           <span className="text-right">
@@ -632,18 +865,26 @@ function ReviewStep({
 
 function ConfirmStep({
   service,
+  packageLabel,
+  name,
   address,
   scheduledLabel,
   notes,
   quote,
   locale,
+  agreed,
+  onAgree,
 }: {
   service: ServiceType;
+  packageLabel: string;
+  name: string;
   address: string;
   scheduledLabel: string;
   notes: string;
-  quote: ReturnType<typeof getQuote>;
+  quote: ReturnType<typeof getSnowQuote>;
   locale: MoneyLocale;
+  agreed: boolean;
+  onAgree: (v: boolean) => void;
 }) {
   const t = useTranslations('Booking');
 
@@ -651,7 +892,13 @@ function ConfirmStep({
     <div className="space-y-5">
       <Card className="gap-0 divide-y divide-border p-0">
         <SummaryRow label={t('reviewService')}>
-          <ServiceBadge service={service} />
+          <div className="flex flex-col items-end gap-1">
+            <ServiceBadge service={service} />
+            <span className="text-muted-foreground">{packageLabel}</span>
+          </div>
+        </SummaryRow>
+        <SummaryRow label={t('reviewName')}>
+          <span className="text-right">{name}</span>
         </SummaryRow>
         <SummaryRow label={t('reviewAddress')}>
           <span className="text-right">{address}</span>
@@ -672,6 +919,30 @@ function ConfirmStep({
           />
         </SummaryRow>
       </Card>
+
+      {/* Liability waiver — must be accepted to confirm */}
+      <div className="rounded-xl border border-border bg-card p-4">
+        <p className="eyebrow mb-2">{t('liabilityTitle')}</p>
+        <p className="text-sm leading-relaxed text-muted-foreground">{t('liabilityBody')}</p>
+        <button
+          type="button"
+          role="checkbox"
+          aria-checked={agreed}
+          onClick={() => onAgree(!agreed)}
+          className="mt-4 flex w-full items-start gap-3 rounded-lg border border-border p-3 text-left transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          <span
+            className={cn(
+              'mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md border',
+              agreed ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40',
+            )}
+            aria-hidden
+          >
+            {agreed && <Check className="size-3.5" />}
+          </span>
+          <span className="text-sm font-medium text-foreground">{t('liabilityAgree')}</span>
+        </button>
+      </div>
     </div>
   );
 }
