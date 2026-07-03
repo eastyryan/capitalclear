@@ -20,7 +20,9 @@
     "language": "Language",
     "english": "English",
     "french": "Français",
-    "contact": "Contact"
+    "contact": "Contact",
+    "loginSignup": "Log in / Sign up",
+    "bookNow": "Book now"
   },
   "Footer": {
     "tagline": "On-demand snow removal, lawn care, and seasonal maintenance for the National Capital Region.",
@@ -921,7 +923,10 @@
       "address": "Home address",
       "size": "Driveway size",
       "seePrices": "See prices",
-      "recentActivity": "Log in to see your recent activity"
+      "recentActivity": "Log in to see your recent activity",
+      "walkway": "Add a walkway",
+      "sizeSingle": "Single driveway",
+      "sizeDouble": "Double driveway"
     },
     "suggestionsTitle": "Services",
     "details": "Details",

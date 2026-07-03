@@ -49,13 +49,13 @@ export function Navbar() {
         <div className="hidden items-center gap-5 lg:flex">
           <LocaleSwitcher onBrand />
           <Link href="/demo" className="text-sm font-medium text-white/85 hover:text-white">
-            {t('login')}
+            {t('loginSignup')}
           </Link>
           <Link
-            href="/book"
+            href="/demo/book"
             className="rounded-full bg-white px-5 py-2.5 text-sm font-bold leading-none text-primary transition-transform active:scale-95"
           >
-            {t('register')}
+            {t('bookNow')}
           </Link>
         </div>
 

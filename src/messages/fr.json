@@ -20,7 +20,9 @@
     "language": "Langue",
     "english": "English",
     "french": "Français",
-    "contact": "Contact"
+    "contact": "Contact",
+    "loginSignup": "Connexion / Inscription",
+    "bookNow": "Réserver"
   },
   "Footer": {
     "tagline": "Déneigement, entretien de pelouse et entretien saisonnier à la demande pour la région de la capitale nationale.",
@@ -921,7 +923,10 @@
       "address": "Adresse du domicile",
       "size": "Taille de l'entrée",
       "seePrices": "Voir les prix",
-      "recentActivity": "Connectez-vous pour voir votre activité récente"
+      "recentActivity": "Connectez-vous pour voir votre activité récente",
+      "walkway": "Ajouter une allée",
+      "sizeSingle": "Entrée simple",
+      "sizeDouble": "Entrée double"
     },
     "suggestionsTitle": "Services",
     "details": "Détails",

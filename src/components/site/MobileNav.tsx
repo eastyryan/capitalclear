@@ -77,17 +77,17 @@ export function MobileNav({ links }: { links: NavLink[] }) {
               />
             }
           >
-            {t('login')}
+            {t('loginSignup')}
           </SheetClose>
           <SheetClose
             render={
               <Link
-                href="/book"
+                href="/demo/book"
                 className="bg-gradient-ember flex h-11 items-center justify-center rounded-lg text-sm font-medium text-primary-foreground"
               />
             }
           >
-            {t('bookSnow')}
+            {t('bookNow')}
           </SheetClose>
         </div>
       </SheetContent>

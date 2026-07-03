@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { Footer } from '@/components/site/Footer';
+import { HeroBookingForm } from '@/components/landing/HeroBookingForm';
 
 /**
  * Uber.com-style landing rendered in the Azure design system. Structure
@@ -109,32 +110,8 @@ export default async function LandingPage({
               {t('heroTitle')}
             </h1>
 
-            {/* Request form (visual, routes to the booking wizard) */}
-            <div className="mt-9 flex max-w-md flex-col gap-3">
-              <span className="inline-flex items-center gap-2 self-start rounded-full bg-[var(--brand-100)] px-4 py-2.5 text-sm font-medium text-foreground">
-                <Clock className="size-4 text-primary" aria-hidden />
-                {t('heroForm.clearNow')}
-              </span>
-              <Link
-                href="/book"
-                className="flex h-14 items-center gap-3 rounded-xl bg-[var(--brand-50)] px-4 transition-shadow hover:shadow-[inset_0_0_0_2px_var(--color-primary)]"
-              >
-                <span className="size-2.5 shrink-0 rounded-full bg-primary" aria-hidden />
-                <span className="text-base text-muted-foreground">{t('heroForm.address')}</span>
-                <Send className="ml-auto size-5 text-primary" aria-hidden />
-              </Link>
-              <Link
-                href="/book"
-                className="flex h-14 items-center gap-3 rounded-xl bg-[var(--brand-50)] px-4 transition-shadow hover:shadow-[inset_0_0_0_2px_var(--color-primary)]"
-              >
-                <span className="size-2.5 shrink-0 rounded-[2px] bg-foreground" aria-hidden />
-                <span className="text-base text-muted-foreground">{t('heroForm.size')}</span>
-              </Link>
-              <div className="mt-3 flex flex-wrap items-center gap-6">
-                <BtnPrimary href="/book">{t('heroForm.seePrices')}</BtnPrimary>
-                <BtnLink href="/demo">{t('heroForm.recentActivity')}</BtnLink>
-              </div>
-            </div>
+            {/* Functional request form — carries fields to the booking steps */}
+            <HeroBookingForm />
           </div>
 
           {/* Brand art panel (Azure context__art) */}
@@ -146,7 +123,7 @@ export default async function LandingPage({
             <div className="absolute inset-x-5 bottom-5 flex items-center justify-between gap-3 rounded-lg bg-[rgba(11,42,74,.82)] px-4 py-3.5 backdrop-blur-[2px]">
               <span className="text-sm font-bold text-white">{home('ctaTitle')}</span>
               <Link
-                href="/book"
+                href="/demo/book"
                 className="rounded-lg bg-white px-4 py-2 text-sm font-bold text-primary"
               >
                 {home('heroPrimary')}
@@ -216,7 +193,7 @@ export default async function LandingPage({
                   <span aria-hidden />
                 )}
                 <Link
-                  href="/book"
+                  href="/demo/book"
                   className="rounded-full bg-[var(--brand-50)] px-4 py-2 text-sm font-medium text-primary shadow-[inset_0_0_0_1px_var(--brand-300)] transition-colors hover:bg-[var(--brand-100)]"
                 >
                   {t('details')}
@@ -285,7 +262,7 @@ export default async function LandingPage({
 
                 <div className="mt-8">
                   <Link
-                    href="/book"
+                    href="/demo/book"
                     className={`inline-flex w-full items-center justify-center rounded-lg px-6 py-3.5 text-base font-medium leading-none transition-colors ${
                       featured
                         ? 'bg-primary text-primary-foreground hover:bg-[var(--primary-hover)]'
@@ -352,7 +329,7 @@ export default async function LandingPage({
         </h2>
         <p className="mt-4 max-w-xl text-base text-muted-foreground">{home('ctaSubtitle')}</p>
         <div className="mt-8 flex flex-wrap items-center gap-6">
-          <BtnPrimary href="/book">{home('ctaPrimary')}</BtnPrimary>
+          <BtnPrimary href="/demo/book">{home('ctaPrimary')}</BtnPrimary>
           <BtnLink href="/become-a-pro">{home('ctaSecondary')}</BtnLink>
         </div>
       </section>

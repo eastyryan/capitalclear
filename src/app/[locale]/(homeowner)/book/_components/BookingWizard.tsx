@@ -91,14 +91,29 @@ function toISO(date: string, time: string): string | null {
   return d.toISOString();
 }
 
-export function BookingWizard() {
+export function BookingWizard({
+  initialSize = null,
+  initialWalkway = false,
+  initialAddress = '',
+}: {
+  // Prefilled from the homepage hero "See prices" form. When a size is passed
+  // the package step is already answered, so we open on the details step.
+  initialSize?: DrivewaySize | null;
+  initialWalkway?: boolean;
+  initialAddress?: string;
+} = {}) {
   const t = useTranslations('Booking');
   const tc = useTranslations('Common');
   const locale = useLocale() as MoneyLocale;
   const router = useRouter();
 
-  const [step, setStep] = useState(1);
-  const [state, setState] = useState<WizardState>(INITIAL);
+  const [step, setStep] = useState(initialSize ? 2 : 1);
+  const [state, setState] = useState<WizardState>({
+    ...INITIAL,
+    size: initialSize,
+    walkway: initialWalkway,
+    address: initialAddress,
+  });
   const [submitting, setSubmitting] = useState(false);
 
   function patch(next: Partial<WizardState>) {

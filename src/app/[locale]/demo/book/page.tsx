@@ -1,13 +1,20 @@
 import { setRequestLocale } from 'next-intl/server';
 import { BookingWizard } from '../../(homeowner)/book/_components/BookingWizard';
+import type { DrivewaySize } from '@/lib/pricing/quote';
 
 export default async function DemoBook({
-  params
+  params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ size?: string; walkway?: string; address?: string }>;
 }) {
   const { locale } = await params;
+  const sp = await searchParams;
   setRequestLocale(locale);
+
+  const initialSize: DrivewaySize | null =
+    sp.size === 'single' || sp.size === 'double' ? sp.size : null;
 
   return (
     <main className="mx-auto w-full max-w-xl px-4 pb-32 pt-6 sm:pt-10">
@@ -15,7 +22,11 @@ export default async function DemoBook({
         Walk through the booking steps and live quote. The final confirm needs the real backend, so
         it won&rsquo;t submit in the demo.
       </p>
-      <BookingWizard />
+      <BookingWizard
+        initialSize={initialSize}
+        initialWalkway={sp.walkway === '1'}
+        initialAddress={sp.address ?? ''}
+      />
     </main>
   );
 }
