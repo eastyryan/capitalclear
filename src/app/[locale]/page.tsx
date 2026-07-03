@@ -109,26 +109,17 @@ export default async function LandingPage({
             <HeroBookingForm />
           </div>
 
-          {/* Ottawa service-area map — brand-tinted (grayscale + blue overlay) */}
-          <div className="relative isolate hidden min-h-[420px] overflow-hidden rounded-xl border border-border lg:block">
+          {/* Ottawa service-area map */}
+          <div className="relative hidden min-h-[420px] overflow-hidden rounded-xl border border-border lg:block">
             <iframe
               title="Capital Clear service area — Ottawa"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97855.9701373166!2d-75.81279066899162!3d45.3448567417372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x8a6a51e131dd15ed!2sOttawa%2C%20ON!5e0!3m2!1sen!2sca!4v1783042429550!5m2!1sen!2sca"
               className="absolute inset-0 h-full w-full"
-              style={{ border: 0, filter: 'grayscale(1) brightness(1.05) contrast(0.95)' }}
+              style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             />
-            {/* Brand-blue wash so the map reads on-brand */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 bg-[var(--brand-500)] opacity-30 mix-blend-multiply"
-            />
-            {/* Service-area label */}
-            <div className="pointer-events-none absolute left-5 top-5 rounded-full bg-[rgba(11,42,74,.82)] px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white backdrop-blur-[2px]">
-              {home('heroEyebrow')}
-            </div>
           </div>
         </div>
       </section>
@@ -181,7 +172,7 @@ export default async function LandingPage({
                       {pricing('premiumKicker')}
                     </span>
                   ) : addon ? (
-                    <span className="rounded-sm bg-[var(--brand-100)] px-2.5 py-1 text-xs font-bold text-[var(--brand-700)]">
+                    <span className="rounded-sm bg-primary px-2.5 py-1 text-xs font-bold text-white">
                       {pricing('addOn')}
                     </span>
                   ) : null}
@@ -211,7 +202,7 @@ export default async function LandingPage({
                   <Link
                     href="/demo/book"
                     className={`inline-flex w-full items-center justify-center rounded-lg px-6 py-3.5 text-base font-medium leading-none transition-colors ${
-                      featured
+                      featured || addon
                         ? 'bg-primary text-primary-foreground hover:bg-[var(--primary-hover)]'
                         : 'bg-[var(--brand-100)] text-foreground hover:bg-[var(--brand-200)]'
                     }`}
