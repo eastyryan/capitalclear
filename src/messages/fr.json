@@ -189,7 +189,8 @@
     "subtotal": "Sous-total",
     "hst": "TVH (13 %)",
     "pkgPremiumName": "Priorité Premium",
-    "pkgPremiumBody": "Évitez la file pendant les tempêtes — votre travail est traité avant les réservations standards."
+    "pkgPremiumBody": "Évitez la file pendant les tempêtes — votre travail est traité avant les réservations standards.",
+    "cancelNote": "Annulation gratuite tant qu'aucun pro n'a accepté votre travail. Si aucun pro n'accepte, rien ne vous est facturé."
   },
   "HomeownerDashboard": {
     "title": "Mes travaux",
@@ -781,7 +782,10 @@
       {
         "heading": "Annulations",
         "body": [
-          "Les Clients et les Pros peuvent annuler un travail selon les règles d’annulation affichées au moment de la réservation. Des annulations tardives répétées peuvent entraîner des restrictions du compte."
+          "Les Clients peuvent annuler sans frais tant qu'aucun Pro n'a accepté le travail. Une fois le travail accepté, l'annulation libère la préautorisation, mais des annulations tardives répétées peuvent entraîner des restrictions de compte.",
+          "Si un Pro est déjà en route ou sur place, la visite peut être facturée en totalité.",
+          "Si aucun Pro n'accepte votre travail dans un délai raisonnable, rien n'est facturé — la préautorisation est libérée automatiquement.",
+          "Si un déneigement terminé ne vous satisfait pas, ne l'approuvez pas : signalez-le au soutien dans les 48 heures et nous verrons avec le Pro pour une reprise ou un remboursement de la visite concernée."
         ]
       },
       {

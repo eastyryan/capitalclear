@@ -1011,6 +1011,11 @@ function ConfirmStep({
         </SummaryRow>
       </Card>
 
+      {/* Cancellation reassurance */}
+      <p className="rounded-lg bg-[var(--brand-50)] px-3.5 py-3 text-sm text-muted-foreground">
+        {t('cancelNote')}
+      </p>
+
       {/* Liability waiver — must be accepted to confirm */}
       <div className="rounded-xl border border-border bg-card p-4">
         <p className="eyebrow mb-2">{t('liabilityTitle')}</p>

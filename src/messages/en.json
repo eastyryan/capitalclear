@@ -189,7 +189,8 @@
     "subtotal": "Subtotal",
     "hst": "HST (13%)",
     "pkgPremiumName": "Priority Premium",
-    "pkgPremiumBody": "Skip the queue during storms — your job is dispatched ahead of standard bookings."
+    "pkgPremiumBody": "Skip the queue during storms — your job is dispatched ahead of standard bookings.",
+    "cancelNote": "Free cancellation until a pro accepts your job. If no pro accepts, you're never charged."
   },
   "HomeownerDashboard": {
     "title": "My jobs",
@@ -781,7 +782,10 @@
       {
         "heading": "Cancellations",
         "body": [
-          "Clients and Pros may cancel a job subject to the cancellation rules shown at the time of booking. Repeated late cancellations may result in account restrictions."
+          "Clients may cancel free of charge any time before a Pro accepts the job. Once a Pro has accepted, cancelling releases the payment hold but repeated late cancellations may result in account restrictions.",
+          "If a Pro is already en route or on site, the visit may be charged in full.",
+          "If no Pro accepts your job within a reasonable window, nothing is charged — the payment hold is released automatically.",
+          "If you're not satisfied with a completed clear, don't approve it: raise it through support within 48 hours and we'll work with the Pro on a re-clear or a refund of the affected visit."
         ]
       },
       {
