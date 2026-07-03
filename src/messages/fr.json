@@ -977,5 +977,15 @@
     "safetyTitle": "Chaque déneigement, vérifié",
     "safetyBody": "Chaque pro est vérifié avant d'accepter un travail, et chaque travail se termine par une preuve photo. Vous ne payez qu'une fois le travail vérifié — 0 $ d'avance.",
     "safetyCta": "Comment ça marche"
+  },
+  "AreaCheck": {
+    "title": "Êtes-vous dans notre zone de service ?",
+    "subtitle": "Entrez votre code postal — nous vous dirons instantanément si un pro Capital Clear peut se rendre chez vous.",
+    "placeholder": "Entrez votre code postal (p. ex. K2P 1L4)",
+    "covered": "Vous êtes couvert — nous desservons votre secteur.",
+    "coveredIn": "Vous êtes couvert — nous desservons {area}.",
+    "outside": "Nous ne sommes pas encore dans votre secteur — nous prenons de l'expansion chaque saison.",
+    "invalid": "Cela ne ressemble pas encore à un code postal canadien — continuez à taper.",
+    "bookCta": "Réserver un déneigement"
   }
 }

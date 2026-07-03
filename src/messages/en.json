@@ -977,5 +977,15 @@
     "safetyTitle": "Every clear, verified",
     "safetyBody": "Every pro is vetted before they take a job, and every job ends with photo proof. You're only charged once the work is verified complete — $0 upfront.",
     "safetyCta": "How it works"
+  },
+  "AreaCheck": {
+    "title": "Are you in our service area?",
+    "subtitle": "Enter your postal code — we'll tell you instantly if a Capital Clear pro can reach you.",
+    "placeholder": "Enter your postal code (e.g. K2P 1L4)",
+    "covered": "You're covered — we serve your area.",
+    "coveredIn": "You're covered — we serve {area}.",
+    "outside": "We're not in your area yet — we're expanding across the region every season.",
+    "invalid": "That doesn't look like a Canadian postal code yet — keep typing.",
+    "bookCta": "Book a clear"
   }
 }

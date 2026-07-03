@@ -13,6 +13,7 @@ import {
 import { Link } from '@/i18n/navigation';
 import { Footer } from '@/components/site/Footer';
 import { HeroBookingForm } from '@/components/landing/HeroBookingForm';
+import { AreaChecker } from '@/components/landing/AreaChecker';
 
 /**
  * Uber.com-style landing rendered in the Azure design system. Structure
@@ -87,6 +88,7 @@ export default async function LandingPage({
   const t = await getTranslations({ locale, namespace: 'UberHome' });
   const home = await getTranslations({ locale, namespace: 'Home' });
   const pricing = await getTranslations({ locale, namespace: 'PricingPage' });
+  const area = await getTranslations({ locale, namespace: 'AreaCheck' });
 
   const premium = pricing.raw('premium') as { title: string; body: string }[];
   const stats = home.raw('stats') as { value: string; label: string; desc: string }[];
@@ -242,6 +244,19 @@ export default async function LandingPage({
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ SERVICE-AREA CHECK ============ */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8">
+          <h2 className="font-heading text-3xl font-extrabold tracking-[-0.02em] text-foreground md:text-4xl">
+            {area('title')}
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-base text-muted-foreground">{area('subtitle')}</p>
+          <div className="mt-8">
+            <AreaChecker />
           </div>
         </div>
       </section>
