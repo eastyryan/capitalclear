@@ -189,7 +189,7 @@
     "subtotal": "Sous-total",
     "hst": "TVH (13 %)",
     "pkgPremiumName": "Priorité Premium",
-    "pkgPremiumBody": "Évitez la file pendant les tempêtes et bloquez votre prix pour la saison."
+    "pkgPremiumBody": "Évitez la file pendant les tempêtes — votre travail est traité avant les réservations standards."
   },
   "HomeownerDashboard": {
     "title": "Mes travaux",
@@ -451,28 +451,28 @@
       "premium": {
         "name": "Priorité Premium",
         "features": [
-          "Priorité pendant les tempêtes",
-          "Prix bloqué pour la saison",
-          "Sans contrat — annulez à tout moment"
+          "En premier pendant les tempêtes",
+          "Traité avant les réservations standards",
+          "Simple ajout unique — sans abonnement"
         ]
       }
     },
     "premiumKicker": "Optionnel",
     "premiumTitle": "Priorité Premium —",
     "premiumAccent": "sautez la file.",
-    "premiumSubtitle": "Ce n'est pas un contrat à tarif fixe. Le premium est un supplément optionnel qui vous place en premier lors des tempêtes et verrouille votre prix pour la saison.",
+    "premiumSubtitle": "Le premium est un ajout unique optionnel qui vous place en tête de file pendant les tempêtes — votre travail est traité avant les réservations standards, pour 10 $ fixe.",
     "premium": [
       {
-        "title": "Premier en file",
-        "body": "Lors d’une tempête, les membres premium sont dépêchés en premier — premier arrivé, premier servi, avant les travaux standards."
+        "title": "En premier",
+        "body": "Pendant une tempête, les réservations premium sont traitées en premier — avant les travaux standards quand la demande grimpe."
       },
       {
-        "title": "Prix verrouillé",
-        "body": "Votre prix par visite est garanti pour la saison. Aucune majoration, aucune surprise, même sous les plus fortes neiges."
+        "title": "Réponse plus rapide",
+        "body": "Votre travail passe devant la file, donc un pro local arrive plus tôt une fois la neige cessée."
       },
       {
-        "title": "Sans contrat",
-        "body": "Vous payez toujours par visite. Le premium garantit seulement votre place et votre tarif — annulable en tout temps."
+        "title": "Frais uniques",
+        "body": "10 $ fixe ajouté à cette réservation seulement. Sans abonnement ni engagement — ajoutez-le quand vous voulez."
       }
     ],
     "ctaTitle": "Faites-vous dégager cet hiver.",

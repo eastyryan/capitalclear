@@ -32,13 +32,14 @@ const TIERS: {
   key: 'single' | 'double' | 'walkway' | 'premium';
   cents: number;
   Icon: LucideIcon;
-  featured?: boolean;
+  featured?: boolean; // "Most booked" badge + blue ring
+  outlined?: boolean; // blue ring only (pairs visually with the featured tier)
   addon?: boolean;
   premium?: boolean;
 }[] = [
-  { key: 'single', cents: 4500, Icon: Car },
-  { key: 'double', cents: 5500, Icon: Truck, featured: true },
-  { key: 'walkway', cents: 2500, Icon: Footprints, addon: true },
+  { key: 'single', cents: 4500, Icon: Car, featured: true },
+  { key: 'double', cents: 5500, Icon: Truck },
+  { key: 'walkway', cents: 2500, Icon: Footprints, addon: true, outlined: true },
   { key: 'premium', cents: 1000, Icon: Crown, premium: true }
 ];
 
@@ -150,14 +151,14 @@ export default async function LandingPage({
         <p className="mt-3 max-w-2xl text-base text-muted-foreground">{pricing('subtitle')}</p>
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {TIERS.map(({ key, cents, Icon, featured, addon, premium }) => {
+          {TIERS.map(({ key, cents, Icon, featured, outlined, addon, premium }) => {
             const features = pricing.raw(`tiers.${key}.features`) as string[];
             const priceLabel = premium ? pricing('flat') : pricing('perVisit');
             return (
               <div
                 key={key}
                 className={`flex flex-col rounded-[20px] border bg-card p-7 ${
-                  featured
+                  featured || outlined
                     ? 'border-transparent shadow-[inset_0_0_0_2px_var(--color-primary)]'
                     : 'border-border'
                 }`}

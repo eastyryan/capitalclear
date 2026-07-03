@@ -189,7 +189,7 @@
     "subtotal": "Subtotal",
     "hst": "HST (13%)",
     "pkgPremiumName": "Priority Premium",
-    "pkgPremiumBody": "Skip the queue during storms and lock your per-visit price for the season."
+    "pkgPremiumBody": "Skip the queue during storms — your job is dispatched ahead of standard bookings."
   },
   "HomeownerDashboard": {
     "title": "My jobs",
@@ -452,27 +452,27 @@
         "name": "Priority Premium",
         "features": [
           "First in line during storms",
-          "Locked-in seasonal price",
-          "No contract — cancel anytime"
+          "Dispatched ahead of standard bookings",
+          "Simple one-time add-on — no subscription"
         ]
       }
     },
     "premiumKicker": "Optional",
     "premiumTitle": "Priority Premium —",
     "premiumAccent": "skip the queue.",
-    "premiumSubtitle": "It's not a flat-rate contract. The premium is an optional add-on that puts you first in line during storms and locks your price for the season.",
+    "premiumSubtitle": "The premium is an optional one-time add-on that puts you first in line during storms — your job is dispatched ahead of standard bookings, for a flat $10.",
     "premium": [
       {
         "title": "First in line",
-        "body": "During a storm, premium members are dispatched first — first come, first served, ahead of standard jobs."
+        "body": "During a storm, premium bookings are dispatched first — ahead of standard jobs when demand spikes."
       },
       {
-        "title": "Locked-in price",
-        "body": "Your per-visit price is bonded for the season. No surge, no surprises, even in the heaviest snow."
+        "title": "Faster response",
+        "body": "Your job jumps the queue, so a local pro is on the way sooner after the snow stops."
       },
       {
-        "title": "No contract",
-        "body": "You still pay per visit. The premium just guarantees your spot and your rate — cancel anytime."
+        "title": "One-time fee",
+        "body": "A flat $10 added to this booking only. No subscription, no commitment — add it whenever you want."
       }
     ],
     "ctaTitle": "Get cleared this winter.",
