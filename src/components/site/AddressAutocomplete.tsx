@@ -63,14 +63,14 @@ export function AddressAutocomplete({
   useEffect(() => {
     if (!typingRef.current) return;
     const q = value.trim();
-    if (q.length < 3) {
-      setSuggestions([]);
-      setOpen(false);
-      return;
-    }
 
     const controller = new AbortController();
     const timer = setTimeout(async () => {
+      if (q.length < 3) {
+        setSuggestions([]);
+        setOpen(false);
+        return;
+      }
       setLoading(true);
       try {
         const url =
