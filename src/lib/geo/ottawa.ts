@@ -49,3 +49,58 @@ export function assertOttawaPostal(postal: string): void {
     throw new Error('OUT_OF_AREA');
   }
 }
+
+/**
+ * FSA -> neighbourhood label. Gives jobs a human place name ("The Glebe",
+ * "Barrhaven") from the postal code alone, without pro geolocation.
+ */
+export const FSA_NEIGHBOURHOODS: Record<string, string> = {
+  K1A: 'Downtown (Parliament)',
+  K1B: 'Blackburn Hamlet',
+  K1C: 'Orléans',
+  K1G: 'Alta Vista / Riverview',
+  K1H: 'Alta Vista',
+  K1J: 'Beacon Hill',
+  K1K: 'Overbrook',
+  K1L: 'Vanier',
+  K1M: 'Rockcliffe Park',
+  K1N: 'ByWard Market / Sandy Hill',
+  K1P: 'Downtown',
+  K1R: 'Centretown West',
+  K1S: 'The Glebe / Old Ottawa South',
+  K1T: 'Greenboro / South Keys',
+  K1V: 'Hunt Club / Riverside',
+  K1W: 'Orléans (Chapel Hill)',
+  K1X: 'Leitrim',
+  K1Y: 'Hintonburg / Civic Hospital',
+  K1Z: 'Westboro / Carlington',
+  K2A: 'Highland Park / McKellar',
+  K2B: 'Britannia / Bayshore',
+  K2C: 'Carleton Heights',
+  K2E: 'Fisher Heights',
+  K2G: 'Centrepointe',
+  K2H: 'Bells Corners',
+  K2J: 'Barrhaven',
+  K2K: 'Kanata North',
+  K2L: 'Kanata (Glen Cairn)',
+  K2M: 'Kanata (Bridlewood)',
+  K2P: 'Centretown',
+  K2R: 'Barrhaven South',
+  K2S: 'Stittsville',
+  K2T: 'Kanata (Beaverbrook)',
+  K2V: 'Kanata (Hazeldean)',
+  K2W: 'Kanata North',
+  K4A: 'Orléans (Fallingbrook)',
+  K4B: 'Navan',
+  K4C: 'Cumberland',
+  K0A: 'Rural Ottawa',
+  K4M: 'Manotick',
+  K4P: 'Greely',
+  K4R: 'Rural Ottawa (Russell)',
+};
+
+/** Neighbourhood for a postal code, or null when the FSA is unknown. */
+export function neighbourhoodOf(postal: string | null | undefined): string | null {
+  if (!postal) return null;
+  return FSA_NEIGHBOURHOODS[fsaOf(postal)] ?? null;
+}

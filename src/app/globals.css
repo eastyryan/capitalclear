@@ -5,11 +5,12 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
-  Capital Clear design system — warm-red cinematic dark theme.
-  The app is DARK-FIRST: `:root` carries the dark palette so shadcn/ui
-  components (which key off --background, --primary, --border, etc.) render
-  correctly without a `.dark` wrapper. A `.dark` block mirrors the same
-  values so explicit `dark`-scoped utilities also resolve.
+  Capital Clear design system — "Azure": monochromatic blue, light-first.
+  Six brand blues do the identity work, two derived darker steps drive
+  hover/pressed states, and a navy ink keeps text legible. Raw blues are
+  never used in components — everything flows through the semantic tokens
+  below (shadcn/ui keys off --background, --primary, --border, etc.).
+  Type: Archivo (heavy display), Inter (body), JetBrains Mono (data).
 */
 
 @theme inline {
@@ -17,11 +18,23 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-display);
+
+  /* Brand blue ramp exposed as Tailwind colors (bg-brand-500, text-brand-700…) */
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
 
   /* Brand + status tokens exposed as Tailwind colors (bg-ember, text-ice…) */
   --color-ember: var(--ember);
   --color-ice: var(--ice);
+  --color-brand-green: var(--brand-green);
+  --color-maple: var(--maple);
   --color-slate: var(--slate);
   --color-band-light: var(--band-light);
   --color-status-success: var(--status-success);
@@ -69,110 +82,129 @@
 }
 
 :root {
-  /* 8px corners */
-  --radius: 0.5rem;
+  /* Azure radius scale: soft 12px corners on fields/cards, pills for chips */
+  --radius: 0.75rem;
 
-  /* Named brand palette (hex, per design contract) */
-  --background: #0a0708; /* warm near-black */
-  --foreground: #f2eeec; /* warm off-white */
-  --primary: #e23a2c; /* warm red */
+  /* --- Azure brand ramp: six blues --- */
+  --brand-50: #ebeffe;
+  --brand-100: #d0e0f9;
+  --brand-200: #b7cef2;
+  --brand-300: #8fadf1;
+  --brand-400: #579be9;
+  --brand-500: #0875dc; /* primary */
+  /* Derived interaction states + legible navy ink */
+  --brand-600: #0a63bc; /* hover */
+  --brand-700: #08529a; /* pressed */
+  --ink: #0b2a4a;
+  --ink-muted: #44618c;
+
+  --background: #ffffff;
+  --foreground: var(--ink);
+  --primary: var(--brand-500);
   --primary-foreground: #ffffff;
-  --primary-hover: #c12e22;
-  --ember: #ff7a2f;
-  --ice: #5bc8ff;
-  --slate: #1e2a44;
-  --band-light: #f6f3f1;
+  --primary-hover: var(--brand-600);
+  --primary-pressed: var(--brand-700);
+  --ember: var(--brand-400); /* legacy alias — secondary/info blue */
+  --ice: var(--brand-400);
+  --slate: var(--ink);
+  --band-light: #ffffff;
+  --brand-green: #4f8a67; /* logo forest green — functional accent */
+  --brand-green-strong: #3f7657;
+  --maple: #d23a2e; /* red maple-leaf accent */
 
-  /* Job-status palette */
-  --status-success: #34b36a; /* cleared */
-  --status-warning: #f2b53c; /* in-progress */
-  --status-danger: #b3261e; /* cancelled */
-  --status-info: #2d6cf0; /* posted */
-  --status-violet: #7c5cff; /* awaiting */
+  /* Job-status palette (functional hues outside the blue ramp) */
+  --status-success: #1f9d57; /* cleared */
+  --status-warning: #c98a12; /* in-progress */
+  --status-danger: #c8362c; /* cancelled */
+  --status-info: var(--brand-400); /* posted */
+  --status-violet: #6b4bff; /* awaiting */
 
-  /* shadcn semantic surfaces, derived from the warm-dark base */
-  --card: #120d0f;
+  /* shadcn semantic surfaces — all from the blue ramp */
+  --card: #ffffff;
   --card-foreground: var(--foreground);
-  --popover: #16100f;
+  --popover: #ffffff;
   --popover-foreground: var(--foreground);
-  --secondary: #1c1517;
+  --secondary: var(--brand-100);
   --secondary-foreground: var(--foreground);
-  --muted: #1c1517;
-  --muted-foreground: #a89f9c;
-  --accent: #241a1c;
+  --muted: var(--brand-50);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--brand-50);
   --accent-foreground: var(--foreground);
   --destructive: var(--status-danger);
 
-  /* Hairline borders — rgba(255,255,255,.07) */
-  --border: rgba(255, 255, 255, 0.07);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: rgba(226, 58, 44, 0.55);
+  /* Borders — light blue hairlines from the ramp */
+  --border: var(--brand-200);
+  --border-strong: var(--brand-300);
+  --input: var(--brand-200);
+  --ring: rgba(8, 117, 220, 0.45);
 
-  --chart-1: var(--primary);
-  --chart-2: var(--ember);
-  --chart-3: var(--ice);
+  --chart-1: var(--brand-500);
+  --chart-2: var(--brand-400);
+  --chart-3: var(--brand-300);
   --chart-4: var(--status-success);
   --chart-5: var(--status-violet);
 
   /* Sidebar surfaces */
-  --sidebar: #0d0809;
+  --sidebar: #ffffff;
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: #1c1517;
+  --sidebar-accent: var(--brand-50);
   --sidebar-accent-foreground: var(--foreground);
-  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-border: var(--brand-200);
   --sidebar-ring: var(--ring);
 }
 
-/* Mirror the dark palette so explicit `.dark`-scoped utilities still resolve. */
+/* Dark navy variant — same blue ramp on an ink surface, so explicit
+   `.dark`-scoped utilities still resolve. The app itself stays light-first. */
 .dark {
-  --background: #0a0708;
-  --foreground: #f2eeec;
-  --primary: #e23a2c;
-  --primary-foreground: #ffffff;
-  --primary-hover: #c12e22;
-  --ember: #ff7a2f;
-  --ice: #5bc8ff;
-  --slate: #1e2a44;
-  --band-light: #f6f3f1;
+  --background: #081b30;
+  --foreground: #e8f0fb;
+  --primary: var(--brand-400);
+  --primary-foreground: #08213c;
+  --primary-hover: var(--brand-300);
+  --ember: var(--brand-400);
+  --ice: var(--brand-300);
+  --slate: #10263f;
+  --band-light: #ffffff;
 
   --status-success: #34b36a;
   --status-warning: #f2b53c;
-  --status-danger: #b3261e;
-  --status-info: #2d6cf0;
+  --status-danger: #d9534a;
+  --status-info: var(--brand-300);
   --status-violet: #7c5cff;
 
-  --card: #120d0f;
-  --card-foreground: #f2eeec;
-  --popover: #16100f;
-  --popover-foreground: #f2eeec;
-  --secondary: #1c1517;
-  --secondary-foreground: #f2eeec;
-  --muted: #1c1517;
-  --muted-foreground: #a89f9c;
-  --accent: #241a1c;
-  --accent-foreground: #f2eeec;
-  --destructive: #b3261e;
+  --card: #0c2340;
+  --card-foreground: #e8f0fb;
+  --popover: #0c2340;
+  --popover-foreground: #e8f0fb;
+  --secondary: #10304f;
+  --secondary-foreground: #e8f0fb;
+  --muted: #10304f;
+  --muted-foreground: #9db4d1;
+  --accent: #123a5e;
+  --accent-foreground: #e8f0fb;
+  --destructive: #d9534a;
 
-  --border: rgba(255, 255, 255, 0.07);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: rgba(226, 58, 44, 0.55);
+  --border: rgba(183, 206, 242, 0.16);
+  --border-strong: rgba(183, 206, 242, 0.3);
+  --input: rgba(183, 206, 242, 0.22);
+  --ring: rgba(87, 155, 233, 0.55);
 
-  --chart-1: #e23a2c;
-  --chart-2: #ff7a2f;
-  --chart-3: #5bc8ff;
+  --chart-1: var(--brand-400);
+  --chart-2: var(--brand-300);
+  --chart-3: var(--brand-200);
   --chart-4: #34b36a;
   --chart-5: #7c5cff;
 
-  --sidebar: #0d0809;
-  --sidebar-foreground: #f2eeec;
-  --sidebar-primary: #e23a2c;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1c1517;
-  --sidebar-accent-foreground: #f2eeec;
-  --sidebar-border: rgba(255, 255, 255, 0.07);
-  --sidebar-ring: rgba(226, 58, 44, 0.55);
+  --sidebar: #0a2038;
+  --sidebar-foreground: #e8f0fb;
+  --sidebar-primary: var(--brand-400);
+  --sidebar-primary-foreground: #08213c;
+  --sidebar-accent: #10304f;
+  --sidebar-accent-foreground: #e8f0fb;
+  --sidebar-border: rgba(183, 206, 242, 0.16);
+  --sidebar-ring: rgba(87, 155, 233, 0.55);
 }
 
 @layer base {
@@ -184,33 +216,77 @@
   }
   html {
     @apply font-sans;
-    /* Force the dark color-scheme so native UI (scrollbars, form controls)
-       matches the dark-first theme. */
-    color-scheme: dark;
+    /* Light color-scheme so native UI (scrollbars, form controls) matches. */
+    color-scheme: light;
   }
 
-  /* Big display headings: Geist Sans weight 400, tight tracking. */
+  /* Azure display headings: Archivo heavy, tight tracking. */
+  h1,
+  h2,
+  h3,
+  .display {
+    font-family: var(--font-display), system-ui, sans-serif;
+  }
   h1,
   .display {
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    line-height: 1;
+  }
+  h2 {
     letter-spacing: -0.02em;
-    font-weight: 400;
+    font-weight: 800;
+  }
+  h3 {
+    letter-spacing: -0.01em;
+    font-weight: 700;
+  }
+  ::selection {
+    background: var(--brand-500);
+    color: #fff;
   }
 }
 
 @layer utilities {
+  /* Light elevated card surface for marketing pages. */
+  .surface-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    /* Cool navy-tinted elevation (Azure elev-1/elev-2) */
+    box-shadow:
+      0 1px 2px rgba(11, 42, 74, 0.06),
+      0 18px 40px -24px rgba(11, 42, 74, 0.18);
+  }
+  /* Subtle blue-tinted surface (brand-50 wash). */
+  .surface-soft {
+    background: var(--brand-50);
+    border: 1px solid var(--brand-200);
+  }
+  /* Blue gradient chip (icon badges). */
+  .chip-ember {
+    background-image: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+    color: #fff;
+  }
+  /* Green gradient chip (secondary accent). */
+  .chip-green {
+    background-image: linear-gradient(135deg, var(--brand-green-strong), var(--brand-green));
+    color: #fff;
+  }
+
   /* Geist Mono utility for eyebrows + tabular stat numerals. */
   .font-mono {
     font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
   }
 
-  /* Monospace eyebrow label: uppercase, spaced, muted. */
+  /* Monospace eyebrow label: uppercase, spaced, brand blue (Azure hero style). */
   .eyebrow {
     font-family: var(--font-mono), ui-monospace, monospace;
     text-transform: uppercase;
-    letter-spacing: 0.22em;
-    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    font-weight: 700;
     line-height: 1;
-    color: var(--muted-foreground);
+    color: var(--primary);
   }
 
   /* Alternating cinematic dark band (default page surface). */
@@ -219,29 +295,29 @@
     color: var(--foreground);
   }
 
-  /* Light contrast band — warm off-white surface with dark ink. */
+  /* Light contrast band — white surface with navy ink. */
   .band-light {
     background-color: var(--band-light);
-    color: #1a1416;
+    color: var(--ink);
   }
   .band-light .text-muted-foreground {
-    color: #6c605c;
+    color: var(--ink-muted);
   }
   .band-light .eyebrow {
-    color: #8a7d78;
+    color: var(--primary);
   }
 
-  /* Warm red -> ember gradient as a fill (buttons, accents). */
+  /* Brand blue gradient as a fill (buttons, accents). */
   .bg-gradient-ember {
-    background-image: linear-gradient(100deg, var(--primary), var(--ember));
+    background-image: linear-gradient(100deg, var(--brand-500), var(--brand-400));
   }
   .bg-gradient-ember:hover {
-    background-image: linear-gradient(100deg, var(--primary-hover), var(--ember));
+    background-image: linear-gradient(100deg, var(--brand-600), var(--brand-400));
   }
 
-  /* Warm red -> ember gradient as text. */
+  /* Brand blue gradient as text. */
   .text-gradient-ember {
-    background-image: linear-gradient(100deg, var(--primary), var(--ember));
+    background-image: linear-gradient(100deg, var(--brand-500), var(--brand-400));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -274,19 +350,25 @@
 }
 
 /* ===========================================================================
-   Immersive landing — liquid-glass design system + cinematic motion.
-   (Display: Instrument Serif italic; body: Barlow. Vars set in layout.tsx.)
+   Immersive landing — liquid-glass surfaces + cinematic motion.
+   Legacy font classes repointed to the Azure faces: `.font-instrument`
+   (old serif display) now renders Archivo heavy upright; `.font-barlow`
+   (old body face) now renders Inter. Vars set in layout.tsx.
    =========================================================================== */
 .font-instrument {
-  font-family: var(--font-instrument), Georgia, "Times New Roman", serif;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 .font-barlow {
-  font-family: var(--font-barlow), system-ui, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Brighter red->ember gradient text — legible over photography. */
+/* Brand blue gradient text — legible over photography. */
 .text-ember {
-  background-image: linear-gradient(100deg, #ff5436, #ff9248);
+  background-image: linear-gradient(100deg, var(--brand-500), var(--brand-400));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

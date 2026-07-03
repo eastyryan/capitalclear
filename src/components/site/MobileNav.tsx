@@ -34,7 +34,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
             variant="ghost"
             size="icon-lg"
             aria-label={t('openMenu')}
-            className="md:hidden size-11"
+            className="size-11 text-white hover:bg-white/10 hover:text-white lg:hidden"
           />
         }
       >
@@ -56,7 +56,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
             <SheetClose
               key={link.href}
               render={
-                <a
+                <Link
                   href={link.href}
                   className="flex h-11 items-center rounded-lg px-3 text-base text-foreground/90 transition-colors hover:bg-secondary hover:text-foreground"
                 />
@@ -72,22 +72,22 @@ export function MobileNav({ links }: { links: NavLink[] }) {
           <SheetClose
             render={
               <Link
-                href="/login"
+                href="/demo"
                 className="flex h-11 items-center justify-center rounded-lg border border-border text-sm font-medium text-foreground transition-colors hover:bg-secondary"
               />
             }
           >
-            {t('login')}
+            {t('loginSignup')}
           </SheetClose>
           <SheetClose
             render={
               <Link
-                href="/book"
+                href="/demo/book"
                 className="bg-gradient-ember flex h-11 items-center justify-center rounded-lg text-sm font-medium text-primary-foreground"
               />
             }
           >
-            {t('bookSnow')}
+            {t('bookNow')}
           </SheetClose>
         </div>
       </SheetContent>

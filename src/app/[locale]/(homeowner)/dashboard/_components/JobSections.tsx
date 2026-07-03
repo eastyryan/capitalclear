@@ -21,11 +21,11 @@ export function JobSections({ sections }: { sections: JobSection[] }) {
           <div className="mb-4 flex items-baseline gap-3">
             <h2
               id={`section-${section.key}`}
-              className="text-lg font-semibold text-foreground"
+              className="font-heading text-2xl font-bold text-foreground"
             >
               {section.title}
             </h2>
-            <span className="font-mono text-sm text-muted-foreground tabular-nums">
+            <span className="font-mono text-base text-muted-foreground tabular-nums">
               {section.jobs.length}
             </span>
           </div>
