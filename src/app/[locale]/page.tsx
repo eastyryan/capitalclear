@@ -29,15 +29,17 @@ const money = (locale: string, cents: number) =>
   }).format(cents / 100);
 
 const TIERS: {
-  key: 'single' | 'double' | 'walkway';
+  key: 'single' | 'double' | 'walkway' | 'premium';
   cents: number;
   Icon: LucideIcon;
   featured?: boolean;
   addon?: boolean;
+  premium?: boolean;
 }[] = [
   { key: 'single', cents: 4500, Icon: Car },
   { key: 'double', cents: 5500, Icon: Truck, featured: true },
-  { key: 'walkway', cents: 2500, Icon: Footprints, addon: true }
+  { key: 'walkway', cents: 2500, Icon: Footprints, addon: true },
+  { key: 'premium', cents: 1000, Icon: Crown, premium: true }
 ];
 
 const PREMIUM_ICONS: LucideIcon[] = [Crown, ShieldCheck, Clock];
@@ -85,15 +87,7 @@ export default async function LandingPage({
   const home = await getTranslations({ locale, namespace: 'Home' });
   const pricing = await getTranslations({ locale, namespace: 'PricingPage' });
 
-  const stats = home.raw('stats') as { value: string; label: string; desc: string }[];
   const premium = pricing.raw('premium') as { title: string; body: string }[];
-
-  const cardMeta: { key: 'single' | 'double' | 'walkway' | 'premium'; Icon: LucideIcon; price?: string; badge?: string }[] = [
-    { key: 'single', Icon: Car, price: money(locale, 4500) },
-    { key: 'double', Icon: Truck, price: money(locale, 5500), badge: pricing('popular') },
-    { key: 'walkway', Icon: Footprints, price: `+${money(locale, 2500)}` },
-    { key: 'premium', Icon: Crown }
-  ];
 
   return (
     <main className="flex flex-1 flex-col pt-16">
@@ -132,88 +126,15 @@ export default async function LandingPage({
         </div>
       </section>
 
-      {/* ============ HOW IT WORKS — blue section with the four stats ============ */}
-      <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <h2 className="max-w-2xl font-heading text-3xl font-extrabold tracking-[-0.02em] md:text-4xl">
-            {home('worksTitle')}
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80">
-            {home('worksSubtitle')}
-          </p>
-
-          <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <div className="font-heading text-4xl font-extrabold tracking-[-0.02em] md:text-5xl">
-                  {s.value}
-                </div>
-                <div className="mt-2 text-base font-semibold text-white">{s.label}</div>
-                <p className="mt-1.5 text-sm leading-relaxed text-white/75">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ SUGGESTIONS — Uber service cards ============ */}
-      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <SectionTitle>{t('suggestionsTitle')}</SectionTitle>
-        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {cardMeta.map(({ key, Icon, price, badge }) => (
-            <div
-              key={key}
-              className="flex flex-col rounded-xl border border-border bg-card p-5 transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_2px_10px_rgba(11,42,74,.12)]"
-            >
-              <div className="flex items-start justify-between">
-                <div className="flex size-11 items-center justify-center rounded-lg bg-[var(--brand-50)] text-primary">
-                  <Icon className="size-6" aria-hidden />
-                </div>
-                {badge ? (
-                  <span className="rounded-sm bg-primary px-2.5 py-1 text-xs font-bold text-white">
-                    {badge}
-                  </span>
-                ) : null}
-              </div>
-              <h3 className="mt-4 font-heading text-lg font-bold text-foreground">
-                {t(`cards.${key}.title`)}
-              </h3>
-              <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">
-                {t(`cards.${key}.body`)}
-              </p>
-              <div className="mt-5 flex items-center justify-between">
-                {price ? (
-                  <span className="font-heading text-xl font-extrabold text-foreground">
-                    {price}
-                    <span className="ml-1 align-baseline font-mono text-xs font-medium text-muted-foreground">
-                      {pricing('perVisit')}
-                    </span>
-                  </span>
-                ) : (
-                  <span aria-hidden />
-                )}
-                <Link
-                  href="/demo/book"
-                  className="rounded-full bg-[var(--brand-50)] px-4 py-2 text-sm font-medium text-primary shadow-[inset_0_0_0_1px_var(--brand-300)] transition-colors hover:bg-[var(--brand-100)]"
-                >
-                  {t('details')}
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ============ PRICING DETAIL ============ */}
-      <section className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8" id="pricing">
-        <SectionTitle>
-          {pricing('title')} {pricing('accent')}
-        </SectionTitle>
+      {/* ============ SERVICES & PER-VISIT PRICING ============ */}
+      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20" id="pricing">
+        <SectionTitle>{pricing('sectionTitle')}</SectionTitle>
         <p className="mt-3 max-w-2xl text-base text-muted-foreground">{pricing('subtitle')}</p>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {TIERS.map(({ key, cents, Icon, featured, addon }) => {
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {TIERS.map(({ key, cents, Icon, featured, addon, premium }) => {
             const features = pricing.raw(`tiers.${key}.features`) as string[];
+            const priceLabel = premium ? pricing('flat') : pricing('perVisit');
             return (
               <div
                 key={key}
@@ -231,6 +152,10 @@ export default async function LandingPage({
                     <span className="rounded-sm bg-primary px-2.5 py-1 text-xs font-bold text-white">
                       {pricing('popular')}
                     </span>
+                  ) : premium ? (
+                    <span className="rounded-sm bg-[var(--brand-100)] px-2.5 py-1 text-xs font-bold text-[var(--brand-700)]">
+                      {pricing('premiumKicker')}
+                    </span>
                   ) : addon ? (
                     <span className="rounded-sm bg-[var(--brand-100)] px-2.5 py-1 text-xs font-bold text-[var(--brand-700)]">
                       {pricing('addOn')}
@@ -243,12 +168,10 @@ export default async function LandingPage({
                 </h3>
                 <div className="mt-3 flex items-baseline gap-1.5">
                   <span className="font-heading text-5xl font-extrabold tracking-[-0.02em] text-foreground">
-                    {addon ? '+' : ''}
+                    {addon || premium ? '+' : ''}
                     {money(locale, cents)}
                   </span>
-                  <span className="font-mono text-xs text-muted-foreground">
-                    {pricing('perVisit')}
-                  </span>
+                  <span className="font-mono text-xs text-muted-foreground">{priceLabel}</span>
                 </div>
 
                 <ul className="mt-6 flex-1 space-y-3">

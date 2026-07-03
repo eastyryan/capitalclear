@@ -187,7 +187,9 @@
     "liabilityAgree": "J'ai lu et j'accepte les conditions de service et cette décharge de responsabilité.",
     "liabilityRequired": "Veuillez accepter la décharge de responsabilité pour confirmer votre réservation.",
     "subtotal": "Sous-total",
-    "hst": "TVH (13 %)"
+    "hst": "TVH (13 %)",
+    "pkgPremiumName": "Priorité Premium",
+    "pkgPremiumBody": "Évitez la file pendant les tempêtes et bloquez votre prix pour la saison."
   },
   "HomeownerDashboard": {
     "title": "Mes travaux",
@@ -445,6 +447,14 @@
           "Allée avant et marches",
           "Dégagée pour un pas sûr"
         ]
+      },
+      "premium": {
+        "name": "Priorité Premium",
+        "features": [
+          "Priorité pendant les tempêtes",
+          "Prix bloqué pour la saison",
+          "Sans contrat — annulez à tout moment"
+        ]
       }
     },
     "premiumKicker": "Optionnel",
@@ -466,7 +476,9 @@
       }
     ],
     "ctaTitle": "Faites-vous dégager cet hiver.",
-    "ctaSubtitle": "Réservez un déneigement, ou ajoutez la Priorité Premium pour verrouiller votre prix et sauter la file."
+    "ctaSubtitle": "Réservez un déneigement, ou ajoutez la Priorité Premium pour verrouiller votre prix et sauter la file.",
+    "sectionTitle": "Services et tarifs par visite",
+    "flat": "forfait"
   },
   "ServicesPage": {
     "metaTitle": "Déneigement",

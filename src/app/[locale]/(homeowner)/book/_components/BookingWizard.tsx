@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Check, ChevronLeft, ChevronRight, Loader2, Zap, CalendarClock } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight, Loader2, Zap, CalendarClock, Crown } from 'lucide-react';
 
 import { useRouter } from '@/i18n/navigation';
 import { toast } from 'sonner';
@@ -22,6 +22,7 @@ import {
   snowPackageBaseCents,
   DRIVEWAY_BASE_CENTS,
   WALKWAY_ADDON_CENTS,
+  PREMIUM_FLAT_CENTS,
   type DrivewaySize,
 } from '@/lib/pricing/quote';
 import {
@@ -51,6 +52,7 @@ interface WizardState {
   service: ServiceType | null;
   size: DrivewaySize | null; // snow package: driveway size
   walkway: boolean; // walkway + steps add-on
+  premium: boolean; // Priority Premium ($10 flat)
   name: string; // guest contact — no account required
   email: string;
   phone: string;
@@ -67,6 +69,7 @@ const INITIAL: WizardState = {
   service: 'snow_removal',
   size: null,
   walkway: false,
+  premium: false,
   name: '',
   email: '',
   phone: '',
@@ -148,10 +151,13 @@ export function BookingWizard({
   const quote = useMemo(
     () =>
       state.size
-        ? getSnowQuote({ size: state.size, walkway: state.walkway }, quoteDate ?? undefined)
+        ? getSnowQuote(
+            { size: state.size, walkway: state.walkway, premium: state.premium },
+            quoteDate ?? undefined,
+          )
         : null,
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [state.size, state.walkway, state.asap, scheduledISO],
+    [state.size, state.walkway, state.premium, state.asap, scheduledISO],
   );
 
   // Per-step gate for the Continue button.
@@ -199,6 +205,7 @@ export function BookingWizard({
       service_type: state.service,
       driveway_size: state.size,
       walkway: state.walkway,
+      premium: state.premium,
       contact_name: state.name.trim(),
       contact_email: state.email.trim(),
       contact_phone: state.phone.trim() || undefined,
@@ -230,10 +237,12 @@ export function BookingWizard({
 
   const packageLabel = useMemo(() => {
     if (!state.size) return '';
-    const base = state.size === 'double' ? t('pkgDoubleName') : t('pkgSingleName');
-    return state.walkway ? `${base} + ${t('pkgWalkwayName')}` : base;
+    let label = state.size === 'double' ? t('pkgDoubleName') : t('pkgSingleName');
+    if (state.walkway) label += ` + ${t('pkgWalkwayName')}`;
+    if (state.premium) label += ` + ${t('pkgPremiumName')}`;
+    return label;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.size, state.walkway]);
+  }, [state.size, state.walkway, state.premium]);
 
   return (
     <div className="flex min-h-[60vh] flex-col">
@@ -255,8 +264,10 @@ export function BookingWizard({
           <PackageStep
             size={state.size}
             walkway={state.walkway}
+            premium={state.premium}
             onSize={(size) => patch({ size })}
             onWalkway={(walkway) => patch({ walkway })}
+            onPremium={(premium) => patch({ premium })}
             locale={locale}
           />
         )}
@@ -414,14 +425,18 @@ function StepDots({ step, total }: { step: number; total: number }) {
 function PackageStep({
   size,
   walkway,
+  premium,
   onSize,
   onWalkway,
+  onPremium,
   locale,
 }: {
   size: DrivewaySize | null;
   walkway: boolean;
+  premium: boolean;
   onSize: (s: DrivewaySize) => void;
   onWalkway: (v: boolean) => void;
+  onPremium: (v: boolean) => void;
   locale: MoneyLocale;
 }) {
   const t = useTranslations('Booking');
@@ -492,6 +507,40 @@ function PackageStep({
             aria-hidden
           >
             {walkway && <Check className="size-3.5" />}
+          </span>
+        </span>
+      </button>
+
+      {/* Priority Premium add-on ($10 flat) */}
+      <button
+        type="button"
+        role="checkbox"
+        aria-checked={premium}
+        onClick={() => onPremium(!premium)}
+        className={cn(
+          'flex w-full items-start justify-between gap-3 rounded-xl border p-4 text-left transition-colors',
+          premium ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-primary/50',
+        )}
+      >
+        <span>
+          <span className="flex items-center gap-1.5 text-base font-semibold text-foreground">
+            <Crown className="size-4 text-primary" aria-hidden />
+            {t('pkgPremiumName')}
+          </span>
+          <span className="mt-1 block text-sm text-muted-foreground">{t('pkgPremiumBody')}</span>
+        </span>
+        <span className="flex shrink-0 flex-col items-end gap-1">
+          <span className="font-mono text-lg font-semibold text-foreground">
+            +<Money cents={PREMIUM_FLAT_CENTS} locale={locale} />
+          </span>
+          <span
+            className={cn(
+              'mt-0.5 flex size-5 items-center justify-center rounded-md border',
+              premium ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40',
+            )}
+            aria-hidden
+          >
+            {premium && <Check className="size-3.5" />}
           </span>
         </span>
       </button>
@@ -857,7 +906,16 @@ function ReviewStep({
             <div className="flex items-center justify-between text-sm">
               <dt className="text-muted-foreground">{t('winterSurge')}</dt>
               <dd className="text-[var(--status-warning)]">
-                +<Money cents={quote.subtotalCents - quote.baseCents} locale={locale} />
+                +<Money cents={quote.surgeAmountCents} locale={locale} />
+              </dd>
+            </div>
+          )}
+
+          {quote.premiumCents > 0 && (
+            <div className="flex items-center justify-between text-sm">
+              <dt className="text-muted-foreground">{t('pkgPremiumName')}</dt>
+              <dd>
+                +<Money cents={quote.premiumCents} locale={locale} />
               </dd>
             </div>
           )}

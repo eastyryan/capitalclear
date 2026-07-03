@@ -25,9 +25,14 @@ export const DRIVEWAY_BASE_CENTS: Record<DrivewaySize, number> = {
 /** Walkway + steps add-on, in integer cents (CAD). */
 export const WALKWAY_ADDON_CENTS = 2500;
 
+/** Priority Premium — flat fee (not surged, not per driveway size). */
+export const PREMIUM_FLAT_CENTS = 1000;
+
 export interface SnowPackage {
   size: DrivewaySize;
   walkway: boolean;
+  /** Priority Premium: skip the queue + lock the seasonal price ($10 flat). */
+  premium?: boolean;
 }
 
 /** Pre-surge base for a snow package (driveway + optional walkway). */
@@ -52,7 +57,11 @@ export interface QuoteLineItem {
 export interface Quote {
   baseCents: number;
   surgeMultiplier: number;
-  /** Pre-tax subtotal (base × surge). */
+  /** Winter-surge amount in cents (0 when no surge). */
+  surgeAmountCents: number;
+  /** Priority Premium flat fee in cents (0 when not selected). */
+  premiumCents: number;
+  /** Pre-tax subtotal (surged base + premium). */
   subtotalCents: number;
   /** Ontario HST rate applied (e.g. 0.13). */
   taxRate: number;
@@ -88,7 +97,12 @@ export function getSnowQuote(
   pkg: SnowPackage,
   scheduledFor?: Date | string | null,
 ): Quote {
-  return buildQuote(snowPackageBaseCents(pkg), true, scheduledFor);
+  return buildQuote(
+    snowPackageBaseCents(pkg),
+    true,
+    scheduledFor,
+    pkg.premium ? PREMIUM_FLAT_CENTS : 0,
+  );
 }
 
 /** Shared surge math for the quote builders. */
@@ -96,6 +110,7 @@ function buildQuote(
   baseCents: number,
   surgeEligible: boolean,
   scheduledFor?: Date | string | null,
+  premiumCents = 0,
 ): Quote {
   const date =
     scheduledFor == null
@@ -111,7 +126,9 @@ function buildQuote(
     surgeEligible && month !== null && WINTER_MONTHS.has(month);
 
   const surgeMultiplier = isWinterSurge ? WINTER_SURGE_MULTIPLIER : 1;
-  const subtotalCents = Math.round(baseCents * surgeMultiplier);
+  const surgedBaseCents = Math.round(baseCents * surgeMultiplier);
+  const surgeAmountCents = surgedBaseCents - baseCents;
+  const subtotalCents = surgedBaseCents + premiumCents;
   const taxCents = Math.round(subtotalCents * HST_RATE);
   const totalCents = subtotalCents + taxCents;
 
@@ -120,10 +137,10 @@ function buildQuote(
   ];
 
   if (isWinterSurge) {
-    lineItems.push({
-      labelKey: 'Pricing.winterSurge',
-      cents: subtotalCents - baseCents,
-    });
+    lineItems.push({ labelKey: 'Pricing.winterSurge', cents: surgeAmountCents });
+  }
+  if (premiumCents > 0) {
+    lineItems.push({ labelKey: 'Pricing.premium', cents: premiumCents });
   }
 
   lineItems.push({ labelKey: 'Pricing.hst', cents: taxCents });
@@ -131,6 +148,8 @@ function buildQuote(
   return {
     baseCents,
     surgeMultiplier,
+    surgeAmountCents,
+    premiumCents,
     subtotalCents,
     taxRate: HST_RATE,
     taxCents,

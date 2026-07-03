@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { Send } from 'lucide-react';
+import { Send, ChevronsUpDown } from 'lucide-react';
 import { useRouter } from '@/i18n/navigation';
 import { AddressAutocomplete } from '@/components/site/AddressAutocomplete';
 import { DRIVEWAY_BASE_CENTS, WALKWAY_ADDON_CENTS, type DrivewaySize } from '@/lib/pricing/quote';
@@ -50,7 +50,7 @@ export function HeroBookingForm() {
         placeholder={t('heroForm.address')}
         ariaLabel={t('heroForm.address')}
         fieldClassName="flex h-14 items-center gap-3 rounded-xl bg-[var(--brand-50)] px-4 transition-shadow focus-within:shadow-[inset_0_0_0_2px_var(--color-primary)]"
-        inputClassName="flex-1 bg-transparent text-base text-foreground outline-none placeholder:text-muted-foreground"
+        inputClassName="flex-1 bg-transparent text-base text-foreground outline-none placeholder:text-foreground"
         trailing={<Send className="size-5 shrink-0 text-primary" aria-hidden />}
       />
 
@@ -60,7 +60,7 @@ export function HeroBookingForm() {
           value={size}
           onChange={(e) => setSize(e.target.value as DrivewaySize | '')}
           aria-label={t('heroForm.size')}
-          className={`flex-1 bg-transparent text-base outline-none ${size ? 'text-foreground' : 'text-muted-foreground'}`}
+          className="flex-1 appearance-none bg-transparent text-base text-foreground outline-none"
         >
           <option value="" disabled>
             {t('heroForm.size')}
@@ -72,6 +72,7 @@ export function HeroBookingForm() {
             {t('heroForm.sizeDouble')} — {money(DRIVEWAY_BASE_CENTS.double)}
           </option>
         </select>
+        <ChevronsUpDown className="size-5 shrink-0 text-primary" aria-hidden />
       </div>
 
       {/* Walkway add-on — label + faded price inline; selection circle at right */}
@@ -91,8 +92,8 @@ export function HeroBookingForm() {
           </span>
         </span>
         <span
-          className={`flex size-5 shrink-0 items-center justify-center rounded-full border ${
-            walkway ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40'
+          className={`flex size-5 shrink-0 items-center justify-center rounded-full border border-primary ${
+            walkway ? 'bg-primary text-primary-foreground' : 'bg-transparent'
           }`}
           aria-hidden
         >

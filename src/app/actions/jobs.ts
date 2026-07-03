@@ -50,6 +50,7 @@ const createJobSchema = z.object({
   // server-side price for snow jobs; ignored for other service types.
   driveway_size: z.enum(['single', 'double']).optional(),
   walkway: z.boolean().optional(),
+  premium: z.boolean().optional(),
   // Guest contact (booking without an account) + liability-waiver acceptance.
   contact_name: z.string().trim().max(200).optional(),
   contact_email: z.string().trim().email().max(320).optional(),
@@ -100,6 +101,7 @@ export async function createJob(
     notes,
     driveway_size,
     walkway,
+    premium,
     contact_name,
     contact_email,
     contact_phone,
@@ -123,7 +125,10 @@ export async function createJob(
   // their flat service base.
   const quote =
     service_type === 'snow_removal' && driveway_size
-      ? getSnowQuote({ size: driveway_size, walkway: walkway ?? false }, scheduled_for)
+      ? getSnowQuote(
+          { size: driveway_size, walkway: walkway ?? false, premium: premium ?? false },
+          scheduled_for,
+        )
       : getQuote(service_type, scheduled_for);
   const quotedPriceCents = quote.totalCents;
 
@@ -131,7 +136,7 @@ export async function createJob(
   // booked and who to reach (no dedicated columns for these yet).
   const packageNote =
     service_type === 'snow_removal' && driveway_size
-      ? `${driveway_size === 'double' ? 'Double driveway' : 'Single driveway'}${walkway ? ' + walkway' : ''}`
+      ? `${driveway_size === 'double' ? 'Double driveway' : 'Single driveway'}${walkway ? ' + walkway' : ''}${premium ? ' + Priority Premium' : ''}`
       : null;
   const contactNote =
     contact_name || contact_email || contact_phone
