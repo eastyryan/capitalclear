@@ -993,5 +993,13 @@
     "tomorrow": "tomorrow",
     "message": "{cm} cm of snow expected {day} — book ahead and skip the rush.",
     "cta": "Book ahead"
+  },
+  "AreaPage": {
+    "metaTitle": "Snow Removal in {area}",
+    "eyebrow": "Service area",
+    "title": "Snow removal in {area}, on demand",
+    "landmarks": "Serving {landmarks} — and everywhere in between.",
+    "cta": "Book a clear in {area}",
+    "pricingTitle": "Per-visit pricing in {area}"
   }
 }

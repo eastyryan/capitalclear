@@ -993,5 +993,13 @@
     "tomorrow": "demain",
     "message": "{cm} cm de neige prévus {day} — réservez à l'avance et évitez la cohue.",
     "cta": "Réserver à l'avance"
+  },
+  "AreaPage": {
+    "metaTitle": "Déneigement à {area}",
+    "eyebrow": "Zone de service",
+    "title": "Déneigement à {area}, sur demande",
+    "landmarks": "Nous desservons {landmarks} — et tout ce qui se trouve entre les deux.",
+    "cta": "Réserver un déneigement à {area}",
+    "pricingTitle": "Tarifs par visite à {area}"
   }
 }

@@ -1,5 +1,6 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import { SERVICE_AREAS } from '@/lib/areas';
 
 /**
  * Uber-style footer — server component. Deep navy-ink band with a heavy
@@ -9,11 +10,9 @@ import { Link } from '@/i18n/navigation';
 export async function Footer() {
   const t = await getTranslations('Footer');
   const nav = await getTranslations('Nav');
+  const locale = await getLocale();
   const year = new Date().getFullYear();
-  const areas = t('areasList')
-    .split(',')
-    .map((a) => a.trim())
-    .filter(Boolean);
+  const lang = locale === 'fr' ? 'fr' : 'en';
 
   const columns: { title: string; links: { href: string; label: string }[] }[] = [
     {
@@ -71,8 +70,16 @@ export async function Footer() {
         </div>
 
         <div className="mt-14 border-t border-white/15 pt-6">
-          <p className="font-mono text-xs uppercase tracking-[0.12em] text-white/60">
-            {t('serviceAreaTitle')} · {areas.join(' · ')}
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1.5 font-mono text-xs uppercase tracking-[0.12em] text-white/60">
+            <span>{t('serviceAreaTitle')}</span>
+            {SERVICE_AREAS.map((a) => (
+              <span key={a.slug}>
+                {' · '}
+                <Link href={`/areas/${a.slug}`} className="transition-colors hover:text-white">
+                  {a.name[lang]}
+                </Link>
+              </span>
+            ))}
           </p>
           <p className="mt-3 text-xs text-white/50">
             &copy; {year} Capital Clear. {t('rights')}
