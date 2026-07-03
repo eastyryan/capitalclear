@@ -7,7 +7,12 @@ export default async function DemoBook({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ size?: string; walkway?: string; address?: string }>;
+  searchParams: Promise<{
+    size?: string;
+    walkway?: string;
+    address?: string;
+    postal?: string;
+  }>;
 }) {
   const { locale } = await params;
   const sp = await searchParams;
@@ -26,6 +31,7 @@ export default async function DemoBook({
         initialSize={initialSize}
         initialWalkway={sp.walkway === '1'}
         initialAddress={sp.address ?? ''}
+        initialPostal={sp.postal ?? ''}
       />
     </main>
   );

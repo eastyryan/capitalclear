@@ -896,25 +896,31 @@
     "stats": [
       {
         "value": "60s",
-        "label": "To book"
+        "label": "To book",
+        "desc": "Enter your address and driveway size — you're booked in under a minute."
       },
       {
         "value": "100%",
-        "label": "Photo-verified"
+        "label": "Photo-verified",
+        "desc": "Every job ends with before-and-after photos before you're charged."
       },
       {
         "value": "ASAP",
-        "label": "Cleared after the storm"
+        "label": "Cleared after the storm",
+        "desc": "A local pro is dispatched as soon as the snow stops — first come, first served."
       },
       {
         "value": "$0",
-        "label": "Upfront — pay when done"
+        "label": "Upfront — pay when done",
+        "desc": "No upfront charge. You only pay once the work is verified complete."
       }
     ],
     "ctaTitle": "Ready when the first flake falls.",
     "ctaSubtitle": "Book a clear in under a minute — or sign up to plow with us.",
     "ctaPrimary": "Book a clear",
-    "ctaSecondary": "Become a pro"
+    "ctaSecondary": "Become a pro",
+    "worksTitle": "How it works",
+    "worksSubtitle": "Booking a clear takes under a minute, every job is photo-verified, and you never pay a cent upfront."
   },
   "UberHome": {
     "heroTitle": "Snow removal on demand",

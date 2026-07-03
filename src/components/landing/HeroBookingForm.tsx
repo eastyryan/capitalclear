@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Send } from 'lucide-react';
 import { useRouter } from '@/i18n/navigation';
+import { AddressAutocomplete } from '@/components/site/AddressAutocomplete';
 import { DRIVEWAY_BASE_CENTS, WALKWAY_ADDON_CENTS, type DrivewaySize } from '@/lib/pricing/quote';
 
 /**
@@ -18,6 +19,7 @@ export function HeroBookingForm() {
   const router = useRouter();
 
   const [address, setAddress] = useState('');
+  const [postal, setPostal] = useState('');
   const [size, setSize] = useState<DrivewaySize | ''>('');
   const [walkway, setWalkway] = useState(false);
 
@@ -33,24 +35,24 @@ export function HeroBookingForm() {
     if (size) qs.set('size', size);
     if (walkway) qs.set('walkway', '1');
     if (address.trim()) qs.set('address', address.trim());
+    if (postal.trim()) qs.set('postal', postal.trim());
     const query = qs.toString();
     router.push(`/demo/book${query ? `?${query}` : ''}`);
   }
 
   return (
     <div className="mt-9 flex max-w-md flex-col gap-3">
-      {/* Address */}
-      <div className="flex h-14 items-center gap-3 rounded-xl bg-[var(--brand-50)] px-4 transition-shadow focus-within:shadow-[inset_0_0_0_2px_var(--color-primary)]">
-        <input
-          type="text"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          placeholder={t('heroForm.address')}
-          aria-label={t('heroForm.address')}
-          className="flex-1 bg-transparent text-base text-foreground outline-none placeholder:text-muted-foreground"
-        />
-        <Send className="size-5 text-primary" aria-hidden />
-      </div>
+      {/* Address — type-ahead autocomplete */}
+      <AddressAutocomplete
+        value={address}
+        onChange={setAddress}
+        onSelect={({ postal: p }) => p && setPostal(p)}
+        placeholder={t('heroForm.address')}
+        ariaLabel={t('heroForm.address')}
+        fieldClassName="flex h-14 items-center gap-3 rounded-xl bg-[var(--brand-50)] px-4 transition-shadow focus-within:shadow-[inset_0_0_0_2px_var(--color-primary)]"
+        inputClassName="flex-1 bg-transparent text-base text-foreground outline-none placeholder:text-muted-foreground"
+        trailing={<Send className="size-5 shrink-0 text-primary" aria-hidden />}
+      />
 
       {/* Driveway size */}
       <div className="flex h-14 items-center gap-3 rounded-xl bg-[var(--brand-50)] px-4 transition-shadow focus-within:shadow-[inset_0_0_0_2px_var(--color-primary)]">

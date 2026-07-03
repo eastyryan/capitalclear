@@ -896,25 +896,31 @@
     "stats": [
       {
         "value": "60 s",
-        "label": "Pour réserver"
+        "label": "Pour réserver",
+        "desc": "Entrez votre adresse et la taille de l'entrée — réservé en moins d'une minute."
       },
       {
         "value": "100 %",
-        "label": "Vérifié par photo"
+        "label": "Vérifié par photo",
+        "desc": "Chaque travail se termine par des photos avant/après, avant tout paiement."
       },
       {
         "value": "ASAP",
-        "label": "Dégagé après la tempête"
+        "label": "Dégagé après la tempête",
+        "desc": "Un pro local est envoyé dès que la neige cesse — premier arrivé, premier servi."
       },
       {
         "value": "0 $",
-        "label": "À l’avance — payez à la fin"
+        "label": "À l’avance — payez à la fin",
+        "desc": "Aucun frais d'avance. Vous payez seulement une fois le travail vérifié."
       }
     ],
     "ctaTitle": "Prêt dès le premier flocon.",
     "ctaSubtitle": "Réservez en moins d'une minute — ou inscrivez-vous pour déneiger avec nous.",
     "ctaPrimary": "Réserver",
-    "ctaSecondary": "Devenir pro"
+    "ctaSecondary": "Devenir pro",
+    "worksTitle": "Comment ça marche",
+    "worksSubtitle": "Réserver un déneigement prend moins d'une minute, chaque travail est vérifié par photo, et vous ne payez jamais d'avance."
   },
   "UberHome": {
     "heroTitle": "Déneigement sur demande",

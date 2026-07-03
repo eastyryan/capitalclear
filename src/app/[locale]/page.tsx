@@ -85,8 +85,7 @@ export default async function LandingPage({
   const home = await getTranslations({ locale, namespace: 'Home' });
   const pricing = await getTranslations({ locale, namespace: 'PricingPage' });
 
-  const steps = home.raw('steps') as { title: string; body: string }[];
-  const stats = home.raw('stats') as { value: string; label: string }[];
+  const stats = home.raw('stats') as { value: string; label: string; desc: string }[];
   const premium = pricing.raw('premium') as { title: string; body: string }[];
 
   const cardMeta: { key: 'single' | 'double' | 'walkway' | 'premium'; Icon: LucideIcon; price?: string; badge?: string }[] = [
@@ -133,42 +132,24 @@ export default async function LandingPage({
         </div>
       </section>
 
-      {/* Trust strip */}
-      <div className="border-y border-border">
-        <p className="mx-auto max-w-7xl px-4 py-4 font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground sm:px-6 lg:px-8">
-          {home('trust')}
-        </p>
-      </div>
-
-      {/* ============ HOW IT WORKS + STATS — one blue section ============ */}
+      {/* ============ HOW IT WORKS — blue section with the four stats ============ */}
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <h2 className="max-w-2xl font-heading text-3xl font-extrabold tracking-[-0.02em] md:text-4xl">
-            {home('howTitle')}
+            {home('worksTitle')}
           </h2>
-          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {steps.map((step, i) => (
-              <div
-                key={step.title}
-                className="rounded-xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm"
-              >
-                <span className="flex size-9 items-center justify-center rounded-full bg-white font-mono text-sm font-bold text-primary">
-                  {i + 1}
-                </span>
-                <h3 className="mt-4 font-heading text-lg font-bold text-white">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/80">{step.body}</p>
-              </div>
-            ))}
-          </div>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80">
+            {home('worksSubtitle')}
+          </p>
 
-          {/* Stats — same blue field, divided from the steps */}
-          <div className="mt-14 grid grid-cols-2 gap-8 border-t border-white/20 pt-12 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label}>
                 <div className="font-heading text-4xl font-extrabold tracking-[-0.02em] md:text-5xl">
                   {s.value}
                 </div>
-                <div className="mt-2 text-sm text-white/80">{s.label}</div>
+                <div className="mt-2 text-base font-semibold text-white">{s.label}</div>
+                <p className="mt-1.5 text-sm leading-relaxed text-white/75">{s.desc}</p>
               </div>
             ))}
           </div>

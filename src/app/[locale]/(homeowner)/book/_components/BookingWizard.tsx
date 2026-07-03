@@ -14,6 +14,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { ServiceBadge } from '@/components/jobs/ServiceBadge';
 import { Money } from '@/components/Money';
+import { AddressAutocomplete } from '@/components/site/AddressAutocomplete';
 
 import { createJob } from '@/app/actions/jobs';
 import {
@@ -95,12 +96,14 @@ export function BookingWizard({
   initialSize = null,
   initialWalkway = false,
   initialAddress = '',
+  initialPostal = '',
 }: {
-  // Prefilled from the homepage hero "See prices" form. When a size is passed
-  // the package step is already answered, so we open on the details step.
+  // Prefilled from the homepage hero form. When a size is passed the package
+  // step is already answered, so we open on the details step.
   initialSize?: DrivewaySize | null;
   initialWalkway?: boolean;
   initialAddress?: string;
+  initialPostal?: string;
 } = {}) {
   const t = useTranslations('Booking');
   const tc = useTranslations('Common');
@@ -113,6 +116,7 @@ export function BookingWizard({
     size: initialSize,
     walkway: initialWalkway,
     address: initialAddress,
+    postal: initialPostal,
   });
   const [submitting, setSubmitting] = useState(false);
 
@@ -597,14 +601,14 @@ function DetailsStep({
 
       <div className="space-y-2">
         <Label htmlFor="address">{t('address')}</Label>
-        <Input
-          id="address"
-          name="address"
-          autoComplete="street-address"
+        <AddressAutocomplete
           value={address}
-          onChange={(e) => onAddress(e.target.value)}
-          className="h-11"
+          onChange={onAddress}
+          onSelect={({ postal: p }) => p && onPostal(p)}
           placeholder="123 Bank St"
+          ariaLabel={t('address')}
+          fieldClassName="flex h-11 items-center gap-2 rounded-md border border-input bg-transparent px-3 focus-within:ring-2 focus-within:ring-ring"
+          inputClassName="flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground"
         />
         {!addressOk && address.length > 0 && (
           <p className="text-sm text-[var(--status-danger)]">
