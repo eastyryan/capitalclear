@@ -47,8 +47,8 @@ export const SERVICE_AREAS: ServiceArea[] = [
     name: { en: 'Orléans', fr: 'Orléans' },
     fsas: ['K1C', 'K1W', 'K4A'],
     blurb: {
-      en: "Orléans catches the storm tail coming up the river — and the plows bury the end of your driveway right after you shovel it. Our pros clear Fallingbrook, Chapel Hill and Avalon on demand.",
-      fr: "Orléans reçoit la fin des tempêtes qui remontent la rivière — et les charrues enterrent le bout de votre entrée juste après que vous l'ayez pelletée. Nos pros dégagent Fallingbrook, Chapel Hill et Avalon sur demande."
+      en: "Orléans catches the storm tail coming up the river, and the plows bury the end of your driveway right after you shovel it. Our pros clear Fallingbrook, Chapel Hill and Avalon on demand.",
+      fr: "Orléans reçoit la fin des tempêtes qui remontent la rivière, et les charrues enterrent le bout de votre entrée juste après que vous l'ayez pelletée. Nos pros dégagent Fallingbrook, Chapel Hill et Avalon sur demande."
     },
     landmarks: {
       en: 'Fallingbrook, Chapel Hill, Avalon and Queenswood Heights',

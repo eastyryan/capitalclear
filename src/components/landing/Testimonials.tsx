@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { Star } from 'lucide-react';
+import { Reveal } from '@/components/site/Reveal';
 
 /**
  * Homepage testimonials, Azure-styled.
@@ -55,8 +56,9 @@ export async function Testimonials({ locale }: { locale: string }) {
         {t('title')}
       </h2>
       <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-        {SAMPLE_REVIEWS.map((r) => (
-          <figure key={r.name} className="flex flex-col rounded-[20px] border border-border bg-card p-7">
+        {SAMPLE_REVIEWS.map((r, i) => (
+          <Reveal key={r.name} delay={i * 80}>
+          <figure className="flex h-full flex-col rounded-[20px] border border-border bg-card p-7">
             <div className="flex items-center gap-1" aria-label={`${r.rating} / 5`}>
               {Array.from({ length: 5 }, (_, i) => (
                 <Star
@@ -76,6 +78,7 @@ export async function Testimonials({ locale }: { locale: string }) {
               </span>
             </figcaption>
           </figure>
+          </Reveal>
         ))}
       </div>
     </section>

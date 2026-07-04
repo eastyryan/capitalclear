@@ -17,6 +17,7 @@ import { AreaChecker } from '@/components/landing/AreaChecker';
 import { StormBanner } from '@/components/landing/StormBanner';
 import { Testimonials } from '@/components/landing/Testimonials';
 import { JsonLd } from '@/components/landing/JsonLd';
+import { Reveal } from '@/components/site/Reveal';
 
 /**
  * Uber.com-style landing rendered in the Azure design system. Structure
@@ -57,12 +58,12 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Uber-style solid primary button. */
+/** Uber-style solid primary button — hover shift, physical press, focus ring. */
 function BtnPrimary({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <Link
       href={href}
-      className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3.5 text-base font-medium leading-none text-primary-foreground transition-colors hover:bg-[var(--primary-hover)] active:bg-[var(--primary-pressed)]"
+      className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3.5 text-base font-medium leading-none text-primary-foreground transition-[background-color,transform] duration-200 hover:bg-[var(--primary-hover)] active:scale-[0.98] active:bg-[var(--primary-pressed)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
     >
       {children}
     </Link>
@@ -74,7 +75,7 @@ function BtnLink({ href, children }: { href: string; children: React.ReactNode }
   return (
     <Link
       href={href}
-      className="text-base font-medium text-primary underline decoration-[1.5px] underline-offset-4 hover:text-[var(--primary-hover)]"
+      className="rounded-sm text-base font-medium text-primary underline decoration-[1.5px] underline-offset-4 transition-colors hover:text-[var(--primary-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
     >
       {children}
     </Link>
@@ -139,14 +140,14 @@ export default async function LandingPage({
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label}>
+            {stats.map((s, i) => (
+              <Reveal key={s.label} delay={i * 80}>
                 <div className="font-heading text-4xl font-extrabold tracking-[-0.02em] md:text-5xl">
                   {s.value}
                 </div>
                 <div className="mt-2 text-base font-semibold text-white">{s.label}</div>
                 <p className="mt-1.5 text-sm leading-relaxed text-white/75">{s.desc}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -158,16 +159,17 @@ export default async function LandingPage({
         <p className="mt-3 max-w-2xl text-base text-muted-foreground">{pricing('subtitle')}</p>
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {TIERS.map(({ key, cents, Icon, featured, outlined, addon, premium }) => {
+          {TIERS.map(({ key, cents, Icon, featured, outlined, addon, premium }, i) => {
             const features = pricing.raw(`tiers.${key}.features`) as string[];
             const priceLabel = premium ? pricing('flat') : pricing('perVisit');
             return (
-              <div
+              <Reveal
                 key={key}
-                className={`flex flex-col rounded-[20px] border bg-card p-7 ${
+                delay={i * 80}
+                className={`flex flex-col rounded-[20px] border bg-card p-7 transition-[translate,box-shadow] duration-300 hover:-translate-y-1 ${
                   featured || outlined
-                    ? 'border-transparent shadow-[inset_0_0_0_2px_var(--color-primary)]'
-                    : 'border-border'
+                    ? 'border-transparent shadow-[inset_0_0_0_2px_var(--color-primary)] hover:shadow-[inset_0_0_0_2px_var(--color-primary),0_16px_40px_-16px_rgba(11,42,74,.3)]'
+                    : 'border-border hover:shadow-[0_16px_40px_-16px_rgba(11,42,74,.25)]'
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -212,7 +214,7 @@ export default async function LandingPage({
                 <div className="mt-8">
                   <Link
                     href="/demo/book"
-                    className={`inline-flex w-full items-center justify-center rounded-lg px-6 py-3.5 text-base font-medium leading-none transition-colors ${
+                    className={`inline-flex w-full items-center justify-center rounded-lg px-6 py-3.5 text-base font-medium leading-none transition-[background-color,transform] duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)] ${
                       featured || addon
                         ? 'bg-primary text-primary-foreground hover:bg-[var(--primary-hover)]'
                         : 'bg-[var(--brand-100)] text-foreground hover:bg-[var(--brand-200)]'
@@ -221,7 +223,7 @@ export default async function LandingPage({
                     {pricing('cta')}
                   </Link>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>
@@ -244,13 +246,13 @@ export default async function LandingPage({
             {premium.map((p, i) => {
               const Icon = PREMIUM_ICONS[i % PREMIUM_ICONS.length];
               return (
-                <div key={p.title} className="rounded-xl border border-border bg-card p-6">
+                <Reveal key={p.title} delay={i * 80} className="rounded-xl border border-border bg-card p-6">
                   <div className="flex size-11 items-center justify-center rounded-lg bg-primary text-white">
                     <Icon className="size-6" aria-hidden />
                   </div>
                   <h3 className="mt-4 font-heading text-lg font-bold text-foreground">{p.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-                </div>
+                </Reveal>
               );
             })}
           </div>

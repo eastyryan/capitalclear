@@ -68,7 +68,7 @@ export function AreaChecker() {
             </span>
             <Link
               href="/demo/book"
-              className="rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground transition-colors hover:bg-[var(--primary-hover)]"
+              className="rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground transition-[background-color,transform] duration-200 hover:bg-[var(--primary-hover)] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
             >
               {t('bookCta')}
             </Link>

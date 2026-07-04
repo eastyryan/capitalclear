@@ -1,7 +1,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
+import { cn } from '@/lib/utils';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { MobileNav } from './MobileNav';
 
@@ -15,6 +16,7 @@ import { MobileNav } from './MobileNav';
  */
 export function Navbar() {
   const t = useTranslations('Nav');
+  const pathname = usePathname();
 
   const links = [
     { href: '/become-a-pro', label: t('becomePro') },
@@ -33,15 +35,24 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-sm font-medium text-white/85 transition-colors hover:text-white"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) => {
+            const active = pathname === l.href || pathname.startsWith(`${l.href}/`);
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={active ? 'page' : undefined}
+                className={cn(
+                  'text-sm font-medium transition-colors',
+                  active
+                    ? 'text-white underline decoration-2 underline-offset-8'
+                    : 'text-white/85 hover:text-white'
+                )}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex-1" />

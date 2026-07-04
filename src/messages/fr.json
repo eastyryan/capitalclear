@@ -1,7 +1,7 @@
 {
   "HomePage": {
     "title": "Capital Clear",
-    "tagline": "Déneigement, entretien de pelouse et entretien saisonnier à Ottawa — réservés, suivis et déneigés."
+    "tagline": "Déneigement, entretien de pelouse et entretien saisonnier à Ottawa: réservés, suivis et déneigés."
   },
   "Nav": {
     "services": "Services",
@@ -134,7 +134,7 @@
     "address": "Adresse",
     "postalCode": "Code postal",
     "postalHelp": "Capital Clear dessert présentement Ottawa (codes postaux commençant par K).",
-    "postalInvalid": "Désolé — Capital Clear ne dessert présentement qu'Ottawa.",
+    "postalInvalid": "Désolé, Capital Clear ne dessert présentement qu'Ottawa.",
     "date": "Date",
     "time": "Heure",
     "notes": "Notes pour votre pro",
@@ -163,10 +163,10 @@
     "errorCreateFailed": "Nous n'avons pas pu créer votre réservation. Veuillez réessayer.",
     "errorPaymentHoldFailed": "Nous n'avons pas pu garantir le paiement de cette réservation. Veuillez réessayer.",
     "asapTitle": "Dès que possible",
-    "asapBody": "Un pro local vérifié est envoyé immédiatement — premier arrivé, premier servi.",
+    "asapBody": "Un pro local vérifié est envoyé immédiatement. Premier arrivé, premier servi.",
     "asapLabel": "Dès que possible",
     "scheduleLaterTitle": "Planifier plus tard",
-    "scheduleLaterBody": "Choisissez une date et une heure — pratique si une grosse tempête approche.",
+    "scheduleLaterBody": "Choisissez une date et une heure. Pratique si une grosse tempête approche.",
     "stepPackageTitle": "Choisissez votre déneigement",
     "stepDetailsTitle": "Vos coordonnées",
     "pkgSingleName": "Entrée simple",
@@ -175,7 +175,7 @@
     "pkgDoubleBody": "Entrée double ou deux voitures, déneigée.",
     "pkgWalkwayName": "Ajouter une allée",
     "pkgWalkwayBody": "Allée et marches avant, dégagées.",
-    "guestNote": "Aucun compte requis — seulement vos coordonnées pour que votre pro puisse vous joindre et envoyer la preuve photo.",
+    "guestNote": "Aucun compte requis. Seulement vos coordonnées pour que votre pro puisse vous joindre et envoyer la preuve photo.",
     "name": "Nom complet",
     "nameRequired": "Veuillez entrer votre nom.",
     "email": "Courriel",
@@ -189,7 +189,7 @@
     "subtotal": "Sous-total",
     "hst": "TVH (13 %)",
     "pkgPremiumName": "Priorité Premium",
-    "pkgPremiumBody": "Évitez la file pendant les tempêtes — votre travail est traité avant les réservations standards.",
+    "pkgPremiumBody": "Évitez la file pendant les tempêtes. Votre travail est traité avant les réservations standards.",
     "cancelNote": "Annulation gratuite tant qu'aucun pro n'a accepté votre travail. Si aucun pro n'accepte, rien ne vous est facturé."
   },
   "HomeownerDashboard": {
@@ -225,7 +225,7 @@
     "accept": "Accepter le travail",
     "accepting": "Acceptation…",
     "viewJob": "Voir",
-    "acceptSuccess": "Travail accepté — il est maintenant dans vos travaux actifs.",
+    "acceptSuccess": "Travail accepté. Il est maintenant dans vos travaux actifs.",
     "acceptAlreadyTaken": "Un autre pro vient de réclamer ce travail.",
     "acceptError": "Impossible d'accepter le travail. Veuillez réessayer.",
     "liveBadge": "En direct",
@@ -350,7 +350,7 @@
     "eyebrow": "Comment ça marche",
     "title": "Réservé en minutes,",
     "accent": "réglé au matin.",
-    "subtitle": "De la demande à la preuve photo — voici exactement comment Capital Clear relie votre propriété à un pro local vérifié.",
+    "subtitle": "De la demande à la preuve photo. Voici exactement comment Capital Clear relie votre propriété à un pro local vérifié.",
     "homeownersKicker": "Pour les propriétaires",
     "homeownersTitle": "Trois touches vers une",
     "homeownersAccent": "entrée dégagée.",
@@ -361,7 +361,7 @@
       },
       {
         "title": "Un pro local accepte",
-        "body": "Votre travail est offert aux entrepreneurs vérifiés à proximité. Le premier à accepter le réserve — vous voyez qui vient et quand."
+        "body": "Votre travail est offert aux entrepreneurs vérifiés à proximité. Le premier à accepter le réserve. Vous voyez qui vient et quand."
       },
       {
         "title": "Payez une fois terminé",
@@ -374,7 +374,7 @@
     "prosSteps": [
       {
         "title": "Réclamez des travaux proches",
-        "body": "Parcourez les travaux ouverts dans votre secteur et acceptez ceux qui conviennent à votre tournée et votre équipement — sans enchères."
+        "body": "Parcourez les travaux ouverts dans votre secteur et acceptez ceux qui conviennent à votre tournée et votre équipement. Sans enchères."
       },
       {
         "title": "Faites le travail",
@@ -398,11 +398,11 @@
       },
       {
         "title": "Payez à la fin",
-        "body": "Aucuns frais d'avance — vous payez seulement une fois terminé."
+        "body": "Aucuns frais d'avance. Vous payez seulement une fois terminé."
       },
       {
         "title": "Sur demande",
-        "body": "Demandez un déneigement et un plow proche est dépêché — premier arrivé, premier servi."
+        "body": "Demandez un déneigement et un plow proche est dépêché. Premier arrivé, premier servi."
       }
     ],
     "ctaTitle": "Prêt dès le premier flocon.",
@@ -416,7 +416,7 @@
     "eyebrow": "Tarifs",
     "title": "Des prix simples",
     "accent": "par visite.",
-    "subtitle": "Choisissez ce qu'il faut dégager. Payez par visite — aucuns frais d'avance, et vous payez seulement une fois le travail vérifié par photo.",
+    "subtitle": "Choisissez ce qu'il faut dégager. Payez par visite. Aucuns frais d'avance, et vous payez seulement une fois le travail vérifié par photo.",
     "from": "à partir de",
     "perVisit": "/visite",
     "addOn": "Supplément",
@@ -454,18 +454,18 @@
         "features": [
           "En premier pendant les tempêtes",
           "Traité avant les réservations standards",
-          "Simple ajout unique — sans abonnement"
+          "Simple ajout unique. Sans abonnement"
         ]
       }
     },
     "premiumKicker": "Optionnel",
-    "premiumTitle": "Priorité Premium —",
+    "premiumTitle": "Priorité Premium :",
     "premiumAccent": "sautez la file.",
-    "premiumSubtitle": "Le premium est un ajout unique optionnel qui vous place en tête de file pendant les tempêtes — votre travail est traité avant les réservations standards, pour 10 $ fixe.",
+    "premiumSubtitle": "Le premium est un ajout unique optionnel qui vous place en tête de file pendant les tempêtes. Votre travail est traité avant les réservations standards, pour 10 $ fixe.",
     "premium": [
       {
         "title": "En premier",
-        "body": "Pendant une tempête, les réservations premium sont traitées en premier — avant les travaux standards quand la demande grimpe."
+        "body": "Pendant une tempête, les réservations premium sont traitées en premier. Avant les travaux standards quand la demande grimpe."
       },
       {
         "title": "Réponse plus rapide",
@@ -473,7 +473,7 @@
       },
       {
         "title": "Frais uniques",
-        "body": "10 $ fixe ajouté à cette réservation seulement. Sans abonnement ni engagement — ajoutez-le quand vous voulez."
+        "body": "10 $ fixe ajouté à cette réservation seulement. Sans abonnement ni engagement. Ajoutez-le quand vous voulez."
       }
     ],
     "ctaTitle": "Faites-vous dégager cet hiver.",
@@ -486,7 +486,7 @@
     "eyebrow": "Services",
     "title": "Le déneigement,",
     "accent": "bien fait.",
-    "subtitle": "Déneigement sur demande pour les entrées, allées et marches d'Ottawa — vérifié par photo, dégagé rapidement.",
+    "subtitle": "Déneigement sur demande pour les entrées, allées et marches d'Ottawa. Vérifié par photo, dégagé rapidement.",
     "from": "À partir de",
     "cta": "Réserver",
     "ctaHow": "Comment ça marche",
@@ -501,10 +501,10 @@
     "items": {
       "snow-removal": {
         "name": "Déneigement",
-        "tagline": "Déneigement sur demande — demandez-le et un plow se dirige vers vous.",
-        "intro": "Entrées, allées et marches dégagées dès que la neige cesse — vérifié par photo.",
+        "tagline": "Déneigement sur demande. Demandez-le et un plow se dirige vers vous.",
+        "intro": "Entrées, allées et marches dégagées dès que la neige cesse. Vérifié par photo.",
         "whatTitle": "La neige, partie vite.",
-        "whatBody": "Quand il neige, demandez un déneigement et un pro local dégage votre entrée, vos allées et vos marches — puis téléverse une preuve photo. Une propriété dégagée et sûre, sans toucher à une pelle.",
+        "whatBody": "Quand il neige, demandez un déneigement et un pro local dégage votre entrée, vos allées et vos marches. Puis téléverse une preuve photo. Une propriété dégagée et sûre, sans toucher à une pelle.",
         "includes": [
           "Déneigement de l'entrée",
           "Allées et marches avant",
@@ -515,15 +515,15 @@
         "steps": [
           {
             "title": "Demandez un déneigement",
-            "body": "Réservez pour votre adresse — ponctuel, ou ajoutez la Priorité Premium pour la saison."
+            "body": "Réservez pour votre adresse. Ponctuel, ou ajoutez la Priorité Premium pour la saison."
           },
           {
             "title": "Un pro se dirige vers vous",
-            "body": "Un plow proche accepte et dégage une fois la neige terminée — premier arrivé, premier servi."
+            "body": "Un plow proche accepte et dégage une fois la neige terminée. Premier arrivé, premier servi."
           },
           {
             "title": "Payez une fois terminé",
-            "body": "Vérifiez la preuve photo — facturé seulement une fois vérifié."
+            "body": "Vérifiez la preuve photo. Facturé seulement une fois vérifié."
           }
         ],
         "ctaTitle": "Devancez la prochaine tempête.",
@@ -536,11 +536,11 @@
     "eyebrow": "À propos",
     "title": "Conçu pour les",
     "accent": "hivers d'Ottawa.",
-    "subtitle": "Capital Clear relie les propriétaires de la région de la capitale nationale à des entrepreneurs locaux vérifiés pour un déneigement rapide et fiable — réservé en minutes, payé sur résultats.",
+    "subtitle": "Capital Clear relie les propriétaires de la région de la capitale nationale à des entrepreneurs locaux vérifiés pour un déneigement rapide et fiable. Réservé en minutes, payé sur résultats.",
     "story": [
       "Capital Clear est né d'une frustration simple : à Ottawa, faire dégager son entrée après une tempête de nuit signifiait des appels sans fin, des absences et payer avant que quiconque ne lève une pelle.",
-      "Nous avons donc bâti un marché qui fonctionne comme la ville — rapide, local et responsable. Les propriétaires réservent en moins d'une minute. Les pros de déneigement vérifiés réclament des travaux à proximité. Chaque dégagement se conclut par une preuve photo, et le paiement n'est libéré qu'une fois vérifié.",
-      "Nous sommes fiers d'être locaux. De Kanata à Orléans, les pros de Capital Clear vivent et travaillent dans les quartiers qu'ils dégagent — et sont fiers de chaque travail."
+      "Nous avons donc bâti un marché qui fonctionne comme la ville. Rapide, local et responsable. Les propriétaires réservent en moins d'une minute. Les pros de déneigement vérifiés réclament des travaux à proximité. Chaque dégagement se conclut par une preuve photo, et le paiement n'est libéré qu'une fois vérifié.",
+      "Nous sommes fiers d'être locaux. De Kanata à Orléans, les pros de Capital Clear vivent et travaillent dans les quartiers qu'ils dégagent. Et sont fiers de chaque travail."
     ],
     "stats": [
       {
@@ -570,7 +570,7 @@
       },
       {
         "title": "Équitable pour les pros",
-        "body": "Une rémunération transparente par travail — chaque pro voit ses tarifs dans son tableau de bord."
+        "body": "Une rémunération transparente par travail. Chaque pro voit ses tarifs dans son tableau de bord."
       },
       {
         "title": "Responsable",
@@ -598,7 +598,7 @@
         "items": [
           {
             "q": "Où offrez-vous le service ?",
-            "a": "Dans la région de la capitale nationale — Ottawa, Kanata, Barrhaven, Orléans, Nepean, Gloucester et Stittsville. Nous confirmons votre adresse à la réservation."
+            "a": "Dans la région de la capitale nationale: Ottawa, Kanata, Barrhaven, Orléans, Nepean, Gloucester et Stittsville. Nous confirmons votre adresse à la réservation."
           },
           {
             "q": "Quand suis-je facturé ?",
@@ -606,11 +606,11 @@
           },
           {
             "q": "À quelle vitesse mon entrée sera-t-elle dégagée ?",
-            "a": "Demandez un déneigement et un plow proche est dépêché dès que la neige cesse — premier arrivé, premier servi, comme un appel de course."
+            "a": "Demandez un déneigement et un plow proche est dépêché dès que la neige cesse. Premier arrivé, premier servi, comme un appel de course."
           },
           {
             "q": "Puis-je réserver un service récurrent ?",
-            "a": "Oui — réservez un seul déneigement ou configurez-le pour toute la saison hivernale."
+            "a": "Oui. Réservez un seul déneigement ou configurez-le pour toute la saison hivernale."
           }
         ]
       },
@@ -623,7 +623,7 @@
           },
           {
             "q": "Qu’est-ce que la Priorité Premium ?",
-            "a": "Un premium optionnel qui vous place en premier lors des tempêtes et verrouille votre prix par visite pour la saison — premier arrivé, premier servi, sans contrat."
+            "a": "Un premium optionnel qui vous place en premier lors des tempêtes et verrouille votre prix par visite pour la saison. Premier arrivé, premier servi, sans contrat."
           },
           {
             "q": "Y a-t-il des frais cachés ?",
@@ -650,7 +650,7 @@
       }
     ],
     "ctaTitle": "D’autres questions ?",
-    "ctaSubtitle": "Notre équipe est là pour aider — écrivez-nous et nous répondrons rapidement.",
+    "ctaSubtitle": "Notre équipe est là pour aider. Écrivez-nous et nous répondrons rapidement.",
     "ctaContact": "Nous joindre",
     "ctaBook": "Réserver"
   },
@@ -669,7 +669,7 @@
     "sendAgain": "Envoyer un autre",
     "sending": "Envoi…",
     "successTitle": "Message envoyé",
-    "successBody": "Merci — nous vous contacterons sous peu.",
+    "successBody": "Merci. Nous vous contacterons sous peu.",
     "errName": "Veuillez entrer votre nom.",
     "errEmail": "Veuillez entrer un courriel valide.",
     "errMessage": "Veuillez ajouter un peu plus de détails.",
@@ -697,7 +697,7 @@
     "ctaPrimary": "Commencer à gagner",
     "ctaSecondary": "Comment ça marche",
     "earningsKicker": "Rémunération",
-    "earningsBody": "Une rémunération concurrentielle par travail, versée rapidement après chaque travail terminé. Vos tarifs et détails de versement exacts sont dans votre tableau de bord pro une fois connecté — aucuns frais mensuels, jamais.",
+    "earningsBody": "Une rémunération concurrentielle par travail, versée rapidement après chaque travail terminé. Vos tarifs et détails de versement exacts sont dans votre tableau de bord pro une fois connecté. Aucuns frais mensuels, jamais.",
     "benefitsKicker": "Pourquoi les pros nous choisissent",
     "benefitsTitle": "Conçu autour de votre horaire.",
     "benefits": [
@@ -784,14 +784,14 @@
         "body": [
           "Les Clients peuvent annuler sans frais tant qu'aucun Pro n'a accepté le travail. Une fois le travail accepté, l'annulation libère la préautorisation, mais des annulations tardives répétées peuvent entraîner des restrictions de compte.",
           "Si un Pro est déjà en route ou sur place, la visite peut être facturée en totalité.",
-          "Si aucun Pro n'accepte votre travail dans un délai raisonnable, rien n'est facturé — la préautorisation est libérée automatiquement.",
+          "Si aucun Pro n'accepte votre travail dans un délai raisonnable, rien n'est facturé. La préautorisation est libérée automatiquement.",
           "Si un déneigement terminé ne vous satisfait pas, ne l'approuvez pas : signalez-le au soutien dans les 48 heures et nous verrons avec le Pro pour une reprise ou un remboursement de la visite concernée."
         ]
       },
       {
         "heading": "Responsabilité",
         "body": [
-          "Capital Clear fournit la plateforme « telle quelle » et n'est qu'une place de marché — elle n'effectue pas de déneigement et n'emploie pas les Pros.",
+          "Capital Clear fournit la plateforme « telle quelle » et n'est qu'une place de marché. Elle n'effectue pas de déneigement et n'emploie pas les Pros.",
           "Capital Clear n'est pas responsable des glissades, chutes ou autres blessures corporelles, ni des dommages causés à la maison, l'entrée, la propriété ou les biens d'un Client dans le cadre des services réservés via la plateforme.",
           "Le Pro indépendant (sous-traitant) qui effectue le travail assume l'entière responsabilité du service et de toute blessure ou tout dommage en résultant. Les Clients acceptent cette décharge en confirmant une réservation.",
           "Dans la mesure maximale permise par la loi, la responsabilité de Capital Clear est limitée au montant payé pour la réservation concernée."
@@ -877,14 +877,14 @@
     "heroEyebrow": "Déneigement à Ottawa",
     "heroTitle": "Déneigement,",
     "heroAccent": "sur demande.",
-    "heroSubtitle": "Demandez un déneigement et un plow local vérifié se dirige vers vous — premier arrivé, premier servi, comme un appel de course. Vérifié par photo, et vous payez seulement une fois terminé.",
+    "heroSubtitle": "Demandez un déneigement et un plow local vérifié se dirige vers vous. Premier arrivé, premier servi, comme un appel de course. Vérifié par photo, et vous payez seulement une fois terminé.",
     "heroPrimary": "Réserver",
     "heroSecondary": "Comment ça marche",
     "trust": "De confiance à Ottawa · Kanata · Barrhaven · Orléans · Nepean · Stittsville",
     "whatKicker": "Ce que nous faisons",
-    "whatTitle": "La neige, gérée —",
+    "whatTitle": "La neige, gérée :",
     "whatAccent": "de A à Z.",
-    "whatBody": "Quand il neige la nuit, un pro local vérifié dégage votre entrée, vos allées et vos marches. Vous vous réveillez devant une propriété dégagée et sûre — et payez seulement une fois la preuve photo confirmée.",
+    "whatBody": "Quand il neige la nuit, un pro local vérifié dégage votre entrée, vos allées et vos marches. Vous vous réveillez devant une propriété dégagée et sûre. Et payez seulement une fois la preuve photo confirmée.",
     "whatFeatures": [
       "Entrées, allées et marches",
       "Dégagé jusqu'au pavé",
@@ -900,7 +900,7 @@
       },
       {
         "title": "Un pro local dégage",
-        "body": "Le travail va aux pros vérifiés proches. L'un accepte, déneige et sale — la nuit en cas de tempête."
+        "body": "Le travail va aux pros vérifiés proches. L'un accepte, déneige et sale. La nuit en cas de tempête."
       },
       {
         "title": "Payez une fois terminé",
@@ -913,7 +913,7 @@
       {
         "value": "60 s",
         "label": "Pour réserver",
-        "desc": "Entrez votre adresse et la taille de l'entrée — réservé en moins d'une minute."
+        "desc": "Entrez votre adresse et la taille de l'entrée. Réservé en moins d'une minute."
       },
       {
         "value": "100 %",
@@ -923,16 +923,16 @@
       {
         "value": "ASAP",
         "label": "Dégagé après la tempête",
-        "desc": "Un pro local est envoyé dès que la neige cesse — premier arrivé, premier servi."
+        "desc": "Un pro local est envoyé dès que la neige cesse. Premier arrivé, premier servi."
       },
       {
         "value": "0 $",
-        "label": "À l’avance — payez à la fin",
+        "label": "À l’avance. Payez à la fin",
         "desc": "Aucun frais d'avance. Vous payez seulement une fois le travail vérifié."
       }
     ],
     "ctaTitle": "Prêt dès le premier flocon.",
-    "ctaSubtitle": "Réservez en moins d'une minute — ou inscrivez-vous pour déneiger avec nous.",
+    "ctaSubtitle": "Réservez en moins d'une minute. Ou inscrivez-vous pour déneiger avec nous.",
     "ctaPrimary": "Réserver",
     "ctaSecondary": "Devenir pro",
     "worksTitle": "Comment ça marche",
@@ -979,30 +979,30 @@
     "proCta": "Commencer",
     "proAlt": "Déjà un compte pro ? Connexion",
     "safetyTitle": "Chaque déneigement, vérifié",
-    "safetyBody": "Chaque pro est vérifié avant d'accepter un travail, et chaque travail se termine par une preuve photo. Vous ne payez qu'une fois le travail vérifié — 0 $ d'avance.",
+    "safetyBody": "Chaque pro est vérifié avant d'accepter un travail, et chaque travail se termine par une preuve photo. Vous ne payez qu'une fois le travail vérifié. 0 $ d'avance.",
     "safetyCta": "Comment ça marche"
   },
   "AreaCheck": {
     "title": "Êtes-vous dans notre zone de service ?",
-    "subtitle": "Entrez votre code postal — nous vous dirons instantanément si un pro Capital Clear peut se rendre chez vous.",
+    "subtitle": "Entrez votre code postal. Nous vous dirons instantanément si un pro Capital Clear peut se rendre chez vous.",
     "placeholder": "Entrez votre code postal (p. ex. K2P 1L4)",
-    "covered": "Vous êtes couvert — nous desservons votre secteur.",
-    "coveredIn": "Vous êtes couvert — nous desservons {area}.",
-    "outside": "Nous ne sommes pas encore dans votre secteur — nous prenons de l'expansion chaque saison.",
-    "invalid": "Cela ne ressemble pas encore à un code postal canadien — continuez à taper.",
+    "covered": "Vous êtes couvert. Nous desservons votre secteur.",
+    "coveredIn": "Vous êtes couvert. Nous desservons {area}.",
+    "outside": "Nous ne sommes pas encore dans votre secteur. Nous prenons de l'expansion chaque saison.",
+    "invalid": "Cela ne ressemble pas encore à un code postal canadien. Continuez à taper.",
     "bookCta": "Réserver un déneigement"
   },
   "StormBanner": {
     "today": "aujourd'hui",
     "tomorrow": "demain",
-    "message": "{cm} cm de neige prévus {day} — réservez à l'avance et évitez la cohue.",
+    "message": "{cm} cm de neige prévus {day}. Réservez à l'avance et évitez la cohue.",
     "cta": "Réserver à l'avance"
   },
   "AreaPage": {
     "metaTitle": "Déneigement à {area}",
     "eyebrow": "Zone de service",
     "title": "Déneigement à {area}, sur demande",
-    "landmarks": "Nous desservons {landmarks} — et tout ce qui se trouve entre les deux.",
+    "landmarks": "Nous desservons {landmarks}, et tout ce qui se trouve entre les deux.",
     "cta": "Réserver un déneigement à {area}",
     "pricingTitle": "Tarifs par visite à {area}"
   },

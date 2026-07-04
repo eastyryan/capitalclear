@@ -1,7 +1,7 @@
 {
   "HomePage": {
     "title": "Capital Clear",
-    "tagline": "Ottawa snow removal, lawn care, and seasonal property maintenance — booked, tracked, and cleared."
+    "tagline": "Ottawa snow removal, lawn care, and seasonal property maintenance: booked, tracked, and cleared."
   },
   "Nav": {
     "services": "Services",
@@ -134,7 +134,7 @@
     "address": "Street address",
     "postalCode": "Postal code",
     "postalHelp": "Capital Clear currently serves Ottawa (K postal codes).",
-    "postalInvalid": "Sorry — Capital Clear currently serves Ottawa only.",
+    "postalInvalid": "Sorry, Capital Clear currently serves Ottawa only.",
     "date": "Date",
     "time": "Time",
     "notes": "Notes for your pro",
@@ -163,10 +163,10 @@
     "errorCreateFailed": "We couldn't create your booking. Please try again.",
     "errorPaymentHoldFailed": "We couldn't secure payment for this booking. Please try again.",
     "asapTitle": "As soon as possible",
-    "asapBody": "A vetted local pro is dispatched right away — first come, first served.",
+    "asapBody": "A vetted local pro is dispatched right away. First come, first served.",
     "asapLabel": "As soon as possible",
     "scheduleLaterTitle": "Schedule for later",
-    "scheduleLaterBody": "Pick a date and time — handy if a big storm is coming.",
+    "scheduleLaterBody": "Pick a date and time. Handy if a big storm is coming.",
     "stepPackageTitle": "Choose your snow removal",
     "stepDetailsTitle": "Your details",
     "pkgSingleName": "Single Driveway",
@@ -175,7 +175,7 @@
     "pkgDoubleBody": "Two-car or double-wide driveway, plowed and cleared.",
     "pkgWalkwayName": "Add a walkway",
     "pkgWalkwayBody": "Front walk and steps, cleared.",
-    "guestNote": "No account needed — just your contact info so your pro can reach you and send photo proof.",
+    "guestNote": "No account needed. Just your contact info so your pro can reach you and send photo proof.",
     "name": "Full name",
     "nameRequired": "Please enter your name.",
     "email": "Email",
@@ -189,7 +189,7 @@
     "subtotal": "Subtotal",
     "hst": "HST (13%)",
     "pkgPremiumName": "Priority Premium",
-    "pkgPremiumBody": "Skip the queue during storms — your job is dispatched ahead of standard bookings.",
+    "pkgPremiumBody": "Skip the queue during storms. Your job is dispatched ahead of standard bookings.",
     "cancelNote": "Free cancellation until a pro accepts your job. If no pro accepts, you're never charged."
   },
   "HomeownerDashboard": {
@@ -225,7 +225,7 @@
     "accept": "Accept job",
     "accepting": "Accepting…",
     "viewJob": "View",
-    "acceptSuccess": "Job accepted — it's now in your active list.",
+    "acceptSuccess": "Job accepted. It's now in your active list.",
     "acceptAlreadyTaken": "Another pro just claimed that job.",
     "acceptError": "Couldn't accept the job. Please try again.",
     "liveBadge": "Live",
@@ -350,7 +350,7 @@
     "eyebrow": "How it works",
     "title": "Booked in minutes,",
     "accent": "handled by morning.",
-    "subtitle": "From request to photo-verified finish — here's exactly how Capital Clear connects your property with a vetted local pro.",
+    "subtitle": "From request to photo-verified finish. Here's exactly how Capital Clear connects your property with a vetted local pro.",
     "homeownersKicker": "For homeowners",
     "homeownersTitle": "Three taps to a",
     "homeownersAccent": "cleared driveway.",
@@ -361,7 +361,7 @@
       },
       {
         "title": "A local pro accepts",
-        "body": "Your job is offered to vetted contractors nearby. The first to accept locks it in — you'll see who's coming and when."
+        "body": "Your job is offered to vetted contractors nearby. The first to accept locks it in. You'll see who's coming and when."
       },
       {
         "title": "Pay when it's done",
@@ -374,7 +374,7 @@
     "prosSteps": [
       {
         "title": "Claim nearby jobs",
-        "body": "Browse open jobs in your area and accept the ones that fit your route and equipment — no bidding, no back-and-forth."
+        "body": "Browse open jobs in your area and accept the ones that fit your route and equipment. No bidding, no back-and-forth."
       },
       {
         "title": "Do the work",
@@ -398,11 +398,11 @@
       },
       {
         "title": "Pay on completion",
-        "body": "No upfront charges — you pay only when it's done."
+        "body": "No upfront charges. You pay only when it's done."
       },
       {
         "title": "On-demand",
-        "body": "Request a clear and a nearby plow is dispatched — first come, first served."
+        "body": "Request a clear and a nearby plow is dispatched. First come, first served."
       }
     ],
     "ctaTitle": "Ready when the first flake falls.",
@@ -416,7 +416,7 @@
     "eyebrow": "Pricing",
     "title": "Simple per-visit",
     "accent": "pricing.",
-    "subtitle": "Pick what you need cleared. Pay per visit — no upfront charges, and you only pay once the work is photo-verified.",
+    "subtitle": "Pick what you need cleared. Pay per visit. No upfront charges, and you only pay once the work is photo-verified.",
     "from": "from",
     "perVisit": "/visit",
     "addOn": "Add-on",
@@ -454,18 +454,18 @@
         "features": [
           "First in line during storms",
           "Dispatched ahead of standard bookings",
-          "Simple one-time add-on — no subscription"
+          "Simple one-time add-on. No subscription"
         ]
       }
     },
     "premiumKicker": "Optional",
-    "premiumTitle": "Priority Premium —",
+    "premiumTitle": "Priority Premium:",
     "premiumAccent": "skip the queue.",
-    "premiumSubtitle": "The premium is an optional one-time add-on that puts you first in line during storms — your job is dispatched ahead of standard bookings, for a flat $10.",
+    "premiumSubtitle": "The premium is an optional one-time add-on that puts you first in line during storms. Your job is dispatched ahead of standard bookings, for a flat $10.",
     "premium": [
       {
         "title": "First in line",
-        "body": "During a storm, premium bookings are dispatched first — ahead of standard jobs when demand spikes."
+        "body": "During a storm, premium bookings are dispatched first. Ahead of standard jobs when demand spikes."
       },
       {
         "title": "Faster response",
@@ -473,7 +473,7 @@
       },
       {
         "title": "One-time fee",
-        "body": "A flat $10 added to this booking only. No subscription, no commitment — add it whenever you want."
+        "body": "A flat $10 added to this booking only. No subscription, no commitment. Add it whenever you want."
       }
     ],
     "ctaTitle": "Get cleared this winter.",
@@ -486,7 +486,7 @@
     "eyebrow": "Services",
     "title": "Snow removal,",
     "accent": "done right.",
-    "subtitle": "On-demand snow plowing for Ottawa driveways, walkways and steps — photo-verified, cleared fast.",
+    "subtitle": "On-demand snow plowing for Ottawa driveways, walkways and steps. Photo-verified, cleared fast.",
     "from": "From",
     "cta": "Book now",
     "ctaHow": "How it works",
@@ -501,10 +501,10 @@
     "items": {
       "snow-removal": {
         "name": "Snow Removal",
-        "tagline": "On-demand snow plowing — request it and a plow heads your way.",
-        "intro": "Driveways, walkways and steps cleared as soon as the snow stops — photo-verified.",
+        "tagline": "On-demand snow plowing. Request it and a plow heads your way.",
+        "intro": "Driveways, walkways and steps cleared as soon as the snow stops. Photo-verified.",
         "whatTitle": "Snow, gone fast.",
-        "whatBody": "When it snows, request a clear and a local pro plows your driveway, walkways and steps — then uploads photo proof. A clear, safe property without touching a shovel.",
+        "whatBody": "When it snows, request a clear and a local pro plows your driveway, walkways and steps. Then uploads photo proof. A clear, safe property without touching a shovel.",
         "includes": [
           "Driveway plowing or shovelling",
           "Walkways and front steps",
@@ -515,15 +515,15 @@
         "steps": [
           {
             "title": "Request a clear",
-            "body": "Book snow removal for your address — one-off, or add Priority Premium for the season."
+            "body": "Book snow removal for your address. One-off, or add Priority Premium for the season."
           },
           {
             "title": "A pro heads your way",
-            "body": "A nearby plow accepts and clears once the snow stops — first come, first served."
+            "body": "A nearby plow accepts and clears once the snow stops. First come, first served."
           },
           {
             "title": "Pay when it's done",
-            "body": "Check the photo proof — you're only charged once it's verified complete."
+            "body": "Check the photo proof. You're only charged once it's verified complete."
           }
         ],
         "ctaTitle": "Beat the next storm.",
@@ -536,11 +536,11 @@
     "eyebrow": "About us",
     "title": "Built for",
     "accent": "Ottawa winters.",
-    "subtitle": "Capital Clear connects National Capital Region homeowners with vetted local contractors for fast, reliable snow removal — booked in minutes, paid on results.",
+    "subtitle": "Capital Clear connects National Capital Region homeowners with vetted local contractors for fast, reliable snow removal. Booked in minutes, paid on results.",
     "story": [
       "Capital Clear started with a simple frustration: in Ottawa, getting your driveway cleared after an overnight storm meant phone tag, no-shows, and paying before anyone lifted a shovel.",
-      "So we built a marketplace that works like the city does — fast, local, and accountable. Homeowners book in under a minute. Vetted plow pros claim jobs nearby. Every clear closes with photo proof, and payment only releases once the work is verified.",
-      "We're proud to be local. From Kanata to Orléans, the pros on Capital Clear live and work in the same neighbourhoods they clear — and take pride in every job."
+      "So we built a marketplace that works like the city does. Fast, local, and accountable. Homeowners book in under a minute. Vetted plow pros claim jobs nearby. Every clear closes with photo proof, and payment only releases once the work is verified.",
+      "We're proud to be local. From Kanata to Orléans, the pros on Capital Clear live and work in the same neighbourhoods they clear. And take pride in every job."
     ],
     "stats": [
       {
@@ -570,7 +570,7 @@
       },
       {
         "title": "Fair to pros",
-        "body": "Transparent per-job pay — every pro sees their rates in their dashboard."
+        "body": "Transparent per-job pay. Every pro sees their rates in their dashboard."
       },
       {
         "title": "Accountable",
@@ -598,7 +598,7 @@
         "items": [
           {
             "q": "Where do you operate?",
-            "a": "Across the National Capital Region — Ottawa, Kanata, Barrhaven, Orléans, Nepean, Gloucester and Stittsville. We confirm your address is in the service area when you book."
+            "a": "Across the National Capital Region: Ottawa, Kanata, Barrhaven, Orléans, Nepean, Gloucester and Stittsville. We confirm your address is in the service area when you book."
           },
           {
             "q": "When do I get charged?",
@@ -606,11 +606,11 @@
           },
           {
             "q": "How fast will my driveway be cleared?",
-            "a": "Request a clear and a nearby plow is dispatched as soon as the snow stops — first come, first served, like calling a ride."
+            "a": "Request a clear and a nearby plow is dispatched as soon as the snow stops. First come, first served, like calling a ride."
           },
           {
             "q": "Can I book recurring service?",
-            "a": "Yes — book a single clear or set up snow removal for the whole winter season."
+            "a": "Yes. Book a single clear or set up snow removal for the whole winter season."
           }
         ]
       },
@@ -623,7 +623,7 @@
           },
           {
             "q": "What is Priority Premium?",
-            "a": "An optional premium that puts you first in line during storms and locks your per-visit price for the season — first come, first served, no contract."
+            "a": "An optional premium that puts you first in line during storms and locks your per-visit price for the season. First come, first served, no contract."
           },
           {
             "q": "Are there any hidden fees?",
@@ -650,7 +650,7 @@
       }
     ],
     "ctaTitle": "Still have questions?",
-    "ctaSubtitle": "Our team is happy to help — reach out and we'll get back to you.",
+    "ctaSubtitle": "Our team is happy to help. Reach out and we'll get back to you.",
     "ctaContact": "Contact us",
     "ctaBook": "Book a clear"
   },
@@ -669,7 +669,7 @@
     "sendAgain": "Send another",
     "sending": "Sending…",
     "successTitle": "Message sent",
-    "successBody": "Thanks — we'll be in touch shortly.",
+    "successBody": "Thanks. We'll be in touch shortly.",
     "errName": "Please enter your name.",
     "errEmail": "Please enter a valid email.",
     "errMessage": "Please add a little more detail.",
@@ -697,7 +697,7 @@
     "ctaPrimary": "Start earning",
     "ctaSecondary": "How it works",
     "earningsKicker": "Earnings",
-    "earningsBody": "Competitive per-job pay, paid out fast after each completed job. Your exact rates and payout details are in your pro dashboard once you sign in — no monthly fees, ever.",
+    "earningsBody": "Competitive per-job pay, paid out fast after each completed job. Your exact rates and payout details are in your pro dashboard once you sign in. No monthly fees, ever.",
     "benefitsKicker": "Why pros choose us",
     "benefitsTitle": "Built around your schedule.",
     "benefits": [
@@ -784,14 +784,14 @@
         "body": [
           "Clients may cancel free of charge any time before a Pro accepts the job. Once a Pro has accepted, cancelling releases the payment hold but repeated late cancellations may result in account restrictions.",
           "If a Pro is already en route or on site, the visit may be charged in full.",
-          "If no Pro accepts your job within a reasonable window, nothing is charged — the payment hold is released automatically.",
+          "If no Pro accepts your job within a reasonable window, nothing is charged. The payment hold is released automatically.",
           "If you're not satisfied with a completed clear, don't approve it: raise it through support within 48 hours and we'll work with the Pro on a re-clear or a refund of the affected visit."
         ]
       },
       {
         "heading": "Liability",
         "body": [
-          "Capital Clear provides the platform “as is” and is a marketplace only — it does not perform snow removal and does not employ the Pros.",
+          "Capital Clear provides the platform “as is” and is a marketplace only. It does not perform snow removal and does not employ the Pros.",
           "Capital Clear is not liable or responsible for any slip-and-fall or other personal injury, or for any damage to a Client's house, driveway, property, or belongings, arising from services booked through the platform.",
           "The independent Pro (subcontractor) who performs the work carries sole responsibility and liability for the service and for any injury or damage resulting from it. Clients accept this waiver when confirming a booking.",
           "To the maximum extent permitted by law, Capital Clear's liability is limited to the amount paid for the affected booking."
@@ -877,14 +877,14 @@
     "heroEyebrow": "Ottawa snow removal",
     "heroTitle": "Snow removal,",
     "heroAccent": "on demand.",
-    "heroSubtitle": "Request a clear and a vetted local plow heads your way — first come, first served, like calling a ride. Photo-verified, and you pay only when it's done.",
+    "heroSubtitle": "Request a clear and a vetted local plow heads your way. First come, first served, like calling a ride. Photo-verified, and you pay only when it's done.",
     "heroPrimary": "Book a clear",
     "heroSecondary": "How it works",
     "trust": "Trusted across Ottawa · Kanata · Barrhaven · Orléans · Nepean · Stittsville",
     "whatKicker": "What we do",
-    "whatTitle": "Snow, handled —",
+    "whatTitle": "Snow, handled:",
     "whatAccent": "start to finish.",
-    "whatBody": "When it snows overnight, a vetted local pro clears your driveway, walkways and steps. You wake up to a clear, safe property — and only pay once it's photo-verified.",
+    "whatBody": "When it snows overnight, a vetted local pro clears your driveway, walkways and steps. You wake up to a clear, safe property. And only pay once it's photo-verified.",
     "whatFeatures": [
       "Driveways, walkways & steps",
       "Cleared down to the pavement",
@@ -900,7 +900,7 @@
       },
       {
         "title": "A local pro clears it",
-        "body": "The job goes to vetted pros nearby. One accepts and plows — overnight if it's a storm."
+        "body": "The job goes to vetted pros nearby. One accepts and plows. Overnight if it's a storm."
       },
       {
         "title": "Pay when it's done",
@@ -913,7 +913,7 @@
       {
         "value": "60s",
         "label": "To book",
-        "desc": "Enter your address and driveway size — you're booked in under a minute."
+        "desc": "Enter your address and driveway size. You're booked in under a minute."
       },
       {
         "value": "100%",
@@ -923,16 +923,16 @@
       {
         "value": "ASAP",
         "label": "Cleared after the storm",
-        "desc": "A local pro is dispatched as soon as the snow stops — first come, first served."
+        "desc": "A local pro is dispatched as soon as the snow stops. First come, first served."
       },
       {
         "value": "$0",
-        "label": "Upfront — pay when done",
+        "label": "Upfront. Pay when done",
         "desc": "No upfront charge. You only pay once the work is verified complete."
       }
     ],
     "ctaTitle": "Ready when the first flake falls.",
-    "ctaSubtitle": "Book a clear in under a minute — or sign up to plow with us.",
+    "ctaSubtitle": "Book a clear in under a minute. Or sign up to plow with us.",
     "ctaPrimary": "Book a clear",
     "ctaSecondary": "Become a pro",
     "worksTitle": "How it works",
@@ -979,30 +979,30 @@
     "proCta": "Get started",
     "proAlt": "Already have a pro account? Sign in",
     "safetyTitle": "Every clear, verified",
-    "safetyBody": "Every pro is vetted before they take a job, and every job ends with photo proof. You're only charged once the work is verified complete — $0 upfront.",
+    "safetyBody": "Every pro is vetted before they take a job, and every job ends with photo proof. You're only charged once the work is verified complete. $0 upfront.",
     "safetyCta": "How it works"
   },
   "AreaCheck": {
     "title": "Are you in our service area?",
-    "subtitle": "Enter your postal code — we'll tell you instantly if a Capital Clear pro can reach you.",
+    "subtitle": "Enter your postal code. We'll tell you instantly if a Capital Clear pro can reach you.",
     "placeholder": "Enter your postal code (e.g. K2P 1L4)",
-    "covered": "You're covered — we serve your area.",
-    "coveredIn": "You're covered — we serve {area}.",
-    "outside": "We're not in your area yet — we're expanding across the region every season.",
-    "invalid": "That doesn't look like a Canadian postal code yet — keep typing.",
+    "covered": "You're covered. We serve your area.",
+    "coveredIn": "You're covered. We serve {area}.",
+    "outside": "We're not in your area yet. We're expanding across the region every season.",
+    "invalid": "That doesn't look like a Canadian postal code yet. Keep typing.",
     "bookCta": "Book a clear"
   },
   "StormBanner": {
     "today": "today",
     "tomorrow": "tomorrow",
-    "message": "{cm} cm of snow expected {day} — book ahead and skip the rush.",
+    "message": "{cm} cm of snow expected {day}. Book ahead and skip the rush.",
     "cta": "Book ahead"
   },
   "AreaPage": {
     "metaTitle": "Snow Removal in {area}",
     "eyebrow": "Service area",
     "title": "Snow removal in {area}, on demand",
-    "landmarks": "Serving {landmarks} — and everywhere in between.",
+    "landmarks": "Serving {landmarks}, and everywhere in between.",
     "cta": "Book a clear in {area}",
     "pricingTitle": "Per-visit pricing in {area}"
   },

@@ -112,7 +112,7 @@ export function HeroBookingForm() {
         <button
           type="button"
           onClick={seePrices}
-          className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3.5 text-base font-medium leading-none text-primary-foreground transition-colors hover:bg-[var(--primary-hover)] active:bg-[var(--primary-pressed)]"
+          className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3.5 text-base font-medium leading-none text-primary-foreground transition-[background-color,transform] duration-200 hover:bg-[var(--primary-hover)] active:scale-[0.98] active:bg-[var(--primary-pressed)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
         >
           {t('heroForm.seePrices')}
         </button>
