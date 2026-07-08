@@ -62,3 +62,33 @@ Plain, functional, neighborly. Headlines ≤8 words ("Your yard, handled."). Mon
 
 ## Data honesty
 Demo build: deterministic sample providers, simulated dispatch and tracking on a timer, no accounts, no payments. Estimates labeled "estimate". No invented marketing stats.
+
+## Round 2 addendum (2026-07-08): partner dashboard + landing page
+
+New screens, same locked palette, type, and corner language. Added token:
+deep band ground `--cc-deep` (bottle green #1E4A28 summer, deep marine
+#1B3B66 winter) for the landing's partner band.
+
+6. **Partners dashboard (`/partners`)** - working demo for pitching companies.
+   Asymmetric two-column: left, "Incoming requests" rows (address, service,
+   distance, mono price, Accept/Decline) over "Today's route" with status
+   chips; right, earnings panel with a huge mono weekly total, a thin 90/10
+   split bar, and five muted weekly bars. Hairline dividers, no heavy cards.
+   Anchor: asymmetric split, content-left.
+7. **Landing (`/about`)** - editorial. Hero: split-season house photo
+   (text-free generated asset), headline "Your yard, handled. All year.",
+   two CTAs. How-it-works: 3 steps in a hairline row using the generated icon
+   sprite. Partner band: full-width deep ground, oversized mono "90/10",
+   line "Partners keep 90 percent." Footer: wordmark + route links + demo line.
+   Anchors: image-first hero, hairline strip, color-blocked band.
+
+CTA inventory additions (rationed garments audited per page):
+- `/about` "Request service": oversized underlined text link, underline draws
+  in (the page's single rationed garment).
+- `/about` "Become a partner": corner-bracket viewfinder target, brackets
+  close on hover.
+- `/partners` "Accept": small solid accent chip that imprints on press.
+  "Decline": quiet text link. Season toggle reused from the app chrome.
+
+Eyebrow budget: `/about` 4 sections -> ceil(4/3)=2, used 0. `/partners` uses
+mono column labels (exempt rail labels), 0 eyebrows.

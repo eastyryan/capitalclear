@@ -240,3 +240,11 @@
     transform: scaleX(0.6);
   }
 }
+
+/* Deep band ground for the landing's partner section (round 2). */
+[data-season="summer"] {
+  --cc-deep: #1e4a28;
+}
+[data-season="winter"] {
+  --cc-deep: #1b3b66;
+}

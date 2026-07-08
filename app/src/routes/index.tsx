@@ -2,18 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 import type { Provider, Scope, Season, Step } from "../lib/capital/data";
-import {
-  SERVICES,
-  estimate,
-  providerPrice,
-  seasonForMonth,
-} from "../lib/capital/data";
+import { SERVICES, estimate, providerPrice } from "../lib/capital/data";
+import { useSeason } from "../lib/capital/useSeason";
 import { ProviderRail } from "../components/capital/ProviderRail";
 import { Receipt } from "../components/capital/Receipt";
 import { RequestPanel } from "../components/capital/RequestPanel";
 import { SeasonStage, type PinPos } from "../components/capital/SeasonStage";
-import { SeasonToggle } from "../components/capital/SeasonToggle";
 import { ServicesSheet } from "../components/capital/ServicesSheet";
+import { SiteHeader } from "../components/capital/SiteHeader";
 import { TrackingPanel } from "../components/capital/TrackingPanel";
 
 const SITE_ORIGIN = "https://capitalclear.higgsfield.app";
@@ -28,7 +24,7 @@ export const Route = createFileRoute("/")({
 const DEFAULT_PIN: PinPos = { x: 58, y: 44 };
 
 function CapitalClear() {
-  const [season, setSeason] = useState<Season>(() => seasonForMonth(new Date().getMonth()));
+  const [season, setSeason] = useSeason();
   const [step, setStep] = useState<Step>("locate");
   const [pin, setPin] = useState<PinPos | null>(null);
   const [serviceId, setServiceId] = useState<string | null>(null);
@@ -45,12 +41,6 @@ function CapitalClear() {
     timers.current = [];
   };
   useEffect(() => clearTimers, []);
-
-  // Keep the <html data-season> attribute (set at SSR) in sync with state so
-  // the whole token layer crossfades with the toggle.
-  useEffect(() => {
-    document.documentElement.dataset.season = season;
-  }, [season]);
 
   const service = SERVICES[season].find((s) => s.id === serviceId) ?? SERVICES[season][0];
   const basePrice = estimate(service, scope);
@@ -123,22 +113,7 @@ function CapitalClear() {
         onTruckArrive={truckArrived}
       />
 
-      {/* Chrome: wordmark + season switch */}
-      <header className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-center justify-between px-4 py-3 sm:px-8 sm:py-5">
-        <div className="pointer-events-auto flex items-center gap-2.5 rounded-full bg-[var(--cc-paper)]/90 py-1.5 pl-2 pr-4 shadow-sm backdrop-blur-sm">
-          <img
-            src="/assets/logo.webp"
-            alt=""
-            aria-hidden
-            className="h-7 w-7 object-contain mix-blend-multiply"
-            draggable={false}
-          />
-          <span className="text-lg font-semibold tracking-tight">CapitalClear</span>
-        </div>
-        <div className="pointer-events-auto">
-          <SeasonToggle season={season} onChange={changeSeason} />
-        </div>
-      </header>
+      <SiteHeader season={season} onSeason={changeSeason} current="app" overlay />
 
       {step === "locate" && (
         <RequestPanel season={season} hasPin={pin !== null} onConfirm={confirmLocation} />
