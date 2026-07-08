@@ -1,0 +1,64 @@
+# CapitalClear design brief
+
+## Design read
+For homeowners who want their yard handled the way Uber handles a ride: one screen, drop a pin, someone comes. Emotional register: calm competence, neighborly trust, zero gig-app clutter.
+
+## Concept spine
+**"The same driveway, two seasons."** The whole app is one living neighborhood scene that exists in two graded states, summer and winter. A season switch crossfades the entire product (map plate, palette, services, copy) between the two grades. The spine is the business model made visible: one platform, the same trusted crews, year-round.
+(Spine family: living system.)
+
+## Delivery tier
+`editorial` — this is a product UI, not a marketing page. Typography, bespoke chrome, generated imagery, micro-motion only. The signature mechanic carries the wow; no scroll-jacking.
+
+## Tier-1 technique
+**B2, grade-shift interaction pair.** Two renders of the SAME aerial neighborhood composition (summer grade: fresh greens, warm light; winter grade: snow cover, ice-blue light) crossfaded by the season switch, with a subtle cursor-parallax drift on the plate. Chosen because B2 literally enacts the spine: the site notices the season the way the business does. Mobile degradation: crossfade on toggle only, no cursor drift. Reduced motion: instant swap, no fade.
+
+## Locked palette (two graded modes, one accent each)
+Theme paradigm: **Pristine Light** in both modes; the grade shifts, the structure never does.
+- **Summer mode:** paper `#F7F6F2`, ink `#1C2420`, accent grass `#2F7A3D` (single accent), support moss tint `#E8EFE6`.
+- **Winter mode:** snow paper `#F4F7FA`, ink `#18202A`, accent ultramarine-ice `#2B5FB8` (single accent), support frost tint `#E4ECF5`.
+Defense: light ground keeps a utility app legible outdoors on a phone; the paired greens/blues come straight from the material world (turf, ice) and dodge every banned family (no dark+neon, no beige+brass, no purple, no graphite+ember).
+
+## Locked type
+**Outfit** (display + UI) + **IBM Plex Mono** (prices, ETAs, job numbers, plate labels). Friendly geometric sans reads as a consumer utility, not a luxury brochure; mono carries the dispatch/meter register. No serif anywhere.
+
+## Combinatorial pick (held across all boards)
+- Theme paradigm: Pristine Light (dual-graded)
+- Background character: full-bleed cinematic imagery (the aerial plate IS the ground)
+- Typography character: clean grotesk + mono meter
+- Hero architecture: massive image-first with restrained text (map-as-canvas)
+- Section system: asymmetric premium flow (floating panels over the plate)
+- Signature components: product UI panel stack · oversized metrics strip (price/ETA meter) · hover-accordion slices (service list) · layered image crop frames (provider cards)
+- Narrative spine: living system (the neighborhood)
+- Second-read moment: one oversized numeral, the estimate price, set as structure on the receipt screen (placed once)
+
+## Screen plan (one board each, distinct composition anchors)
+1. **Request** — full-bleed aerial plate, floating location panel. Anchor: image-as-canvas, panel bottom-left. CTA: set-location.
+2. **Services** — bottom-sheet slices over the dimmed plate, seasonal services first, off-season collapsed. Anchor: bottom-of-frame sheet. Includes lawn/driveway size scope chips and the live estimate meter (mono).
+3. **Match** — provider cards on an off-grid horizontal rail, plate parallaxed behind. Anchor: off-grid offset. Each card: monogram, rating, jobs, ETA, price.
+4. **Tracking** — asymmetric split: plate with moving crew marker left, mono status timeline right (en route, arrived, in progress, done). Anchor: asymmetric split.
+5. **Receipt** — quiet centered card, the oversized price numeral as structure, one line: "Your provider keeps 90%. CapitalClear runs on 10%." Anchor: stacked center.
+
+Eyebrow budget: max 2 across 5 screens; plan uses 1 (Services sheet label).
+
+## Asset plan
+- Aerial neighborhood plate, one composition, **two grades** (summer, winter) — hero/map surface + the B2 pair.
+- Crew truck marker sprite (top-down, both grades).
+- Custom icon set, one stroke style, brand palette: pin, mower, hedge, sprinkler, snowflake, shovel, salt, clock, star, receipt.
+- 5 invented local-company monograms (provider cards).
+- CapitalClear logo/monogram + favicon.
+- State artwork: searching-for-provider (radar sweep over plate crop), job-done (tidy lawn / cleared driveway vignette).
+- OG card + 3:2 launch cover (per app-cover.md).
+
+## CTA inventory (bespoke chrome, no shared button class)
+1. **Set location** — framed block on the location panel, hairline border, fills accent on press (`scale-[0.98]`).
+2. **Request service** — full-width meter bar fused to the live estimate: price left (mono), label right; the whole bar is the button.
+3. **Choose provider** — underlined inline link + arrow inside each provider card, underline thickens on hover.
+4. **New request** — quiet text button on the receipt, ink color, accent on hover.
+One label per intent page-wide. No pills.
+
+## Copy register
+Plain, functional, neighborly. Headlines ≤8 words ("Your yard, handled."). Mono for every number. No em or en dashes anywhere. Sample providers labeled as demo data in the footer line only.
+
+## Data honesty
+Demo build: deterministic sample providers, simulated dispatch and tracking on a timer, no accounts, no payments. Estimates labeled "estimate". No invented marketing stats.
