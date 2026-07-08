@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import type { JobRequest, RouteJob } from "../lib/capital/partnerData";
 import { EARNINGS, INCOMING, TODAYS_ROUTE } from "../lib/capital/partnerData";
-import { useSeason } from "../lib/capital/useSeason";
 import { SiteHeader } from "../components/capital/SiteHeader";
 
 const SITE_ORIGIN = "https://capitalclear.higgsfield.app";
@@ -24,17 +23,10 @@ export const Route = createFileRoute("/partners")({
 });
 
 function Partners() {
-  const [season, setSeason] = useSeason();
-  const [queue, setQueue] = useState<JobRequest[]>(INCOMING[season]);
-  const [route, setRoute] = useState<RouteJob[]>(TODAYS_ROUTE[season]);
-  const earnings = EARNINGS[season];
+  const [queue, setQueue] = useState<JobRequest[]>(INCOMING.winter);
+  const [route, setRoute] = useState<RouteJob[]>(TODAYS_ROUTE.winter);
+  const earnings = EARNINGS.winter;
   const maxDay = Math.max(...earnings.days.map((d) => d.amount));
-
-  // Season flip resets the demo data to that season's book of work.
-  useEffect(() => {
-    setQueue(INCOMING[season]);
-    setRoute(TODAYS_ROUTE[season]);
-  }, [season]);
 
   const accept = (job: JobRequest) => {
     setQueue((q) => q.filter((j) => j.id !== job.id));
@@ -57,15 +49,15 @@ function Partners() {
 
   return (
     <main className="min-h-dvh">
-      <SiteHeader season={season} onSeason={setSeason} current="partners" />
+      <SiteHeader current="partners" />
 
       <div className="mx-auto max-w-5xl px-4 pb-16 sm:px-8">
         <h1 className="mt-4 text-4xl font-semibold tracking-tighter sm:text-5xl">
-          Your crew's day, dispatched.
+          Your plow route, dispatched.
         </h1>
         <p className="mt-2 max-w-[52ch] text-base leading-relaxed text-[var(--cc-ink-soft)]">
-          This is the partner side of the demo: nearby requests come to you, your route fills
-          itself, and you keep 90 percent of every dollar.
+          This is the partner side of the demo: when the snow falls, nearby requests come to you,
+          your route fills itself, and you keep 90 percent of every dollar.
         </p>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_320px]">

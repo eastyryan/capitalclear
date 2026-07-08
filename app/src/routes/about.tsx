@@ -9,11 +9,11 @@ const SITE_ORIGIN = "https://capitalclear.higgsfield.app";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "CapitalClear: your yard, handled all year" },
+      { title: "CapitalClear: snow clearing, on demand" },
       {
         name: "description",
         content:
-          "On-demand lawn care in summer and driveway clearing in winter. Drop your location and a trusted local crew comes to you.",
+          "Drop your location and a trusted local crew clears your driveway, walkway, and steps. Snow clearing, on demand.",
       },
     ],
     links: [{ rel: "canonical", href: `${SITE_ORIGIN}/about` }],
@@ -21,47 +21,40 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-function About() {
-  const [season, setSeason] = useSeason();
+const STEPS = [
+  { icon: "pin", title: "Drop your pin", copy: "Type your address or tap your driveway on the map." },
+  { icon: "shovel", title: "A crew comes out", copy: "Vetted local companies pick up the job nearby." },
+  { icon: "salt", title: "Done, and paid fairly", copy: "You get a flat estimate. The crew keeps 90 percent." },
+] as const;
 
-  const steps =
-    season === "summer"
-      ? ([
-          { icon: "pin", title: "Drop your pin", copy: "Type your address or tap your yard on the map." },
-          { icon: "mower", title: "A crew comes out", copy: "Vetted local companies pick up the job nearby." },
-          { icon: "sprinkler", title: "Done, and paid fairly", copy: "You get a flat estimate. The crew keeps 90 percent." },
-        ] as const)
-      : ([
-          { icon: "pin", title: "Drop your pin", copy: "Type your address or tap your driveway on the map." },
-          { icon: "shovel", title: "A crew comes out", copy: "Vetted local companies pick up the job nearby." },
-          { icon: "salt", title: "Done, and paid fairly", copy: "You get a flat estimate. The crew keeps 90 percent." },
-        ] as const);
+function About() {
+  useSeason();
 
   return (
     <main className="min-h-dvh">
-      <SiteHeader season={season} onSeason={setSeason} current="about" />
+      <SiteHeader current="about" />
 
       {/* Hero */}
       <section className="relative mx-auto max-w-6xl px-4 sm:px-8">
         <div className="relative overflow-hidden rounded-xl">
           <img
-            src="/assets/hero-split.webp"
-            alt="One house in two seasons: mowed summer lawn on the left, cleared winter driveway on the right"
+            src="/assets/hero-winter.webp"
+            alt="A plow truck clearing a suburban driveway the morning after heavy snowfall"
             className="aspect-[16/10] w-full object-cover sm:aspect-[16/7]"
             draggable={false}
           />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent px-6 pb-6 pt-20 sm:px-10 sm:pb-10">
             <h1 className="text-4xl font-semibold tracking-tighter text-white sm:text-6xl">
-              Your yard, handled.
-              <span className="block">All year.</span>
+              Snowed in?
+              <span className="block">Handled.</span>
             </h1>
           </div>
         </div>
 
         <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-4 sm:mt-8">
           <p className="max-w-[44ch] text-base leading-relaxed text-[var(--cc-ink-soft)]">
-            Mowing and lawn care all summer. Driveway and snow clearing all winter. One app, the
-            same trusted local crews.
+            Drop a pin and a local crew clears your driveway, walkway, and steps. Flat estimate up
+            front, tracked live like a ride.
           </p>
           <div className="flex items-center gap-8">
             {/* Rationed garment: the drawing underline, used once on this page */}
@@ -93,7 +86,7 @@ function About() {
       <section className="mx-auto mt-16 max-w-6xl px-4 sm:mt-24 sm:px-8">
         <h2 className="text-2xl font-semibold tracking-tighter sm:text-3xl">How it works</h2>
         <ol className="mt-6 grid gap-8 border-t border-[var(--cc-line)] pt-8 sm:grid-cols-3 sm:gap-6">
-          {steps.map((s, i) => (
+          {STEPS.map((s, i) => (
             <li key={s.title} className="flex gap-4 sm:block">
               <CCIcon name={s.icon} className="h-12 w-12 shrink-0 sm:h-14 sm:w-14" />
               <div>
@@ -120,7 +113,7 @@ function About() {
               Partners keep 90 percent.
             </h2>
             <p className="mt-3 text-base leading-relaxed text-white/75">
-              CapitalClear fills your route with nearby jobs in every season and takes 10 percent
+              Every storm, CapitalClear fills your plow route with nearby jobs and takes 10 percent
               only when a job completes. No lead fees, no subscriptions.
             </p>
             <Link

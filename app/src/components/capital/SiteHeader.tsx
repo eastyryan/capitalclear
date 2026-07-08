@@ -1,20 +1,14 @@
 import { Link } from "@tanstack/react-router";
 
-import type { Season } from "../../lib/capital/data";
-import { SeasonToggle } from "./SeasonToggle";
-
 /**
- * Shared chrome: wordmark chip, quiet route links, season switch. `overlay`
- * floats it over the map stage (app page); otherwise it sits in the flow.
+ * Shared chrome: wordmark chip, quiet route links, and the product tagline.
+ * `overlay` floats it over the map stage (app page); otherwise it sits in
+ * the flow.
  */
 export function SiteHeader({
-  season,
-  onSeason,
   current,
   overlay = false,
 }: {
-  season: Season;
-  onSeason: (s: Season) => void;
   current: "app" | "partners" | "about";
   overlay?: boolean;
 }) {
@@ -51,9 +45,9 @@ export function SiteHeader({
           ))}
         </nav>
       </div>
-      <div className="pointer-events-auto">
-        <SeasonToggle season={season} onChange={onSeason} />
-      </div>
+      <p className="pointer-events-auto hidden rounded-full bg-[var(--cc-paper)]/90 px-4 py-2 font-[family-name:var(--cc-font-mono)] text-xs text-[var(--cc-ink-soft)] shadow-sm backdrop-blur-sm sm:block">
+        snow clearing, on demand
+      </p>
     </header>
   );
 }

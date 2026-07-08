@@ -50,12 +50,15 @@ export function Receipt({
           <button
             type="button"
             onClick={onReset}
-            className="block w-full bg-[var(--cc-ink)] py-4 text-center text-base font-medium text-[var(--cc-paper)] transition-colors duration-300 hover:bg-[var(--cc-accent)] hover:text-[var(--cc-accent-ink)] active:translate-y-[1px] motion-reduce:transition-none"
+            className="block min-h-[52px] w-full bg-[var(--cc-ink)] py-4 text-center text-base font-medium text-[var(--cc-paper)] transition-colors duration-300 hover:bg-[var(--cc-accent)] hover:text-[var(--cc-accent-ink)] active:translate-y-[1px] motion-reduce:transition-none"
           >
-            New request
+            Book another clearing
           </button>
         </div>
-        <p className="mt-4 text-center font-[family-name:var(--cc-font-mono)] text-[11px] text-[var(--cc-ink-soft)]">
+        <p className="mt-3 text-center text-sm text-[var(--cc-ink-soft)]">
+          Snowed in again? It takes one tap.
+        </p>
+        <p className="mt-2 text-center font-[family-name:var(--cc-font-mono)] text-[11px] text-[var(--cc-ink-soft)]">
           Demo with sample providers. No payment was made.
         </p>
       </div>

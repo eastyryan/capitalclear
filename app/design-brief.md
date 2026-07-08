@@ -92,3 +92,26 @@ CTA inventory additions (rationed garments audited per page):
 
 Eyebrow budget: `/about` 4 sections -> ceil(4/3)=2, used 0. `/partners` uses
 mono column labels (exempt rail labels), 0 eyebrows.
+
+## Round 3 addendum (2026-07-08): snow-only pivot + friendlier flow
+
+Product pinned to the WINTER grade site-wide (season toggle removed from the
+UI; summer tokens, data, and components stay in the repo unused for a later
+un-pivot). Header carries a mono tagline chip: "snow clearing, on demand".
+
+Customer flow collapsed to 4 steps for usability (mobile-first, all controls
+44px+, sticky safe-area CTA):
+1. **Request** (replaces Locate + Services): one sheet with a mono 1-2-3
+   guide line, address input with inline pin feedback, the 3 snow services as
+   large tap cards with live prices, driveway-size chips, and a sticky meter
+   bar CTA "See my crew" (disabled with helper text until a location exists).
+2. **Crew confirm** (replaces the compare rail): ~1s radar search, then the
+   best crew pre-picked with one "Confirm crew" bar; "Choose a different
+   crew" expands the two alternates inline.
+3. **Tracking**: unchanged layout, snappier pacing (drive 4.5s, ~10s total).
+4. **Receipt**: CTA "Book another clearing", microline "Snowed in again? It
+   takes one tap."
+
+Landing hero swaps to a text-free winter plow scene (`hero-winter.webp`),
+headline "Snowed in? Handled." Partner page pinned to winter data, headline
+"Your plow route, dispatched." Cover/OG regenerated winter-first.

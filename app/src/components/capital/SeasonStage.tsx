@@ -24,7 +24,7 @@ interface SeasonStageProps {
   onTruckArrive?: () => void;
 }
 
-const DRIVE_MS = 6500;
+const DRIVE_MS = 4500;
 
 /** Route start and bend, in stage-percent space. */
 const ROUTE_START = { x: -4, y: 84 };

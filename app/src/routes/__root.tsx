@@ -10,7 +10,6 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { seasonForMonth } from "../lib/capital/data";
 import { reportHiggsfieldError } from "../lib/higgsfield-error-reporting";
 // Page metadata (browser <title>/favicon + social og: tags) committed into the
 // repo by the marketplace meta API and read at BUILD time — no runtime fetch.
@@ -163,12 +162,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  // Initial season is derived from the current month on the server; the index
-  // route keeps it in state (same derivation) and rewrites the attribute when
-  // the visitor flips the season switch.
-  const season = seasonForMonth(new Date().getMonth());
+  // Winter-first product: the whole token layer is pinned to the winter
+  // grade. (Summer tokens/data remain in the repo for a later un-pivot.)
   return (
-    <html lang="en" data-season={season} style={{ colorScheme: "light" }}>
+    <html lang="en" data-season="winter" style={{ colorScheme: "light" }}>
       <head>
         <HeadContent />
       </head>

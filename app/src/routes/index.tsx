@@ -1,14 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
-import type { Provider, Scope, Season, Step } from "../lib/capital/data";
+import type { Provider, Scope } from "../lib/capital/data";
 import { SERVICES, estimate, providerPrice } from "../lib/capital/data";
 import { useSeason } from "../lib/capital/useSeason";
-import { ProviderRail } from "../components/capital/ProviderRail";
+import { CrewConfirm } from "../components/capital/CrewConfirm";
 import { Receipt } from "../components/capital/Receipt";
-import { RequestPanel } from "../components/capital/RequestPanel";
+import { RequestSheet } from "../components/capital/RequestSheet";
 import { SeasonStage, type PinPos } from "../components/capital/SeasonStage";
-import { ServicesSheet } from "../components/capital/ServicesSheet";
 import { SiteHeader } from "../components/capital/SiteHeader";
 import { TrackingPanel } from "../components/capital/TrackingPanel";
 
@@ -21,13 +20,16 @@ export const Route = createFileRoute("/")({
   component: CapitalClear,
 });
 
-const DEFAULT_PIN: PinPos = { x: 58, y: 44 };
+type Flow = "request" | "match" | "track" | "done";
+
+const DEFAULT_PIN: PinPos = { x: 58, y: 40 };
 
 function CapitalClear() {
-  const [season, setSeason] = useSeason();
-  const [step, setStep] = useState<Step>("locate");
+  const season = useSeason();
+  const [step, setStep] = useState<Flow>("request");
   const [pin, setPin] = useState<PinPos | null>(null);
-  const [serviceId, setServiceId] = useState<string | null>(null);
+  const [address, setAddress] = useState("");
+  const [serviceId, setServiceId] = useState("driveway");
   const [scope, setScope] = useState<Scope>("medium");
   const [provider, setProvider] = useState<Provider | null>(null);
   const [searching, setSearching] = useState(false);
@@ -42,60 +44,44 @@ function CapitalClear() {
   };
   useEffect(() => clearTimers, []);
 
-  const service = SERVICES[season].find((s) => s.id === serviceId) ?? SERVICES[season][0];
+  const service = SERVICES.winter.find((s) => s.id === serviceId) ?? SERVICES.winter[0];
   const basePrice = estimate(service, scope);
   const finalPrice = provider ? providerPrice(basePrice, provider) : basePrice;
 
-  const changeSeason = (next: Season) => {
-    if (next === season) return;
-    clearTimers();
-    setSeason(next);
-    setServiceId(null);
-    setProvider(null);
-    setSearching(false);
-    setStageIdx(0);
-    setStep(pin ? "services" : "locate");
-  };
-
-  const confirmLocation = () => {
-    if (!pin) setPin(DEFAULT_PIN);
-    setStep("services");
-  };
-
   const request = () => {
+    if (!pin) setPin(DEFAULT_PIN);
     setStep("match");
     setSearching(true);
-    timers.current.push(window.setTimeout(() => setSearching(false), 1600));
+    timers.current.push(window.setTimeout(() => setSearching(false), 1100));
   };
 
-  const choose = (p: Provider) => {
+  const confirmCrew = (p: Provider) => {
     setProvider(p);
     setEtaMin(p.etaMin);
     setStageIdx(0);
     setStep("track");
-    // ETA ticks down while the truck drives in.
+    // ETA visibly counts down while the truck drives in.
     timers.current.push(
-      window.setTimeout(() => setEtaMin((m) => Math.max(2, m - Math.ceil(m / 2))), 2600),
+      window.setTimeout(() => setEtaMin((m) => Math.max(2, Math.ceil(m / 2))), 1800),
     );
-    timers.current.push(window.setTimeout(() => setEtaMin(2), 5000));
+    timers.current.push(window.setTimeout(() => setEtaMin(2), 3400));
   };
 
   const truckArrived = () => {
     setStageIdx(1);
-    timers.current.push(window.setTimeout(() => setStageIdx(2), 2000));
+    timers.current.push(window.setTimeout(() => setStageIdx(2), 1400));
     timers.current.push(
       window.setTimeout(() => {
         setStageIdx(3);
         setCompletedAt(new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }));
-        timers.current.push(window.setTimeout(() => setStep("done"), 1400));
-      }, 5500),
+        timers.current.push(window.setTimeout(() => setStep("done"), 1100));
+      }, 4200),
     );
   };
 
   const reset = () => {
     clearTimers();
-    setStep("locate");
-    setServiceId(null);
+    setStep("request");
     setProvider(null);
     setSearching(false);
     setStageIdx(0);
@@ -106,37 +92,34 @@ function CapitalClear() {
       <SeasonStage
         season={season}
         pin={pin}
-        onDropPin={step === "locate" ? setPin : undefined}
-        dimmed={step === "services" || (step === "match" && searching)}
+        onDropPin={step === "request" ? setPin : undefined}
+        dimmed={step === "match"}
         searching={step === "match" && searching}
         truck={step === "track" ? (stageIdx === 0 ? "driving" : "parked") : null}
         onTruckArrive={truckArrived}
       />
 
-      <SiteHeader season={season} onSeason={changeSeason} current="app" overlay />
+      <SiteHeader current="app" overlay />
 
-      {step === "locate" && (
-        <RequestPanel season={season} hasPin={pin !== null} onConfirm={confirmLocation} />
-      )}
-
-      {step === "services" && (
-        <ServicesSheet
-          season={season}
+      {step === "request" && (
+        <RequestSheet
+          address={address}
+          onAddress={setAddress}
+          pinSet={pin !== null}
           serviceId={serviceId}
-          scope={scope}
           onSelect={setServiceId}
+          scope={scope}
           onScope={setScope}
-          onRequest={request}
-          onBack={() => setStep("locate")}
+          onSubmit={request}
         />
       )}
 
       {step === "match" && (
-        <ProviderRail
-          season={season}
+        <CrewConfirm
           basePrice={basePrice}
           searching={searching}
-          onChoose={choose}
+          onConfirm={confirmCrew}
+          onBack={() => setStep("request")}
         />
       )}
 
@@ -161,7 +144,7 @@ function CapitalClear() {
         />
       )}
 
-      {step !== "done" && (
+      {step !== "done" && step !== "request" && (
         <p className="pointer-events-none absolute bottom-2 right-3 z-10 font-[family-name:var(--cc-font-mono)] text-[10px] text-[var(--cc-ink-soft)] sm:bottom-3 sm:right-4">
           Demo with sample providers
         </p>
