@@ -21,6 +21,11 @@
 
 @import "tw-animate-css";
 
+/* CapitalClear brand fonts (self-hosted via fontsource). */
+@import "@fontsource-variable/outfit/index.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
 @custom-variant dark (&:where([data-theme="default-dark"], [data-theme="default-dark"] *));
 
 /*
@@ -109,5 +114,129 @@
 
   * {
     border-color: var(--hf-color-border-default);
+  }
+}
+
+/* ============================================================================
+ * CapitalClear brand layer (type: "website" — independent brand).
+ * Everything above this line is template/Quanta wiring; nothing below uses
+ * q-prefixed tokens. Two seasonal grades of one palette, switched by
+ * [data-season] on <html>.
+ * ========================================================================= */
+
+:root {
+  --cc-font-display: "Outfit Variable", "Outfit", system-ui, sans-serif;
+  --cc-font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+}
+
+[data-season="summer"] {
+  --cc-paper: #f7f6f2;
+  --cc-ink: #1c2420;
+  --cc-ink-soft: rgb(28 36 32 / 0.62);
+  --cc-accent: #2f7a3d;
+  --cc-accent-ink: #ffffff;
+  --cc-tint: #e8efe6;
+  --cc-line: rgb(28 36 32 / 0.18);
+}
+
+[data-season="winter"] {
+  --cc-paper: #f4f7fa;
+  --cc-ink: #18202a;
+  --cc-ink-soft: rgb(24 32 42 / 0.62);
+  --cc-accent: #2b5fb8;
+  --cc-accent-ink: #ffffff;
+  --cc-tint: #e4ecf5;
+  --cc-line: rgb(24 32 42 / 0.18);
+}
+
+@layer base {
+  html[data-season] {
+    background-color: var(--cc-paper);
+    color: var(--cc-ink);
+    color-scheme: light;
+  }
+
+  html[data-season] body {
+    min-height: 100dvh;
+    background-color: var(--cc-paper);
+    color: var(--cc-ink);
+    font-family: var(--cc-font-display);
+    transition:
+      background-color 600ms ease,
+      color 600ms ease;
+  }
+
+  html[data-season] * {
+    border-color: var(--cc-line);
+  }
+}
+
+/* Seasonal recolor for the single line-art vignette (drawn in summer green). */
+[data-season="winter"] .cc-vignette {
+  filter: hue-rotate(115deg) saturate(1.05);
+}
+
+/* Generated icon sheet: 4x2 sprite, white ground blended away on paper. */
+.cc-icon {
+  display: inline-block;
+  background-image: url("/assets/icons.webp");
+  background-repeat: no-repeat;
+  background-size: 400% 200%;
+  mix-blend-mode: multiply;
+}
+.cc-icon-mower { background-position: 0% 0%; }
+.cc-icon-hedge { background-position: 33.3333% 0%; }
+.cc-icon-edger { background-position: 66.6667% 0%; }
+.cc-icon-sprinkler { background-position: 100% 0%; }
+.cc-icon-snowflake { background-position: 0% 100%; }
+.cc-icon-shovel { background-position: 33.3333% 100%; }
+.cc-icon-salt { background-position: 66.6667% 100%; }
+.cc-icon-pin { background-position: 100% 100%; }
+
+/* Winter recolor for the green icon sheet. */
+[data-season="winter"] .cc-icon {
+  filter: hue-rotate(115deg) saturate(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-season] body {
+    transition: none;
+  }
+}
+
+/* Radar pulse while matching (feedback for the searching state). */
+@keyframes cc-radar {
+  0% { transform: scale(0.35); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.cc-radar {
+  animation: cc-radar 1.8s ease-out infinite;
+}
+.cc-radar-late {
+  animation-delay: 0.9s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cc-radar {
+    animation: none;
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  .cc-radar-late {
+    display: none;
+  }
+}
+
+/* Active-stage progress: transform-only fill under the current status. */
+@keyframes cc-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.cc-progress {
+  animation: cc-progress 3s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cc-progress {
+    animation: none;
+    transform: scaleX(0.6);
   }
 }

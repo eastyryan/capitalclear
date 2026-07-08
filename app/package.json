@@ -19,6 +19,8 @@
     "test:packages": "for dir in packages/*; do if [ -f \"$dir/package.json\" ]; then (cd \"$dir\" && bun run test); fi; done"
   },
   "dependencies": {
+    "@fontsource-variable/outfit": "^5.2.5",
+    "@fontsource/ibm-plex-mono": "^5.2.5",
     "@higgsfield/fnf": "workspace:*",
     "@higgsfield/fnf-react": "workspace:*",
     "@higgsfield/quanta": "workspace:*",

@@ -19,7 +19,7 @@ const QUANTA_ICONS_SHIM = fileURLToPath(
   new URL("./src/lib/quanta-material-icons.ts", import.meta.url),
 );
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
   const designInspectorEnabled = process.env.HF_DESIGN_INSPECTOR === "1" || mode === "design";
 
   return {
@@ -32,7 +32,10 @@ export default defineConfig(({ mode }) => {
     // server but throw "No such module" in a Worker. Bundle them all in.
     // (node: builtins stay external — nodejs_compat provides them.)
     ssr: {
-      noExternal: true,
+      // Dev (`vite dev`) runs SSR in Node, where bundling react's CJS through
+      // the ESM module runner breaks (`module is not defined`); only the Worker
+      // build needs everything bundled in.
+      noExternal: command === "build" ? true : undefined,
       // `cloudflare:workers` is a workerd runtime built-in that exposes the Worker
       // env / bindings (D1 `DB`, R2 `STORAGE`). Like node: builtins it must NOT be
       // bundled; the runtime provides it. (`ssr.external` is typed string[].)

@@ -8,10 +8,9 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { button } from "@higgsfield/quanta/button";
-import { NotFound } from "@higgsfield/quanta/not-found";
 
 import appCss from "../styles.css?url";
+import { seasonForMonth } from "../lib/capital/data";
 import { reportHiggsfieldError } from "../lib/higgsfield-error-reporting";
 // Page metadata (browser <title>/favicon + social og: tags) committed into the
 // repo by the marketplace meta API and read at BUILD time — no runtime fetch.
@@ -21,8 +20,9 @@ import appMetaJson from "../app-meta.json";
 declare const __HF_DESIGN_INSPECTOR__: boolean;
 
 // Built-in defaults for any field that isn't set in app-meta.json.
-const DEFAULT_TITLE = "Higgsfield App";
-const DEFAULT_DESCRIPTION = "Higgsfield Generated Project";
+const DEFAULT_TITLE = "CapitalClear";
+const DEFAULT_DESCRIPTION =
+  "Drop your location, get your lawn cut or your driveway cleared by a trusted local crew.";
 
 type AppMeta = {
   og_title?: string | null;
@@ -75,6 +75,7 @@ function buildHead(meta: AppMeta) {
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#F7F6F2" },
       { title },
       { name: "description", content: description },
       { name: "author", content: "Higgsfield" },
@@ -96,23 +97,25 @@ function buildHead(meta: AppMeta) {
     links: [
       { rel: "stylesheet", href: appCss },
       ...(favicon ? [{ rel: "icon", href: favicon }] : []),
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/head/favicon-32.png" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/assets/head/favicon-16.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/assets/head/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
     ],
   };
 }
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-q-background-primary px-4">
-      <NotFound
-        className="mx-auto max-w-md"
-        icon={<span className="text-q-title-md-semi-bold text-q-text-primary">404</span>}
-        title="Page not found"
-        subtitle="The page you're looking for doesn't exist or has been moved."
+    <div className="flex min-h-dvh flex-col items-center justify-center gap-3 bg-[var(--cc-paper)] px-4 text-center text-[var(--cc-ink)]">
+      <p className="font-[family-name:var(--cc-font-mono)] text-sm text-[var(--cc-ink-soft)]">404</p>
+      <h1 className="text-3xl font-semibold tracking-tighter">Page not found</h1>
+      <Link
+        to="/"
+        className="mt-2 border border-[var(--cc-line)] px-4 py-2 text-sm transition-colors hover:bg-[var(--cc-accent)] hover:text-[var(--cc-accent-ink)]"
       >
-        <Link to="/" className={button({ variant: "primary", size: "md" }, "mt-3")}>
-          Go home
-        </Link>
-      </NotFound>
+        Back to the map
+      </Link>
     </div>
   );
 }
@@ -125,11 +128,11 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-q-background-primary px-4">
+    <div className="flex min-h-dvh items-center justify-center bg-[var(--cc-paper)] px-4 text-[var(--cc-ink)]">
       <div className="max-w-md text-center">
-        <h1 className="text-q-title-lg-semi-bold text-q-text-primary">This page didn't load</h1>
-        <p className="mt-2 text-q-body-sm-regular text-q-text-secondary">
-          Something went wrong on our end. You can try refreshing or head back home.
+        <h1 className="text-2xl font-semibold tracking-tighter">This page did not load</h1>
+        <p className="mt-2 text-sm text-[var(--cc-ink-soft)]">
+          Something went wrong on our end. You can try again or head back to the map.
         </p>
         <div className="mt-4 flex flex-wrap justify-center gap-2">
           <button
@@ -137,12 +140,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className={button({ variant: "primary", size: "md" })}
+            className="border border-[var(--cc-line)] px-4 py-2 text-sm transition-colors hover:bg-[var(--cc-accent)] hover:text-[var(--cc-accent-ink)]"
           >
             Try again
           </button>
-          <a href="/" className={button({ variant: "outline", size: "md" })}>
-            Go home
+          <a href="/" className="px-4 py-2 text-sm underline underline-offset-4">
+            Back to the map
           </a>
         </div>
       </div>
@@ -160,15 +163,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  // Initial season is derived from the current month on the server; the index
+  // route keeps it in state (same derivation) and rewrites the attribute when
+  // the visitor flips the season switch.
+  const season = seasonForMonth(new Date().getMonth());
   return (
-    <html lang="en" data-theme="default-dark" style={{ colorScheme: "dark" }}>
-      {/* Marketplace apps are permanently dark: data-theme is pinned on <html>
-          above. Do not add quanta's bootstrapScript/ThemeController, a theme
-          toggle, or a light mode. */}
+    <html lang="en" data-season={season} style={{ colorScheme: "light" }}>
       <head>
         <HeadContent />
       </head>
-      <body className="bg-q-background-primary text-q-text-primary">
+      <body>
         {children}
         <Scripts />
       </body>

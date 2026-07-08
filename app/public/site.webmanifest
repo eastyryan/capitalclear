@@ -1,0 +1,13 @@
+{
+  "name": "CapitalClear",
+  "short_name": "CapitalClear",
+  "description": "Drop your location, get your lawn cut or your driveway cleared by a trusted local crew.",
+  "theme_color": "#F7F6F2",
+  "background_color": "#F7F6F2",
+  "display": "standalone",
+  "icons": [
+    { "src": "/assets/head/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/head/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/head/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
