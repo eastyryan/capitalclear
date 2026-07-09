@@ -90,7 +90,7 @@ export function HomeSheet() {
   return (
     <section
       aria-label={t('heroTitle')}
-      className="absolute inset-x-0 bottom-0 z-10 mx-auto flex max-h-[76dvh] w-full max-w-xl flex-col rounded-t-xl bg-[var(--cc-paper)] shadow-2xl"
+      className="relative z-10 flex max-h-[88dvh] w-full max-w-xl flex-col overflow-hidden rounded-xl bg-[var(--cc-paper)] shadow-2xl"
     >
       {/* Scrollable body */}
       <div className="overflow-y-auto overscroll-contain px-5 pt-4 sm:px-7 sm:pt-5">
