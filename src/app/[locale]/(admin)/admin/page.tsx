@@ -139,11 +139,11 @@ export default async function AdminPage({
   return (
     <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
       <header className="mb-6 flex flex-col gap-1">
-        <span className="eyebrow text-muted-foreground">{t('title')}</span>
-        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+        <span className="eyebrow">{t('title')}</span>
+        <h1 className="mt-1 text-3xl font-semibold tracking-tighter sm:text-4xl">
           {t('title')}
         </h1>
-        <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+        <p className="max-w-[52ch] text-sm text-[var(--cc-ink-soft)]">{t('subtitle')}</p>
       </header>
 
       <div className="mb-8">

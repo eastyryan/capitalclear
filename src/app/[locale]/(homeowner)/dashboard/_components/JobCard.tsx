@@ -3,19 +3,17 @@
 import { useState, useTransition } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { toast } from 'sonner';
-import { Loader2, MapPin, CalendarClock, ArrowRight } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { Link, useRouter } from '@/i18n/navigation';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Money } from '@/components/Money';
-import { StatusBadge } from '@/components/jobs/StatusBadge';
-import { ServiceBadge } from '@/components/jobs/ServiceBadge';
 import { approveCompletion } from '@/app/actions/jobs';
-import type { Job } from '@/types/database.types';
+import type { Job, JobStatus } from '@/types/database.types';
 import type { MoneyLocale } from '@/lib/format/money';
 
-// Renders a single homeowner job. Dates are always formatted in the property's
+// Renders a single homeowner job as a Partners-style list row (divide-y list
+// chrome lives in JobSections). Dates are always formatted in the property's
 // service timezone (America/Toronto) using the active locale, so a homeowner
 // reading in fr-CA sees the same wall-clock time as the pro on the ground.
 const SERVICE_TZ = 'America/Toronto';
@@ -34,8 +32,22 @@ function formatScheduled(iso: string | null, locale: string): string | null {
   }).format(date);
 }
 
+// Status text treatment per the design system: done = struck-through soft ink,
+// cancelled = soft ink, anything in flight = accent.
+const DONE_STATUSES: JobStatus[] = ['completed'];
+const INERT_STATUSES: JobStatus[] = ['cancelled', 'draft'];
+
+function statusClass(status: JobStatus): string {
+  if (DONE_STATUSES.includes(status))
+    return 'text-[var(--cc-ink-soft)] line-through';
+  if (INERT_STATUSES.includes(status)) return 'text-[var(--cc-ink-soft)]';
+  return 'text-[var(--cc-accent)]';
+}
+
 export function JobCard({ job }: { job: Job }) {
   const t = useTranslations('HomeownerDashboard');
+  const tStatus = useTranslations('JobStatus');
+  const tService = useTranslations('Services');
   const locale = useLocale();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -62,46 +74,38 @@ export function JobCard({ job }: { job: Job }) {
   }
 
   return (
-    <Card className="overflow-hidden">
-      <CardContent className="flex flex-col gap-3 pt-6">
-        <div className="flex items-start justify-between gap-3">
-          <ServiceBadge service={job.service_type} />
-          <StatusBadge status={job.status} />
-        </div>
-
-        <dl className="flex flex-col gap-2.5 text-base">
+    <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 py-4">
+      <div className="min-w-0 flex-1">
+        <p className={cn('truncate text-base font-medium tracking-tight text-foreground', !job.address && 'italic text-[var(--cc-ink-soft)]')}>
+          {job.address ?? t('noAddress')}
+        </p>
+        <p className="mt-1 flex flex-wrap items-center gap-x-1.5 font-mono text-xs text-[var(--cc-ink-soft)]">
+          <span className={statusClass(job.status)}>{tStatus(job.status)}</span>
+          <span aria-hidden>·</span>
+          <span>{tService(job.service_type)}</span>
           {scheduled && (
-            <div className="flex items-center gap-2.5 text-muted-foreground">
-              <CalendarClock className="size-5 shrink-0" aria-hidden />
-              <dt className="sr-only">{t('scheduledFor')}</dt>
-              <dd>{scheduled}</dd>
-            </div>
+            <>
+              <span aria-hidden>·</span>
+              <span>{scheduled}</span>
+            </>
           )}
-          <div className="flex items-center gap-2.5 text-muted-foreground">
-            <MapPin className="size-5 shrink-0" aria-hidden />
-            <dt className="sr-only">{t('status')}</dt>
-            <dd className={job.address ? '' : 'italic'}>
-              {job.address ?? t('noAddress')}
-            </dd>
-          </div>
-        </dl>
+          {job.quoted_price_cents != null && (
+            <>
+              <span aria-hidden>·</span>
+              <Money cents={job.quoted_price_cents} locale={locale as MoneyLocale} />
+            </>
+          )}
+        </p>
+      </div>
 
-        {job.quoted_price_cents != null && (
-          <Money
-            cents={job.quoted_price_cents}
-            locale={locale as MoneyLocale}
-            className="font-mono text-xl font-semibold text-foreground"
-          />
-        )}
-      </CardContent>
-
-      <CardFooter className="flex flex-col gap-2">
+      <div className="flex shrink-0 items-center gap-4">
         {isAwaiting && (
           <Button
             type="button"
+            size="sm"
             onClick={handleApprove}
             disabled={busy}
-            className="min-h-11 w-full"
+            className="rounded-lg bg-[var(--cc-accent)] px-3.5 text-sm font-medium text-[var(--cc-accent-ink)] transition-transform duration-100 active:translate-y-[1px] active:scale-[0.97] motion-reduce:transition-none"
           >
             {busy ? (
               <>
@@ -115,17 +119,22 @@ export function JobCard({ job }: { job: Job }) {
         )}
         <Link
           href={`/jobs/${job.id}`}
-          className={cn(
-            buttonVariants({
-              variant: isAwaiting ? 'outline' : 'secondary',
-            }),
-            'min-h-11 w-full',
-          )}
+          className="group inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-[var(--cc-ink-soft)] transition-colors hover:text-[var(--cc-ink)] motion-reduce:transition-none"
         >
           {t('viewJob')}
-          <ArrowRight className="size-4" aria-hidden />
+          <svg
+            viewBox="0 0 20 16"
+            className="h-3.5 w-4 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            aria-hidden
+          >
+            <path d="M2 8h15" />
+            <path d="M12 3l5 5-5 5" />
+          </svg>
         </Link>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }

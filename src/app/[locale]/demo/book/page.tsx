@@ -23,7 +23,7 @@ export default async function DemoBook({
 
   return (
     <main className="mx-auto w-full max-w-xl px-4 pb-32 pt-6 sm:pt-10">
-      <p className="mb-6 rounded-lg border border-border bg-card px-4 py-3 text-center text-sm text-muted-foreground">
+      <p className="mb-6 rounded-lg bg-[var(--cc-tint)] px-4 py-3 text-center text-sm text-[var(--cc-ink-soft)]">
         Walk through the booking steps and live quote. The final confirm needs the real backend, so
         it won&rsquo;t submit in the demo.
       </p>

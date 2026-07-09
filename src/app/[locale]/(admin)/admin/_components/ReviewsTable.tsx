@@ -149,7 +149,7 @@ export function ReviewsTable({ reviews, locale }: ReviewsTableProps) {
           >
             <div className="flex items-center justify-between gap-2">
               <Stars rating={r.rating} />
-              <span className="text-xs text-muted-foreground">
+              <span className="font-mono text-xs text-muted-foreground">
                 {fmtDate(r.created_at, locale)}
               </span>
             </div>
@@ -202,7 +202,7 @@ export function ReviewsTable({ reviews, locale }: ReviewsTableProps) {
                 <TableCell className="text-sm">
                   {r.proName ?? t('unassigned')}
                 </TableCell>
-                <TableCell className="text-sm text-muted-foreground">
+                <TableCell className="font-mono text-xs text-muted-foreground">
                   {fmtDate(r.created_at, locale)}
                 </TableCell>
                 <TableCell className="text-right">

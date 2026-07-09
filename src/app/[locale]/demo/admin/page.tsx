@@ -30,11 +30,11 @@ export default async function DemoAdmin({
   return (
     <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
       <header className="mb-8 flex flex-col gap-1">
-        <span className="eyebrow text-muted-foreground">{t('title')}</span>
-        <h1 className="font-heading text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">
+        <span className="eyebrow">{t('title')}</span>
+        <h1 className="mt-1 text-3xl font-semibold tracking-tighter sm:text-4xl">
           {t('title')}
         </h1>
-        <p className="text-base text-muted-foreground">{t('subtitle')}</p>
+        <p className="max-w-[52ch] text-base text-[var(--cc-ink-soft)]">{t('subtitle')}</p>
       </header>
 
       <div className="mb-8">

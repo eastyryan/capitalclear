@@ -42,6 +42,10 @@ const ERROR_KEY: Record<string, string> = {
   ALREADY_REVIEWED: 'reviewExists',
 };
 
+// Signature button press (design-system interaction) for solid CTAs.
+const PRESS =
+  'rounded-lg transition-transform duration-100 active:translate-y-[1px] active:scale-[0.97] motion-reduce:transition-none';
+
 export function ActionBar({
   jobId,
   status,
@@ -82,7 +86,7 @@ export function ActionBar({
         <ActionShell>
           <Button
             size="lg"
-            className="h-11 w-full"
+            className={cn('h-11 w-full', PRESS)}
             disabled={isPending}
             onClick={() =>
               run(
@@ -106,7 +110,7 @@ export function ActionBar({
           <PhotoUploader jobId={jobId} type="before" />
           <Button
             size="lg"
-            className="h-11 w-full"
+            className={cn('h-11 w-full', PRESS)}
             disabled={isPending}
             onClick={() =>
               run(
@@ -129,7 +133,7 @@ export function ActionBar({
           <PhotoUploader jobId={jobId} type="after" />
           <Button
             size="lg"
-            className="h-11 w-full"
+            className={cn('h-11 w-full', PRESS)}
             disabled={isPending}
             onClick={() => run(() => markComplete(jobId), t('completeSent'))}
           >
@@ -148,7 +152,7 @@ export function ActionBar({
         <ActionShell>
           <Button
             size="lg"
-            className="h-11 w-full"
+            className={cn('h-11 w-full', PRESS)}
             disabled={isPending}
             onClick={() =>
               run(() => approveCompletion(jobId), t('paymentReleased'))
@@ -175,7 +179,7 @@ export function ActionBar({
           <Button
             variant="destructive"
             size="lg"
-            className="h-11 w-full"
+            className={cn('h-11 w-full', PRESS)}
             disabled={isPending}
             onClick={() => run(() => cancelJob(jobId), t('jobCancelled'))}
           >
@@ -194,7 +198,7 @@ export function ActionBar({
 // Sticky bottom container so the primary CTA stays in thumb reach on mobile.
 function ActionShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="sticky bottom-0 z-10 -mx-4 flex flex-col gap-3 border-t bg-background/95 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/80 sm:static sm:mx-0 sm:rounded-xl sm:border sm:bg-card sm:p-5 sm:backdrop-blur-none">
+    <div className="sticky bottom-0 z-10 -mx-4 flex flex-col gap-3 border-t border-[var(--cc-line)] bg-[var(--cc-paper)]/95 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-[var(--cc-paper)]/80 sm:static sm:mx-0 sm:rounded-xl sm:border sm:border-[var(--cc-line)] sm:bg-card sm:p-5 sm:backdrop-blur-none">
       {children}
     </div>
   );
@@ -252,7 +256,7 @@ function ReviewForm({ jobId }: { jobId: string }) {
               role="radio"
               aria-checked={rating === value}
               aria-label={t('starLabel', { count: value })}
-              className="rounded p-0.5 outline-none transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-ring"
+              className="rounded p-0.5 outline-none transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
               onMouseEnter={() => setHovered(value)}
               onMouseLeave={() => setHovered(0)}
               onClick={() => setRating(value)}

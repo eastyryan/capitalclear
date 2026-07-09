@@ -59,20 +59,20 @@ export default async function HomeownerDashboardPage({
   const isEmpty = jobs.length === 0;
 
   return (
-    <main className="container mx-auto max-w-6xl px-4 py-8 sm:py-12">
-      <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-8 sm:py-12">
+      <header className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="eyebrow">Capital Clear</p>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-2 text-3xl font-semibold tracking-tighter text-foreground sm:text-4xl">
             {t('title')}
           </h1>
-          <p className="mt-1 text-muted-foreground">{t('subtitle')}</p>
+          <p className="mt-1 max-w-[52ch] text-[var(--cc-ink-soft)]">{t('subtitle')}</p>
         </div>
         <Link
           href="/book"
           className={cn(
             buttonVariants({ size: 'lg' }),
-            'min-h-11 shrink-0',
+            'min-h-11 shrink-0 rounded-lg bg-[var(--cc-accent)] text-[var(--cc-accent-ink)] transition-transform duration-100 active:translate-y-[1px] active:scale-[0.97] motion-reduce:transition-none',
           )}
         >
           <Plus className="size-4" aria-hidden />
@@ -81,11 +81,14 @@ export default async function HomeownerDashboardPage({
       </header>
 
       {isEmpty ? (
-        <div className="flex flex-col items-center gap-4 rounded-xl border border-dashed border-border bg-card/50 px-6 py-16 text-center">
-          <p className="max-w-sm text-muted-foreground">{t('empty')}</p>
+        <div className="flex flex-col items-center gap-4 rounded-xl bg-[var(--cc-tint)] px-6 py-16 text-center">
+          <p className="max-w-sm text-[var(--cc-ink-soft)]">{t('empty')}</p>
           <Link
             href="/book"
-            className={cn(buttonVariants({ size: 'lg' }), 'min-h-11')}
+            className={cn(
+              buttonVariants({ size: 'lg' }),
+              'min-h-11 rounded-lg bg-[var(--cc-accent)] text-[var(--cc-accent-ink)] transition-transform duration-100 active:translate-y-[1px] active:scale-[0.97] motion-reduce:transition-none',
+            )}
           >
             <Plus className="size-4" aria-hidden />
             {t('emptyCta')}

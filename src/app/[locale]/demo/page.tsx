@@ -21,41 +21,46 @@ export default async function DemoHub({
   setRequestLocale(locale);
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 py-12 sm:py-16">
-      <div className="mx-auto max-w-2xl text-center">
-        <div className="mb-4 font-barlow text-sm tracking-wide text-muted-foreground">// Backend preview</div>
-        <h1 className="font-instrument text-4xl italic leading-[0.95] tracking-[-1px] text-foreground md:text-5xl">
-          What&rsquo;s built behind the <span className="text-ember">login</span>
+    <main className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-8 sm:py-16">
+      <div className="max-w-2xl">
+        <div className="eyebrow mb-4">Backend preview</div>
+        <h1 className="text-4xl font-semibold tracking-tighter text-foreground md:text-5xl">
+          What&rsquo;s built behind the login
         </h1>
-        <p className="mx-auto mt-4 max-w-xl font-barlow text-base font-light leading-relaxed text-muted-foreground">
+        <p className="mt-4 max-w-[52ch] text-base leading-relaxed text-[var(--cc-ink-soft)]">
           These are the real authenticated screens, shown here with sample data so you can click
           through them without a login or database. Buttons that write data (accept, approve, submit)
           won&rsquo;t do anything in the demo.
         </p>
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="mt-12 divide-y divide-[var(--cc-line)] border-t border-[var(--cc-line)]">
         {SCREENS.map(({ href, label, desc, Icon }) => (
           <Link
             key={href}
             href={href}
-            className="surface-card group flex flex-col rounded-[1.25rem] p-6 transition-transform hover:-translate-y-1"
+            className="group flex items-center justify-between gap-6 py-5"
           >
-            <div className="flex items-center justify-between">
-              <div className="chip-ember flex size-11 items-center justify-center rounded-[0.85rem] shadow-sm">
-                <Icon className="size-6" />
-              </div>
-              <ArrowUpRight className="size-5 text-muted-foreground transition-colors group-hover:text-primary" />
+            <div className="flex min-w-0 items-start gap-4">
+              <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-[var(--cc-tint)] text-[var(--cc-accent)]">
+                <Icon className="size-4.5" aria-hidden />
+              </span>
+              <span className="min-w-0">
+                <h2 className="text-base font-medium tracking-tight text-foreground">
+                  {label}
+                </h2>
+                <p className="mt-1 text-sm leading-relaxed text-[var(--cc-ink-soft)]">{desc}</p>
+              </span>
             </div>
-            <h2 className="mt-5 font-instrument text-2xl italic leading-none tracking-[-0.5px] text-foreground">
-              {label}
-            </h2>
-            <p className="mt-2 font-barlow text-sm font-light leading-relaxed text-muted-foreground">{desc}</p>
+            <ArrowUpRight
+              className="size-5 shrink-0 text-[var(--cc-ink-soft)] transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--cc-accent)] motion-reduce:transition-none"
+              aria-hidden
+            />
           </Link>
         ))}
       </div>
 
-      <p className="mt-10 text-center font-barlow text-xs text-muted-foreground">
+      <p className="mt-10 border-t border-[var(--cc-line)] pt-4 font-mono text-[11px] text-[var(--cc-ink-soft)]">
         Note: the job-detail page and the in-app write actions need the real backend, so they stay
         gated. This is a visual walkthrough of what exists.
       </p>

@@ -9,15 +9,15 @@ import { PRO_AVAILABLE, PRO_ACTIVE, PRO_COMPLETED, PRO_EARNINGS } from '../_mock
 type FeedJob = (typeof PRO_AVAILABLE)[number];
 
 // Stand-ins for the real Accept / View actions (no backend in the demo).
-// Accept is rendered as the real solid-blue primary button so the feed reads
-// exactly like production; View stays a quiet outline.
+// Accept is rendered as the real solid accent press button so the feed reads
+// exactly like production; View stays a quiet text link.
 function DemoAction({ label, primary = false }: { label: string; primary?: boolean }) {
   return (
     <span
       className={
         primary
-          ? 'inline-flex cursor-not-allowed items-center rounded-lg bg-primary px-5 py-2.5 text-base font-medium leading-none text-primary-foreground'
-          : 'inline-flex cursor-not-allowed items-center rounded-lg border border-border px-4 py-2.5 text-sm font-medium leading-none text-muted-foreground'
+          ? 'inline-flex cursor-not-allowed items-center rounded-lg bg-[var(--cc-accent)] px-3.5 py-1.5 text-sm font-medium leading-none text-[var(--cc-accent-ink)]'
+          : 'inline-flex cursor-not-allowed items-center text-sm font-medium leading-none text-[var(--cc-ink-soft)]'
       }
     >
       {label}
@@ -27,7 +27,7 @@ function DemoAction({ label, primary = false }: { label: string; primary?: boole
 
 function JobGrid({ jobs, action }: { jobs: FeedJob[]; action: ReactNode }) {
   return (
-    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <ul className="divide-y divide-[var(--cc-line)] border-t border-[var(--cc-line)]">
       {jobs.map((job) => (
         <li key={job.id}>
           <JobCard job={job} action={action} />
@@ -51,10 +51,10 @@ export default async function DemoPro({
     <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12">
       <header className="mb-8">
         <p className="eyebrow">{t('liveBadge')}</p>
-        <h1 className="mt-1 font-heading text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">
+        <h1 className="mt-1 text-3xl font-semibold tracking-tighter sm:text-4xl">
           {t('title')}
         </h1>
-        <p className="mt-2 max-w-prose text-base text-muted-foreground">{t('subtitle')}</p>
+        <p className="mt-2 max-w-[52ch] text-base text-[var(--cc-ink-soft)]">{t('subtitle')}</p>
       </header>
 
       <Tabs defaultValue="available" className="gap-7">

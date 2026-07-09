@@ -8,20 +8,15 @@ import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { useRouter, Link } from '@/i18n/navigation';
 import { signIn } from '@/app/actions/auth';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
 
 // Client login form. Validates with zod, calls the `signIn` server action, and
 // on success routes to the correct dashboard based on the returned role.
-// Mobile-first: 44px touch targets, sticky submit on small screens.
+// Mobile-first: 48px touch targets, sticky submit on small screens.
+
+const inputClass =
+  'h-12 w-full rounded-lg border border-[var(--cc-line)] bg-white/70 px-3.5 text-base text-[var(--cc-ink)] outline-none transition-shadow duration-150 placeholder:text-[var(--cc-ink-soft)] focus:shadow-[0_0_0_2px_var(--cc-accent)] motion-reduce:transition-none';
+const labelClass =
+  'font-mono text-[11px] uppercase tracking-wide text-[var(--cc-ink-soft)]';
 
 export function LoginForm() {
   const t = useTranslations('Auth');
@@ -70,71 +65,75 @@ export function LoginForm() {
   };
 
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="text-xl">{t('loginTitle')}</CardTitle>
-        <CardDescription>{t('loginSubtitle')}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5" noValidate>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="email">{t('email')}</Label>
-            <Input
-              id="email"
-              type="email"
-              autoComplete="email"
-              inputMode="email"
-              placeholder={t('emailPlaceholder')}
-              aria-invalid={!!errors.email}
-              className="h-11"
-              {...register('email')}
-            />
-            {errors.email && (
-              <p className="text-sm text-destructive">{errors.email.message}</p>
-            )}
-          </div>
+    <div className="w-full rounded-xl border border-[var(--cc-line)] bg-white/60 p-6 sm:p-8">
+      <h1 className="text-2xl font-semibold tracking-tighter text-[var(--cc-ink)]">
+        {t('loginTitle')}
+      </h1>
+      <p className="mt-1.5 text-sm leading-relaxed text-[var(--cc-ink-soft)]">
+        {t('loginSubtitle')}
+      </p>
 
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="password">{t('password')}</Label>
-            <Input
-              id="password"
-              type="password"
-              autoComplete="current-password"
-              aria-invalid={!!errors.password}
-              className="h-11"
-              {...register('password')}
-            />
-            {errors.password && (
-              <p className="text-sm text-destructive">{errors.password.message}</p>
-            )}
-          </div>
-
-          {serverError && (
-            <p className="text-sm text-destructive" role="alert">
-              {serverError}
-            </p>
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-7 flex flex-col gap-5" noValidate>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="email" className={labelClass}>
+            {t('email')}
+          </label>
+          <input
+            id="email"
+            type="email"
+            autoComplete="email"
+            inputMode="email"
+            placeholder={t('emailPlaceholder')}
+            aria-invalid={!!errors.email}
+            className={inputClass}
+            {...register('email')}
+          />
+          {errors.email && (
+            <p className="text-sm text-destructive">{errors.email.message}</p>
           )}
+        </div>
 
-          <Button
-            type="submit"
-            size="lg"
-            disabled={isPending}
-            className="sticky bottom-4 h-11 w-full"
-          >
-            {isPending ? t('signingIn') : t('signInCta')}
-          </Button>
-        </form>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="password" className={labelClass}>
+            {t('password')}
+          </label>
+          <input
+            id="password"
+            type="password"
+            autoComplete="current-password"
+            aria-invalid={!!errors.password}
+            className={inputClass}
+            {...register('password')}
+          />
+          {errors.password && (
+            <p className="text-sm text-destructive">{errors.password.message}</p>
+          )}
+        </div>
 
-        <p className="mt-6 text-center text-sm text-muted-foreground">
-          {t('noAccount')}{' '}
-          <Link
-            href="/register"
-            className="font-medium text-foreground underline-offset-4 hover:underline"
-          >
-            {t('registerHere')}
-          </Link>
-        </p>
-      </CardContent>
-    </Card>
+        {serverError && (
+          <p className="text-sm text-destructive" role="alert">
+            {serverError}
+          </p>
+        )}
+
+        <button
+          type="submit"
+          disabled={isPending}
+          className="sticky bottom-4 inline-flex h-12 w-full items-center justify-center rounded-lg bg-[var(--cc-accent)] px-5 text-sm font-medium text-[var(--cc-accent-ink)] transition-transform duration-100 active:translate-y-[1px] active:scale-[0.97] disabled:opacity-70 motion-reduce:transition-none"
+        >
+          {isPending ? t('signingIn') : t('signInCta')}
+        </button>
+      </form>
+
+      <p className="mt-6 border-t border-[var(--cc-line)] pt-5 text-center font-mono text-xs text-[var(--cc-ink-soft)]">
+        {t('noAccount')}{' '}
+        <Link
+          href="/register"
+          className="font-medium text-[var(--cc-accent)] underline-offset-4 hover:underline"
+        >
+          {t('registerHere')}
+        </Link>
+      </p>
+    </div>
   );
 }

@@ -88,7 +88,7 @@ export function JobsTable({ jobs, names, locale }: JobsTableProps) {
                   #{shortId(job.id)}
                 </span>
                 {price != null ? (
-                  <Money cents={price} locale={locale} className="font-medium" />
+                  <Money cents={price} locale={locale} className="font-mono font-medium" />
                 ) : (
                   <span className="text-muted-foreground">—</span>
                 )}
@@ -142,14 +142,14 @@ export function JobsTable({ jobs, names, locale }: JobsTableProps) {
                   <TableCell>
                     {nameFor(job.pro_id, names, t('unassigned'))}
                   </TableCell>
-                  <TableCell className="text-right tabular-nums">
+                  <TableCell className="text-right font-mono tabular-nums">
                     {price != null ? (
                       <Money cents={price} locale={locale} />
                     ) : (
                       <span className="text-muted-foreground">—</span>
                     )}
                   </TableCell>
-                  <TableCell className="text-sm text-muted-foreground">
+                  <TableCell className="font-mono text-xs text-muted-foreground">
                     {fmtDate(job.created_at, locale)}
                   </TableCell>
                 </TableRow>

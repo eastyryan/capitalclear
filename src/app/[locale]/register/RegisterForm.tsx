@@ -9,9 +9,6 @@ import { toast } from 'sonner';
 import { useSearchParams } from 'next/navigation';
 import { useRouter, Link } from '@/i18n/navigation';
 import { signUp, signIn } from '@/app/actions/auth';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
@@ -19,13 +16,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
 // Client registration form. Role is a segmented toggle (homeowner / pro) that
@@ -33,6 +23,11 @@ import { cn } from '@/lib/utils';
 // rely on email-confirmation being OFF (demo): signUp returns a live session,
 // so we route straight to the role's dashboard. As a belt-and-suspenders step
 // we also attempt signIn (no-op if already signed in) before redirecting.
+
+const inputClass =
+  'h-12 w-full rounded-lg border border-[var(--cc-line)] bg-white/70 px-3.5 text-base text-[var(--cc-ink)] outline-none transition-shadow duration-150 placeholder:text-[var(--cc-ink-soft)] focus:shadow-[0_0_0_2px_var(--cc-accent)] motion-reduce:transition-none';
+const labelClass =
+  'font-mono text-[11px] uppercase tracking-wide text-[var(--cc-ink-soft)]';
 
 export function RegisterForm() {
   const t = useTranslations('Auth');
@@ -107,165 +102,178 @@ export function RegisterForm() {
   ];
 
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="text-xl">{t('registerTitle')}</CardTitle>
-        <CardDescription>{t('registerSubtitle')}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5" noValidate>
-          {/* Role toggle */}
-          <div className="flex flex-col gap-2">
-            <Label>{t('role')}</Label>
-            <div
-              role="radiogroup"
-              aria-label={t('role')}
-              className="grid grid-cols-2 gap-2"
-            >
-              {roleOptions.map((opt) => {
-                const selected = role === opt.value;
-                return (
-                  <button
-                    key={opt.value}
-                    type="button"
-                    role="radio"
-                    aria-checked={selected}
-                    onClick={() => setValue('role', opt.value)}
-                    className={cn(
-                      'flex h-11 items-center justify-center rounded-lg border px-3 text-sm font-medium transition-colors',
-                      selected
-                        ? 'border-primary bg-primary text-primary-foreground'
-                        : 'border-input bg-transparent text-foreground hover:bg-muted'
-                    )}
-                  >
-                    {opt.label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+    <div className="w-full rounded-xl border border-[var(--cc-line)] bg-white/60 p-6 sm:p-8">
+      <h1 className="text-2xl font-semibold tracking-tighter text-[var(--cc-ink)]">
+        {t('registerTitle')}
+      </h1>
+      <p className="mt-1.5 text-sm leading-relaxed text-[var(--cc-ink-soft)]">
+        {t('registerSubtitle')}
+      </p>
 
-          {/* Full name */}
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="fullName">{t('fullName')}</Label>
-            <Input
-              id="fullName"
-              type="text"
-              autoComplete="name"
-              placeholder={t('fullNamePlaceholder')}
-              aria-invalid={!!errors.fullName}
-              className="h-11"
-              {...register('fullName')}
-            />
-            {errors.fullName && (
-              <p className="text-sm text-destructive">{errors.fullName.message}</p>
-            )}
-          </div>
-
-          {/* Email */}
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="email">{t('email')}</Label>
-            <Input
-              id="email"
-              type="email"
-              autoComplete="email"
-              inputMode="email"
-              placeholder={t('emailPlaceholder')}
-              aria-invalid={!!errors.email}
-              className="h-11"
-              {...register('email')}
-            />
-            {errors.email && (
-              <p className="text-sm text-destructive">{errors.email.message}</p>
-            )}
-          </div>
-
-          {/* Password */}
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="password">{t('password')}</Label>
-            <Input
-              id="password"
-              type="password"
-              autoComplete="new-password"
-              aria-invalid={!!errors.password}
-              className="h-11"
-              {...register('password')}
-            />
-            {errors.password ? (
-              <p className="text-sm text-destructive">{errors.password.message}</p>
-            ) : (
-              <p className="text-sm text-muted-foreground">{t('passwordHint')}</p>
-            )}
-          </div>
-
-          {/* Phone (optional) */}
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="phone">
-              {t('phone')}{' '}
-              <span className="text-xs font-normal text-muted-foreground">
-                ({t('phonePlaceholder')})
-              </span>
-            </Label>
-            <Input
-              id="phone"
-              type="tel"
-              autoComplete="tel"
-              inputMode="tel"
-              placeholder={t('phonePlaceholder')}
-              className="h-11"
-              {...register('phone')}
-            />
-          </div>
-
-          {/* Language preference */}
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="preferredLanguage">{t('preferredLanguage')}</Label>
-            <Controller
-              control={control}
-              name="preferredLanguage"
-              render={({ field }) => (
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => field.onChange(value)}
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-7 flex flex-col gap-5" noValidate>
+        {/* Role toggle — segmented buttons */}
+        <div className="flex flex-col gap-2">
+          <span className={labelClass}>{t('role')}</span>
+          <div
+            role="radiogroup"
+            aria-label={t('role')}
+            className="grid grid-cols-2 gap-2"
+          >
+            {roleOptions.map((opt) => {
+              const selected = role === opt.value;
+              return (
+                <button
+                  key={opt.value}
+                  type="button"
+                  role="radio"
+                  aria-checked={selected}
+                  onClick={() => setValue('role', opt.value)}
+                  className={cn(
+                    'flex h-11 items-center justify-center rounded-lg border px-4 text-sm font-medium transition-colors duration-150 motion-reduce:transition-none',
+                    selected
+                      ? 'border-[var(--cc-accent)] bg-[var(--cc-accent)] text-[var(--cc-accent-ink)]'
+                      : 'border-[var(--cc-line)] bg-transparent text-[var(--cc-ink-soft)] hover:text-[var(--cc-ink)]'
+                  )}
                 >
-                  <SelectTrigger id="preferredLanguage" className="h-11 w-full">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="en">{t('langEnglish')}</SelectItem>
-                    <SelectItem value="fr">{t('langFrench')}</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
-            />
+                  {opt.label}
+                </button>
+              );
+            })}
           </div>
+        </div>
 
-          {serverError && (
-            <p className="text-sm text-destructive" role="alert">
-              {serverError}
+        {/* Full name */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="fullName" className={labelClass}>
+            {t('fullName')}
+          </label>
+          <input
+            id="fullName"
+            type="text"
+            autoComplete="name"
+            placeholder={t('fullNamePlaceholder')}
+            aria-invalid={!!errors.fullName}
+            className={inputClass}
+            {...register('fullName')}
+          />
+          {errors.fullName && (
+            <p className="text-sm text-destructive">{errors.fullName.message}</p>
+          )}
+        </div>
+
+        {/* Email */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="email" className={labelClass}>
+            {t('email')}
+          </label>
+          <input
+            id="email"
+            type="email"
+            autoComplete="email"
+            inputMode="email"
+            placeholder={t('emailPlaceholder')}
+            aria-invalid={!!errors.email}
+            className={inputClass}
+            {...register('email')}
+          />
+          {errors.email && (
+            <p className="text-sm text-destructive">{errors.email.message}</p>
+          )}
+        </div>
+
+        {/* Password */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="password" className={labelClass}>
+            {t('password')}
+          </label>
+          <input
+            id="password"
+            type="password"
+            autoComplete="new-password"
+            aria-invalid={!!errors.password}
+            className={inputClass}
+            {...register('password')}
+          />
+          {errors.password ? (
+            <p className="text-sm text-destructive">{errors.password.message}</p>
+          ) : (
+            <p className="font-mono text-[11px] text-[var(--cc-ink-soft)]">
+              {t('passwordHint')}
             </p>
           )}
+        </div>
 
-          <Button
-            type="submit"
-            size="lg"
-            disabled={isPending}
-            className="sticky bottom-4 h-11 w-full"
-          >
-            {isPending ? t('signingUp') : t('signUpCta')}
-          </Button>
-        </form>
+        {/* Phone (optional) */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="phone" className={labelClass}>
+            {t('phone')}{' '}
+            <span className="normal-case text-[var(--cc-ink-soft)]">
+              ({t('phonePlaceholder')})
+            </span>
+          </label>
+          <input
+            id="phone"
+            type="tel"
+            autoComplete="tel"
+            inputMode="tel"
+            placeholder={t('phonePlaceholder')}
+            className={inputClass}
+            {...register('phone')}
+          />
+        </div>
 
-        <p className="mt-6 text-center text-sm text-muted-foreground">
-          {t('haveAccount')}{' '}
-          <Link
-            href="/login"
-            className="font-medium text-foreground underline-offset-4 hover:underline"
-          >
-            {t('loginHere')}
-          </Link>
-        </p>
-      </CardContent>
-    </Card>
+        {/* Language preference */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="preferredLanguage" className={labelClass}>
+            {t('preferredLanguage')}
+          </label>
+          <Controller
+            control={control}
+            name="preferredLanguage"
+            render={({ field }) => (
+              <Select
+                value={field.value}
+                onValueChange={(value) => field.onChange(value)}
+              >
+                <SelectTrigger
+                  id="preferredLanguage"
+                  className="h-12 w-full rounded-lg border-[var(--cc-line)] bg-white/70"
+                >
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="en">{t('langEnglish')}</SelectItem>
+                  <SelectItem value="fr">{t('langFrench')}</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          />
+        </div>
+
+        {serverError && (
+          <p className="text-sm text-destructive" role="alert">
+            {serverError}
+          </p>
+        )}
+
+        <button
+          type="submit"
+          disabled={isPending}
+          className="sticky bottom-4 inline-flex h-12 w-full items-center justify-center rounded-lg bg-[var(--cc-accent)] px-5 text-sm font-medium text-[var(--cc-accent-ink)] transition-transform duration-100 active:translate-y-[1px] active:scale-[0.97] disabled:opacity-70 motion-reduce:transition-none"
+        >
+          {isPending ? t('signingUp') : t('signUpCta')}
+        </button>
+      </form>
+
+      <p className="mt-6 border-t border-[var(--cc-line)] pt-5 text-center font-mono text-xs text-[var(--cc-ink-soft)]">
+        {t('haveAccount')}{' '}
+        <Link
+          href="/login"
+          className="font-medium text-[var(--cc-accent)] underline-offset-4 hover:underline"
+        >
+          {t('loginHere')}
+        </Link>
+      </p>
+    </div>
   );
 }

@@ -38,6 +38,25 @@ import type { ServiceType } from '@/types/database.types';
 // step remains for booking ahead of an incoming storm.
 const TOTAL_STEPS = 6;
 
+// Signature button press (spec interaction 4) — applied to solid accent CTAs.
+const PRESS =
+  'transition-transform duration-100 active:translate-y-[1px] active:scale-[0.97] motion-reduce:transition-none';
+
+// Radio/option card recipe (spec interaction 5).
+const OPTION_CARD =
+  'flex w-full items-start justify-between gap-3 rounded-lg border p-4 text-left transition-colors duration-150 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring';
+const OPTION_ON = 'border-[var(--cc-accent)] bg-[var(--cc-tint)]';
+const OPTION_OFF =
+  'border-[var(--cc-line)] bg-white/70 hover:border-[var(--cc-ink-soft)]';
+
+// Mono uppercase field label (spec typography).
+const MONO_LABEL =
+  'font-mono text-[11px] font-medium uppercase tracking-wide text-[var(--cc-ink-soft)]';
+
+// Input recipe: h-12 rounded-lg hairline border on warm white, accent focus ring.
+const FIELD =
+  'h-12 rounded-lg border-[var(--cc-line)] bg-white/70 focus-visible:ring-0 focus-visible:border-[var(--cc-accent)] focus-visible:shadow-[0_0_0_2px_var(--cc-accent)]';
+
 /** createJob error code -> Booking.* i18n key. */
 const ERROR_KEY: Record<string, string> = {
   outOfArea: 'outOfArea',
@@ -249,10 +268,10 @@ export function BookingWizard({
       {/* Header + progress */}
       <header className="mb-6">
         <p className="eyebrow mb-1">{t('title')}</p>
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+        <h1 className="text-2xl font-semibold tracking-tighter text-foreground sm:text-3xl">
           {stepTitles[step - 1]}
         </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <p className="mt-1 font-mono text-[11px] uppercase tracking-wide text-[var(--cc-ink-soft)]">
           {t('stepOf', { current: step, total: TOTAL_STEPS })}
         </p>
         <StepDots step={step} total={TOTAL_STEPS} />
@@ -336,12 +355,12 @@ export function BookingWizard({
       </div>
 
       {/* Sticky bottom action bar */}
-      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-        <div className="mx-auto flex w-full max-w-xl items-center gap-3 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-[var(--cc-line)] bg-[var(--cc-paper)]/95 backdrop-blur supports-[backdrop-filter]:bg-[var(--cc-paper)]/80">
+        <div className="mx-auto flex w-full max-w-xl items-center gap-3 px-4 py-3 pb-safe">
           <Button
             type="button"
             variant="outline"
-            className="h-11 min-w-11 flex-1"
+            className="h-11 min-w-11 flex-1 rounded-lg border-[var(--cc-line)] text-[var(--cc-ink-soft)] hover:text-[var(--cc-ink)]"
             onClick={back}
             disabled={step === 1 || submitting}
           >
@@ -352,17 +371,20 @@ export function BookingWizard({
           {step < TOTAL_STEPS ? (
             <Button
               type="button"
-              className="h-11 flex-1"
+              className={cn('group h-11 flex-1 rounded-lg', PRESS)}
               onClick={next}
               disabled={!canContinue()}
             >
               {tc('continue')}
-              <ChevronRight className="size-4" aria-hidden />
+              <ChevronRight
+                className="size-4 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
+                aria-hidden
+              />
             </Button>
           ) : (
             <Button
               type="button"
-              className="h-11 flex-1"
+              className={cn('h-11 flex-1 rounded-lg', PRESS)}
               onClick={submit}
               disabled={submitting || !state.agreed}
             >
@@ -392,7 +414,7 @@ export function BookingWizard({
 function StepDots({ step, total }: { step: number; total: number }) {
   return (
     <div
-      className="mt-4 flex items-center gap-1.5"
+      className="mt-4 flex items-center gap-2"
       role="progressbar"
       aria-valuenow={step}
       aria-valuemin={1}
@@ -403,15 +425,24 @@ function StepDots({ step, total }: { step: number; total: number }) {
         const done = n < step;
         const active = n === step;
         return (
-          <span
-            key={n}
-            className={cn(
-              'h-1.5 flex-1 rounded-full transition-colors',
-              done && 'bg-primary',
-              active && 'bg-primary',
-              !done && !active && 'bg-muted',
-            )}
-          />
+          <span key={n} className="flex flex-1 items-center gap-2">
+            <span
+              className={cn(
+                'font-mono text-[11px] leading-none tabular-nums transition-colors motion-reduce:transition-none',
+                active && 'font-medium text-[var(--cc-accent)]',
+                done && 'text-[var(--cc-ink)]',
+                !done && !active && 'text-[var(--cc-ink-soft)]',
+              )}
+            >
+              {n}
+            </span>
+            <span
+              className={cn(
+                'h-0.5 flex-1 rounded-full transition-colors motion-reduce:transition-none',
+                done || active ? 'bg-[var(--cc-accent)]' : 'bg-[var(--cc-line)]',
+              )}
+            />
+          </span>
         );
       })}
     </div>
@@ -458,20 +489,29 @@ function PackageStep({
               aria-checked={selected}
               onClick={() => onSize(s.key)}
               className={cn(
-                'flex w-full items-start justify-between gap-3 rounded-xl border p-4 text-left transition-colors',
-                'min-h-[76px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-                selected ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-primary/50',
+                OPTION_CARD,
+                'min-h-[76px]',
+                selected ? OPTION_ON : OPTION_OFF,
               )}
             >
-              <span>
-                <span className="text-base font-semibold text-foreground">{s.name}</span>
-                <span className="mt-1 block text-sm text-muted-foreground">{s.body}</span>
+              <span className="flex items-start gap-3">
+                <span
+                  className={cn(
+                    'cc-icon h-10 w-10 shrink-0',
+                    s.key === 'single' ? 'cc-icon--shovel' : 'cc-icon--snowflake',
+                  )}
+                  aria-hidden
+                />
+                <span>
+                  <span className="text-base font-medium tracking-tight text-foreground">{s.name}</span>
+                  <span className="mt-1 block text-xs text-[var(--cc-ink-soft)]">{s.body}</span>
+                </span>
               </span>
               <span className="flex shrink-0 flex-col items-end gap-1">
                 <Money
                   cents={DRIVEWAY_BASE_CENTS[s.key]}
                   locale={locale}
-                  className="font-mono text-lg font-semibold text-foreground"
+                  className="font-mono text-lg font-medium text-foreground"
                 />
                 <RadioDot selected={selected} />
               </span>
@@ -486,23 +526,25 @@ function PackageStep({
         role="checkbox"
         aria-checked={walkway}
         onClick={() => onWalkway(!walkway)}
-        className={cn(
-          'flex w-full items-start justify-between gap-3 rounded-xl border p-4 text-left transition-colors',
-          walkway ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-primary/50',
-        )}
+        className={cn(OPTION_CARD, walkway ? OPTION_ON : OPTION_OFF)}
       >
-        <span>
-          <span className="text-base font-semibold text-foreground">{t('pkgWalkwayName')}</span>
-          <span className="mt-1 block text-sm text-muted-foreground">{t('pkgWalkwayBody')}</span>
+        <span className="flex items-start gap-3">
+          <span className="cc-icon cc-icon--salt h-10 w-10 shrink-0" aria-hidden />
+          <span>
+            <span className="text-base font-medium tracking-tight text-foreground">{t('pkgWalkwayName')}</span>
+            <span className="mt-1 block text-xs text-[var(--cc-ink-soft)]">{t('pkgWalkwayBody')}</span>
+          </span>
         </span>
         <span className="flex shrink-0 flex-col items-end gap-1">
-          <span className="font-mono text-lg font-semibold text-foreground">
+          <span className="font-mono text-lg font-medium text-foreground">
             +<Money cents={WALKWAY_ADDON_CENTS} locale={locale} />
           </span>
           <span
             className={cn(
               'mt-0.5 flex size-5 items-center justify-center rounded-md border',
-              walkway ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40',
+              walkway
+                ? 'border-[var(--cc-accent)] bg-[var(--cc-accent)] text-[var(--cc-accent-ink)]'
+                : 'border-[var(--cc-line)]',
             )}
             aria-hidden
           >
@@ -517,26 +559,25 @@ function PackageStep({
         role="checkbox"
         aria-checked={premium}
         onClick={() => onPremium(!premium)}
-        className={cn(
-          'flex w-full items-start justify-between gap-3 rounded-xl border p-4 text-left transition-colors',
-          premium ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-primary/50',
-        )}
+        className={cn(OPTION_CARD, premium ? OPTION_ON : OPTION_OFF)}
       >
         <span>
-          <span className="flex items-center gap-1.5 text-base font-semibold text-foreground">
-            <Crown className="size-4 text-primary" aria-hidden />
+          <span className="flex items-center gap-1.5 text-base font-medium tracking-tight text-foreground">
+            <Crown className="size-4 text-[var(--cc-accent)]" aria-hidden />
             {t('pkgPremiumName')}
           </span>
-          <span className="mt-1 block text-sm text-muted-foreground">{t('pkgPremiumBody')}</span>
+          <span className="mt-1 block text-xs text-[var(--cc-ink-soft)]">{t('pkgPremiumBody')}</span>
         </span>
         <span className="flex shrink-0 flex-col items-end gap-1">
-          <span className="font-mono text-lg font-semibold text-foreground">
+          <span className="font-mono text-lg font-medium text-foreground">
             +<Money cents={PREMIUM_FLAT_CENTS} locale={locale} />
           </span>
           <span
             className={cn(
               'mt-0.5 flex size-5 items-center justify-center rounded-md border',
-              premium ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40',
+              premium
+                ? 'border-[var(--cc-accent)] bg-[var(--cc-accent)] text-[var(--cc-accent-ink)]'
+                : 'border-[var(--cc-line)]',
             )}
             aria-hidden
           >
@@ -593,19 +634,19 @@ function DetailsStep({
   return (
     <div className="space-y-5">
       {/* No account needed — guest contact details */}
-      <p className="rounded-lg border border-border bg-[var(--brand-50)] px-3.5 py-3 text-sm text-muted-foreground">
+      <p className="rounded-lg bg-[var(--cc-tint)] px-3.5 py-3 text-sm text-[var(--cc-ink-soft)]">
         {t('guestNote')}
       </p>
 
       <div className="space-y-2">
-        <Label htmlFor="name">{t('name')}</Label>
+        <Label htmlFor="name" className={MONO_LABEL}>{t('name')}</Label>
         <Input
           id="name"
           name="name"
           autoComplete="name"
           value={name}
           onChange={(e) => onName(e.target.value)}
-          className="h-11"
+          className={FIELD}
           placeholder="Jane Doe"
         />
         {!nameOk && name.length > 0 && (
@@ -614,7 +655,7 @@ function DetailsStep({
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="email">{t('email')}</Label>
+        <Label htmlFor="email" className={MONO_LABEL}>{t('email')}</Label>
         <Input
           id="email"
           name="email"
@@ -622,7 +663,7 @@ function DetailsStep({
           autoComplete="email"
           value={email}
           onChange={(e) => onEmail(e.target.value)}
-          className={cn('h-11', showEmailError && 'border-[var(--status-danger)]')}
+          className={cn(FIELD, showEmailError && 'border-[var(--status-danger)]')}
           aria-invalid={showEmailError}
           placeholder="jane@example.com"
         />
@@ -633,8 +674,8 @@ function DetailsStep({
 
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <Label htmlFor="phone">{t('phone')}</Label>
-          <span className="text-xs text-muted-foreground">{tc('optional')}</span>
+          <Label htmlFor="phone" className={MONO_LABEL}>{t('phone')}</Label>
+          <span className="font-mono text-[11px] uppercase tracking-wide text-[var(--cc-ink-soft)]">{tc('optional')}</span>
         </div>
         <Input
           id="phone"
@@ -643,20 +684,20 @@ function DetailsStep({
           autoComplete="tel"
           value={phone}
           onChange={(e) => onPhone(e.target.value)}
-          className="h-11"
+          className={FIELD}
           placeholder="613 555 0199"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="address">{t('address')}</Label>
+        <Label htmlFor="address" className={MONO_LABEL}>{t('address')}</Label>
         <AddressAutocomplete
           value={address}
           onChange={onAddress}
           onSelect={({ postal: p }) => p && onPostal(p)}
           placeholder="123 Bank St"
           ariaLabel={t('address')}
-          fieldClassName="flex h-11 items-center gap-2 rounded-md border border-input bg-transparent px-3 focus-within:ring-2 focus-within:ring-ring"
+          fieldClassName="flex h-12 items-center gap-2 rounded-lg border border-[var(--cc-line)] bg-white/70 px-3 transition-shadow duration-150 focus-within:border-[var(--cc-accent)] focus-within:shadow-[0_0_0_2px_var(--cc-accent)] motion-reduce:transition-none"
           inputClassName="flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground"
         />
         {!addressOk && address.length > 0 && (
@@ -667,7 +708,7 @@ function DetailsStep({
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="postal">{t('postalCode')}</Label>
+        <Label htmlFor="postal" className={MONO_LABEL}>{t('postalCode')}</Label>
         <Input
           id="postal"
           name="postal"
@@ -675,7 +716,7 @@ function DetailsStep({
           inputMode="text"
           value={postal}
           onChange={(e) => onPostal(e.target.value)}
-          className={cn('h-11 uppercase', showPostalError && 'border-[var(--status-danger)]')}
+          className={cn(FIELD, 'font-mono uppercase', showPostalError && 'border-[var(--status-danger)]')}
           aria-invalid={showPostalError}
           placeholder="K1A 0B1"
         />
@@ -686,9 +727,9 @@ function DetailsStep({
         )}
       </div>
 
-      <div className="rounded-lg border border-border bg-card/50 p-3">
+      <div className="border-t border-[var(--cc-line)] pt-3">
         <p className="eyebrow mb-1.5">{t('serviceArea')}</p>
-        <p className="text-sm text-muted-foreground">
+        <p className="font-mono text-xs text-[var(--cc-ink-soft)]">
           {SERVICE_AREA_NAMES.join(' · ')}
         </p>
       </div>
@@ -728,18 +769,14 @@ function ScheduleStep({
         role="radio"
         aria-checked={asap}
         onClick={() => onAsap(true)}
-        className={cn(
-          'flex w-full items-start justify-between gap-3 rounded-xl border p-4 text-left transition-colors',
-          'min-h-[72px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-          asap ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-primary/50',
-        )}
+        className={cn(OPTION_CARD, 'min-h-[72px]', asap ? OPTION_ON : OPTION_OFF)}
       >
         <span>
-          <span className="flex items-center gap-2 text-base font-semibold text-foreground">
-            <Zap className="size-5 text-primary" aria-hidden />
+          <span className="flex items-center gap-2 text-base font-medium tracking-tight text-foreground">
+            <Zap className="size-5 text-[var(--cc-accent)]" aria-hidden />
             {t('asapTitle')}
           </span>
-          <span className="mt-1 block text-sm text-muted-foreground">{t('asapBody')}</span>
+          <span className="mt-1 block text-xs text-[var(--cc-ink-soft)]">{t('asapBody')}</span>
         </span>
         <RadioDot selected={asap} />
       </button>
@@ -750,18 +787,14 @@ function ScheduleStep({
         role="radio"
         aria-checked={!asap}
         onClick={() => onAsap(false)}
-        className={cn(
-          'flex w-full items-start justify-between gap-3 rounded-xl border p-4 text-left transition-colors',
-          'min-h-[72px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-          !asap ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-primary/50',
-        )}
+        className={cn(OPTION_CARD, 'min-h-[72px]', !asap ? OPTION_ON : OPTION_OFF)}
       >
         <span>
-          <span className="flex items-center gap-2 text-base font-semibold text-foreground">
-            <CalendarClock className="size-5 text-primary" aria-hidden />
+          <span className="flex items-center gap-2 text-base font-medium tracking-tight text-foreground">
+            <CalendarClock className="size-5 text-[var(--cc-accent)]" aria-hidden />
             {t('scheduleLaterTitle')}
           </span>
-          <span className="mt-1 block text-sm text-muted-foreground">
+          <span className="mt-1 block text-xs text-[var(--cc-ink-soft)]">
             {t('scheduleLaterBody')}
           </span>
         </span>
@@ -769,9 +802,9 @@ function ScheduleStep({
       </button>
 
       {!asap && (
-        <div className="space-y-5 rounded-xl border border-border bg-card p-4">
+        <div className="space-y-5 rounded-xl border border-[var(--cc-line)] bg-white/70 p-4">
           <div className="space-y-2">
-            <Label htmlFor="date">{t('date')}</Label>
+            <Label htmlFor="date" className={MONO_LABEL}>{t('date')}</Label>
             <Input
               id="date"
               name="date"
@@ -779,18 +812,18 @@ function ScheduleStep({
               min={minDate}
               value={date}
               onChange={(e) => onDate(e.target.value)}
-              className="h-11"
+              className={cn(FIELD, 'font-mono')}
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="time">{t('time')}</Label>
+            <Label htmlFor="time" className={MONO_LABEL}>{t('time')}</Label>
             <Input
               id="time"
               name="time"
               type="time"
               value={time}
               onChange={(e) => onTime(e.target.value)}
-              className="h-11"
+              className={cn(FIELD, 'font-mono')}
             />
           </div>
         </div>
@@ -803,8 +836,10 @@ function RadioDot({ selected }: { selected: boolean }) {
   return (
     <span
       className={cn(
-        'mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full border',
-        selected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40',
+        'mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full border transition-colors duration-150 motion-reduce:transition-none',
+        selected
+          ? 'border-[var(--cc-accent)] bg-[var(--cc-accent)] text-[var(--cc-accent-ink)]'
+          : 'border-[var(--cc-line)]',
       )}
       aria-hidden
     >
@@ -829,8 +864,8 @@ function NotesStep({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <Label htmlFor="notes">{t('notes')}</Label>
-        <span className="text-xs text-muted-foreground">{tc('optional')}</span>
+        <Label htmlFor="notes" className={MONO_LABEL}>{t('notes')}</Label>
+        <span className="font-mono text-[11px] uppercase tracking-wide text-[var(--cc-ink-soft)]">{tc('optional')}</span>
       </div>
       <Textarea
         id="notes"
@@ -840,7 +875,7 @@ function NotesStep({
         rows={5}
         maxLength={2000}
         placeholder={t('notesPlaceholder')}
-        className="resize-none"
+        className="resize-none rounded-lg border-[var(--cc-line)] bg-white/70 focus-visible:ring-0 focus-visible:border-[var(--cc-accent)] focus-visible:shadow-[0_0_0_2px_var(--cc-accent)]"
       />
     </div>
   );
@@ -872,18 +907,18 @@ function ReviewStep({
   return (
     <div className="space-y-5">
       {/* Booking summary */}
-      <Card className="gap-0 divide-y divide-border p-0">
+      <Card className="gap-0 divide-y divide-[var(--cc-line)] rounded-xl border-[var(--cc-line)] p-0 shadow-none">
         <SummaryRow label={t('reviewService')}>
           <div className="flex flex-col items-end gap-1">
             <ServiceBadge service={service} />
-            <span className="text-muted-foreground">{packageLabel}</span>
+            <span className="text-[var(--cc-ink-soft)]">{packageLabel}</span>
           </div>
         </SummaryRow>
         <SummaryRow label={t('reviewAddress')}>
           <span className="text-right">
             {address}
             <br />
-            <span className="text-muted-foreground">{postal}</span>
+            <span className="font-mono text-xs uppercase text-[var(--cc-ink-soft)]">{postal}</span>
           </span>
         </SummaryRow>
         <SummaryRow label={t('reviewSchedule')}>
@@ -891,61 +926,67 @@ function ReviewStep({
         </SummaryRow>
       </Card>
 
-      {/* Transparent quote */}
-      <Card className="p-4">
+      {/* Transparent quote — tint aside with hairline-divided rows, mono prices */}
+      <div className="rounded-xl bg-[var(--cc-tint)] p-5 sm:p-6">
         <p className="eyebrow mb-3">{t('quoteTitle')}</p>
-        <dl className="space-y-2.5">
-          <div className="flex items-center justify-between text-sm">
-            <dt className="text-muted-foreground">{t('basePrice')}</dt>
+        <dl className="divide-y divide-[var(--cc-line)]">
+          <div className="flex items-center justify-between py-2.5 text-sm">
+            <dt className="text-[var(--cc-ink-soft)]">{t('basePrice')}</dt>
             <dd>
-              <Money cents={quote.baseCents} locale={locale} />
+              <Money cents={quote.baseCents} locale={locale} className="font-mono" />
             </dd>
           </div>
 
           {quote.isWinterSurge && (
-            <div className="flex items-center justify-between text-sm">
-              <dt className="text-muted-foreground">{t('winterSurge')}</dt>
-              <dd className="text-[var(--status-warning)]">
+            <div className="flex items-center justify-between py-2.5 text-sm">
+              <dt className="text-[var(--cc-ink-soft)]">{t('winterSurge')}</dt>
+              <dd className="font-mono text-[var(--status-warning)]">
                 +<Money cents={quote.surgeAmountCents} locale={locale} />
               </dd>
             </div>
           )}
 
           {quote.premiumCents > 0 && (
-            <div className="flex items-center justify-between text-sm">
-              <dt className="text-muted-foreground">{t('pkgPremiumName')}</dt>
-              <dd>
+            <div className="flex items-center justify-between py-2.5 text-sm">
+              <dt className="text-[var(--cc-ink-soft)]">{t('pkgPremiumName')}</dt>
+              <dd className="font-mono">
                 +<Money cents={quote.premiumCents} locale={locale} />
               </dd>
             </div>
           )}
 
-          <div className="flex items-center justify-between border-t border-border pt-2.5 text-sm">
-            <dt className="text-muted-foreground">{t('subtotal')}</dt>
+          <div className="flex items-center justify-between py-2.5 text-sm">
+            <dt className="text-[var(--cc-ink-soft)]">{t('subtotal')}</dt>
             <dd>
-              <Money cents={quote.subtotalCents} locale={locale} />
+              <Money cents={quote.subtotalCents} locale={locale} className="font-mono" />
             </dd>
           </div>
 
-          <div className="flex items-center justify-between text-sm">
-            <dt className="text-muted-foreground">{t('hst')}</dt>
+          <div className="flex items-center justify-between py-2.5 text-sm">
+            <dt className="text-[var(--cc-ink-soft)]">{t('hst')}</dt>
             <dd>
-              <Money cents={quote.taxCents} locale={locale} />
+              <Money cents={quote.taxCents} locale={locale} className="font-mono" />
             </dd>
           </div>
 
-          <div className="mt-1 flex items-center justify-between border-t border-border pt-3 text-base font-semibold">
-            <dt>{t('total')}</dt>
+          <div className="flex items-center justify-between pt-3 text-base font-medium">
+            <dt className="tracking-tight">{t('total')}</dt>
             <dd>
-              <Money cents={quote.totalCents} locale={locale} className="font-mono" />
+              <Money
+                cents={quote.totalCents}
+                locale={locale}
+                className="font-mono text-lg font-medium"
+              />
             </dd>
           </div>
         </dl>
 
         {quote.isWinterSurge && (
-          <p className="mt-3 text-xs text-muted-foreground">{t('winterSurgeNote')}</p>
+          <p className="mt-3 border-t border-[var(--cc-line)] pt-3 text-xs text-[var(--cc-ink-soft)]">
+            {t('winterSurgeNote')}
+          </p>
         )}
-      </Card>
+      </div>
     </div>
   );
 }
@@ -981,11 +1022,11 @@ function ConfirmStep({
 
   return (
     <div className="space-y-5">
-      <Card className="gap-0 divide-y divide-border p-0">
+      <Card className="gap-0 divide-y divide-[var(--cc-line)] rounded-xl border-[var(--cc-line)] p-0 shadow-none">
         <SummaryRow label={t('reviewService')}>
           <div className="flex flex-col items-end gap-1">
             <ServiceBadge service={service} />
-            <span className="text-muted-foreground">{packageLabel}</span>
+            <span className="text-[var(--cc-ink-soft)]">{packageLabel}</span>
           </div>
         </SummaryRow>
         <SummaryRow label={t('reviewName')}>
@@ -998,7 +1039,7 @@ function ConfirmStep({
           <span className="text-right">{scheduledLabel}</span>
         </SummaryRow>
         <SummaryRow label={t('reviewNotes')}>
-          <span className="text-right text-muted-foreground">
+          <span className="text-right text-[var(--cc-ink-soft)]">
             {notes || t('noNotes')}
           </span>
         </SummaryRow>
@@ -1006,26 +1047,33 @@ function ConfirmStep({
           <Money
             cents={quote.totalCents}
             locale={locale}
-            className="font-mono text-base font-semibold text-foreground"
+            className="font-mono text-base font-medium text-foreground"
           />
         </SummaryRow>
       </Card>
 
       {/* Liability waiver — must be accepted to confirm */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-xl bg-[var(--cc-tint)] p-5">
         <p className="eyebrow mb-2">{t('liabilityTitle')}</p>
-        <p className="text-sm leading-relaxed text-muted-foreground">{t('liabilityBody')}</p>
+        <p className="text-sm leading-relaxed text-[var(--cc-ink-soft)]">{t('liabilityBody')}</p>
         <button
           type="button"
           role="checkbox"
           aria-checked={agreed}
           onClick={() => onAgree(!agreed)}
-          className="mt-4 flex w-full items-start gap-3 rounded-lg border border-border p-3 text-left transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className={cn(
+            'mt-4 flex w-full items-start gap-3 rounded-lg border p-3 text-left transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none',
+            agreed
+              ? 'border-[var(--cc-accent)] bg-white/70'
+              : 'border-[var(--cc-line)] bg-white/50 hover:border-[var(--cc-ink-soft)]',
+          )}
         >
           <span
             className={cn(
               'mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md border',
-              agreed ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40',
+              agreed
+                ? 'border-[var(--cc-accent)] bg-[var(--cc-accent)] text-[var(--cc-accent-ink)]'
+                : 'border-[var(--cc-line)]',
             )}
             aria-hidden
           >
@@ -1051,7 +1099,9 @@ function SummaryRow({
 }) {
   return (
     <div className="flex items-start justify-between gap-4 px-4 py-3 text-sm">
-      <span className="shrink-0 text-muted-foreground">{label}</span>
+      <span className="shrink-0 font-mono text-[11px] uppercase tracking-wide leading-5 text-[var(--cc-ink-soft)]">
+        {label}
+      </span>
       <span className="text-foreground">{children}</span>
     </div>
   );

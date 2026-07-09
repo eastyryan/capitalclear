@@ -949,7 +949,7 @@
     "sheetAddressLabel": "Service address",
     "sheetSingleDesc": "One-car width, up to two cars deep",
     "sheetDoubleDesc": "Two-car width, standard depth",
-    "sheetWalkwayDesc": "Front walkway shovelled and salted (+$25)",
+    "sheetWalkwayDesc": "Front walkway shovelled and salted",
     "sheetEstimate": "{price} estimate",
     "sheetHelper": "Free cancellation until a pro accepts. HST added at checkout.",
     "sheetCta": "Book now",

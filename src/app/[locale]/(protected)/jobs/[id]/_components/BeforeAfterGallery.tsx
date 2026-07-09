@@ -19,9 +19,9 @@ function PhotoColumn({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="eyebrow text-muted-foreground">{label}</span>
+      <span className="eyebrow text-[var(--cc-ink-soft)]">{label}</span>
       {photos.length === 0 ? (
-        <div className="flex aspect-[4/3] flex-col items-center justify-center gap-2 rounded-lg border border-dashed bg-muted/30 text-muted-foreground">
+        <div className="flex aspect-[4/3] flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[var(--cc-line)] bg-[var(--cc-tint)]/60 text-[var(--cc-ink-soft)]">
           <ImageOff className="size-6" aria-hidden />
           <span className="text-xs">{label}</span>
         </div>
@@ -33,7 +33,7 @@ function PhotoColumn({
               key={`${label}-${i}`}
               src={photo.url}
               alt={`${label} ${i + 1}`}
-              className="aspect-[4/3] w-full rounded-lg border object-cover"
+              className="aspect-[4/3] w-full rounded-xl border border-[var(--cc-line)] object-cover"
               loading="lazy"
             />
           ))}

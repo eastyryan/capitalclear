@@ -25,11 +25,11 @@ export default async function DemoHomeowner({
   ].filter((s) => s.jobs.length > 0);
 
   return (
-    <main className="container mx-auto max-w-6xl px-4 py-8 sm:py-12">
-      <header className="mb-8">
+    <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-8 sm:py-12">
+      <header className="mb-10">
         <p className="eyebrow">Capital Clear</p>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{t('title')}</h1>
-        <p className="mt-1 text-muted-foreground">{t('subtitle')}</p>
+        <h1 className="mt-2 text-3xl font-semibold tracking-tighter text-foreground sm:text-4xl">{t('title')}</h1>
+        <p className="mt-1 max-w-[52ch] text-[var(--cc-ink-soft)]">{t('subtitle')}</p>
       </header>
       <JobSections sections={sections} />
     </main>

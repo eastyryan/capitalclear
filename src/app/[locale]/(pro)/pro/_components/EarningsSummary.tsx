@@ -1,7 +1,6 @@
 import { getTranslations } from 'next-intl/server';
-import { Wallet, BanknoteArrowUp, CircleCheckBig, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 
-import { Card, CardContent } from '@/components/ui/card';
 import { Money } from '@/components/Money';
 import type { MoneyLocale } from '@/lib/format/money';
 
@@ -41,127 +40,106 @@ export async function EarningsSummary({
   const fee = FEE_NOTE[locale === 'fr' ? 'fr' : 'en'];
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <StatCard
-          icon={<Wallet className="size-5" aria-hidden />}
-          label={t('earningsHeld')}
-          hint={t('earningsHeldHint')}
-          accentVar="--status-warning"
-        >
-          <Money
-            cents={heldCents}
-            locale={locale}
-            className="font-mono text-2xl font-semibold text-foreground"
-          />
-        </StatCard>
-
-        <StatCard
-          icon={<BanknoteArrowUp className="size-5" aria-hidden />}
-          label={t('earningsReleased')}
-          hint={t('earningsReleasedHint')}
-          accentVar="--status-success"
-        >
-          <Money
-            cents={releasedCents}
-            locale={locale}
-            className="font-mono text-2xl font-semibold text-foreground"
-          />
-        </StatCard>
-
-        <StatCard
-          icon={<CircleCheckBig className="size-5" aria-hidden />}
-          label={t('earningsTotal')}
-          hint={t('earningsTotalHint')}
-          accentVar="--primary"
-          highlighted
-        >
-          <Money
-            cents={totalCents}
-            locale={locale}
-            className="font-mono text-2xl font-semibold text-foreground"
-          />
-        </StatCard>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <Card>
-          <CardContent className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <CircleCheckBig className="size-4" aria-hidden />
-              {t('jobsCompleted')}
-            </div>
-            <span className="font-mono text-xl font-semibold text-foreground">
-              {jobsCompleted}
-            </span>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Star className="size-4" aria-hidden />
-              {t('rating')}
-            </div>
-            {ratingAvg != null ? (
-              <span className="inline-flex items-center gap-1.5 font-mono text-xl font-semibold text-foreground">
-                <Star
-                  className="size-4 fill-[var(--status-warning)] text-[var(--status-warning)]"
-                  aria-hidden
-                />
-                {ratingAvg.toFixed(1)}
-              </span>
-            ) : (
-              <span className="text-sm text-muted-foreground">
-                {t('ratingNone')}
-              </span>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Pro-only payout/fee disclosure — never shown on the public site. */}
-      <Card>
-        <CardContent className="flex flex-col gap-1.5">
-          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-            <Wallet className="size-4" aria-hidden />
-            {fee.title}
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
+      {/* Ledger rows — hairline-divided list, mono figures. */}
+      <dl className="divide-y divide-[var(--cc-line)] border-t border-[var(--cc-line)] self-start">
+        <div className="flex items-baseline justify-between gap-4 py-4">
+          <div>
+            <dt className="text-base font-medium tracking-tight text-foreground">
+              {t('earningsHeld')}
+            </dt>
+            <dd className="mt-0.5 font-mono text-xs text-[var(--cc-ink-soft)]">
+              {t('earningsHeldHint')}
+            </dd>
           </div>
-          <p className="text-sm text-muted-foreground">{fee.body}</p>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
-
-function StatCard({
-  icon,
-  label,
-  hint,
-  accentVar,
-  highlighted = false,
-  children,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  hint: string;
-  accentVar: string;
-  highlighted?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <Card className={highlighted ? 'ring-2 ring-primary/30' : undefined}>
-      <CardContent className="flex flex-col gap-2">
-        <div
-          className="inline-flex w-fit items-center gap-2 text-sm font-medium"
-          style={{ color: `var(${accentVar})` }}
-        >
-          {icon}
-          {label}
+          <dd>
+            <Money
+              cents={heldCents}
+              locale={locale}
+              className="font-mono text-lg font-medium text-foreground"
+            />
+          </dd>
         </div>
-        {children}
-        <p className="text-xs text-muted-foreground">{hint}</p>
-      </CardContent>
-    </Card>
+
+        <div className="flex items-baseline justify-between gap-4 py-4">
+          <div>
+            <dt className="text-base font-medium tracking-tight text-foreground">
+              {t('earningsReleased')}
+            </dt>
+            <dd className="mt-0.5 font-mono text-xs text-[var(--cc-ink-soft)]">
+              {t('earningsReleasedHint')}
+            </dd>
+          </div>
+          <dd>
+            <Money
+              cents={releasedCents}
+              locale={locale}
+              className="font-mono text-lg font-medium text-foreground"
+            />
+          </dd>
+        </div>
+
+        <div className="flex items-baseline justify-between gap-4 py-4">
+          <dt className="text-base font-medium tracking-tight text-foreground">
+            {t('jobsCompleted')}
+          </dt>
+          <dd className="font-mono text-lg font-medium text-foreground tabular-nums">
+            {jobsCompleted}
+          </dd>
+        </div>
+
+        <div className="flex items-baseline justify-between gap-4 py-4">
+          <dt className="text-base font-medium tracking-tight text-foreground">
+            {t('rating')}
+          </dt>
+          {ratingAvg != null ? (
+            <dd className="inline-flex items-center gap-1.5 font-mono text-lg font-medium text-foreground tabular-nums">
+              <Star
+                className="size-4 fill-[var(--cc-accent)] text-[var(--cc-accent)]"
+                aria-hidden
+              />
+              {ratingAvg.toFixed(1)}
+            </dd>
+          ) : (
+            <dd className="font-mono text-xs text-[var(--cc-ink-soft)]">
+              {t('ratingNone')}
+            </dd>
+          )}
+        </div>
+      </dl>
+
+      {/* Earnings aside — tint stat card with the payout split. */}
+      <aside className="self-start rounded-xl bg-[var(--cc-tint)] p-6">
+        <p className="eyebrow">{t('earningsTotal')}</p>
+        <Money
+          cents={totalCents}
+          locale={locale}
+          className="mt-3 block font-mono text-5xl font-medium tracking-tighter text-foreground"
+        />
+        <p className="mt-2 text-xs text-[var(--cc-ink-soft)]">
+          {t('earningsTotalHint')}
+        </p>
+
+        {/* 85/15 payout split bar. */}
+        <div
+          className="mt-5 flex h-2 overflow-hidden rounded-full"
+          role="img"
+          aria-label={fee.title}
+        >
+          <span className="h-full w-[85%] bg-[var(--cc-accent)]" aria-hidden />
+          <span className="h-full flex-1 bg-[var(--cc-ink)]/25" aria-hidden />
+        </div>
+
+        {/* Pro-only payout/fee disclosure — never shown on the public site. */}
+        <div className="mt-5 border-t border-[var(--cc-line)] pt-4">
+          <p className="text-sm font-medium tracking-tight text-foreground">
+            {fee.title}
+          </p>
+          <p className="mt-1 text-xs leading-relaxed text-[var(--cc-ink-soft)]">
+            {fee.body}
+          </p>
+        </div>
+      </aside>
+    </div>
   );
 }

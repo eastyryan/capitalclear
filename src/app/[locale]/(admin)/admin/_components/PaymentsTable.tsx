@@ -89,9 +89,9 @@ export function PaymentsTable({ payments, locale }: PaymentsTableProps) {
               <Money
                 cents={p.amount_cents}
                 locale={locale}
-                className="text-lg font-semibold"
+                className="font-mono text-lg font-medium"
               />
-              <span className="text-xs text-muted-foreground">
+              <span className="font-mono text-xs text-muted-foreground">
                 {fmtDate(p.created_at, locale)}
               </span>
             </div>
@@ -116,13 +116,13 @@ export function PaymentsTable({ payments, locale }: PaymentsTableProps) {
                 <TableCell className="font-mono text-xs text-muted-foreground">
                   #{shortId(p.job_id)}
                 </TableCell>
-                <TableCell className="text-right tabular-nums">
+                <TableCell className="text-right font-mono tabular-nums">
                   <Money cents={p.amount_cents} locale={locale} />
                 </TableCell>
                 <TableCell>
                   <PaymentStatusBadge status={p.status} />
                 </TableCell>
-                <TableCell className="text-sm text-muted-foreground">
+                <TableCell className="font-mono text-xs text-muted-foreground">
                   {fmtDate(p.created_at, locale)}
                 </TableCell>
               </TableRow>

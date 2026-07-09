@@ -22,6 +22,7 @@ export async function Footer() {
     { href: '/book', label: t('linkBook') },
     { href: '/become-a-pro', label: t('linkPro') },
     { href: '/contact', label: t('linkContact') },
+    { href: '/contact#faq', label: t('linkFaq') },
     { href: '/demo', label: nav('login') },
     { href: '/terms', label: t('linkTerms') },
     { href: '/privacy', label: t('linkPrivacy') }

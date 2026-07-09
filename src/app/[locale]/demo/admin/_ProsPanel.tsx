@@ -68,8 +68,8 @@ export async function ProsPanel({ locale }: { locale: MoneyLocale }) {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h2 className="font-heading text-xl font-bold text-foreground">{t('prosTitle')}</h2>
-        <p className="mt-1 text-base text-muted-foreground">{t('prosSubtitle')}</p>
+        <h2 className="text-xl font-semibold tracking-tighter text-foreground">{t('prosTitle')}</h2>
+        <p className="mt-1 max-w-[52ch] text-base text-[var(--cc-ink-soft)]">{t('prosSubtitle')}</p>
         <div className="mt-4 rounded-xl border border-border bg-card p-3 sm:p-4">
           <Table>
             <TableHeader>
@@ -106,7 +106,7 @@ export async function ProsPanel({ locale }: { locale: MoneyLocale }) {
       </div>
 
       <div>
-        <h2 className="font-heading text-xl font-bold text-foreground">
+        <h2 className="text-xl font-semibold tracking-tighter text-foreground">
           {t('paymentsByProTitle')}
         </h2>
         <div className="mt-4 rounded-xl border border-border bg-card p-3 sm:p-4">

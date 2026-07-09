@@ -147,7 +147,7 @@ export function UsersTable({ users, locale }: UsersTableProps) {
               <Badge variant={ROLE_VARIANT[u.role]}>{u.role}</Badge>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-xs text-muted-foreground">
+              <span className="font-mono text-xs text-muted-foreground">
                 {fmtDate(u.created_at, locale)}
               </span>
               {u.isPro && u.verified ? <VerifiedBadge /> : null}
@@ -191,7 +191,7 @@ export function UsersTable({ users, locale }: UsersTableProps) {
                     <span className="text-muted-foreground">—</span>
                   )}
                 </TableCell>
-                <TableCell className="text-sm text-muted-foreground">
+                <TableCell className="font-mono text-xs text-muted-foreground">
                   {fmtDate(u.created_at, locale)}
                 </TableCell>
                 <TableCell className="text-right">

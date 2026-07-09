@@ -125,25 +125,25 @@ export function AvailableFeed({
 
   if (visible.length === 0) {
     return (
-      <p className="rounded-lg border border-dashed border-border bg-card/40 px-4 py-10 text-center text-sm text-muted-foreground">
+      <p className="rounded-xl bg-[var(--cc-tint)] px-4 py-10 text-center text-sm text-[var(--cc-ink-soft)]">
         {t('availableEmpty')}
       </p>
     );
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-muted-foreground">
+        <p className="font-mono text-xs text-[var(--cc-ink-soft)]">
           {t('availableCount', { count: visible.length })}
         </p>
-        <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wide text-[var(--status-success)]">
-          <Radio className="size-3.5 animate-pulse" aria-hidden />
+        <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wide text-[var(--cc-accent)]">
+          <Radio className="size-3.5 animate-pulse motion-reduce:animate-none" aria-hidden />
           {t('liveBadge')}
         </span>
       </div>
 
-      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <ul className="divide-y divide-[var(--cc-line)] border-t border-[var(--cc-line)]">
         {visible.map((job) => {
           const accepting = acceptingId === job.id;
           // Guard: the feed should already be service-filtered, but never show
@@ -159,7 +159,7 @@ export function AvailableFeed({
                       size="sm"
                       onClick={() => handleAccept(job.id)}
                       disabled={isPending || accepting}
-                      className="min-h-11 px-4"
+                      className="rounded-lg bg-[var(--cc-accent)] px-3.5 py-1.5 text-sm font-medium text-[var(--cc-accent-ink)] transition-transform duration-100 active:translate-y-[1px] active:scale-[0.97] motion-reduce:transition-none"
                     >
                       {accepting ? t('accepting') : t('accept')}
                     </Button>

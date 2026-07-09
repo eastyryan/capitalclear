@@ -2,9 +2,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 
 import { createClient } from '@/lib/supabase/server';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { buttonVariants } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';
-import { cn } from '@/lib/utils';
 import type { MoneyLocale } from '@/lib/format/money';
 import type { Job, JobStatus, ServiceType } from '@/types/database.types';
 
@@ -132,10 +130,10 @@ export default async function ProDashboardPage({
     <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12">
       <header className="mb-6 flex flex-col gap-1">
         <p className="eyebrow">{t('liveBadge')}</p>
-        <h1 className="font-heading text-2xl font-semibold sm:text-3xl">
+        <h1 className="mt-1 text-3xl font-semibold tracking-tighter sm:text-4xl">
           {t('title')}
         </h1>
-        <p className="max-w-prose text-sm text-muted-foreground">
+        <p className="max-w-[52ch] text-sm text-[var(--cc-ink-soft)]">
           {t('subtitle')}
         </p>
       </header>
@@ -198,18 +196,18 @@ function JobList({
 }) {
   if (jobs.length === 0) {
     return (
-      <p className="rounded-lg border border-dashed border-border bg-card/40 px-4 py-10 text-center text-sm text-muted-foreground">
+      <p className="rounded-xl bg-[var(--cc-tint)] px-4 py-10 text-center text-sm text-[var(--cc-ink-soft)]">
         {emptyLabel}
       </p>
     );
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       {countLabel ? (
-        <p className="text-sm text-muted-foreground">{countLabel}</p>
+        <p className="font-mono text-xs text-[var(--cc-ink-soft)]">{countLabel}</p>
       ) : null}
-      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <ul className="divide-y divide-[var(--cc-line)] border-t border-[var(--cc-line)]">
         {jobs.map((job) => (
           <li key={job.id}>
             <JobCard
@@ -217,10 +215,7 @@ function JobList({
               action={
                 <Link
                   href={`/jobs/${job.id}`}
-                  className={cn(
-                    buttonVariants({ variant: 'outline', size: 'sm' }),
-                    'min-h-11 px-4',
-                  )}
+                  className="inline-flex min-h-11 items-center text-sm font-medium text-[var(--cc-ink-soft)] transition-colors hover:text-[var(--cc-ink)] motion-reduce:transition-none"
                 >
                   {viewLabel}
                 </Link>

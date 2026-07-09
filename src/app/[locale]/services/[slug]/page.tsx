@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { Snowflake } from 'lucide-react';
 import { routing } from '@/i18n/routing';
 import {
   ALL_SERVICE_SLUGS,
@@ -15,14 +14,18 @@ import {
   PageHero,
   Section,
   SectionHeading,
-  GlassCard,
   CtaBand,
   PrimaryCta,
   GhostCta,
-  IconChip,
   NumberBadge,
   Feature
 } from '@/components/marketing/parts';
+
+// Sprite icons per service type — winter services use the winter row.
+const SERVICE_ICONS: Record<string, string> = {
+  snow_removal: 'snowflake',
+  lawn_mowing: 'mower'
+};
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -62,6 +65,7 @@ export default async function ServiceDetailPage({
 
   const includes = t.raw(`items.${slug}.includes`) as string[];
   const steps = t.raw(`items.${slug}.steps`) as { title: string; body: string }[];
+  const icon = SERVICE_ICONS[type] ?? 'snowflake';
 
   return (
     <main className="flex flex-1 flex-col">
@@ -73,7 +77,7 @@ export default async function ServiceDetailPage({
         imageAlt="A snow plow clearing a road in heavy snowfall"
       >
         <PrimaryCta href="/book">
-          {t('cta')} · {t('from')} {price}
+          {t('cta')} · <span className="font-mono">{t('from')} {price}</span>
         </PrimaryCta>
         <GhostCta href="/pricing">{t('ctaPricing')}</GhostCta>
       </PageHero>
@@ -81,45 +85,43 @@ export default async function ServiceDetailPage({
       <Section>
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start">
           <div>
-            <IconChip Icon={Snowflake} className="mb-6 size-14 rounded-[1rem]" />
-            <h2 className="font-instrument text-4xl italic leading-[0.95] tracking-[-1px] text-foreground">
+            <span aria-hidden="true" className={`cc-icon cc-icon--${icon} mb-6 block h-14 w-14`} />
+            <h2 className="text-3xl font-semibold tracking-tighter text-[var(--cc-ink)] sm:text-4xl">
               {t(`items.${slug}.whatTitle`)}
             </h2>
-            <p className="mt-4 font-barlow text-base font-light leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-[52ch] text-base leading-relaxed text-[var(--cc-ink-soft)]">
               {t(`items.${slug}.whatBody`)}
             </p>
           </div>
-          <GlassCard className="lg:mt-2">
-            <p className="font-barlow text-sm tracking-wide text-muted-foreground">
-              // {t('includesTitle')}
+          <div className="rounded-xl border border-[var(--cc-line)] p-6 lg:mt-2">
+            <p className="font-mono text-[11px] uppercase tracking-wide text-[var(--cc-ink-soft)]">
+              {t('includesTitle')}
             </p>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-5 divide-y divide-[var(--cc-line)] [&>li]:py-3 [&>li:first-child]:pt-0 [&>li:last-child]:pb-0">
               {includes.map((item) => (
                 <Feature key={item}>{item}</Feature>
               ))}
             </ul>
-          </GlassCard>
+          </div>
         </div>
       </Section>
 
-      <div className="bg-card">
-        <Section>
-          <SectionHeading eyebrow={t('howKicker')} title={t('howTitle')} />
-          <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {steps.map((step, i) => (
-              <GlassCard key={step.title} className="flex flex-col">
-                <NumberBadge n={i + 1} />
-                <h3 className="mt-5 font-instrument text-2xl italic leading-none text-foreground">
-                  {step.title}
-                </h3>
-                <p className="mt-3 font-barlow text-sm font-light leading-relaxed text-muted-foreground">
-                  {step.body}
-                </p>
-              </GlassCard>
-            ))}
-          </div>
-        </Section>
-      </div>
+      <Section>
+        <SectionHeading eyebrow={t('howKicker')} title={t('howTitle')} />
+        <ol className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
+          {steps.map((step, i) => (
+            <li key={step.title} className="flex flex-col">
+              <NumberBadge n={i + 1} />
+              <h3 className="mt-5 text-lg font-semibold tracking-tighter text-[var(--cc-ink)]">
+                {step.title}
+              </h3>
+              <p className="mt-2 max-w-[36ch] text-sm leading-relaxed text-[var(--cc-ink-soft)]">
+                {step.body}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </Section>
 
       <CtaBand
         title={t(`items.${slug}.ctaTitle`)}

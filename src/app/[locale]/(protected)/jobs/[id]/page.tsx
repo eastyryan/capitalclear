@@ -101,14 +101,14 @@ export default async function JobDetailPage({ params }: PageProps) {
     <main className="mx-auto w-full max-w-2xl px-4 pt-6 pb-28 sm:pb-12">
       <Link
         href="/dashboard"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground motion-reduce:transition-none"
       >
         <ArrowLeft className="size-4" aria-hidden />
         {t('back')}
       </Link>
 
       {/* Header */}
-      <header className="mb-6 flex flex-col gap-4 rounded-xl border bg-card p-5">
+      <header className="mb-6 flex flex-col gap-4 rounded-xl border border-[var(--cc-line)] bg-card p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <ServiceBadge
             service={job.service_type}
@@ -161,28 +161,28 @@ export default async function JobDetailPage({ params }: PageProps) {
           )}
         </dl>
 
-        <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t pt-4">
+        <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t border-[var(--cc-line)] pt-4">
           {job.quoted_price_cents != null && (
             <div>
-              <span className="eyebrow text-muted-foreground">
+              <span className="eyebrow text-[var(--cc-ink-soft)]">
                 {t('quote')}
               </span>
               <Money
                 cents={job.quoted_price_cents}
                 locale={moneyLocale}
-                className="block text-lg font-semibold text-foreground"
+                className="block font-mono text-lg font-medium text-foreground"
               />
             </div>
           )}
           {job.final_price_cents != null && (
             <div>
-              <span className="eyebrow text-muted-foreground">
+              <span className="eyebrow text-[var(--cc-ink-soft)]">
                 {t('finalPrice')}
               </span>
               <Money
                 cents={job.final_price_cents}
                 locale={moneyLocale}
-                className="block text-lg font-semibold text-[var(--status-success)]"
+                className="block font-mono text-lg font-medium text-[var(--cc-accent)]"
               />
             </div>
           )}

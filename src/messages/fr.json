@@ -949,7 +949,7 @@
     "sheetAddressLabel": "Adresse de service",
     "sheetSingleDesc": "Largeur d’une voiture, jusqu’à deux voitures de profondeur",
     "sheetDoubleDesc": "Largeur de deux voitures, profondeur standard",
-    "sheetWalkwayDesc": "Allée piétonne pelletée et salée (+25 $)",
+    "sheetWalkwayDesc": "Allée piétonne pelletée et salée",
     "sheetEstimate": "Estimation : {price}",
     "sheetHelper": "Annulation gratuite jusqu’à l’acceptation par un pro. TVH ajoutée au paiement.",
     "sheetCta": "Réserver",

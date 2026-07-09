@@ -12,10 +12,10 @@ const LINKS = [
 /** Persistent notice + nav across the throwaway demo of the logged-in app. */
 export function DemoBanner() {
   return (
-    <div className="border-b border-amber-400/50 bg-amber-50">
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-2.5 sm:flex-row sm:items-center sm:justify-between">
-        <p className="flex items-center gap-2 text-sm font-medium text-amber-900">
-          <FlaskConical className="size-4 shrink-0" aria-hidden />
+    <div className="border-b border-[var(--cc-line)] bg-[var(--cc-paper)]">
+      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <p className="inline-flex w-fit items-center gap-2 rounded-full bg-[var(--cc-tint)] px-3 py-1 font-mono text-[11px] uppercase tracking-wide text-[var(--cc-ink-soft)]">
+          <FlaskConical className="size-3.5 shrink-0 text-[var(--cc-accent)]" aria-hidden />
           Demo preview — sample data, not a real login.
         </p>
         <nav className="flex flex-wrap items-center gap-x-1 gap-y-1">
@@ -23,7 +23,7 @@ export function DemoBanner() {
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-full px-3 py-1 text-xs font-medium text-amber-900 transition-colors hover:bg-amber-100"
+              className="rounded-full px-3 py-1 font-mono text-xs text-[var(--cc-ink-soft)] transition-colors hover:bg-[var(--cc-tint)] hover:text-[var(--cc-ink)] motion-reduce:transition-none"
             >
               {l.label}
             </Link>

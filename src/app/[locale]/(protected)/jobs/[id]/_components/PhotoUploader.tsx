@@ -91,7 +91,7 @@ export function PhotoUploader({
         type="button"
         variant="outline"
         size="lg"
-        className="h-11 w-full"
+        className="h-11 w-full rounded-lg border-dashed border-[var(--cc-line)] text-[var(--cc-ink-soft)] transition-colors hover:text-[var(--cc-ink)] motion-reduce:transition-none"
         disabled={isUploading}
         onClick={() => inputRef.current?.click()}
       >
