@@ -25,9 +25,9 @@ export const INCOMING: Record<Season, JobRequest[]> = {
     { id: "s3", address: "7 Meadow Drive", service: "Edging and cleanup", distanceMi: 0.8, price: 55, scope: "Small yard" },
   ],
   winter: [
-    { id: "w1", address: "41 Birchwood Lane", service: "Driveway clearing", distanceMi: 1.2, price: 70, scope: "Medium driveway" },
-    { id: "w2", address: "230 Lakeview Road", service: "Snow blowing", distanceMi: 3.1, price: 81, scope: "Large driveway" },
-    { id: "w3", address: "12 Orchard Court", service: "Walkway and salt", distanceMi: 1.6, price: 51, scope: "Small walkway" },
+    { id: "w1", address: "41 Birchwood Lane", service: "Driveway clearing", distanceMi: 1.2, price: 45, scope: "Single driveway" },
+    { id: "w2", address: "230 Lakeview Road", service: "Driveway clearing", distanceMi: 3.1, price: 55, scope: "Double driveway" },
+    { id: "w3", address: "12 Orchard Court", service: "Walkway", distanceMi: 1.6, price: 25, scope: "Walkway add-on" },
   ],
 };
 
@@ -37,8 +37,8 @@ export const TODAYS_ROUTE: Record<Season, RouteJob[]> = {
     { id: "sr2", address: "12 Hillcrest Avenue", service: "Hedge trimming", time: "11:30 AM", status: "in progress", price: 65 },
   ],
   winter: [
-    { id: "wr1", address: "95 Elm Street", service: "Driveway clearing", time: "6:30 AM", status: "done", price: 52 },
-    { id: "wr2", address: "12 Hillcrest Avenue", service: "Snow blowing", time: "8:15 AM", status: "in progress", price: 60 },
+    { id: "wr1", address: "95 Elm Street", service: "Driveway clearing", time: "6:30 AM", status: "done", price: 45 },
+    { id: "wr2", address: "12 Hillcrest Avenue", service: "Driveway clearing", time: "8:15 AM", status: "in progress", price: 55 },
   ],
 };
 
@@ -51,7 +51,7 @@ export interface Earnings {
 export const EARNINGS: Record<Season, Earnings> = {
   summer: {
     week: 1284,
-    afterFee: 1156,
+    afterFee: 1091,
     days: [
       { label: "Mon", amount: 210 },
       { label: "Tue", amount: 305 },
@@ -62,7 +62,7 @@ export const EARNINGS: Record<Season, Earnings> = {
   },
   winter: {
     week: 1730,
-    afterFee: 1557,
+    afterFee: 1470,
     days: [
       { label: "Mon", amount: 412 },
       { label: "Tue", amount: 285 },

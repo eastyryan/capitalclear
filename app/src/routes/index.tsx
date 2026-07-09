@@ -30,7 +30,7 @@ function CapitalClear() {
   const [pin, setPin] = useState<PinPos | null>(null);
   const [address, setAddress] = useState("");
   const [serviceId, setServiceId] = useState("driveway");
-  const [scope, setScope] = useState<Scope>("medium");
+  const [scope, setScope] = useState<Scope>("single");
   const [provider, setProvider] = useState<Provider | null>(null);
   const [searching, setSearching] = useState(false);
   const [stageIdx, setStageIdx] = useState(0);

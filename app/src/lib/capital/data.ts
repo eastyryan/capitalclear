@@ -1,6 +1,7 @@
 export type Season = "summer" | "winter";
 
-export type Scope = "small" | "medium" | "large";
+/** Winter driveway size. Single/Double set the base price on the live site. */
+export type Scope = "single" | "double";
 
 export type Step = "locate" | "services" | "match" | "track" | "done";
 
@@ -25,10 +26,22 @@ export interface Provider {
   priceDelta: number; // provider-specific price adjustment in dollars
 }
 
+// ---- Capital Clear winter pricing (matches the live site) -----------------
+// Driveway size sets the base price; the walkway and Priority Premium are flat
+// add-ons. All figures in whole CAD dollars.
+export const DRIVEWAY_PRICE: Record<Scope, number> = { single: 45, double: 55 };
+/** Walkway + steps add-on. */
+export const WALKWAY_ADDON = 25;
+/** Priority Premium — flat one-time fee (priority dispatch during storms). */
+export const PREMIUM_FLAT = 10;
+/** Ontario HST applied to the pre-tax subtotal at checkout. */
+export const HST_RATE = 0.13;
+/** Capital Clear platform fee: the Pro keeps 85%, Capital Clear keeps 15%. */
+export const PLATFORM_FEE = 0.15;
+
 export const SCOPES: { id: Scope; label: string; multiplier: number }[] = [
-  { id: "small", label: "Small", multiplier: 1 },
-  { id: "medium", label: "Medium", multiplier: 1.35 },
-  { id: "large", label: "Large", multiplier: 1.8 },
+  { id: "single", label: "Single", multiplier: 1 },
+  { id: "double", label: "Double", multiplier: DRIVEWAY_PRICE.double / DRIVEWAY_PRICE.single },
 ];
 
 export const SERVICES: Record<Season, Service[]> = {
@@ -59,23 +72,23 @@ export const SERVICES: Record<Season, Service[]> = {
     {
       id: "driveway",
       name: "Driveway clearing",
-      basePrice: 52,
+      basePrice: DRIVEWAY_PRICE.single,
       icon: "shovel",
       blurb: "Plowed or cleared to the pavement.",
     },
     {
-      id: "snowblow",
-      name: "Snow blowing",
-      basePrice: 60,
-      icon: "snowflake",
-      blurb: "Deep snow moved off drive and apron.",
+      id: "walkway",
+      name: "Walkway",
+      basePrice: WALKWAY_ADDON,
+      icon: "salt",
+      blurb: "Steps and paths cleared alongside your driveway.",
     },
     {
-      id: "walkway",
-      name: "Walkway and salt",
-      basePrice: 38,
-      icon: "salt",
-      blurb: "Steps and paths shoveled, then salted.",
+      id: "premium",
+      name: "Priority Premium",
+      basePrice: PREMIUM_FLAT,
+      icon: "snowflake",
+      blurb: "Dispatched ahead of standard bookings during storms.",
     },
   ],
 };
@@ -132,7 +145,7 @@ export const PROVIDERS: Record<Season, Provider[]> = {
       jobs: 287,
       etaMin: 16,
       photo: "/assets/crew-blower.webp",
-      priceDelta: 5,
+      priceDelta: 0,
     },
     {
       id: "blue-spruce",
@@ -142,12 +155,16 @@ export const PROVIDERS: Record<Season, Provider[]> = {
       jobs: 166,
       etaMin: 21,
       photo: "/assets/crew-salt.webp",
-      priceDelta: -4,
+      priceDelta: 0,
     },
   ],
 };
 
 export function estimate(service: Service, scope: Scope): number {
+  // Winter: driveway is priced by size; the walkway and Priority Premium are
+  // flat add-ons. Everything else (summer) keeps the scope multiplier.
+  if (service.id === "driveway") return DRIVEWAY_PRICE[scope] ?? DRIVEWAY_PRICE.single;
+  if (service.id === "walkway" || service.id === "premium") return service.basePrice;
   const m = SCOPES.find((s) => s.id === scope)?.multiplier ?? 1;
   return Math.round(service.basePrice * m);
 }

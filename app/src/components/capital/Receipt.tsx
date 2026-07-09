@@ -1,9 +1,9 @@
 import type { Provider, Season, Service } from "../../lib/capital/data";
-import { SEASON_COPY } from "../../lib/capital/data";
+import { HST_RATE, SEASON_COPY } from "../../lib/capital/data";
 
 /**
  * Receipt (board 5): quiet centered card, the oversized price numeral as the
- * page's one structural numeral, and the 90/10 line. The "New request" CTA is
+ * page's one structural numeral, and the 85/15 line. The "New request" CTA is
  * the full-width band whose grade shifts on hover.
  */
 export function Receipt({
@@ -21,6 +21,8 @@ export function Receipt({
   completedAt: string;
   onReset: () => void;
 }) {
+  const hst = Math.round(price * HST_RATE * 100) / 100;
+  const total = price + hst;
   return (
     <div className="absolute inset-0 flex items-center justify-center overflow-y-auto bg-[var(--cc-paper)] px-4 py-10">
       <div className="w-full max-w-sm">
@@ -38,13 +40,18 @@ export function Receipt({
             </p>
             <p className="mt-1 text-sm text-[var(--cc-ink-soft)]">{SEASON_COPY[season].doneLine}</p>
             <p className="mt-2 font-[family-name:var(--cc-font-mono)] text-8xl tracking-tighter">
-              ${price}
+              ${total.toFixed(2)}
+            </p>
+            <p className="mt-2 font-[family-name:var(--cc-font-mono)] text-xs text-[var(--cc-ink-soft)]">
+              Subtotal ${price}
+              <span aria-hidden className="px-1.5">·</span>
+              HST 13% ${hst.toFixed(2)}
             </p>
             <hr className="mt-6 border-[var(--cc-line)]" />
             <p className="py-5 text-sm leading-relaxed text-[var(--cc-ink-soft)]">
-              {provider.name} keeps 90 percent.
+              {provider.name} keeps 85 percent.
               <br />
-              CapitalClear runs on 10 percent.
+              CapitalClear runs on 15 percent.
             </p>
           </div>
           <button

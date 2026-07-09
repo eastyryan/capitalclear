@@ -24,7 +24,7 @@ export const Route = createFileRoute("/about")({
 const STEPS = [
   { icon: "pin", title: "Drop your pin", copy: "Type your address or tap your driveway on the map." },
   { icon: "shovel", title: "A crew comes out", copy: "Vetted local companies pick up the job nearby." },
-  { icon: "salt", title: "Done, and paid fairly", copy: "You get a flat estimate. The crew keeps 90 percent." },
+  { icon: "salt", title: "Done, and paid fairly", copy: "You get a flat estimate. The crew keeps 85 percent." },
 ] as const;
 
 function About() {
@@ -110,10 +110,10 @@ function About() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-12 gap-y-8 px-4 sm:px-8">
           <div className="max-w-md">
             <h2 className="text-3xl font-semibold tracking-tighter sm:text-4xl">
-              Partners keep 90 percent.
+              Partners keep 85 percent.
             </h2>
             <p className="mt-3 text-base leading-relaxed text-white/75">
-              Every storm, CapitalClear fills your plow route with nearby jobs and takes 10 percent
+              Every storm, CapitalClear fills your plow route with nearby jobs and takes 15 percent
               only when a job completes. No lead fees, no subscriptions.
             </p>
             <Link
@@ -136,7 +136,7 @@ function About() {
             </Link>
           </div>
           <p className="font-[family-name:var(--cc-font-mono)] text-7xl tracking-tighter text-white/90 sm:text-8xl">
-            90/10
+            85/15
           </p>
         </div>
       </section>

@@ -14,7 +14,7 @@ export const Route = createFileRoute("/partners")({
       {
         name: "description",
         content:
-          "See how partner companies receive nearby jobs, run their route, and keep 90 percent of every dollar on CapitalClear.",
+          "See how partner companies receive nearby jobs, run their route, and keep 85 percent of every dollar on CapitalClear.",
       },
     ],
     links: [{ rel: "canonical", href: `${SITE_ORIGIN}/partners` }],
@@ -57,7 +57,7 @@ function Partners() {
         </h1>
         <p className="mt-2 max-w-[52ch] text-base leading-relaxed text-[var(--cc-ink-soft)]">
           This is the partner side of the demo: when the snow falls, nearby requests come to you,
-          your route fills itself, and you keep 90 percent of every dollar.
+          your route fills itself, and you keep 85 percent of every dollar.
         </p>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_320px]">
@@ -145,11 +145,11 @@ function Partners() {
 
             <div className="mt-5">
               <div className="flex h-2 overflow-hidden rounded-full">
-                <span className="w-[90%] bg-[var(--cc-accent)]" />
-                <span className="w-[10%] bg-[var(--cc-ink)]/25" />
+                <span className="w-[85%] bg-[var(--cc-accent)]" />
+                <span className="w-[15%] bg-[var(--cc-ink)]/25" />
               </div>
               <p className="mt-2 text-sm text-[var(--cc-ink-soft)]">
-                You keep 90 percent:{" "}
+                You keep 85 percent:{" "}
                 <span className="font-[family-name:var(--cc-font-mono)] text-[var(--cc-ink)]">
                   ${earnings.afterFee.toLocaleString()}
                 </span>{" "}
@@ -172,7 +172,7 @@ function Partners() {
             </div>
 
             <p className="mt-6 border-t border-[var(--cc-line)] pt-4 text-xs leading-relaxed text-[var(--cc-ink-soft)]">
-              No lead fees, no subscriptions. CapitalClear takes 10 percent of completed jobs,
+              No lead fees, no subscriptions. CapitalClear takes 15 percent of completed jobs,
               nothing else.
             </p>
           </aside>
