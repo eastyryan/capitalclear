@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Menu, Snowflake } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import {
   Sheet,
@@ -18,9 +18,10 @@ import { LocaleSwitcher } from './LocaleSwitcher';
 type NavLink = { href: string; label: string };
 
 /**
- * Hamburger -> slide-in sheet for small screens. Anchor links scroll to
- * landing sections; CTAs route to the booking / pro flows. Closing the sheet
- * is handled by wrapping interactive items in <SheetClose>.
+ * Hamburger -> slide-in paper sheet for small screens (Higgsfield system):
+ * crest logo + mono wordmark header, mono link rows divided by hairlines,
+ * locale switcher + Log in + accent Book now at the bottom. Closing the
+ * sheet is handled by wrapping interactive items in <SheetClose>.
  */
 export function MobileNav({ links }: { links: NavLink[] }) {
   const t = useTranslations('Nav');
@@ -34,31 +35,38 @@ export function MobileNav({ links }: { links: NavLink[] }) {
             variant="ghost"
             size="icon-lg"
             aria-label={t('openMenu')}
-            className="size-11 text-white hover:bg-white/10 hover:text-white lg:hidden"
+            className="size-10 rounded-full bg-[var(--cc-paper)]/90 text-[var(--cc-ink)] shadow-sm backdrop-blur-sm hover:bg-[var(--cc-tint)] hover:text-[var(--cc-ink)] lg:hidden"
           />
         }
       >
         <Menu className="size-5" />
       </SheetTrigger>
 
-      <SheetContent side="right" className="w-[84%] max-w-sm gap-0 bg-background">
-        <SheetHeader className="border-b border-border">
+      <SheetContent side="right" className="w-[84%] max-w-sm gap-0 bg-[var(--cc-paper)]">
+        <SheetHeader className="border-b border-[var(--cc-line)]">
           <SheetTitle className="flex items-center gap-2">
-            <Snowflake className="size-4 text-primary" />
-            <span className="font-mono text-sm uppercase tracking-[0.16em]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/logo.webp"
+              alt=""
+              className="h-6 w-6 mix-blend-multiply"
+              width={24}
+              height={24}
+            />
+            <span className="font-mono text-sm uppercase tracking-[0.16em] text-[var(--cc-ink)]">
               Capital Clear
             </span>
           </SheetTitle>
         </SheetHeader>
 
-        <nav className="flex flex-col gap-1 p-3">
+        <nav className="flex flex-col px-4 py-2">
           {links.map((link) => (
             <SheetClose
               key={link.href}
               render={
                 <Link
                   href={link.href}
-                  className="flex h-11 items-center rounded-lg px-3 text-base text-foreground/90 transition-colors hover:bg-secondary hover:text-foreground"
+                  className="flex h-12 items-center border-b border-[var(--cc-line)] font-mono text-sm text-[var(--cc-ink-soft)] transition-colors hover:text-[var(--cc-ink)] motion-reduce:transition-none"
                 />
               }
             >
@@ -67,13 +75,13 @@ export function MobileNav({ links }: { links: NavLink[] }) {
           ))}
         </nav>
 
-        <div className="mt-auto flex flex-col gap-3 border-t border-border p-4">
+        <div className="mt-auto flex flex-col gap-3 border-t border-[var(--cc-line)] p-4">
           <LocaleSwitcher className="self-start" />
           <SheetClose
             render={
               <Link
                 href="/demo"
-                className="flex h-11 items-center justify-center rounded-lg border border-border text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+                className="flex h-11 items-center justify-center rounded-lg border border-[var(--cc-line)] font-mono text-sm text-[var(--cc-ink)] transition-colors hover:border-[var(--cc-ink-soft)] motion-reduce:transition-none"
               />
             }
           >
@@ -83,7 +91,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
             render={
               <Link
                 href="/demo/book"
-                className="bg-gradient-ember flex h-11 items-center justify-center rounded-lg text-sm font-medium text-primary-foreground"
+                className="flex h-11 items-center justify-center rounded-lg bg-[var(--cc-accent)] text-sm font-medium text-[var(--cc-accent-ink)] transition-transform duration-100 active:translate-y-[1px] active:scale-[0.97] motion-reduce:transition-none"
               />
             }
           >

@@ -22,7 +22,9 @@
     "french": "Français",
     "contact": "Contact",
     "loginSignup": "Connexion / Inscription",
-    "bookNow": "Réserver"
+    "bookNow": "Réserver",
+    "about": "À propos",
+    "tagline": "Déneigement à la demande"
   },
   "Footer": {
     "tagline": "Déneigement, entretien de pelouse et entretien saisonnier à la demande pour la région de la capitale nationale.",
@@ -583,7 +585,17 @@
     "ctaTitle": "Rejoignez le réseau.",
     "ctaSubtitle": "Réservez votre premier déneigement, ou inscrivez-vous comme pro local.",
     "ctaPrimary": "Réserver",
-    "ctaPro": "Devenir pro"
+    "ctaPro": "Devenir pro",
+    "heroLine1": "Conçu pour les",
+    "heroLine2": "hivers d’Ottawa.",
+    "requestService": "Demander un service",
+    "becomePartner": "Devenir partenaire",
+    "howTitle": "Comment ça marche",
+    "bandTitle": "Prêt dès le premier flocon.",
+    "bandBody": "Aucuns frais à l’avance — vous ne payez qu’une fois que votre pro a téléversé la preuve photo que le travail est terminé.",
+    "bandCta": "Réserver un déneigement",
+    "bandStat": "0 $",
+    "bandStatLabel": "à l’avance — payez uniquement sur preuve photo"
   },
   "Faq": {
     "metaTitle": "FAQ",
@@ -932,7 +944,16 @@
     "ctaPrimary": "Réserver",
     "ctaSecondary": "Devenir pro",
     "worksTitle": "Comment ça marche",
-    "worksSubtitle": "Réserver un déneigement prend moins d'une minute, chaque travail est vérifié par photo, et vous ne payez jamais d'avance."
+    "worksSubtitle": "Réserver un déneigement prend moins d'une minute, chaque travail est vérifié par photo, et vous ne payez jamais d'avance.",
+    "sheetSteps": "1 Placez votre repère · 2 On assigne une équipe · 3 Suivez-la en direct",
+    "sheetAddressLabel": "Adresse de service",
+    "sheetSingleDesc": "Largeur d’une voiture, jusqu’à deux voitures de profondeur",
+    "sheetDoubleDesc": "Largeur de deux voitures, profondeur standard",
+    "sheetWalkwayDesc": "Allée piétonne pelletée et salée (+25 $)",
+    "sheetEstimate": "Estimation : {price}",
+    "sheetHelper": "Annulation gratuite jusqu’à l’acceptation par un pro. TVH ajoutée au paiement.",
+    "sheetCta": "Réserver",
+    "sheetSelectSize": "Choisissez la taille de votre entrée pour voir votre prix"
   },
   "UberHome": {
     "heroTitle": "Déneigement sur demande",

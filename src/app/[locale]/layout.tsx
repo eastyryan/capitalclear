@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Metadata, Viewport } from 'next';
-import { Archivo, Inter, JetBrains_Mono } from 'next/font/google';
+import { Outfit, IBM_Plex_Mono } from 'next/font/google';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -9,20 +9,15 @@ import { Toaster } from '@/components/ui/sonner';
 import { Navbar } from '@/components/site/Navbar';
 import '../globals.css';
 
-// Azure design system faces: Archivo (heavy display grotesque), Inter (body),
-// JetBrains Mono (eyebrows, data, tabular stat numerals).
-// `--font-sans` / `--font-geist-mono` match the @theme mapping in globals.css.
-const inter = Inter({ variable: '--font-sans', subsets: ['latin'], display: 'swap' });
-const jetbrainsMono = JetBrains_Mono({
-  weight: ['400', '500', '700'],
+// Higgsfield design system faces: Outfit (variable — display AND body via the
+// `--font-sans: var(--font-display)` alias in globals.css), IBM Plex Mono
+// (nav links, eyebrows, prices, stats). Var names stay `--font-display` /
+// `--font-geist-mono` so the @theme mapping + legacy classes keep working.
+const outfit = Outfit({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
+const plexMono = IBM_Plex_Mono({
+  weight: ['400', '500'],
   variable: '--font-geist-mono',
   subsets: ['latin'],
-  display: 'swap'
-});
-const archivo = Archivo({
-  weight: ['400', '500', '600', '700', '800', '900'],
-  subsets: ['latin'],
-  variable: '--font-display',
   display: 'swap'
 });
 
@@ -33,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#ffffff'
+  themeColor: '#f4f7fa'
 };
 
 export function generateStaticParams() {
@@ -59,8 +54,9 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      // Light-first: the light palette lives on :root. No `dark` class.
-      className={`${inter.variable} ${jetbrainsMono.variable} ${archivo.variable} h-full antialiased`}
+      // Seasonal theme switch: winter token set. Light-first, no `dark` class.
+      data-season="winter"
+      className={`${outfit.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>

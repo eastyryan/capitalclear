@@ -22,7 +22,9 @@
     "french": "Français",
     "contact": "Contact",
     "loginSignup": "Log in / Sign up",
-    "bookNow": "Book now"
+    "bookNow": "Book now",
+    "about": "About",
+    "tagline": "Snow clearing, on demand"
   },
   "Footer": {
     "tagline": "On-demand snow removal, lawn care, and seasonal maintenance for the National Capital Region.",
@@ -583,7 +585,17 @@
     "ctaTitle": "Join the network.",
     "ctaSubtitle": "Book your first clear, or sign up to start earning as a local pro.",
     "ctaPrimary": "Book a clear",
-    "ctaPro": "Become a pro"
+    "ctaPro": "Become a pro",
+    "heroLine1": "Built for",
+    "heroLine2": "Ottawa winters.",
+    "requestService": "Request service",
+    "becomePartner": "Become a partner",
+    "howTitle": "How it works",
+    "bandTitle": "Ready when the first flake falls.",
+    "bandBody": "No upfront charge — you only pay once your pro uploads photo proof that the job is done.",
+    "bandCta": "Book a clear",
+    "bandStat": "$0",
+    "bandStatLabel": "upfront — pay only on photo-verified work"
   },
   "Faq": {
     "metaTitle": "FAQ",
@@ -932,7 +944,16 @@
     "ctaPrimary": "Book a clear",
     "ctaSecondary": "Become a pro",
     "worksTitle": "How it works",
-    "worksSubtitle": "Booking a clear takes under a minute, every job is photo-verified, and you never pay a cent upfront."
+    "worksSubtitle": "Booking a clear takes under a minute, every job is photo-verified, and you never pay a cent upfront.",
+    "sheetSteps": "1 Drop your pin · 2 We match a crew · 3 Track them live",
+    "sheetAddressLabel": "Service address",
+    "sheetSingleDesc": "One-car width, up to two cars deep",
+    "sheetDoubleDesc": "Two-car width, standard depth",
+    "sheetWalkwayDesc": "Front walkway shovelled and salted (+$25)",
+    "sheetEstimate": "{price} estimate",
+    "sheetHelper": "Free cancellation until a pro accepts. HST added at checkout.",
+    "sheetCta": "Book now",
+    "sheetSelectSize": "Choose a driveway size to see your price"
   },
   "UberHome": {
     "heroTitle": "Snow removal on demand",

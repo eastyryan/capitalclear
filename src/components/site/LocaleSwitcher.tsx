@@ -35,8 +35,8 @@ export function LocaleSwitcher({
   return (
     <div
       className={cn(
-        'inline-flex items-center gap-0.5 rounded-full border p-0.5',
-        onBrand ? 'border-white/30 bg-transparent' : 'border-border bg-secondary/40',
+        'inline-flex items-center gap-0.5 rounded-full p-0.5 shadow-sm backdrop-blur-sm',
+        onBrand ? 'border border-white/30 bg-transparent' : 'bg-[var(--cc-paper)]/90',
         className
       )}
       role="group"
@@ -52,15 +52,15 @@ export function LocaleSwitcher({
             disabled={isPending}
             aria-pressed={isActive}
             className={cn(
-              'font-mono min-w-[2.25rem] rounded-full px-2.5 py-1 text-xs uppercase tracking-[0.12em] transition-colors',
+              'font-mono min-w-[2.25rem] rounded-full px-2.5 py-1 text-xs uppercase tracking-[0.12em] transition-colors motion-reduce:transition-none',
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
               isActive
                 ? onBrand
                   ? 'bg-white text-primary'
-                  : 'bg-primary text-primary-foreground'
+                  : 'bg-[var(--cc-tint)] text-[var(--cc-accent)]'
                 : onBrand
                   ? 'text-white/75 hover:text-white'
-                  : 'text-muted-foreground hover:text-foreground'
+                  : 'text-[var(--cc-ink-soft)] hover:text-[var(--cc-ink)]'
             )}
           >
             {locale}

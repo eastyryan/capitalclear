@@ -81,29 +81,63 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* ---------------------------------------------------------------------------
+   Capital Clear "Higgsfield" token system — cc-* variables are the source of
+   truth. Winter is the default (also mirrored on :root as a fallback);
+   summer activates via html[data-season='summer'].
+   --------------------------------------------------------------------------- */
+:root,
+html[data-season='winter'] {
+  --cc-paper: #f4f7fa; /* page background */
+  --cc-ink: #18202a;
+  --cc-ink-soft: #18202a9e; /* 62% ink — secondary copy */
+  --cc-line: #18202a2e; /* 18% ink — borders/dividers */
+  --cc-accent: #2b5fb8; /* winter blue */
+  --cc-accent-ink: #fff;
+  --cc-tint: #e4ecf5; /* soft accent-tinted surface */
+  --cc-deep: #1b3b66; /* deep band background */
+}
+html[data-season='summer'] {
+  --cc-paper: #f7f6f2;
+  --cc-ink: #1c2420;
+  --cc-ink-soft: #1c24209e;
+  --cc-line: #1c24202e;
+  --cc-accent: #2f7a3d;
+  --cc-accent-ink: #fff;
+  --cc-tint: #e8efe6;
+  --cc-deep: #1e4a28;
+}
+
 :root {
-  /* Azure radius scale: soft 12px corners on fields/cards, pills for chips */
-  --radius: 0.75rem;
+  /* Spec fonts — next/font loads Outfit → --font-display and IBM Plex Mono →
+     --font-geist-mono (layout.tsx); spec markup can use the cc names. */
+  --cc-font-display: var(--font-display), 'Outfit', system-ui, sans-serif;
+  --cc-font-mono: var(--font-geist-mono), 'IBM Plex Mono', ui-monospace, monospace;
+  /* Body face = display face (Outfit everywhere per spec). */
+  --font-sans: var(--font-display);
 
-  /* --- Azure brand ramp: six blues --- */
-  --brand-50: #ebeffe;
-  --brand-100: #d0e0f9;
-  --brand-200: #b7cef2;
-  --brand-300: #8fadf1;
-  --brand-400: #579be9;
-  --brand-500: #0875dc; /* primary */
-  /* Derived interaction states + legible navy ink */
-  --brand-600: #0a63bc; /* hover */
-  --brand-700: #08529a; /* pressed */
-  --ink: #0b2a4a;
-  --ink-muted: #44618c;
+  /* Radius: rounded-lg = 8px controls, rounded-xl = ~11px surfaces */
+  --radius: 0.5rem;
 
-  --background: #ffffff;
-  --foreground: var(--ink);
-  --primary: var(--brand-500);
-  --primary-foreground: #ffffff;
-  --primary-hover: var(--brand-600);
-  --primary-pressed: var(--brand-700);
+  /* --- Legacy Azure brand ramp, repointed at the cc palette --- */
+  --brand-50: var(--cc-tint);
+  --brand-100: color-mix(in srgb, var(--cc-accent) 12%, white);
+  --brand-200: color-mix(in srgb, var(--cc-accent) 24%, white);
+  --brand-300: color-mix(in srgb, var(--cc-accent) 42%, white);
+  --brand-400: color-mix(in srgb, var(--cc-accent) 68%, white);
+  --brand-500: var(--cc-accent); /* primary */
+  /* Derived interaction states + legible ink */
+  --brand-600: color-mix(in srgb, var(--cc-accent) 88%, black); /* hover */
+  --brand-700: color-mix(in srgb, var(--cc-accent) 78%, black); /* pressed */
+  --ink: var(--cc-ink);
+  --ink-muted: color-mix(in srgb, var(--cc-ink) 62%, transparent);
+
+  --background: var(--cc-paper);
+  --foreground: var(--cc-ink);
+  --primary: var(--cc-accent);
+  --primary-foreground: var(--cc-accent-ink);
+  --primary-hover: color-mix(in srgb, var(--cc-accent) 88%, black);
+  --primary-pressed: color-mix(in srgb, var(--cc-accent) 78%, black);
   --ember: var(--brand-400); /* legacy alias — secondary/info blue */
   --ice: var(--brand-400);
   --slate: var(--ink);
@@ -119,24 +153,24 @@
   --status-info: var(--brand-400); /* posted */
   --status-violet: #6b4bff; /* awaiting */
 
-  /* shadcn semantic surfaces — all from the blue ramp */
+  /* shadcn semantic surfaces — white cards pop against paper */
   --card: #ffffff;
   --card-foreground: var(--foreground);
   --popover: #ffffff;
   --popover-foreground: var(--foreground);
-  --secondary: var(--brand-100);
+  --secondary: var(--cc-tint);
   --secondary-foreground: var(--foreground);
-  --muted: var(--brand-50);
+  --muted: var(--cc-tint);
   --muted-foreground: var(--ink-muted);
-  --accent: var(--brand-50);
+  --accent: var(--cc-tint);
   --accent-foreground: var(--foreground);
   --destructive: var(--status-danger);
 
-  /* Borders — light blue hairlines from the ramp */
-  --border: var(--brand-200);
-  --border-strong: var(--brand-300);
-  --input: var(--brand-200);
-  --ring: rgba(8, 117, 220, 0.45);
+  /* Borders — 18% ink hairlines */
+  --border: var(--cc-line);
+  --border-strong: color-mix(in srgb, var(--cc-ink) 30%, transparent);
+  --input: var(--cc-line);
+  --ring: color-mix(in srgb, var(--cc-accent) 45%, transparent);
 
   --chart-1: var(--brand-500);
   --chart-2: var(--brand-400);
@@ -220,7 +254,8 @@
     color-scheme: light;
   }
 
-  /* Azure display headings: Archivo heavy, tight tracking. */
+  /* Display headings: Outfit semibold, tight tracking (spec: font-semibold
+     tracking-tighter). */
   h1,
   h2,
   h3,
@@ -229,21 +264,21 @@
   }
   h1,
   .display {
-    letter-spacing: -0.03em;
-    font-weight: 800;
-    line-height: 1;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+    line-height: 1.05;
   }
   h2 {
-    letter-spacing: -0.02em;
-    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-weight: 600;
   }
   h3 {
     letter-spacing: -0.01em;
-    font-weight: 700;
+    font-weight: 600;
   }
   ::selection {
-    background: var(--brand-500);
-    color: #fff;
+    background: var(--cc-accent);
+    color: var(--cc-accent-ink);
   }
 }
 
@@ -278,15 +313,15 @@
     font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
   }
 
-  /* Monospace eyebrow label: uppercase, spaced, brand blue (Azure hero style). */
+  /* Monospace eyebrow label: uppercase, spaced, accent (IBM Plex Mono). */
   .eyebrow {
     font-family: var(--font-mono), ui-monospace, monospace;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.6875rem;
+    font-weight: 500;
     line-height: 1;
-    color: var(--primary);
+    color: var(--cc-accent);
   }
 
   /* Alternating cinematic dark band (default page surface). */
@@ -332,6 +367,54 @@
   .tabular-nums {
     font-variant-numeric: tabular-nums;
   }
+
+  /* Safe-area bottom padding — sticky sheet bars above the iOS home bar. */
+  .pb-safe {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  /* -------------------------------------------------------------------------
+     cc-icon sprite (public/assets/icons.webp, 4×2 grid).
+     Requires explicit width/height on the element (e.g. h-10 w-10).
+     Row 1: mower, hedge, edger, sprinkler. Row 2: snowflake, shovel, salt, pin.
+     ------------------------------------------------------------------------- */
+  .cc-icon {
+    display: inline-block;
+    background-image: url('/assets/icons.webp');
+    background-repeat: no-repeat;
+    background-size: 400% 200%;
+    mix-blend-mode: multiply;
+  }
+  .cc-icon--mower {
+    background-position: 0 0;
+  }
+  .cc-icon--hedge {
+    background-position: 33.3333% 0;
+  }
+  .cc-icon--edger {
+    background-position: 66.6667% 0;
+  }
+  .cc-icon--sprinkler {
+    background-position: 100% 0;
+  }
+  .cc-icon--snowflake {
+    background-position: 0 100%;
+  }
+  .cc-icon--shovel {
+    background-position: 33.3333% 100%;
+  }
+  .cc-icon--salt {
+    background-position: 66.6667% 100%;
+  }
+  .cc-icon--pin {
+    background-position: 100% 100%;
+  }
+}
+
+/* Winter hue shift for sprite icons — scoped to the season so the summer
+   switch is a single html attribute. */
+html[data-season='winter'] .cc-icon {
+  filter: hue-rotate(115deg) saturate(1.05);
 }
 
 /* Respect reduced-motion globally: kill smooth scroll + animations. */
@@ -358,9 +441,9 @@
 .font-instrument {
   font-family: var(--font-display), system-ui, sans-serif;
   font-style: normal;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
 }
 .font-barlow {
   font-family: var(--font-sans), system-ui, sans-serif;
