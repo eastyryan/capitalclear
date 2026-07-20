@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   CapitalClear design tokens. Winter "Pristine Light" grade, locked brand.
+--------------------------------------------------------------------------- */
+/* Two graded modes, one structure: the winter grade is the default; the
+   summer grade swaps the same slots. Utilities reference the runtime vars,
+   so a subtree can re-pin its own season via [data-season]. */
+:root,
+[data-season="winter"] {
+  --cc-paper: #f4f7fa;
+  --cc-ink: #18202a;
+  --cc-ink-soft: rgb(24 32 42 / 0.62);
+  --cc-accent: #2b5fb8;
+  --cc-accent-ink: #ffffff;
+  --cc-tint: #e4ecf5;
+  --cc-line: rgb(24 32 42 / 0.18);
+  --cc-deep: #1b3b66;
+}
+[data-season="summer"] {
+  --cc-paper: #f7f6f2;
+  --cc-ink: #1c2420;
+  --cc-ink-soft: rgb(28 36 32 / 0.62);
+  --cc-accent: #2f7a3d;
+  --cc-accent-ink: #ffffff;
+  --cc-tint: #e8efe6;
+  --cc-line: rgb(28 36 32 / 0.18);
+  --cc-deep: #1e4a28;
+}
+
+@theme inline {
+  --color-paper: var(--cc-paper);
+  --color-ink: var(--cc-ink);
+  --color-ink-soft: var(--cc-ink-soft);
+  --color-accent: var(--cc-accent);
+  --color-accent-ink: var(--cc-accent-ink);
+  --color-tint: var(--cc-tint);
+  --color-line: var(--cc-line);
+  --color-deep: var(--cc-deep);
+}
+
+@theme {
+  --font-display: "Outfit Variable", "Outfit", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+}
+
+html {
+  transition: background-color 0.5s ease;
+}
+
+html {
+  background: var(--color-paper);
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  background: var(--color-paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-tint);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Lenis smooth-scroll host */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* ---------------------------------------------------------------------------
+   Brand icon sprite (4x2 sheet). Sheet is drawn green; the winter grade
+   recolors it toward the ultramarine accent with a hue rotation.
+--------------------------------------------------------------------------- */
+.cc-icon {
+  display: inline-block;
+  background-image: url("/assets/icons.webp");
+  background-repeat: no-repeat;
+  background-size: 400% 200%;
+  mix-blend-mode: multiply;
+}
+/* The sheet is drawn summer-green; the winter grade recolors it to ice. */
+[data-season="winter"] .cc-icon {
+  filter: hue-rotate(115deg) saturate(1.05);
+}
+.cc-icon-mower { background-position: 0% 0%; }
+.cc-icon-hedge { background-position: 33.3333% 0%; }
+.cc-icon-edger { background-position: 66.6667% 0%; }
+.cc-icon-sprinkler { background-position: 100% 0%; }
+.cc-icon-snowflake { background-position: 0% 100%; }
+.cc-icon-shovel { background-position: 33.3333% 100%; }
+.cc-icon-salt { background-position: 66.6667% 100%; }
+.cc-icon-pin { background-position: 100% 100%; }
+
+/* ---------------------------------------------------------------------------
+   Bespoke CTA chrome. One garment per intent, no shared button class.
+--------------------------------------------------------------------------- */
+
+/* Drawing underline: the landing's rationed garment. */
+.cta-underline {
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+.cta-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.18em;
+  height: 3px;
+  width: 100%;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cta-underline:hover::after,
+.cta-underline:focus-visible::after,
+.cta-underline.is-drawn::after {
+  transform: scaleX(1);
+}
+
+/* Corner-bracket viewfinder: brackets close in on hover. */
+.cta-brackets {
+  position: relative;
+  display: inline-block;
+  padding: 0.55em 1.1em;
+  font-weight: 600;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+.cta-brackets::before,
+.cta-brackets::after {
+  content: "";
+  position: absolute;
+  width: 0.7em;
+  height: 0.7em;
+  border-color: var(--color-accent);
+  border-style: solid;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cta-brackets::before {
+  top: 0;
+  left: 0;
+  border-width: 2px 0 0 2px;
+}
+.cta-brackets::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 2px 2px 0;
+}
+.cta-brackets:hover::before,
+.cta-brackets:focus-visible::before {
+  transform: translate(0.25em, 0.25em);
+}
+.cta-brackets:hover::after,
+.cta-brackets:focus-visible::after {
+  transform: translate(-0.25em, -0.25em);
+}
+
+/* Press imprint for solid chips (partner Accept, panel CTAs). */
+.press-imprint {
+  transition: transform 0.12s ease;
+}
+.press-imprint:active {
+  transform: scale(0.98);
+}
+
+/* ---------------------------------------------------------------------------
+   Product motion
+--------------------------------------------------------------------------- */
+@keyframes cc-radar {
+  0% {
+    transform: scale(0.35);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+.cc-radar {
+  animation: cc-radar 1.8s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+.cc-radar-late {
+  animation-delay: 0.9s;
+}
+
+@keyframes cc-progress {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+.cc-progress {
+  transform-origin: left center;
+  animation: cc-progress 3s linear infinite;
+}
+
+@keyframes cc-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cc-fade-up {
+  animation: cc-fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cc-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(42px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.cc-sheet-in {
+  animation: cc-sheet-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cc-pin-drop {
+  0% {
+    transform: translate(-50%, -140%) scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(-50%, -100%) scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -100%) scale(1);
+    opacity: 1;
+  }
+}
+.cc-pin-drop {
+  animation: cc-pin-drop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Odometer digit column */
+.odo-col {
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  line-height: 1;
+}
+.odo-strip {
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.odo-strip > span {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+/* Vignette artwork keeps the multiply blend from the original build. */
+.cc-vignette {
+  mix-blend-mode: multiply;
+}
+[data-season="winter"] .cc-vignette {
+  filter: hue-rotate(115deg) saturate(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

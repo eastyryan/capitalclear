@@ -1,0 +1,29 @@
+<!doctype html>
+<!-- Static form definitions for Netlify's build-time form detection.
+     The live UI submits these forms via AJAX from the React app. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CapitalClear forms</title>
+  </head>
+  <body>
+    <form name="waitlist" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="bot-field" />
+      <input type="email" name="email" />
+      <input type="text" name="zip" />
+    </form>
+    <form name="partner-application" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="bot-field" />
+      <input type="text" name="company" />
+      <input type="text" name="contact" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="area" />
+      <select name="trucks">
+        <option>1</option>
+        <option>2-5</option>
+        <option>6+</option>
+      </select>
+    </form>
+  </body>
+</html>
