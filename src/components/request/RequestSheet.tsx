@@ -1,11 +1,14 @@
 import { SCOPES, SEASON_COPY, SERVICES, priceFor, type ScopeId } from "../../lib/data"
 import { AREAS, NO_AREA } from "../../lib/areas"
 import { useSeason } from "../../lib/season"
+import { formatPostal, isValidPostalFormat } from "../../lib/postal"
 import Icon from "../Icon"
 
 export default function RequestSheet({
   address,
   onAddress,
+  postal,
+  onPostal,
   area,
   onArea,
   contact,
@@ -19,6 +22,8 @@ export default function RequestSheet({
 }: {
   address: string
   onAddress: (v: string) => void
+  postal: string
+  onPostal: (v: string) => void
   area: string
   onArea: (v: string) => void
   contact: string
@@ -35,6 +40,7 @@ export default function RequestSheet({
   const copy = SEASON_COPY[season]
   const service = services.find((s) => s.id === serviceId) ?? services[0]
   const price = priceFor(service, scope)
+  const postalOk = postal.trim().length === 0 || isValidPostalFormat(postal)
   const located = hasPin || address.trim().length > 0
 
   return (
@@ -69,6 +75,32 @@ export default function RequestSheet({
         />
         <p className={`mt-2 text-sm ${hasPin ? "font-semibold text-accent" : "text-ink-soft"}`}>
           {hasPin ? "Pin set. We know where to go." : copy.tapHint}
+        </p>
+
+        <label
+          htmlFor="postal"
+          className="mt-4 block font-mono text-[11px] tracking-[0.16em] text-ink-soft uppercase"
+        >
+          Postal code
+        </label>
+        <input
+          id="postal"
+          value={postal}
+          onChange={(e) => onPostal(e.target.value)}
+          onBlur={() => postal.trim() && onPostal(formatPostal(postal))}
+          placeholder="K2K 2X8"
+          autoComplete="postal-code"
+          inputMode="text"
+          maxLength={7}
+          aria-invalid={!postalOk}
+          className={`mt-2 w-full rounded-xl border bg-white px-4 py-3.5 text-lg uppercase outline-none transition-colors placeholder:text-ink-soft/50 focus:border-accent ${
+            postalOk ? "border-line" : "border-red-400"
+          }`}
+        />
+        <p className={`mt-2 text-sm ${postalOk ? "text-ink-soft" : "font-semibold text-red-500"}`}>
+          {postalOk
+            ? "This routes your request to the crews covering your neighbourhood."
+            : "Enter a valid Canadian postal code (e.g. K2K 2X8)."}
         </p>
 
         <label

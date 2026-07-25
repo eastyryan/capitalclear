@@ -41,6 +41,7 @@ export interface RequestRow {
     See supabase/migrations/20260725120000_security_hardening.sql. */
 export async function submitRequest(row: {
   address: string
+  postal_code: string | null
   pin_x: number | null
   pin_y: number | null
   service_id: string
@@ -58,6 +59,7 @@ export async function submitRequest(row: {
       p_service_id: row.service_id,
       p_scope: row.scope,
       p_season: row.season,
+      p_postal_code: row.postal_code,
       p_pin_x: row.pin_x,
       p_pin_y: row.pin_y,
       p_contact: row.contact,

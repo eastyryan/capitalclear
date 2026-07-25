@@ -28,6 +28,7 @@ export default function Request() {
   const [step, setStep] = useState<Step>("request")
   const [pin, setPin] = useState<Pt | null>(null)
   const [address, setAddress] = useState("")
+  const [postal, setPostal] = useState("")
   const [area, setArea] = useState("")
   const [contact, setContact] = useState("")
   const [serviceId, setServiceId] = useState<string>(SERVICES.winter[0].id)
@@ -77,6 +78,7 @@ export default function Request() {
   const confirmCrew = async (p: Provider) => {
     const rowFields = {
       address: address.trim() || "Pin drop",
+      postal_code: postal.trim() || null,
       pin_x: pin?.x ?? DEFAULT_PIN.x,
       pin_y: pin?.y ?? DEFAULT_PIN.y,
       service_id: service.id,
@@ -102,6 +104,7 @@ export default function Request() {
             season,
             providerId: p.id,
             address,
+            postal,
             area,
             contact,
             pin,
@@ -141,6 +144,7 @@ export default function Request() {
     setStep("request")
     setPin(null)
     setAddress("")
+    setPostal("")
     setArea("")
     setContact("")
     setProvider(null)
@@ -177,6 +181,7 @@ export default function Request() {
       setServiceId(s.serviceId)
       setScope(s.scope)
       setAddress(s.address ?? "")
+      setPostal(s.postal ?? "")
       setArea(s.area ?? "")
       setContact(s.contact ?? "")
       setPin(s.pin ?? DEFAULT_PIN)
@@ -225,6 +230,8 @@ export default function Request() {
         <RequestSheet
           address={address}
           onAddress={setAddress}
+          postal={postal}
+          onPostal={setPostal}
           area={area}
           onArea={setArea}
           contact={contact}
