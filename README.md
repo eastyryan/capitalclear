@@ -1,5 +1,7 @@
 # CapitalClear — redesigned site
 
+[![Deploy to Netlify](https://github.com/connorshibley/capitalclear/actions/workflows/deploy.yml/badge.svg)](https://github.com/connorshibley/capitalclear/actions/workflows/deploy.yml)
+
 Cinematic redesign of the CapitalClear snow-clearing marketplace demo.
 Same locked brand (winter Pristine Light palette, Outfit + IBM Plex Mono,
 neighborly copy), rebuilt from scratch as a scroll-driven experience.
@@ -136,7 +138,8 @@ persisted in `localStorage` (`cc-season`), default winter.
 `.github/workflows/deploy.yml`, which builds and deploys to Netlify
 production. Build-time env (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`,
 `VITE_GA_ID`) and the Netlify token/site id are stored as GitHub Actions
-secrets.
+secrets. The badge at the top of this README shows whether the latest
+`main` build passed.
 
 **Manual** (bypass CI):
 
