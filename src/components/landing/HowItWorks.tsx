@@ -27,7 +27,7 @@ const STEPS = (season: "winter" | "summer"): { n: string; icon: IconId; title: s
     n: "03",
     icon: season === "winter" ? "salt" : "sprinkler",
     title: "Done, and paid fairly",
-    body: "You get a flat estimate. The crew keeps 90 percent.",
+    body: "You get a flat estimate. The crew keeps 85 percent.",
   },
 ]
 

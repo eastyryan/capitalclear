@@ -19,6 +19,8 @@ export interface RequestRow {
   service_id: string
   service_name: string
   scope: string
+  /** Selected flat add-ons, e.g. ["walkway","premium"]. Priced server-side. */
+  addons: string[] | null
   price: number
   season: string
   status: "new" | "accepted" | "declined" | "done"
@@ -47,6 +49,7 @@ export async function submitRequest(row: {
   service_id: string
   service_name: string // ignored — server derives it
   scope: string
+  addons: string[]
   price: number // ignored — server derives it
   season: string
   contact: string | null
@@ -59,6 +62,7 @@ export async function submitRequest(row: {
       p_service_id: row.service_id,
       p_scope: row.scope,
       p_season: row.season,
+      p_addons: row.addons,
       p_postal_code: row.postal_code,
       p_pin_x: row.pin_x,
       p_pin_y: row.pin_y,

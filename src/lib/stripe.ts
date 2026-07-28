@@ -46,7 +46,7 @@ export async function startOnboarding(): Promise<string | null> {
   }
 }
 
-/** Trigger the 90% transfer for a completed, paid job. Fire-and-forget. */
+/** Trigger the 85% transfer for a completed, paid job. Fire-and-forget. */
 export async function payout(requestId: string): Promise<void> {
   if (!hasStripe) return
   try {

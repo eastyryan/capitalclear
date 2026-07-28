@@ -1,5 +1,14 @@
 import { useEffect } from "react"
-import { SEASON_COPY, type Provider, type Service } from "../../lib/data"
+import {
+  PARTNER_SHARE_PCT,
+  PLATFORM_FEE_PCT,
+  SEASON_COPY,
+  addonsFor,
+  hstOn,
+  type AddonId,
+  type Provider,
+  type Service,
+} from "../../lib/data"
 import { useSeason } from "../../lib/season"
 import { trackEvent } from "../../lib/analytics"
 import Odometer from "../Odometer"
@@ -8,6 +17,7 @@ export default function Receipt({
   provider,
   service,
   price,
+  addons = [],
   completedAt,
   paid = false,
   onReset,
@@ -15,12 +25,19 @@ export default function Receipt({
   provider: Provider
   service: Service
   price: number
+  addons?: AddonId[]
   completedAt: string
   paid?: boolean
   onReset: () => void
 }) {
   const { season } = useSeason()
   const copy = SEASON_COPY[season]
+  const extras = addonsFor(season, addons)
+  // `price` is the pre-tax subtotal; Ontario HST is added at checkout. The
+  // odometer keeps the whole-dollar subtotal (it only rolls digits), so the
+  // tax and the amount actually charged sit on the line beneath it.
+  const hst = hstOn(price)
+  const total = price + hst
 
   useEffect(() => {
     trackEvent("request_flow_complete", { service: service.id, price })
@@ -42,19 +59,43 @@ export default function Receipt({
         <div className="mt-6 text-[5.5rem] leading-none font-semibold tracking-tight sm:text-8xl">
           <Odometer value={price} />
         </div>
+        {extras.length > 0 && (
+          <p className="mt-2 font-mono text-[12px] text-ink-soft">
+            {service.name}
+            {extras.map((a) => (
+              <span key={a.id}>
+                <span aria-hidden="true" className="px-1.5">
+                  +
+                </span>
+                {a.name} ${a.price}
+              </span>
+            ))}
+          </p>
+        )}
+        <p className="mt-2 font-mono text-[12px] text-ink-soft">
+          Subtotal ${price}
+          <span aria-hidden="true" className="px-1.5">
+            ·
+          </span>
+          HST 13% ${hst.toFixed(2)}
+          <span aria-hidden="true" className="px-1.5">
+            ·
+          </span>
+          <span className="font-semibold text-ink">Total ${total.toFixed(2)}</span>
+        </p>
 
         {paid && (
           <p className="mt-3 inline-block rounded-full bg-accent/10 px-3 py-1 font-mono text-[12px] font-semibold text-accent">
-            Paid ${price}
+            Paid ${total.toFixed(2)}
           </p>
         )}
 
         <div className="mt-6 space-y-0.5 border-t border-line pt-5 text-sm text-ink-soft">
           <p>
-            <span className="font-semibold text-ink">{provider.name}</span> keeps 90
-            percent.
+            <span className="font-semibold text-ink">{provider.name}</span> keeps{" "}
+            {PARTNER_SHARE_PCT} percent.
           </p>
-          <p>CapitalClear runs on 10 percent.</p>
+          <p>CapitalClear runs on {PLATFORM_FEE_PCT} percent.</p>
         </div>
 
         <button

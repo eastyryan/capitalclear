@@ -162,8 +162,8 @@ export default function Partners() {
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-ink-soft">
             {season === "winter"
-              ? "This is the partner side of the demo: when the snow falls, nearby requests come to you, your route fills itself, and you keep 90 percent of every dollar."
-              : "This is the partner side of the demo: all season long, nearby requests come to you, your route fills itself, and you keep 90 percent of every dollar."}
+              ? "This is the partner side of the demo: when the snow falls, nearby requests come to you, your route fills itself, and you keep 85 percent of every dollar."
+              : "This is the partner side of the demo: all season long, nearby requests come to you, your route fills itself, and you keep 85 percent of every dollar."}
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
             <Link
@@ -271,11 +271,11 @@ export default function Partners() {
               <span ref={weekEl}>${earnings.weekTotal.toLocaleString()}</span>
             </p>
             <div className="mt-5 flex h-2 w-full overflow-hidden rounded-full bg-ink/10">
-              <div className="pt-split h-full w-[90%] origin-left bg-accent" />
-              <div className="h-full w-[10%] bg-ink/25" />
+              <div className="pt-split h-full w-[85%] origin-left bg-accent" />
+              <div className="h-full w-[15%] bg-ink/25" />
             </div>
             <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              You keep 90 percent:{" "}
+              You keep 85 percent:{" "}
               <span className="font-mono font-semibold text-ink">
                 ${earnings.afterFee.toLocaleString()}
               </span>{" "}
@@ -293,7 +293,7 @@ export default function Partners() {
               ))}
             </div>
             <p className="mt-6 border-t border-line pt-4 text-[13px] leading-relaxed text-ink-soft">
-              No lead fees, no subscriptions. CapitalClear takes 10 percent of
+              No lead fees, no subscriptions. CapitalClear takes 15 percent of
               completed jobs, nothing else.
             </p>
           </aside>

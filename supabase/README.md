@@ -41,11 +41,41 @@ supabase db push                 # applies migrations/ in order
 Column privileges are enforced independently of RLS, so these hold regardless of
 what the row policies allow.
 
-## Step 2 — deploy ordering (important)
+## Step 2 — apply the live price book
+
+`20260728120000_capital_clear_live_pricing.sql` replaces Connor's demo prices
+with the real Capital Clear rates and reshapes how a price is derived:
+
+| | Was | Now |
+|---|---|---|
+| Driveway | `$52 × small/medium/large` | **Single $45 / Double $55** (explicit per-scope price) |
+| Walkway | standalone service, `$38` | **flat $25 add-on** that stacks on the driveway |
+| Priority Premium | — | **flat $10 add-on** |
+| Snow blowing | `$60` | removed (not a service we sell) |
+| Revenue share | 90/10 | **85/15** |
+
+Two of these are correctness bugs, not cosmetics:
+
+1. The client now sends `scope` as `single`/`double`. The old
+   `scope_multipliers` table only knew `small`/`medium`/`large`, so
+   `create_request()` would raise `unknown scope: single` and **every booking
+   would fail**.
+2. A multiplier can't express a flat add-on — the walkway would have been
+   scaled by driveway size. The migration adds `service_scope_price` (explicit
+   per-size prices) and `service_addons` (flat, never scaled), so the RPC
+   mirrors `quoteFor()` in `src/lib/data.ts` exactly.
+
+Add-on prices live server-side, and `create_request()` rejects an unknown
+add-on id rather than pricing it at zero — the client can't invent a free extra.
+
+## Step 3 — deploy ordering (important)
 
 The client change in `src/lib/supabase.ts` now calls `create_request()` instead
 of inserting into `requests`. **Apply the SQL before deploying the branch**, or
-new bookings will fail against a database that doesn't have the RPC yet.
+new bookings will fail against a database that doesn't have the RPC yet. The
+add-on argument makes this stricter: the deployed client calls the 10-argument
+`create_request(..., p_addons, ...)`, which only exists after the Step 2
+migration runs.
 
 ## Pre-launch — before enabling Stripe
 

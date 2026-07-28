@@ -11,7 +11,7 @@ export default function Marquee() {
   const root = useRef<HTMLElement>(null)
   const line =
     season === "winter"
-      ? "Plowed. Salted. Handled. Plowed. Salted. Handled."
+      ? "Plowed. Cleared. Handled. Plowed. Cleared. Handled."
       : "Mowed. Trimmed. Handled. Mowed. Trimmed. Handled."
 
   useEffect(() => {

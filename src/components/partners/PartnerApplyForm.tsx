@@ -49,7 +49,7 @@ export default function PartnerApplyForm() {
         </h2>
         <p className="mt-4 text-lg leading-relaxed text-ink-soft">
           Tell us about your company and we will reach out before the season
-          starts. You keep 90 percent of every job, no lead fees.
+          starts. You keep 85 percent of every job, no lead fees.
         </p>
       </div>
 

@@ -1,4 +1,13 @@
-import { SCOPES, SEASON_COPY, SERVICES, priceFor, type ScopeId } from "../../lib/data"
+import {
+  ADDONS,
+  SCOPES,
+  SEASON_COPY,
+  SERVICES,
+  priceFor,
+  quoteFor,
+  type AddonId,
+  type ScopeId,
+} from "../../lib/data"
 import { AREAS, NO_AREA } from "../../lib/areas"
 import { useSeason } from "../../lib/season"
 import { formatPostal, isValidPostalFormat } from "../../lib/postal"
@@ -18,6 +27,8 @@ export default function RequestSheet({
   onService,
   scope,
   onScope,
+  addons,
+  onToggleAddon,
   onSubmit,
 }: {
   address: string
@@ -33,13 +44,16 @@ export default function RequestSheet({
   onService: (id: string) => void
   scope: ScopeId
   onScope: (s: ScopeId) => void
+  addons: AddonId[]
+  onToggleAddon: (id: AddonId) => void
   onSubmit: () => void
 }) {
   const { season } = useSeason()
   const services = SERVICES[season]
   const copy = SEASON_COPY[season]
   const service = services.find((s) => s.id === serviceId) ?? services[0]
-  const price = priceFor(service, scope)
+  const extras = ADDONS[season]
+  const price = quoteFor(service, scope, season, addons)
   const postalOk = postal.trim().length === 0 || isValidPostalFormat(postal)
   const located = hasPin || address.trim().length > 0
 
@@ -183,6 +197,48 @@ export default function RequestSheet({
             ))}
           </div>
         </div>
+
+        {extras.length > 0 && (
+          <div className="mt-5">
+            <p className="font-mono text-[11px] tracking-[0.16em] text-ink-soft uppercase">
+              Add-ons
+            </p>
+            <div className="mt-2.5 space-y-2.5">
+              {extras.map((a) => {
+                const on = addons.includes(a.id)
+                return (
+                  <button
+                    key={a.id}
+                    type="button"
+                    role="checkbox"
+                    aria-checked={on}
+                    onClick={() => onToggleAddon(a.id)}
+                    className={`flex min-h-[44px] w-full items-center gap-3.5 rounded-2xl border bg-white px-4 py-3.5 text-left transition-all duration-200 ${
+                      on
+                        ? "border-accent bg-tint/60 shadow-[0_10px_30px_-18px_rgb(43_95_184/0.6)]"
+                        : "border-line hover:border-ink/40"
+                    }`}
+                  >
+                    <Icon id={a.icon} size={36} />
+                    <span className="flex-1">
+                      <span className="block font-bold">{a.name}</span>
+                      <span className="block text-[13px] text-ink-soft">{a.blurb}</span>
+                    </span>
+                    <span className="font-mono text-lg">+${a.price}</span>
+                    <span
+                      aria-hidden="true"
+                      className={`grid size-5 shrink-0 place-items-center rounded-full border transition-colors ${
+                        on ? "border-accent bg-accent text-accent-ink" : "border-line"
+                      }`}
+                    >
+                      {on && <span className="text-[11px] leading-none">✓</span>}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="border-t border-line px-6 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-8 sm:pb-5">

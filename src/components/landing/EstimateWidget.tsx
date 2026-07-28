@@ -2,7 +2,16 @@ import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { SCOPES, SEASON_COPY, SERVICES, priceFor, type ScopeId } from "../../lib/data"
+import {
+  ADDONS,
+  SCOPES,
+  SEASON_COPY,
+  SERVICES,
+  priceFor,
+  quoteFor,
+  type AddonId,
+  type ScopeId,
+} from "../../lib/data"
 import { trackEvent } from "../../lib/analytics"
 import { useSeason } from "../../lib/season"
 import Icon from "../Icon"
@@ -15,14 +24,22 @@ export default function EstimateWidget() {
   const services = SERVICES[season]
   const root = useRef<HTMLElement>(null)
   const [serviceId, setServiceId] = useState<string>(services[0].id)
-  const [scope, setScope] = useState<ScopeId>("medium")
+  const [scope, setScope] = useState<ScopeId>("single")
+  const [addons, setAddons] = useState<AddonId[]>([])
 
   useEffect(() => {
     setServiceId(SERVICES[season][0].id)
+    setAddons([])
   }, [season])
 
   const service = services.find((s) => s.id === serviceId) ?? services[0]
-  const price = priceFor(service, scope)
+  const extras = ADDONS[season]
+  const price = quoteFor(service, scope, season, addons)
+
+  const toggleAddon = (id: AddonId) => {
+    setAddons((prev) => (prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]))
+    trackEvent("estimate_interact", { addon: id })
+  }
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -116,6 +133,48 @@ export default function EstimateWidget() {
               ))}
             </div>
           </div>
+
+          {extras.length > 0 && (
+            <div className="mt-6">
+              <span className="font-mono text-[12px] tracking-[0.14em] text-ink-soft uppercase">
+                Add-ons
+              </span>
+              <div className="mt-3 space-y-3">
+                {extras.map((a) => {
+                  const on = addons.includes(a.id)
+                  return (
+                    <button
+                      key={a.id}
+                      type="button"
+                      role="checkbox"
+                      aria-checked={on}
+                      onClick={() => toggleAddon(a.id)}
+                      className={`flex w-full items-center gap-4 rounded-2xl border bg-paper px-5 py-4 text-left transition-all duration-200 ${
+                        on
+                          ? "border-accent shadow-[0_14px_40px_-22px_rgb(43_95_184/0.55)]"
+                          : "border-line hover:border-ink/40"
+                      }`}
+                    >
+                      <Icon id={a.icon} size={40} />
+                      <span className="flex-1">
+                        <span className="block font-bold">{a.name}</span>
+                        <span className="block text-sm text-ink-soft">{a.blurb}</span>
+                      </span>
+                      <span className="font-mono text-lg">+${a.price}</span>
+                      <span
+                        aria-hidden="true"
+                        className={`grid size-5 shrink-0 place-items-center rounded-full border transition-colors ${
+                          on ? "border-accent bg-accent text-accent-ink" : "border-line"
+                        }`}
+                      >
+                        {on && <span className="text-[11px] leading-none">✓</span>}
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="est-right">

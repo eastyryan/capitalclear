@@ -19,7 +19,7 @@ export default function PartnerBand() {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const counter = { v: 0 }
         gsap.to(counter, {
-          v: 90,
+          v: 85,
           duration: 1.6,
           ease: "power3.out",
           scrollTrigger: { trigger: root.current, start: "top 62%", once: true },
@@ -75,12 +75,12 @@ export default function PartnerBand() {
             {season === "winter" ? "for plow companies" : "for lawn crews"}
           </p>
           <h2 className="pb-copy mt-3 text-4xl leading-[1.02] font-extrabold tracking-tight sm:text-6xl">
-            Partners keep 90 percent.
+            Partners keep 85 percent.
           </h2>
           <p className="pb-copy mt-6 max-w-md text-lg leading-relaxed text-white/75">
             {season === "winter"
-              ? "Every storm, CapitalClear fills your plow route with nearby jobs and takes 10 percent only when a job completes. No lead fees, no subscriptions."
-              : "All season, CapitalClear fills your crew routes with nearby jobs and takes 10 percent only when a job completes. No lead fees, no subscriptions."}
+              ? "Every storm, CapitalClear fills your plow route with nearby jobs and takes 15 percent only when a job completes. No lead fees, no subscriptions."
+              : "All season, CapitalClear fills your crew routes with nearby jobs and takes 15 percent only when a job completes. No lead fees, no subscriptions."}
           </p>
           <div className="pb-copy mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
             <Link
@@ -101,12 +101,12 @@ export default function PartnerBand() {
 
         <div>
           <div className="font-mono text-[clamp(6rem,14vw,10rem)] leading-none font-semibold tracking-tight">
-            <span ref={ninety}>90</span>
-            <span className="text-white/40">/10</span>
+            <span ref={ninety}>85</span>
+            <span className="text-white/40">/15</span>
           </div>
           <div className="mt-8 flex h-2.5 w-full overflow-hidden rounded-full">
-            <div className="pb-split h-full w-[90%] origin-left bg-white" />
-            <div className="h-full w-[10%] bg-white/25" />
+            <div className="pb-split h-full w-[85%] origin-left bg-white" />
+            <div className="h-full w-[15%] bg-white/25" />
           </div>
           <p className="mt-3 font-mono text-[13px] text-white/60">
             you keep $

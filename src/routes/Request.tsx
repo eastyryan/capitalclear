@@ -8,8 +8,9 @@ import Receipt from "../components/request/Receipt"
 import {
   PROVIDERS,
   SERVICES,
-  priceFor,
   providerPrice,
+  quoteFor,
+  type AddonId,
   type Provider,
   type ScopeId,
 } from "../lib/data"
@@ -32,7 +33,8 @@ export default function Request() {
   const [area, setArea] = useState("")
   const [contact, setContact] = useState("")
   const [serviceId, setServiceId] = useState<string>(SERVICES.winter[0].id)
-  const [scope, setScope] = useState<ScopeId>("medium")
+  const [scope, setScope] = useState<ScopeId>("single")
+  const [addons, setAddons] = useState<AddonId[]>([])
   const [provider, setProvider] = useState<Provider | null>(null)
   const [searching, setSearching] = useState(false)
   const [stageIdx, setStageIdx] = useState(0)
@@ -55,8 +57,11 @@ export default function Request() {
 
   const services = SERVICES[season]
   const service = services.find((s) => s.id === serviceId) ?? services[0]
-  const basePrice = priceFor(service, scope)
+  const basePrice = quoteFor(service, scope, season, addons)
   const finalPrice = provider ? providerPrice(basePrice, provider) : basePrice
+
+  const toggleAddon = (id: AddonId) =>
+    setAddons((prev) => (prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]))
 
   const submit = () => {
     if (!pin) setPin(DEFAULT_PIN)
@@ -84,6 +89,7 @@ export default function Request() {
       service_id: service.id,
       service_name: service.name,
       scope,
+      addons,
       price: basePrice,
       season,
       contact: contact.trim() || null,
@@ -101,6 +107,7 @@ export default function Request() {
           JSON.stringify({
             serviceId: service.id,
             scope,
+            addons,
             season,
             providerId: p.id,
             address,
@@ -147,6 +154,7 @@ export default function Request() {
     setPostal("")
     setArea("")
     setContact("")
+    setAddons([])
     setProvider(null)
     setSearching(false)
     setStageIdx(0)
@@ -180,6 +188,7 @@ export default function Request() {
       if (!p) return
       setServiceId(s.serviceId)
       setScope(s.scope)
+      setAddons(Array.isArray(s.addons) ? s.addons : [])
       setAddress(s.address ?? "")
       setPostal(s.postal ?? "")
       setArea(s.area ?? "")
@@ -209,6 +218,7 @@ export default function Request() {
     setStageIdx(0)
     setEtaMin(0)
     setServiceId(SERVICES[season][0].id)
+    setAddons([]) // add-ons are season-specific; summer has none
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [season])
 
@@ -241,6 +251,8 @@ export default function Request() {
           onService={setServiceId}
           scope={scope}
           onScope={setScope}
+          addons={addons}
+          onToggleAddon={toggleAddon}
           onSubmit={submit}
         />
       )}
@@ -272,6 +284,7 @@ export default function Request() {
           provider={provider}
           service={service}
           price={finalPrice}
+          addons={addons}
           completedAt={completedAt}
           paid={paid}
           onReset={reset}

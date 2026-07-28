@@ -195,10 +195,10 @@ export default function PartnerDashboard() {
                 <h2 className="text-lg font-bold tracking-tight">Payouts</h2>
                 <p className="mt-1 text-sm text-ink-soft">
                   {partner?.payouts_enabled
-                    ? "Payouts active. You keep 90 percent of every job, paid to your account."
+                    ? "Payouts active. You keep 85 percent of every job, paid to your account."
                     : partner?.stripe_account_id
                       ? "Almost there. Finish your Stripe setup to receive payouts."
-                      : "Connect a payout account to get paid the 90 percent you keep."}
+                      : "Connect a payout account to get paid the 85 percent you keep."}
                 </p>
               </div>
               {partner?.payouts_enabled ? (
