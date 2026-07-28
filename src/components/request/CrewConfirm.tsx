@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { PROVIDERS, providerPrice, type Provider } from "../../lib/data"
 import { useSeason } from "../../lib/season"
+import { LIABILITY_WAIVER } from "../../lib/legal"
 
 export default function CrewConfirm({
   searching,
@@ -17,6 +19,10 @@ export default function CrewConfirm({
   const providers = PROVIDERS[season]
   const [picked, setPicked] = useState<Provider>(providers[0])
   const [expanded, setExpanded] = useState(false)
+  // The Terms state that Clients accept the liability waiver when confirming a
+  // booking, so confirmation is gated on it actually being accepted here.
+  const [waiver, setWaiver] = useState(false)
+  const [waiverError, setWaiverError] = useState(false)
   const alternates = providers.filter((p) => p.id !== picked.id)
 
   if (searching) {
@@ -117,12 +123,71 @@ export default function CrewConfirm({
             ))}
           </div>
         )}
+
+        <div className="mt-5 border-t border-line pt-4">
+          <p className="font-mono text-[11px] tracking-[0.16em] text-ink-soft uppercase">
+            {LIABILITY_WAIVER.title}
+          </p>
+          <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">
+            {LIABILITY_WAIVER.body}
+          </p>
+          <button
+            type="button"
+            role="checkbox"
+            aria-checked={waiver}
+            onClick={() => {
+              setWaiver((v) => !v)
+              setWaiverError(false)
+            }}
+            className="mt-3 flex w-full items-start gap-3 text-left"
+          >
+            <span
+              aria-hidden="true"
+              className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-md border transition-colors ${
+                waiver
+                  ? "border-accent bg-accent text-accent-ink"
+                  : waiverError
+                    ? "border-red-400"
+                    : "border-line bg-white"
+              }`}
+            >
+              {waiver && <span className="text-[12px] leading-none">✓</span>}
+            </span>
+            <span className="text-[13px] leading-relaxed">
+              I have read and agree to the{" "}
+              <Link
+                to="/terms"
+                onClick={(e) => e.stopPropagation()}
+                className="text-accent hover:underline"
+              >
+                Terms of Service
+              </Link>{" "}
+              and this liability waiver.
+            </span>
+          </button>
+          {waiverError && (
+            <p className="mt-2 text-[13px] font-semibold text-red-500">
+              {LIABILITY_WAIVER.required}
+            </p>
+          )}
+        </div>
       </div>
 
       <div className="px-6 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-7 sm:pb-5">
         <button
-          onClick={() => onConfirm(picked)}
-          className="press-imprint flex min-h-[56px] w-full items-center justify-center rounded-2xl bg-ink text-lg font-bold text-paper transition-colors duration-300 hover:bg-accent"
+          onClick={() => {
+            if (!waiver) {
+              setWaiverError(true)
+              return
+            }
+            onConfirm(picked)
+          }}
+          aria-describedby={waiverError ? "waiver-error" : undefined}
+          className={`press-imprint flex min-h-[56px] w-full items-center justify-center rounded-2xl text-lg font-bold transition-colors duration-300 ${
+            waiver
+              ? "bg-ink text-paper hover:bg-accent"
+              : "bg-tint text-ink-soft"
+          }`}
         >
           Confirm crew
         </button>

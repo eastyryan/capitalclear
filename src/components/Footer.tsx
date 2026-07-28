@@ -9,12 +9,21 @@ export default function Footer() {
           <img src="/assets/logo.webp" alt="" className="h-7 w-7 mix-blend-multiply" />
           <span className="font-bold tracking-tight">CapitalClear</span>
         </div>
-        <nav className="flex items-center gap-6 font-mono text-[13px]">
+        <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[13px]">
           <Link to="/request" className="text-ink-soft transition-colors hover:text-accent">
             Request
           </Link>
           <Link to="/partners" className="text-ink-soft transition-colors hover:text-accent">
             Partners
+          </Link>
+          <Link to="/contact" className="text-ink-soft transition-colors hover:text-accent">
+            Contact
+          </Link>
+          <Link to="/terms" className="text-ink-soft transition-colors hover:text-accent">
+            Terms
+          </Link>
+          <Link to="/privacy" className="text-ink-soft transition-colors hover:text-accent">
+            Privacy
           </Link>
         </nav>
         <p className="font-mono text-[12px] text-ink-soft">{DEMO_LINE}</p>

@@ -5,6 +5,9 @@ import Request from "./routes/Request"
 import Partners from "./routes/Partners"
 import PartnerLogin from "./routes/PartnerLogin"
 import PartnerDashboard from "./routes/PartnerDashboard"
+import Legal from "./routes/Legal"
+import Contact from "./routes/Contact"
+import { PRIVACY, TERMS } from "./lib/legal"
 import { initAnalytics, trackPageview } from "./lib/analytics"
 
 function ScrollToTop() {
@@ -41,6 +44,9 @@ export default function App() {
         <Route path="/partners" element={<Partners />} />
         <Route path="/partners/login" element={<PartnerLogin />} />
         <Route path="/partners/dashboard" element={<PartnerDashboard />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/terms" element={<Legal doc={TERMS} />} />
+        <Route path="/privacy" element={<Legal doc={PRIVACY} />} />
         <Route path="/about" element={<Navigate to="/" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
