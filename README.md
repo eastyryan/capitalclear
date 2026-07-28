@@ -51,7 +51,8 @@ simulated demo.
 
 - `/partners` is the public **demo** (sample data, for cold outreach) with
   a "Partner sign in" link.
-- `/partners/login` — passwordless email magic-link sign in (Supabase Auth).
+- `/partners/login` — passwordless email magic-link sign in (Supabase Auth),
+  with a "Sign in with a password" option (used for seeded test accounts).
 - `/partners/dashboard` — the real, per-partner live queue. Row-level
   security means an **approved** partner sees only unclaimed jobs plus their
   own; anonymous visitors can no longer read the queue at all (homeowners
@@ -130,6 +131,14 @@ persisted in `localStorage` (`cc-season`), default winter.
   in `index.html`.
 
 ## Deploy
+
+**Automatic**: every push to `main` on GitHub triggers
+`.github/workflows/deploy.yml`, which builds and deploys to Netlify
+production. Build-time env (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`,
+`VITE_GA_ID`) and the Netlify token/site id are stored as GitHub Actions
+secrets.
+
+**Manual** (bypass CI):
 
 ```bash
 netlify deploy --prod --dir dist   # linked to capitalclear-redesign
