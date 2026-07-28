@@ -1,94 +1,88 @@
 # Supabase — schema & migrations
 
-The live database (project ref `frsugygafnyvnrfctbbx`) was built entirely in the
-Supabase dashboard and has **never been in version control**. This folder starts
-fixing that. There are two kinds of file here:
+The live database (project ref `frsugygafnyvnrfctbbx`, **Connor's project**) was
+built in the Supabase dashboard. Its 12 migrations (`init_requests` →
+`waitlist_insert_both_roles`, July 16–18 2026) live in Supabase's own migration
+history, not in this repo.
 
-- `SCHEMA-RECONSTRUCTED.sql` — a **reference-only** reconstruction of the current
-  tables, inferred from the app. Do **not** run it against the live DB.
-- `migrations/*.sql` — **applyable** corrective migrations. Each is idempotent
-  and safe to run against the live database.
+The three migrations here were **reconciled against the real schema** on
+2026-07-28 by introspecting the live database — `information_schema.columns`,
+`pg_policies`, `pg_get_functiondef`. An earlier draft written against a guessed
+schema had three defects, all fixed and documented inline:
 
-## Step 0 — get the real schema into git (do this first)
+| Defect | Consequence had it run |
+|---|---|
+| `create_request()` only knew `small`/`medium`/`large` scopes | Every booking would fail with `unknown scope: single` |
+| `accept_request()` redefined with a new return type | `cannot change return type of existing function` — migration aborts |
+| `handle_new_partner()` replaced with a metadata-reading version | Would have *added* attack surface; the live one is already safe |
 
-Whoever holds the database password:
+## Apply order — this matters
 
-```bash
-supabase link --project-ref frsugygafnyvnrfctbbx
-supabase db pull                 # writes the TRUE baseline as a migration
-```
+The phases are numbered because running them out of order breaks live bookings
+in one direction or the other.
 
-Then open `migrations/20260725120000_security_hardening.sql` and confirm every
-table/column name it references matches the pulled baseline. The hardening
-migration was written against `SCHEMA-RECONSTRUCTED.sql`; if `db pull` shows a
-different column name, fix it in the migration before applying. Once the real
-baseline lands, delete `SCHEMA-RECONSTRUCTED.sql`.
+### Phase 1 — `20260728130000_pricing_and_create_request.sql`
 
-## Step 1 — apply the security hardening
+Purely **additive**. Creates the price book (`service_pricing`,
+`scope_multipliers`, `service_scope_price`, `service_addons`), adds
+`requests.postal_code` and `requests.addons`, and creates the
+server-authoritative `create_request()` RPC.
 
-```bash
-supabase db push                 # applies migrations/ in order
-```
+Safe to run while the **old** frontend is still live — it keeps inserting into
+`requests` directly and is unaffected.
 
-`20260725120000_security_hardening.sql` closes three holes from the audit:
+### Deploy the frontend
 
-| # | Hole | Fix |
-|---|------|-----|
-| 1 | A partner could set their own `approved` / `payouts_enabled` / `stripe_account_id` by updating their own row | Column-level `REVOKE`/`GRANT`: partners may write only `company`, `phone`, `service_areas`. The rest is service-role-only. |
-| 2 | Signup metadata could seed privileged partner fields | Metadata-safe `handle_new_partner()` reference function (hardcodes the privileged fields to safe values). |
-| 3 | A homeowner set their own `price` (and could set `status`/`payment_status`) on a request | Requests are created only via the `create_request()` RPC, which derives price server-side from a price book. Direct `INSERT`/`UPDATE`/`DELETE` on `requests` is revoked from clients. |
+Push to `main` on `connorshibley/capitalclear`; the GitHub Action builds and
+deploys to Netlify. Confirm a real booking lands in `requests` before moving on.
 
-Column privileges are enforced independently of RLS, so these hold regardless of
-what the row policies allow.
+### Phase 2 — `20260728140000_lockdown_client_writes.sql`
 
-## Step 2 — apply the live price book
+All **restrictions**: revokes direct `INSERT`/`UPDATE`/`DELETE` on `requests`,
+revokes partner self-writes except `company`/`phone`/`service_areas`, drops the
+now-dead anon INSERT policy.
 
-`20260728120000_capital_clear_live_pricing.sql` replaces Connor's demo prices
-with the real Capital Clear rates and reshapes how a price is derived:
+**Do not run this before the frontend is live.** The deployed-today client
+inserts directly; the moment INSERT is revoked it can no longer book. Phase 1 →
+deploy → Phase 2 gives a zero-downtime cutover.
 
-| | Was | Now |
-|---|---|---|
-| Driveway | `$52 × small/medium/large` | **Single $45 / Double $55** (explicit per-scope price) |
-| Walkway | standalone service, `$38` | **flat $25 add-on** that stacks on the driveway |
-| Priority Premium | — | **flat $10 add-on** |
-| Snow blowing | `$60` | removed (not a service we sell) |
-| Revenue share | 90/10 | **85/15** |
+The live hole this actually closes: `guard_partner_payment_fields` already pins
+`stripe_account_id` and `payouts_enabled`, but **nothing protects `approved`** —
+a partner can currently self-approve via the "partner updates own row" policy.
 
-Two of these are correctness bugs, not cosmetics:
+### Phase 3 — `20260728150000_territory_model.sql` — **not ready**
 
-1. The client now sends `scope` as `single`/`double`. The old
-   `scope_multipliers` table only knew `small`/`medium`/`large`, so
-   `create_request()` would raise `unknown scope: single` and **every booking
-   would fail**.
-2. A multiplier can't express a flat add-on — the walkway would have been
-   scaled by driveway size. The migration adds `service_scope_price` (explicit
-   per-size prices) and `service_addons` (flat, never scaled), so the RPC
-   mirrors `quoteFor()` in `src/lib/data.ts` exactly.
+Companies, crew membership, FSA coverage, postal-code routing. The additive part
+is safe, but the enforcement section (bottom of the file, commented out) drops
+the legacy `requests` SELECT policy. With `companies` empty, every partner would
+see an empty queue. Onboard company data first; the file documents the order.
 
-Add-on prices live server-side, and `create_request()` rejects an unknown
-add-on id rather than pricing it at zero — the client can't invent a free extra.
+## Pricing model
 
-## Step 3 — deploy ordering (important)
+Client `quoteFor()` in `src/lib/data.ts` and `create_request()` must stay in
+agreement. The database is authoritative and rejects unknown scopes and add-on
+ids rather than silently pricing them at zero.
 
-The client change in `src/lib/supabase.ts` now calls `create_request()` instead
-of inserting into `requests`. **Apply the SQL before deploying the branch**, or
-new bookings will fail against a database that doesn't have the RPC yet. The
-add-on argument makes this stricter: the deployed client calls the 10-argument
-`create_request(..., p_addons, ...)`, which only exists after the Step 2
-migration runs.
+| | Price |
+|---|---|
+| Driveway — Single | $45 |
+| Driveway — Double | $55 |
+| Walkway add-on | +$25 flat, never scaled by size |
+| Priority Premium add-on | +$10 flat |
+| HST | 13%, added at checkout |
+| Revenue share | Pro keeps 85%, CapitalClear 15% |
 
-## Pre-launch — before enabling Stripe
+Money is whole CAD dollars, matching the existing `requests.price integer`
+column. A later migration should move to integer cents — do it together with
+the checkout edge function so the unit never disagrees.
 
-Payments are off today (`VITE_STRIPE_ENABLED` unset), so hole #3's payout path
-isn't reachable yet. Before flipping Stripe on, the `stripe-payout` Edge Function
-must, server-side: verify the caller is the request's `assigned_partner`; verify
-`status = 'done'` and `payment_status = 'paid'`; be idempotent; and never trust a
-client amount. Better still, have `complete_request()` initiate the payout so the
-browser never calls `stripe-payout` directly (today `PartnerDashboard.tsx:111`
-fires it unguarded and unawaited).
+## Still only in the dashboard
 
-## What's not in git yet
+Edge Functions (`notify-request`, `stripe-payout`, the weather cron) are not in
+git. `supabase functions download` will bring them in.
 
-The `accept_request` / `decline_request` / `complete_request` RPC bodies and all
-Edge Functions still live only in the dashboard. `supabase db pull` +
-`supabase functions download` will bring them in — do that before editing them.
+Before enabling Stripe, `stripe-payout` must verify server-side that the caller
+is the request's `assigned_partner`, that `status = 'done'` and
+`payment_status = 'paid'`, be idempotent, and never trust a client amount.
+Better: have `complete_request()` initiate the payout so the browser never calls
+it directly — today `PartnerDashboard.tsx:111` fires it unguarded and unawaited.
