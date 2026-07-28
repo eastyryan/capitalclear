@@ -98,6 +98,13 @@ create policy scope_multipliers_read   on public.scope_multipliers   for select 
 create policy service_scope_price_read on public.service_scope_price for select to anon, authenticated using (true);
 create policy service_addons_read      on public.service_addons      for select to anon, authenticated using (true);
 
+-- Explicit, rather than relying on Supabase's default-privilege config for
+-- newly created tables. Read-only: these tables are written by service_role.
+grant select on public.service_pricing     to anon, authenticated;
+grant select on public.scope_multipliers   to anon, authenticated;
+grant select on public.service_scope_price to anon, authenticated;
+grant select on public.service_addons      to anon, authenticated;
+
 -- ---------------------------------------------------------------------------
 -- New columns on requests. Both additive; existing rows get the defaults.
 -- ---------------------------------------------------------------------------
